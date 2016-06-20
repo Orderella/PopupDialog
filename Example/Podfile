@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PopupDialog_Example' do
+  pod 'PopupDialog', :path => '../'
+
+  target 'PopupDialog_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
