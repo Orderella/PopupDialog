@@ -1,0 +1,6 @@
+framework module Pods_PopupDialog_Tests {
+  umbrella header "Pods-PopupDialog_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

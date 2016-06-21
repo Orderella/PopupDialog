@@ -1,0 +1,16 @@
+PODS:
+  - PopupDialog (0.1.0)
+
+DEPENDENCIES:
+  - PopupDialog (from `../`)
+
+EXTERNAL SOURCES:
+  PopupDialog:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PopupDialog: 6bbbf6c552044946dec49f4ac10d464d8e3df5f4
+
+PODFILE CHECKSUM: d8495001123cc68c0f614ef520d9741b67defd8d
+
+COCOAPODS: 1.0.1

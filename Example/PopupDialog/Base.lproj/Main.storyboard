@@ -1,25 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="PopupDialog_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cute_cat" translatesAutoresizingMaskIntoConstraints="NO" id="yCg-ou-HQf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ib-rL-PNU">
+                                <rect key="frame" x="20" y="503" width="280" height="45"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="9fv-Vh-liG"/>
+                                </constraints>
+                                <state key="normal" title="Show Other Dialog"/>
+                                <connections>
+                                    <action selector="showOtherDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GVb-2Y-Kif"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7G-uG-kym">
+                                <rect key="frame" x="20" y="443" width="280" height="45"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Show Kitten Dialog"/>
+                                <connections>
+                                    <action selector="showKittenDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YTI-i9-Ap9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the buttons!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUr-OR-AC7">
+                                <rect key="frame" x="20" y="28" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1Ib-rL-PNU" secondAttribute="bottom" constant="20" id="5gD-vc-7B0"/>
+                            <constraint firstItem="PUr-OR-AC7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="9N0-sv-VnG"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="height" secondItem="d7G-uG-kym" secondAttribute="height" id="9Pe-cT-BOi"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="d7G-uG-kym" secondAttribute="leading" id="Dbc-8k-zU8"/>
+                            <constraint firstItem="yCg-ou-HQf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="eqQ-xp-XVP"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="hgh-SQ-7QD"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="yCg-ou-HQf" secondAttribute="bottom" id="jFE-NP-rq7"/>
+                            <constraint firstAttribute="trailing" secondItem="yCg-ou-HQf" secondAttribute="trailing" id="jwK-bn-Adl"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="top" secondItem="d7G-uG-kym" secondAttribute="bottom" constant="15" id="ogb-Kf-IwC"/>
+                            <constraint firstAttribute="trailing" secondItem="1Ib-rL-PNU" secondAttribute="trailing" constant="20" id="ptB-Mo-w56"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="width" secondItem="d7G-uG-kym" secondAttribute="width" id="qNO-yY-bVj"/>
+                            <constraint firstItem="PUr-OR-AC7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="sMA-dN-Fo7"/>
+                            <constraint firstItem="yCg-ou-HQf" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="sV8-Jb-e8L"/>
+                            <constraint firstAttribute="trailing" secondItem="PUr-OR-AC7" secondAttribute="trailing" constant="20" id="zGt-Z8-G9J"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="kittenLabel" destination="PUr-OR-AC7" id="hXV-ng-Xs8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="162" y="287"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cute_cat" width="266" height="400"/>
+    </resources>
 </document>

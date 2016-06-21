@@ -1,0 +1,6 @@
+framework module PopupDialog {
+  umbrella header "PopupDialog-umbrella.h"
+
+  export *
+  module * { export * }
+}
