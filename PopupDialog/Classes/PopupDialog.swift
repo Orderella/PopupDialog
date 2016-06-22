@@ -96,6 +96,16 @@ extension PopupDialog {
         // FIXME: Make sure this is called only once
         appendButtons()
     }
+    
+    // If touch occurs outside of shadowContainer dismiss view controller
+    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let firstTouch = touches.first {
+            let point = firstTouch.locationInView(self.view)
+            if CGRectContainsPoint(popupView.shadowContainer.frame, point) == false {
+                dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+    }
 }
 
 // MARK: Button actions
