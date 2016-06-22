@@ -66,16 +66,16 @@ mostly the same layout throughout the app, therefore global appearance settings 
 
 ```swift
 // Popup Dialog View Appearance Settings
-var dialogApppearance = PopupDialogView.appearance()
+var dialogAppearance = PopupDialogView.appearance()
 
-dialogApppearance.backgroundColor     = UIColor.whiteColor()
-dialogApppearance.titleFont           = UIFont.boldSystemFontOfSize(14)
-dialogApppearance.titleColor          = UIColor(white: 0.4, alpha: 1)
+dialogAppearance.backgroundColor      = UIColor.whiteColor()
+dialogAppearance.titleFont            = UIFont.boldSystemFontOfSize(14)
+dialogAppearance.titleColor           = UIColor(white: 0.4, alpha: 1)
 dialogAppearance.titleTextAlignment   = .Center
-dialogApppearance.messageFont         = UIFont.systemFontOfSize(14)
-dialogApppearance.messageColor        = UIColor(white: 0.6, alpha: 1)
+dialogAppearance.messageFont          = UIFont.systemFontOfSize(14)
+dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
 dialogAppearance.messageTextAlignment = .Center
-dialogApppearance.cornerRadius        = 4
+dialogAppearance.cornerRadius         = 4
 
 // Popup Dialog Button Appearance Settings
 // The standard button classes available are DefaultButton, CancelButton
@@ -83,10 +83,10 @@ dialogApppearance.cornerRadius        = 4
 // Below, only the differences are highlighted
 
 var buttonAppearance = DefaultButton.appearance()
-buttonAppearance.titleFont           = UIFont.systemFontOfSize(14)
-buttonAppearance.titleColor          = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
-buttonAppearance.buttonColor         = UIColor.clearColor()
-buttonAppearance.separatorColor      = UIColor(white: 0.9, alpha: 1)
+buttonAppearance.titleFont      = UIFont.systemFontOfSize(14)
+buttonAppearance.titleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
+buttonAppearance.buttonColor    = UIColor.clearColor()
+buttonAppearance.separatorColor = UIColor(white: 0.9, alpha: 1)
 
 CancelButton.appearance().titleColor = UIColor.lightGrayColor()
 
