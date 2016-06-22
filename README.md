@@ -13,7 +13,7 @@ Popup Dialog is a simple, customizable alert view that is close to UIAlertContro
 
 ##Usage
 
-PopupDialog is a subclass of UIViewController and as such can be added to your view modally.
+PopupDialog is a subclass of UIViewController and as such can be added to your view controller modally.
 The full initializer looks as follows:
 
 ```swift
@@ -51,6 +51,8 @@ let buttonThree = DefaultButton(title: "PET CAT") {
 }
 
 // Add buttons to dialog
+// Optionally, single buttons can be added
+// with addButton()
 alert.addButtons([buttonOne, buttonTwo, buttonThree])
 
 // Present dialog
@@ -65,22 +67,26 @@ mostly the same layout throughout the app, therefore global appearance settings 
 ```swift
 // Popup Dialog View Appearance Settings
 var dialogApppearance = PopupDialogView.appearance()
-dialogApppearance.backgroundColor = UIColor.whiteColor()
-dialogApppearance.titleFont       = UIFont.boldSystemFontOfSize(14)
-dialogApppearance.titleColor      = UIColor(white: 0.4, alpha: 1)
-dialogApppearance.messageFont     = UIFont.systemFontOfSize(14)
-dialogApppearance.messageColor    = UIColor(white: 0.6, alpha: 1)
-dialogApppearance.cornerRadius    = 4
+
+dialogApppearance.backgroundColor     = UIColor.whiteColor()
+dialogApppearance.titleFont           = UIFont.boldSystemFontOfSize(14)
+dialogApppearance.titleColor          = UIColor(white: 0.4, alpha: 1)
+dialogAppearance.titleTextAlignment   = .Center
+dialogApppearance.messageFont         = UIFont.systemFontOfSize(14)
+dialogApppearance.messageColor        = UIColor(white: 0.6, alpha: 1)
+dialogAppearance.messageTextAlignment = .Center
+dialogApppearance.cornerRadius        = 4
 
 // Popup Dialog Button Appearance Settings
 // The standard button classes available are DefaultButton, CancelButton
 // and DestructiveButton. On all buttons the same appearance can be set.
 // Below, only the differences are highlighted
+
 var buttonAppearance = DefaultButton.appearance()
-buttonAppearance.titleFont        = UIFont.systemFontOfSize(14)
-buttonAppearance.titleColor       = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
-buttonAppearance.buttonColor      = UIColor.clearColor()
-buttonAppearance.separatorColor   = UIColor(white: 0.9, alpha: 1)
+buttonAppearance.titleFont           = UIFont.systemFontOfSize(14)
+buttonAppearance.titleColor          = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
+buttonAppearance.buttonColor         = UIColor.clearColor()
+buttonAppearance.separatorColor      = UIColor(white: 0.9, alpha: 1)
 
 CancelButton.appearance().titleColor = UIColor.lightGrayColor()
 
@@ -90,7 +96,6 @@ DestructiveButton.appearance().titleColor = UIColor.redColor()
 Moreover, you can create a custom button by subclassing `PopupDialogButton`. The following example creates a solid blue button, featuring a bold white title font. Separators are invisble.
 
 ```swift
-/// Represents a destructive button for the popup dialog
 public final class SolidBlueButton: PopupDialogButton {
 
     override public func setupView() {

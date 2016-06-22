@@ -46,7 +46,13 @@ final public class PopupDialogView: UIView {
     /// The color of the title label
     public dynamic var titleColor: UIColor? {
         get { return titleLabel.textColor }
-        set { titleLabel.textColor = newValue}
+        set { titleLabel.textColor = newValue }
+    }
+
+    /// The text alignment of the title label
+    public dynamic var titleTextAlignment: NSTextAlignment {
+        get { return titleLabel.textAlignment }
+        set { titleLabel.textAlignment = newValue }
     }
 
     /// The font and size of the body label
@@ -59,6 +65,12 @@ final public class PopupDialogView: UIView {
     public dynamic var messageColor: UIColor? {
         get { return messageLabel.textColor }
         set { messageLabel.textColor = newValue}
+    }
+
+    /// The text alignment of the message label
+    public dynamic var messageTextAlignment: NSTextAlignment {
+        get { return messageLabel.textAlignment }
+        set { messageLabel.textAlignment = newValue }
     }
 
     /// The corner radius of the popup view
