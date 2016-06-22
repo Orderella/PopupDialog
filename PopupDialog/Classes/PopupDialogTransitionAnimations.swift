@@ -38,7 +38,6 @@ final internal class TransitionPresentationAnimator: NSObject, UIViewControllerA
         let to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! PopupDialog
         let from = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
         let containerView = transitionContext.containerView()
-        let animationDuration = transitionDuration(transitionContext)
 
         to.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
         containerView!.addSubview(to.view)
