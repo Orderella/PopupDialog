@@ -2,7 +2,6 @@
   "name": "PopupDialog",
   "version": "0.1.0",
   "summary": "A simple custom popup dialog view controller",
-  "description": "TODO: A simple custom popup popup dialog view controller. Easy to customize with appearance.",
   "homepage": "https://github.com/orderella/PopupDialog",
   "license": {
     "type": "MIT",
