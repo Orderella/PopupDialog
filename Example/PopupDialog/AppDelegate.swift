@@ -24,6 +24,7 @@
 //
 
 import UIKit
+import PopupDialog
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,7 +33,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        // Uncomment for a dark theme demo
+
+//        // Customize dialog appearance
+//        let pv = PopupDialogView.appearance()
+//        pv.backgroundColor      = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
+//        pv.titleFont            = UIFont(name: "HelveticaNeue-Light", size: 16)!
+//        pv.titleColor           = UIColor.whiteColor()
+//        pv.messageFont          = UIFont(name: "HelveticaNeue", size: 14)!
+//        pv.messageColor         = UIColor(white: 0.8, alpha: 1)
+//        pv.cornerRadius         = 2
+//
+//        // Customize default button appearance
+//        let db = DefaultButton.appearance()
+//        db.titleFont      = UIFont(name: "HelveticaNeue-Medium", size: 14)!
+//        db.titleColor     = UIColor.whiteColor()
+//        db.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+//        db.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+//
+//        // Customize cancel button appearance
+//        let cb = CancelButton.appearance()
+//        cb.titleFont      = UIFont(name: "HelveticaNeue-Medium", size: 14)!
+//        cb.titleColor     = UIColor(white: 0.6, alpha: 1)
+//        cb.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+//        cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+
         return true
     }
 

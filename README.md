@@ -119,6 +119,39 @@ public final class SolidBlueButton: PopupDialogButton {
 
 These buttons can be customized with the appearance settings given above as well.
 
+#### Dark mode example
+
+The following is an example of a *Dark Mode* theme. You can find this in the Example project `AppDelegate`, just uncomment it to apply the custom appearance.
+
+```swift
+// Customize dialog appearance
+let pv = PopupDialogView.appearance()
+pv.backgroundColor      = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
+pv.titleFont            = UIFont(name: "HelveticaNeue-Light", size: 16)!
+pv.titleColor           = UIColor.whiteColor()
+pv.messageFont          = UIFont(name: "HelveticaNeue", size: 14)!
+pv.messageColor         = UIColor(white: 0.8, alpha: 1)
+pv.cornerRadius         = 2
+
+// Customize default button appearance
+let db = DefaultButton.appearance()
+db.titleFont      = UIFont(name: "HelveticaNeue-Medium", size: 14)!
+db.titleColor     = UIColor.whiteColor()
+db.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+db.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+
+// Customize cancel button appearance
+let cb = CancelButton.appearance()
+cb.titleFont      = UIFont(name: "HelveticaNeue-Medium", size: 14)!
+cb.titleColor     = UIColor(white: 0.6, alpha: 1)
+cb.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+
+```
+
+![PopupDialog example three](http://www.mwfire.de/orderella/github/PopupDialogDark01.png "PopupDialog example three")
+![PopupDialog example four](http://www.mwfire.de/orderella/github/PopupDialogDark02.png "PopupDialog example four")
+
 I can see that there is room for more customization options. I might add more of them over time.
 
 ## Testing
@@ -142,7 +175,7 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'PopupDialog', ~> '0.1.0'
+pod 'PopupDialog', ~> '0.1.1'
 ```
 
 ## Author
