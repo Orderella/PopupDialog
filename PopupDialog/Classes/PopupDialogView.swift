@@ -84,23 +84,11 @@ final public class PopupDialogView: UIView {
     }
 
     // MARK: Views
-    internal let shadowContainer: UIView
-    internal let container: UIView
-    internal let stackView: UIStackView
-    internal let buttonStackView: UIStackView
-    internal let imageView: UIImageView
-    internal let titleLabel: UILabel
-    internal let messageLabel: UILabel
 
-    /// The height constraint of the image view, 0 by default
-    internal var imageHeightConstraint: NSLayoutConstraint?
-
-    // MARK: Initializers
-
-    internal override init(frame: CGRect) {
-
-        // Create views
-        shadowContainer = UIView(frame: .zero)
+    /// The shadow container is the basic view of the PopupDialog
+    /// As it does not clip subviews, a shadow can be applied to it
+    internal lazy var shadowContainer: UIView = {
+        let shadowContainer = UIView(frame: .zero)
         shadowContainer.translatesAutoresizingMaskIntoConstraints = false
         shadowContainer.backgroundColor = UIColor.clearColor()
         shadowContainer.layer.shadowColor = UIColor.blackColor().CGColor
@@ -108,57 +96,109 @@ final public class PopupDialogView: UIView {
         shadowContainer.layer.shadowOpacity = 0.4
         shadowContainer.layer.shadowOffset = CGSize(width: 0, height: 0)
         shadowContainer.layer.cornerRadius = 4
+        return shadowContainer
+    }()
 
-        container = UIView(frame: .zero)
+    /// The container view is a child of shadowContainer and contains
+    /// all other views. It clips to bounds so cornerRadius can be set
+    internal lazy var container: UIView = {
+        let container = UIView(frame: .zero)
         container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = UIColor.whiteColor()
         container.clipsToBounds = true
         container.layer.cornerRadius = 4
+        return container
+    }()
 
-        imageView = UIImageView(frame: .zero)
+    /// The view that will contain the image, if set
+    internal lazy var imageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = UIColor.redColor()
+        return imageView
+    }()
 
-        titleLabel = UILabel(frame: .zero)
+    /// The title label of the dialog
+    internal lazy var titleLabel: UILabel = {
+        let titleLabel = UILabel(frame: .zero)
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .Center
         titleLabel.textColor = UIColor(white: 0.4, alpha: 1)
         titleLabel.font = UIFont.boldSystemFontOfSize(14)
+        return titleLabel
+    }()
 
-        messageLabel = UILabel(frame: .zero)
+    /// The message label of the dialog
+    internal lazy var messageLabel: UILabel = {
+        let messageLabel = UILabel(frame: .zero)
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .Center
         messageLabel.textColor = UIColor(white: 0.6, alpha: 1)
         messageLabel.font = UIFont.systemFontOfSize(14)
+        return messageLabel
+    }()
 
-        let textStackView = UIStackView(arrangedSubviews: [titleLabel, messageLabel])
+    // The text view containing the labels
+    internal lazy var textStackView: UIStackView = {
+        let textStackView = UIStackView(arrangedSubviews: [self.titleLabel, self.messageLabel])
         textStackView.translatesAutoresizingMaskIntoConstraints = false
         textStackView.axis = .Vertical
         textStackView.spacing = 12
+        return textStackView
+    }()
 
+    /// A horizontal stack view, adding left/right padding
+    /// to the textStackView
+    internal lazy var spacerStackView: UIStackView = {
         // This is a workaround for adding left and right padding to
         // the textStackView. I tried setting constraints / insets / anchors
         // All these resulted in unsatisfyable constraints
         let leftSpacer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         let rightSpacer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
-        let spacerStackView = UIStackView(arrangedSubviews: [leftSpacer, textStackView, rightSpacer])
+        let spacerStackView = UIStackView(arrangedSubviews: [leftSpacer, self.textStackView, rightSpacer])
         spacerStackView.translatesAutoresizingMaskIntoConstraints = false
         spacerStackView.axis = .Horizontal
         spacerStackView.spacing = 12
         spacerStackView.distribution = .FillProportionally
+        return spacerStackView
+    }()
 
-        buttonStackView = UIStackView()
+    // The container stack view for out buttons
+    internal lazy var buttonStackView: UIStackView = {
+        let buttonStackView = UIStackView()
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.distribution = .FillEqually
         buttonStackView.spacing = 0
+        return buttonStackView
+    }()
 
-        stackView = UIStackView(arrangedSubviews: [imageView, spacerStackView, buttonStackView])
+    // The main stack view, containing all relevant views
+    internal lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [self.imageView, self.spacerStackView, self.buttonStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .Vertical
-        stackView.spacing = 25
+        stackView.spacing = 30
+        return stackView
+    }()
 
-        // Super init
+    // MARK: Constraints
+
+    /// The height constraint of the image view, 0 by default
+    internal var imageHeightConstraint: NSLayoutConstraint?
+
+    // MARK: Initializers
+
+    internal override init(frame: CGRect) {
         super.init(frame: frame)
+        setupViews()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: View setup
+
+    internal func setupViews() {
 
         // Add views
         addSubview(shadowContainer)
@@ -185,11 +225,7 @@ final public class PopupDialogView: UIView {
         imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 0, constant: 0)
         constraints.append(imageHeightConstraint!)
 
-        // Activate all constraints
+        // Activate constraints
         NSLayoutConstraint.activateConstraints(constraints)
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
