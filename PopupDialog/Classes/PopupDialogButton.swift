@@ -41,7 +41,7 @@ public class PopupDialogButton: UIButton {
 
     /// The title color of the button
     public dynamic var titleColor: UIColor? {
-        get { return titleLabel?.textColor }
+        get { return titleColorForState(.Normal) }
         set { setTitleColor(newValue, forState: .Normal) }
     }
 
