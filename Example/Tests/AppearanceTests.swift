@@ -1,11 +1,3 @@
-//
-//  AppearanceTests.swift
-//  PopupDialog
-//
-//  Created by Martin Wildfeuer on 23.06.16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
-//
-
 import UIKit
 import XCTest
 @testable import PopupDialog
