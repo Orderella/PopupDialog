@@ -16,6 +16,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		A6CE8063F79CE384B0E3840C /* Pods_PopupDialog_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3AA8A9ACD13E11873ACA45 /* Pods_PopupDialog_Tests.framework */; };
 		C769A9CD1D19529300BC305B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C769A9CC1D19529300BC305B /* .gitignore */; };
+		C783A7B71D1BDFF900A0DFB7 /* AppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C783A7B61D1BDFF900A0DFB7 /* AppearanceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B0689D92C8E98C52000AEF29 /* Pods-PopupDialog_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopupDialog_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopupDialog_Tests/Pods-PopupDialog_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		C74A85988E0A13967AF3A8E9 /* Pods-PopupDialog_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopupDialog_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PopupDialog_Example/Pods-PopupDialog_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C769A9CC1D19529300BC305B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C783A7B61D1BDFF900A0DFB7 /* AppearanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceTests.swift; sourceTree = "<group>"; };
 		DF1B9919BA34CE12A9B2990A /* PopupDialog.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopupDialog.podspec; path = ../PopupDialog.podspec; sourceTree = "<group>"; };
 		F2AE7E70D898C743E01C0374 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				C783A7B61D1BDFF900A0DFB7 /* AppearanceTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -373,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				C783A7B71D1BDFF900A0DFB7 /* AppearanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
