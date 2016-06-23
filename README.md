@@ -32,27 +32,31 @@ Buttons can be aligned either `.Horizontal` or `.Vertical`, with the latter bein
 You can find this example project in the repo. To run it, clone the repo, and run `pod install` from the Example directory first.
 
 ```swift
+let title = "This is a title"
+let message = "This is a message"
+let image = UIImage(named: "santa_cat")
+
 // Create the dialog
 let alert = PopupDialog(title: title, message: message, image: image)
 
 // Create a button with cancel style
 let buttonOne = CancelButton(title: "CANCEL CAT") {
-    self.kittenLabel.text = "You canceled the cat. Whatever that means..."
+    print("You canceled the cat. Whatever that means...")
 }
 
 // Create a button with default style
 let buttonTwo = DefaultButton(title: "PLAY WITH CAT") {
-    self.kittenLabel.text = "Phew, that was exhausting!"
+    print("Phew, that was exhausting!")
 }
 
-// Create a button with default style
-let buttonThree = DefaultButton(title: "PET CAT") {
-    self.kittenLabel.text = "The cat purrs happily :)"
+// Create a button with destructive style
+let buttonThree = DestructiveButton(title: "PET CAT") {
+    print("The cat purrs happily :)")
 }
 
 // Add buttons to dialog
 // Optionally, single buttons can be added
-// with addButton()
+// with addButton(button: PopupDialogButton)
 alert.addButtons([buttonOne, buttonTwo, buttonThree])
 
 // Present dialog
@@ -61,6 +65,7 @@ self.presentViewController(alert, animated: true, completion: nil)
 ```
 
 ##Appearance
+
 Many aspects of the popup dialog can be customized. Dialogs are supposed to have 
 mostly the same layout throughout the app, therefore global appearance settings should make this easier. Find below the appearance settings and their default values.
 
@@ -81,15 +86,18 @@ dialogAppearance.cornerRadius         = 4
 // The standard button classes available are DefaultButton, CancelButton
 // and DestructiveButton. On all buttons the same appearance can be set.
 // Below, only the differences are highlighted
-
 var buttonAppearance = DefaultButton.appearance()
+
+// Default button
 buttonAppearance.titleFont      = UIFont.systemFontOfSize(14)
 buttonAppearance.titleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
 buttonAppearance.buttonColor    = UIColor.clearColor()
 buttonAppearance.separatorColor = UIColor(white: 0.9, alpha: 1)
 
+// Cancel button
 CancelButton.appearance().titleColor = UIColor.lightGrayColor()
 
+// Destructive button
 DestructiveButton.appearance().titleColor = UIColor.redColor()
 ```
 
@@ -111,7 +119,20 @@ public final class SolidBlueButton: PopupDialogButton {
 
 These buttons can be customized with the appearance settings given above as well.
 
+I can see that there is room for more customization options. I might add more of them over time.
+
+## Testing
+
+PopupDialog exposes a nice but handy method that lets you trigger a button tap programmatically:
+
+```swift
+public func tapButtonWithIndex(index: Int)
+```
+
+Other than that, PopupDialog unit tests are included in the Example folder.
+
 ## Requirements
+
 As this dialog is based on UIStackViews, a minimum Version of iOS 9.0 is required.
 This dialog was written with Swift 2.2, 3.X compatability will be published on a seperate branch soon.
 
