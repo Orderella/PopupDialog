@@ -6,23 +6,6 @@ class AppearanceTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        // Customize view appearance
-        let pv = PopupDialogView.appearance()
-        pv.backgroundColor      = UIColor.blackColor()
-        pv.titleFont            = UIFont(name: "HelveticaNeue", size: 14)!
-        pv.titleColor           = UIColor.redColor()
-        pv.titleTextAlignment   = .Left
-        pv.messageFont          = UIFont(name: "HelveticaNeue", size: 16)!
-        pv.messageColor         = UIColor.redColor()
-        pv.messageTextAlignment = .Right
-        pv.cornerRadius         = 10
-
-        // Customize default button appearance
-        let db = DefaultButton.appearance()
-        db.titleFont      = UIFont(name: "HelveticaNeue", size: 14)!
-        db.titleColor     = UIColor.greenColor()
-        db.buttonColor    = UIColor.darkGrayColor()
-        db.separatorColor = UIColor.orangeColor()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
