@@ -81,6 +81,8 @@ dialogAppearance.messageFont          = UIFont.systemFontOfSize(14)
 dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
 dialogAppearance.messageTextAlignment = .Center
 dialogAppearance.cornerRadius         = 4
+dialogAppearance.shadowEnabled        = true
+dialogAppearance.shadowColor          = UIColor.blackColor()
 
 // Popup Dialog Overlay View Appearance Settings
 let overlayAppearance = PopupDialogOverlayView.appearance()
@@ -193,7 +195,7 @@ pod 'PopupDialog', '~> 0.1'
 
 ## Changelog
 
-* **0.1.3** Big screen support
+* **0.1.3** Big screen support<br>Exposed basic shadow appearance
 * **0.1.2** Exposed blur and overlay appearance
 * **0.1.1** Added themeing example
 * **0.1.0** Intitial version

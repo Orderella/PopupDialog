@@ -83,6 +83,23 @@ final public class PopupDialogView: UIView {
         }
     }
 
+    /// Enable / disable shadow rendering
+    public dynamic var shadowEnabled: Bool {
+        get { return shadowContainer.layer.shadowRadius > 0 }
+        set { shadowContainer.layer.shadowRadius = newValue ? 5 : 0 }
+    }
+
+    /// The shadow color
+    public dynamic var shadowColor: UIColor? {
+        get {
+            guard let color = shadowContainer.layer.shadowColor else {
+                return nil
+            }
+            return UIColor(CGColor: color)
+        }
+        set { shadowContainer.layer.shadowColor = newValue?.CGColor }
+    }
+
     // MARK: Views
 
     /// The shadow container is the basic view of the PopupDialog

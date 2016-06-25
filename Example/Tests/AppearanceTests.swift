@@ -35,6 +35,8 @@ class AppearanceTests: XCTestCase {
         XCTAssertEqual(view.messageColor, UIColor(white: 0.6, alpha: 1))
         XCTAssertTrue (view.messageTextAlignment == .Center)
         XCTAssertEqual(view.cornerRadius, 4)
+        XCTAssertTrue(view.shadowEnabled)
+        XCTAssertEqual(view.shadowColor, UIColor.blackColor())
 
         // Button defaults
         let defaultButton = DefaultButton(title: "", action: nil)
@@ -64,6 +66,8 @@ class AppearanceTests: XCTestCase {
         pv.messageColor         = UIColor.redColor()
         pv.messageTextAlignment = .Right
         pv.cornerRadius         = 10
+        pv.shadowEnabled        = false
+        pv.shadowColor          = UIColor.greenColor()
 
         // Customize overlay appearance
         let ov = PopupDialogOverlayView.appearance()
@@ -88,6 +92,8 @@ class AppearanceTests: XCTestCase {
         XCTAssertEqual(pv.messageColor, UIColor.redColor())
         XCTAssertTrue (pv.messageTextAlignment == .Right)
         XCTAssertEqual(pv.cornerRadius, 10)
+        XCTAssertFalse(pv.shadowEnabled)
+        XCTAssertEqual(pv.shadowColor, UIColor.greenColor())
 
         // Overlay customized appearance
         XCTAssertEqual(ov.color, UIColor.yellowColor())
