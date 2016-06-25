@@ -188,7 +188,7 @@ pod 'PopupDialog', '~> 0.1'
 
 ## Changelog
 
-* **0.1.2** Exposed blur and overlay appearance<br>Exposed shadow appearance
+* **0.1.2** Exposed blur and overlay appearance
 * **0.1.1** Added themeing example
 * **0.1.0** Intitial version
 
