@@ -162,6 +162,11 @@ cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 
 I can see that there is room for more customization options. I might add more of them over time.
 
+##Screen sizes and rotation
+
+Rotation and all screen sizes are supported. The dialog will never exceed a width of 340 points. This way, the dialog won't be too big on iPads. However, landscape mode will not work well if the height of the dialog exceeds the width of the screen.
+
+
 ## Testing
 
 PopupDialog exposes a nice but handy method that lets you trigger a button tap programmatically:
@@ -188,6 +193,7 @@ pod 'PopupDialog', '~> 0.1'
 
 ## Changelog
 
+* **0.1.3** Big screen support
 * **0.1.2** Exposed blur and overlay appearance
 * **0.1.1** Added themeing example
 * **0.1.0** Intitial version
