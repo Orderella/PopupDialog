@@ -210,7 +210,8 @@ final public class PopupDialogView: UIView {
         var constraints = [NSLayoutConstraint]()
 
         // Shadow container constraints
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[shadowContainer]-20-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(>=20,==20@900)-[shadowContainer(<=340,>=310)]-(>=20,==20@900)-|", options: [], metrics: nil, views: views)
+        constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)]
         constraints.append(NSLayoutConstraint(item: shadowContainer, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0))
 
         // Container constraints
