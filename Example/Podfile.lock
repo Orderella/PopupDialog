@@ -1,5 +1,7 @@
 PODS:
-  - PopupDialog (0.1.0)
+  - FXBlurView (1.6.4)
+  - PopupDialog (0.1.1):
+    - FXBlurView
 
 DEPENDENCIES:
   - PopupDialog (from `../`)
@@ -9,7 +11,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PopupDialog: 7a01abfba84ac306adb42d1fa494c1fbceb46438
+  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
+  PopupDialog: fe0c864c3c767acee21a7870a3d64695e490893b
 
 PODFILE CHECKSUM: d8495001123cc68c0f614ef520d9741b67defd8d
 

@@ -28,16 +28,13 @@ import UIKit
 
 final internal class PopupDialogPresentationController: UIPresentationController {
 
-    private lazy var overlay: UIVisualEffectView = {
-        let blur = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-        let overlay = UIVisualEffectView(effect: blur)
-        overlay.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-        overlay.alpha = 0
-        return overlay
+    private lazy var overlay: PopupDialogOverlayView = {
+        return PopupDialogOverlayView(frame: .zero)
     }()
 
     override init(presentedViewController: UIViewController, presentingViewController: UIViewController) {
         super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
+        overlay.blurView.underlyingView = presentingViewController.view
         overlay.frame = presentingViewController.view.bounds
     }
 

@@ -59,6 +59,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        cb.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
 //        cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 
+        // Uncomment for red background overlay
+
+//        let ov = PopupDialogOverlayView.appearance()
+//        ov.blurEnabled = true
+//        ov.blurRadius = 40
+//        ov.opacity = 0.4
+//        ov.color = UIColor.redColor()
+
         return true
     }
 

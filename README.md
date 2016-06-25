@@ -82,6 +82,14 @@ dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
 dialogAppearance.messageTextAlignment = .Center
 dialogAppearance.cornerRadius         = 4
 
+// Popup Dialog Overlay View Appearance Settings
+let overlayAppearance = PopupDialogOverlayView.appearance()
+
+overlayAppearance.color       = UIColor.blackColor()
+overlayAppearance.blurRadius  = 20
+overlayAppearance.blurEnabled = true
+overlayAppearance.opacity     = 0.7
+
 // Popup Dialog Button Appearance Settings
 // The standard button classes available are DefaultButton, CancelButton
 // and DestructiveButton. On all buttons the same appearance can be set.
@@ -177,6 +185,12 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'PopupDialog', '~> 0.1'
 ```
+
+## Changelog
+
+* **0.1.2** Exposed blur and overlay appearance<br>Exposed shadow appearance
+* **0.1.1** Added themeing example
+* **0.1.0** Intitial version
 
 ## Author
 

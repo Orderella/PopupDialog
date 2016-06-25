@@ -42,6 +42,14 @@ class AppearanceTests: XCTestCase {
         XCTAssertEqual(defaultButton.titleColor!, UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1))
         XCTAssertEqual(defaultButton.buttonColor, UIColor.clearColor())
         XCTAssertEqual(defaultButton.separatorColor, UIColor(white: 0.9, alpha: 1))
+
+        // Overlay view
+        let overlay = PopupDialogOverlayView(frame: .zero)
+        XCTAssertEqual(overlay.color, UIColor.blackColor())
+        XCTAssertEqual(overlay.blurRadius, 8)
+        XCTAssertTrue(overlay.blurEnabled)
+        XCTAssertEqual(overlay.opacity, 0.7)
+
     }
 
     func testCustomAppearance() {
@@ -56,6 +64,13 @@ class AppearanceTests: XCTestCase {
         pv.messageColor         = UIColor.redColor()
         pv.messageTextAlignment = .Right
         pv.cornerRadius         = 10
+
+        // Customize overlay appearance
+        let ov = PopupDialogOverlayView.appearance()
+        ov.color = UIColor.yellowColor()
+        ov.blurRadius = 20
+        ov.blurEnabled = false
+        ov.opacity = 0.5
 
         // Customize default button appearance
         let db = DefaultButton.appearance()
@@ -73,6 +88,12 @@ class AppearanceTests: XCTestCase {
         XCTAssertEqual(pv.messageColor, UIColor.redColor())
         XCTAssertTrue (pv.messageTextAlignment == .Right)
         XCTAssertEqual(pv.cornerRadius, 10)
+
+        // Overlay customized appearance
+        XCTAssertEqual(ov.color, UIColor.yellowColor())
+        XCTAssertEqual(ov.blurRadius, 20)
+        XCTAssertFalse(ov.blurEnabled)
+        XCTAssertEqual(ov.opacity, 0.5)
 
         // Button customized appearance
         XCTAssertEqual(db.titleFont, UIFont(name: "HelveticaNeue", size: 14)!)
