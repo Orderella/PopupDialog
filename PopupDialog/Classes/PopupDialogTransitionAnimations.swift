@@ -27,7 +27,7 @@ import Foundation
 import UIKit
 
 /*!
- Presentation transition styles for popup d
+ Presentation transition styles for the popup dialog
 
  - BounceUp:   Dialog bounces in from bottom and is dismissed to bottom
  - BounceDown: Dialog bounces in from top and is dismissed to top
