@@ -17,12 +17,18 @@ PopupDialog is a subclass of UIViewController and as such can be added to your v
 The full initializer looks as follows:
 
 ```swift
-public init(title: String?, message: String?, image: UIImage? = nil, buttonAlignment: UILayoutConstraintAxis = .Vertical)
+public init(title: String?,
+            message: String?,
+            image: UIImage? = nil,
+            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+            buttonAlignment: UILayoutConstraintAxis = .Vertical)
 ```
 
 Bascially, all parameters are optional, although this makes no sense at all. You want to at least add a message and a single button, otherwise the dialog can't be dismissed. I am planning on implementing dismiss by background tap or swipe in the future.
 
 If you provide an image it will be pinned to the top/left/right of the dialog. The ratio of the image will be used to set the height of the image view, so no distortion will occur.
+
+You can set a transition animation style with `.BounceUp` being the default. See "Transition animations".
 
 Buttons can be aligned either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
 
@@ -62,6 +68,26 @@ alert.addButtons([buttonOne, buttonTwo, buttonThree])
 // Present dialog
 self.presentViewController(alert, animated: true, completion: nil)
 
+```
+
+##Transition animations
+
+
+The following transition styles can be set at initialization
+
+```swift
+/*!
+ - BounceUp:   Dialog bounces in from bottom and is dismissed to bottom
+ - BounceDown: Dialog bounces in from top and is dismissed to top
+ - ZoomIn:     Dialog zooms in and is dismissed by zooming out
+ - FadeIn:     Dialog fades in and is dismissed by fading out
+ */
+public enum PopupDialogTransitionStyle: Int {
+    case BounceUp
+    case BounceDown
+    case ZoomIn
+    case FadeIn
+}
 ```
 
 ##Appearance
@@ -202,6 +228,7 @@ pod 'PopupDialog', '~> 0.1'
 
 ## Changelog
 
+* **0.1.4** Pick transition animation style
 * **0.1.3** Big screen support<br>Exposed basic shadow appearance
 * **0.1.2** Exposed blur and overlay appearance
 * **0.1.1** Added themeing example
