@@ -60,7 +60,7 @@ final public class PopupDialog: UIViewController {
     public init(title: String?,
                 message: String?,
                 image: UIImage? = nil,
-                transitionStyle: PopupDialogTransitionStyle = .ZoomIn,
+                transitionStyle: PopupDialogTransitionStyle = .BounceUp,
                 buttonAlignment: UILayoutConstraintAxis = .Vertical) {
 
         self.buttonAlignment = buttonAlignment
