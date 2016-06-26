@@ -26,47 +26,134 @@
 import Foundation
 import UIKit
 
-// MARK: Presentation animation
+/*!
+ Presentation transition styles for popup d
 
-final internal class TransitionPresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+ - BounceUp:   Dialog bounces in from bottom and is dismissed to bottom
+ - BounceDown: Dialog bounces in from top and is dismissed to top
+ - ZoomIn:     Dialog zooms in and is dismissed by zooming out
+ - FadeIn:     Dialog fades in and is dismissed by fading out
+ */
+@objc public enum PopupDialogTransitionStyle: Int {
+    case BounceUp
+    case BounceDown
+    case ZoomIn
+    case FadeIn
+}
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 0.22
+/// Dialog bounces in from bottom and is dismissed to bottom
+final internal class BounceUpTransition: TransitionAnimator {
+
+    init(direction: AnimationDirection) {
+        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! PopupDialog
-        let from = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        let containerView = transitionContext.containerView()
+    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(transitionContext)
 
-        to.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
-        containerView!.addSubview(to.view)
-
-        UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseOut], animations: {
-            to.view.bounds = from.view.bounds
-        }) { (completed) in
-            transitionContext.completeTransition(completed)
+        switch direction {
+        case .In:
+            to.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
+            UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseOut], animations: {
+                self.to.view.bounds = self.from.view.bounds
+            }) { (completed) in
+                transitionContext.completeTransition(completed)
+            }
+        case .Out:
+            UIView.animateWithDuration(outDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
+                self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
+                self.from.view.alpha = 0.0
+            }) { (completed) in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            }
         }
     }
 }
 
-// MARK: Dismiss animation
 
-final internal class TransitionDismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+/// Dialog bounces in from top and is dismissed to top
+final internal class BounceDownTransition: TransitionAnimator {
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 0.2
+    init(direction: AnimationDirection) {
+        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let from = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        let animationDuration = self .transitionDuration(transitionContext)
+    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(transitionContext)
 
-        UIView.animateWithDuration(animationDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
-            from.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
-            from.view.alpha = 0.0
-        }) { (completed) in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+        switch direction {
+        case .In:
+            to.view.bounds.origin = CGPoint(x: 0, y: from.view.bounds.size.height)
+            UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseOut], animations: {
+                self.to.view.bounds = self.from.view.bounds
+            }) { (completed) in
+                transitionContext.completeTransition(completed)
+            }
+        case .Out:
+            UIView.animateWithDuration(outDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
+                self.from.view.bounds.origin = CGPoint(x: 0, y: self.from.view.bounds.size.height)
+                self.from.view.alpha = 0.0
+            }) { (completed) in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            }
+        }
+    }
+}
+
+/// Dialog zooms in and is dismissed by zooming out
+final internal class ZoomTransition: TransitionAnimator {
+
+    init(direction: AnimationDirection) {
+        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
+    }
+
+    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(transitionContext)
+
+        switch direction {
+        case .In:
+            to.view.transform = CGAffineTransformMakeScale(0.1, 0.1)
+            UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseOut], animations: {
+                self.to.view.transform = CGAffineTransformMakeScale(1, 1)
+            }) { (completed) in
+                transitionContext.completeTransition(completed)
+            }
+        case .Out:
+            UIView.animateWithDuration(outDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
+                self.from.view.transform = CGAffineTransformMakeScale(0.1, 0.1)
+                self.from.view.alpha = 0.0
+            }) { (completed) in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            }
+        }
+    }
+}
+
+/// Dialog fades in and is dismissed by fading out
+final internal class FadeTransition: TransitionAnimator {
+
+    init(direction: AnimationDirection) {
+        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
+    }
+
+    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(transitionContext)
+
+        switch direction {
+        case .In:
+            to.view.alpha = 0
+            UIView.animateWithDuration(0.6, delay: 0.0, options: [.CurveEaseOut],
+            animations: {
+                self.to.view.alpha = 1
+            }) { (completed) in
+                transitionContext.completeTransition(completed)
+            }
+        case .Out:
+            UIView.animateWithDuration(outDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
+                self.from.view.alpha = 0.0
+            }) { (completed) in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            }
         }
     }
 }

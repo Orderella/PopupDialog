@@ -28,16 +28,49 @@ import UIKit
 
 final internal class PopupDialogPresentationManager: NSObject, UIViewControllerTransitioningDelegate {
 
+    let transitionStyle: PopupDialogTransitionStyle
+
+    init(transitionStyle: PopupDialogTransitionStyle) {
+        self.transitionStyle = transitionStyle
+        super.init()
+    }
+
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
         let presentationController = PopupDialogPresentationController(presentedViewController: presented, presentingViewController: source)
         return presentationController
     }
 
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return TransitionPresentationAnimator()
+
+        var transition: TransitionAnimator
+        switch transitionStyle {
+        case .BounceUp:
+            transition = BounceUpTransition(direction: .In)
+        case .BounceDown:
+            transition = BounceDownTransition(direction: .In)
+        case .ZoomIn:
+            transition = ZoomTransition(direction: .In)
+        case .FadeIn:
+            transition = FadeTransition(direction: .In)
+        }
+
+        return transition
     }
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return TransitionDismissAnimator()
+
+        var transition: TransitionAnimator
+        switch transitionStyle {
+        case .BounceUp:
+            transition = BounceUpTransition(direction: .Out)
+        case .BounceDown:
+            transition = BounceDownTransition(direction: .Out)
+        case .ZoomIn:
+            transition = ZoomTransition(direction: .Out)
+        case .FadeIn:
+            transition = FadeTransition(direction: .Out)
+        }
+
+        return transition
     }
 }

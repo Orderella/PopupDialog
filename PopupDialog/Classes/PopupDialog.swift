@@ -35,7 +35,7 @@ final public class PopupDialog: UIViewController {
     private let buttonAlignment: UILayoutConstraintAxis
 
     /// The custom transition presentation manager
-    private lazy var presentationManager: PopupDialogPresentationManager = { PopupDialogPresentationManager() }()
+    private let presentationManager: PopupDialogPresentationManager
 
     /// Returns the controllers view
     private var popupView: PopupDialogView {
@@ -57,8 +57,15 @@ final public class PopupDialog: UIViewController {
 
      - returns: Popup dialog view
      */
-    public init(title: String?, message: String?, image: UIImage? = nil, buttonAlignment: UILayoutConstraintAxis = .Vertical) {
+    public init(title: String?,
+                message: String?,
+                image: UIImage? = nil,
+                transitionStyle: PopupDialogTransitionStyle = .ZoomIn,
+                buttonAlignment: UILayoutConstraintAxis = .Vertical) {
+
         self.buttonAlignment = buttonAlignment
+        presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle)
+
         super.init(nibName: nil, bundle: nil)
 
         // Define presentation styles

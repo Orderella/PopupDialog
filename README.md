@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Popup Dialog is a simple, customizable alert view that is close to UIAlertController, written in Swift (2.2). You can add an image on top, though ;)
+Popup Dialog is a simple, customizable alert view with a syntax similar to  UIAlertController, written in Swift.
 
 ![PopupDialog example one](http://www.mwfire.de/orderella/github/PopupDialog01.gif "PopupDialog example one")
 ![PopupDialog example two](http://www.mwfire.de/orderella/github/PopupDialog02.gif "PopupDialog example two")
@@ -69,8 +69,9 @@ self.presentViewController(alert, animated: true, completion: nil)
 Many aspects of the popup dialog can be customized. Dialogs are supposed to have 
 mostly the same layout throughout the app, therefore global appearance settings should make this easier. Find below the appearance settings and their default values.
 
+####Dialog View Appearance Settings
+
 ```swift
-// Popup Dialog View Appearance Settings
 var dialogAppearance = PopupDialogView.appearance()
 
 dialogAppearance.backgroundColor      = UIColor.whiteColor()
@@ -83,16 +84,22 @@ dialogAppearance.messageTextAlignment = .Center
 dialogAppearance.cornerRadius         = 4
 dialogAppearance.shadowEnabled        = true
 dialogAppearance.shadowColor          = UIColor.blackColor()
+```
 
-// Popup Dialog Overlay View Appearance Settings
+####Overlay View Appearance Settings
+
+```swift
 let overlayAppearance = PopupDialogOverlayView.appearance()
 
 overlayAppearance.color       = UIColor.blackColor()
 overlayAppearance.blurRadius  = 20
 overlayAppearance.blurEnabled = true
 overlayAppearance.opacity     = 0.7
+```
 
-// Popup Dialog Button Appearance Settings
+####Button Appearance Settings
+
+```swift
 // The standard button classes available are DefaultButton, CancelButton
 // and DestructiveButton. On all buttons the same appearance can be set.
 // Below, only the differences are highlighted
@@ -171,7 +178,7 @@ Rotation and all screen sizes are supported. The dialog will never exceed a widt
 
 ## Testing
 
-PopupDialog exposes a nice but handy method that lets you trigger a button tap programmatically:
+PopupDialog exposes a nice and handy method that lets you trigger a button tap programmatically:
 
 ```swift
 public func tapButtonWithIndex(index: Int)

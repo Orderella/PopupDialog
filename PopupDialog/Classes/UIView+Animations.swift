@@ -26,20 +26,20 @@
 import Foundation
 import UIKit
 
+/*!
+ The intended direction of the animation
+ - In:  Animate in
+ - Out: Animate out
+ */
+internal enum AnimationDirection {
+    case In
+    case Out
+}
+
 internal extension UIView {
 
     /// The key for the fade animation
     internal var fadeKey: String { return "FadeAnimation" }
-
-    /*!
-     The intended direction of the animation
-     - In:  Animate in
-     - Out: Animate out
-     */
-    internal enum AnimationDirection {
-        case In
-        case Out
-    }
 
     /*!
      Applies a fade animation to this view
