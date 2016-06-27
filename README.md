@@ -13,7 +13,7 @@ Popup Dialog is a simple, customizable alert view with a syntax similar to  UIAl
 ![PopupDialog example one](http://www.mwfire.de/orderella/github/PopupDialog01.gif "PopupDialog example one")
 ![PopupDialog example two](http://www.mwfire.de/orderella/github/PopupDialog02.gif "PopupDialog example two")
 
-##Usage
+## Usage
 
 PopupDialog is a subclass of UIViewController and as such can be added to your view controller modally.
 The full initializer looks as follows:
@@ -33,7 +33,6 @@ If you provide an image it will be pinned to the top/left/right of the dialog. T
 You can set a transition animation style with `.BounceUp` being the default. See "Transition animations".
 
 Buttons can be aligned either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
-
 
 ## Example
 
@@ -72,7 +71,25 @@ self.presentViewController(alert, animated: true, completion: nil)
 
 ```
 
-##Transition animations
+## Dialog properties
+
+After the dialog has been presented, the initial dialog parameters can be updated "at runtime". The following example shows the properties available to you. Changes will be animated.
+
+```swift
+// Create the dialog
+let alert = PopupDialog(title: title, message: message, image: image)
+
+// Present dialog
+self.presentViewController(alert, animated: true, completion: nil)
+
+// Set dialog properties
+alert.image = UIImage(...)
+alert.titleText = "..."
+alert.messageText = "..."
+alert.buttonAlignment = .Horizontal
+```
+
+## Transition animations
 
 
 The following transition styles can be set at initialization
@@ -92,12 +109,12 @@ public enum PopupDialogTransitionStyle: Int {
 }
 ```
 
-##Appearance
+## Appearance
 
 Many aspects of the popup dialog can be customized. Dialogs are supposed to have 
 mostly the same layout throughout the app, therefore global appearance settings should make this easier. Find below the appearance settings and their default values.
 
-####Dialog View Appearance Settings
+#### Dialog View Appearance Settings
 
 ```swift
 var dialogAppearance = PopupDialogView.appearance()
@@ -114,7 +131,7 @@ dialogAppearance.shadowEnabled        = true
 dialogAppearance.shadowColor          = UIColor.blackColor()
 ```
 
-####Overlay View Appearance Settings
+#### Overlay View Appearance Settings
 
 ```swift
 let overlayAppearance = PopupDialogOverlayView.appearance()
@@ -125,7 +142,7 @@ overlayAppearance.blurEnabled = true
 overlayAppearance.opacity     = 0.7
 ```
 
-####Button Appearance Settings
+#### Button Appearance Settings
 
 ```swift
 // The standard button classes available are DefaultButton, CancelButton
@@ -199,9 +216,9 @@ cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 
 I can see that there is room for more customization options. I might add more of them over time.
 
-##Screen sizes and rotation
+## Screen sizes and rotation
 
-Rotation and all screen sizes are supported. The dialog will never exceed a width of 340 points. This way, the dialog won't be too big on iPads. However, landscape mode will not work well if the height of the dialog exceeds the width of the screen.
+Rotation and all screen sizes are supported. However, the dialog will never exceed a width of 340 points. This way, the dialog won't be too big on devices like iPads. However, landscape mode will not work well if the height of the dialog exceeds the width of the screen.
 
 
 ## Testing
@@ -230,6 +247,7 @@ pod 'PopupDialog', '~> 0.1'
 
 ## Changelog
 
+* **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment)
 * **0.1.4** Pick transition animation style
 * **0.1.3** Big screen support<br>Exposed basic shadow appearance
 * **0.1.2** Exposed blur and overlay appearance
