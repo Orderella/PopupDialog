@@ -28,7 +28,7 @@ import UIKit
 
 final internal class PopupDialogPresentationManager: NSObject, UIViewControllerTransitioningDelegate {
 
-    let transitionStyle: PopupDialogTransitionStyle
+    var transitionStyle: PopupDialogTransitionStyle
 
     init(transitionStyle: PopupDialogTransitionStyle) {
         self.transitionStyle = transitionStyle
