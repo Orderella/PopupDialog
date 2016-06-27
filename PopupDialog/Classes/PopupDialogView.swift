@@ -131,6 +131,7 @@ final public class PopupDialogView: UIView {
     internal lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .ScaleAspectFill
         return imageView
     }()
 
