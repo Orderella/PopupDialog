@@ -56,4 +56,10 @@ internal extension UIView {
         animation.fillMode = kCAFillModeForwards
         layer.addAnimation(animation, forKey: fadeKey)
     }
+
+    internal func pv_layoutIfNeededAnimated(duration duration: CFTimeInterval = 0.08) {
+        UIView.animateWithDuration(duration, delay: 0, options: [.CurveEaseInOut], animations: {
+            self.layoutIfNeeded()
+        }, completion: nil)
+    }
 }
