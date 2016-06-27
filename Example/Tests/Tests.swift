@@ -68,11 +68,13 @@ class Tests: XCTestCase {
         popup.messageText = "New Test Message"
         popup.image = image
         popup.buttonAlignment = .Vertical
+        popup.transitionStyle = .FadeIn
 
         XCTAssertEqual(popup.titleText, "New Test Title")
         XCTAssertEqual(popup.messageText, "New Test Message")
         XCTAssertNotNil(popup.image)
         XCTAssertTrue(popup.buttonAlignment == .Vertical)
+        XCTAssertTrue(popup.transitionStyle == .FadeIn)
     }
 
 

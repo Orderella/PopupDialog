@@ -87,6 +87,7 @@ alert.image = UIImage(...)
 alert.titleText = "..."
 alert.messageText = "..."
 alert.buttonAlignment = .Horizontal
+alert.transitionStyle = .BounceUp
 ```
 
 ## Transition animations
@@ -247,7 +248,7 @@ pod 'PopupDialog', '~> 0.1'
 
 ## Changelog
 
-* **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment)
+* **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment, transitionStyle)
 * **0.1.4** Pick transition animation style
 * **0.1.3** Big screen support<br>Exposed basic shadow appearance
 * **0.1.2** Exposed blur and overlay appearance
