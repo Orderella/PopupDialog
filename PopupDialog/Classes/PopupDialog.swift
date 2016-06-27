@@ -31,9 +31,6 @@ final public class PopupDialog: UIViewController {
 
     // MARK: Private
 
-    /// Button alignment on given axis
-    private let buttonAlignment: UILayoutConstraintAxis
-
     /// The custom transition presentation manager
     private let presentationManager: PopupDialogPresentationManager
 
@@ -63,23 +60,18 @@ final public class PopupDialog: UIViewController {
                 transitionStyle: PopupDialogTransitionStyle = .BounceUp,
                 buttonAlignment: UILayoutConstraintAxis = .Vertical) {
 
-        self.buttonAlignment = buttonAlignment
         presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle)
-
         super.init(nibName: nil, bundle: nil)
 
         // Define presentation styles
         transitioningDelegate = presentationManager
         modalPresentationStyle = .Custom
 
-        // Assign label text
-        popupView.titleLabel.text = title
-        popupView.messageLabel.text = message
-
-        // Assign image and set height accordingly
-        view.layoutIfNeeded()
-        popupView.imageView.image = image
-        popupView.imageHeightConstraint?.constant = popupView.imageView.pv_heightForImageView()
+        // Assign values
+        titleText = title
+        messageText = message
+        self.image = image
+        self.buttonAlignment = buttonAlignment
     }
 
     // Init with coder not implemented
@@ -102,6 +94,54 @@ extension PopupDialog {
 
         // FIXME: Make sure this is called only once
         appendButtons()
+    }
+}
+
+// MARK: View proxies
+
+extension PopupDialog {
+
+    /// The dialog image
+    public var image: UIImage? {
+        get { return popupView.imageView.image }
+        set {
+            popupView.imageView.image = newValue
+            popupView.imageHeightConstraint?.constant = popupView.imageView.pv_heightForImageView()
+            popupView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The title text of the dialog
+    public var titleText: String? {
+        get { return popupView.titleLabel.text }
+        set {
+            popupView.titleLabel.text = newValue
+            popupView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The message text of the dialog
+    public var messageText: String? {
+        get { return popupView.messageLabel.text }
+        set {
+            popupView.messageLabel.text = newValue
+            popupView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The button alignment of the alert dialog
+    public var buttonAlignment: UILayoutConstraintAxis {
+        get { return popupView.buttonStackView.axis }
+        set {
+            popupView.buttonStackView.axis = newValue
+            popupView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The transition style
+    public var transitionStyle: PopupDialogTransitionStyle {
+        get { return presentationManager.transitionStyle }
+        set { presentationManager.transitionStyle = newValue }
     }
 }
 
