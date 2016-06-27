@@ -50,6 +50,32 @@ class Tests: XCTestCase {
         XCTAssertNotNil(view.imageView.image, "Popup dialog image should not be nil")
     }
 
+    func testDialogPropertyAccess() {
+
+        // Instantiate dialog
+        let popup = PopupDialog(title: "Test Title", message: "Test Message")
+        XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
+
+        // Show popup dialog
+        popup.beginAppearanceTransition(true, animated: false)
+
+        // Create image
+        let image = UIImage(named: "santa_cat", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
+        XCTAssertNotNil(image, "Image should not be nil")
+
+        // Change values after init
+        popup.titleText = "New Test Title"
+        popup.messageText = "New Test Message"
+        popup.image = image
+        popup.buttonAlignment = .Vertical
+
+        XCTAssertEqual(popup.titleText, "New Test Title")
+        XCTAssertEqual(popup.messageText, "New Test Message")
+        XCTAssertNotNil(popup.image)
+        XCTAssertTrue(popup.buttonAlignment == .Vertical)
+    }
+
+
     func testButtonAssignments() {
 
         // Instantiate dialog
