@@ -184,8 +184,9 @@ extension PopupDialog {
 
     /// Calls the action closure of the button instance tapped
     @objc private func buttonTapped(button: PopupDialogButton) {
-        button.buttonAction?()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true) {
+            button.buttonAction?()
+        }
     }
 
     /*!
