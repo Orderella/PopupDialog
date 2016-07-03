@@ -29,13 +29,7 @@ import UIKit
 /// The main view of the popup dialog
 final public class PopupDialogView: UIView {
 
-    // MARK: Appearance
-
-    /// The background color of the popup dialog
-    override public dynamic var backgroundColor: UIColor? {
-        get { return container.backgroundColor }
-        set { container.backgroundColor = newValue }
-    }
+    // MARK: - Appearance
 
     /// The font and size of the title label
     public dynamic var titleFont: UIFont {
@@ -73,59 +67,36 @@ final public class PopupDialogView: UIView {
         set { messageLabel.textAlignment = newValue }
     }
 
-    /// The corner radius of the popup view
-    public dynamic var cornerRadius: Float {
-        get { return Float(shadowContainer.layer.cornerRadius) }
+    // MARK: - Setter / Getter
+
+    /// The dialog image
+    public var image: UIImage? {
+        get { return imageView.image }
         set {
-            let radius = CGFloat(newValue)
-            shadowContainer.layer.cornerRadius = radius
-            container.layer.cornerRadius = radius
+            imageView.image = newValue
+            pv_layoutIfNeededAnimated()
         }
     }
 
-    /// Enable / disable shadow rendering
-    public dynamic var shadowEnabled: Bool {
-        get { return shadowContainer.layer.shadowRadius > 0 }
-        set { shadowContainer.layer.shadowRadius = newValue ? 5 : 0 }
-    }
-
-    /// The shadow color
-    public dynamic var shadowColor: UIColor? {
-        get {
-            guard let color = shadowContainer.layer.shadowColor else {
-                return nil
-            }
-            return UIColor(CGColor: color)
+    /// The title text of the dialog
+    public var titleText: String? {
+        get { return titleLabel.text }
+        set {
+            titleLabel.text = newValue
+            pv_layoutIfNeededAnimated()
         }
-        set { shadowContainer.layer.shadowColor = newValue?.CGColor }
     }
 
-    // MARK: Views
+    /// The message text of the dialog
+    public var messageText: String? {
+        get { return messageLabel.text }
+        set {
+            messageLabel.text = newValue
+            pv_layoutIfNeededAnimated()
+        }
+    }
 
-    /// The shadow container is the basic view of the PopupDialog
-    /// As it does not clip subviews, a shadow can be applied to it
-    internal lazy var shadowContainer: UIView = {
-        let shadowContainer = UIView(frame: .zero)
-        shadowContainer.translatesAutoresizingMaskIntoConstraints = false
-        shadowContainer.backgroundColor = UIColor.clearColor()
-        shadowContainer.layer.shadowColor = UIColor.blackColor().CGColor
-        shadowContainer.layer.shadowRadius = 5
-        shadowContainer.layer.shadowOpacity = 0.4
-        shadowContainer.layer.shadowOffset = CGSize(width: 0, height: 0)
-        shadowContainer.layer.cornerRadius = 4
-        return shadowContainer
-    }()
-
-    /// The container view is a child of shadowContainer and contains
-    /// all other views. It clips to bounds so cornerRadius can be set
-    internal lazy var container: UIView = {
-        let container = UIView(frame: .zero)
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = UIColor.whiteColor()
-        container.clipsToBounds = true
-        container.layer.cornerRadius = 4
-        return container
-    }()
+    // MARK: - Views
 
     /// The view that will contain the image, if set
     internal lazy var imageView: UIImageView = {
@@ -180,30 +151,21 @@ final public class PopupDialogView: UIView {
         return spacerStackView
     }()
 
-    // The container stack view for out buttons
-    internal lazy var buttonStackView: UIStackView = {
-        let buttonStackView = UIStackView()
-        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
-        buttonStackView.distribution = .FillEqually
-        buttonStackView.spacing = 0
-        return buttonStackView
-    }()
-
     // The main stack view, containing all relevant views
     internal lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.imageView, self.spacerStackView, self.buttonStackView])
+        let stackView = UIStackView(arrangedSubviews: [self.imageView, self.spacerStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .Vertical
         stackView.spacing = 30
         return stackView
     }()
 
-    // MARK: Constraints
+    // MARK: - Constraints
 
     /// The height constraint of the image view, 0 by default
     internal var imageHeightConstraint: NSLayoutConstraint?
 
-    // MARK: Initializers
+    // MARK: - Initializers
 
     internal override init(frame: CGRect) {
         super.init(frame: frame)
@@ -214,27 +176,16 @@ final public class PopupDialogView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: View setup
+    // MARK: - View setup
 
     internal func setupViews() {
-
         // Add views
-        addSubview(shadowContainer)
-        shadowContainer.addSubview(container)
-        container.addSubview(stackView)
+        translatesAutoresizingMaskIntoConstraints = false
+        addSubview(stackView)
 
         // Layout views
-        let views = ["shadowContainer": shadowContainer, "container": container, "stackView": stackView, "textStackView": textStackView, "imageView": imageView, "titleLabel": titleLabel, "messageLabel": messageLabel]
+        let views = ["stackView": stackView, "imageView": imageView]
         var constraints = [NSLayoutConstraint]()
-
-        // Shadow container constraints
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(>=10,==10@900)-[shadowContainer(<=340,>=300)]-(>=10,==10@900)-|", options: [], metrics: nil, views: views)
-        constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: 0)]
-        constraints.append(NSLayoutConstraint(item: shadowContainer, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1, constant: 0))
-
-        // Container constraints
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[container]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[container]|", options: [], metrics: nil, views: views)
 
         // Main stack view constraints
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[stackView]|", options: [], metrics: nil, views: views)
@@ -246,5 +197,10 @@ final public class PopupDialogView: UIView {
 
         // Activate constraints
         NSLayoutConstraint.activateConstraints(constraints)
+    }
+
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        imageHeightConstraint?.constant = imageView.pv_heightForImageView()
     }
 }

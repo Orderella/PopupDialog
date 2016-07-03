@@ -26,8 +26,9 @@
 import Foundation
 import UIKit
 
+
 /// Creates a Popup dialog similar to UIAlertController
-final public class PopupDialog: UIViewController {
+final public class PopupDialog<T: UIView> : UIViewController {
 
     // MARK: Private
 
@@ -35,58 +36,85 @@ final public class PopupDialog: UIViewController {
     private let presentationManager: PopupDialogPresentationManager
 
     /// Returns the controllers view
-    private var popupView: PopupDialogView {
-        return view as! PopupDialogView
+    private var popupContainerView: PopupDialogContainerView {
+        return view as! PopupDialogContainerView
     }
 
     /// The set of buttons
     private var buttons = [PopupDialogButton]()
 
-    // MARK: Initializers
+    // MARK: Public
+
+    /// The content view of the popup dialog
+    public let popupView: T
+
+    // MARK: - Initializers
 
     /*!
-     Creates a custom Popup Dialog view that can be
-     presented just like a view controller
+     Creates a standard popup dialog with title, message and image field
 
-     - parameter title:   The dialog title
-     - parameter message: The dialog body
-     - parameter image:   The image displayed on top
+     - parameter title:           The dialog title
+     - parameter message:         The dialog message
+     - parameter image:           The dialog image
+     - parameter buttonAlignment: The dialog button alignment
+     - parameter transitionStyle: The dialog transition style
 
-     - returns: Popup dialog view
+     - returns: Popup dialog standard style
      */
-    public init(title: String?,
+    public convenience init(
+                title: String?,
                 message: String?,
                 image: UIImage? = nil,
-                transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-                buttonAlignment: UILayoutConstraintAxis = .Vertical) {
+                buttonAlignment: UILayoutConstraintAxis = .Vertical,
+                transitionStyle: PopupDialogTransitionStyle = .BounceUp) {
+
+        // Create and configure the standard popup dialog view
+        let view = PopupDialogView(frame: .zero)
+        view.titleText = title
+        view.messageText = message
+        view.image = image
+
+        // Call designated initializer
+        self.init(customView: view as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle)
+    }
+
+    /*!
+     Creates a popup dialog containing a custom view
+
+     - parameter customView:      A custom view to be displayed
+     - parameter buttonAlignment: The dialog button alignment
+     - parameter transitionStyle: The dialog transition style
+
+     - returns: Popup dialog with custom view
+     */
+    public init(customView: T, buttonAlignment: UILayoutConstraintAxis = .Vertical, transitionStyle: PopupDialogTransitionStyle = .BounceUp) {
 
         presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle)
+        popupView = customView
+
         super.init(nibName: nil, bundle: nil)
 
         // Define presentation styles
         transitioningDelegate = presentationManager
         modalPresentationStyle = .Custom
 
-        // Assign values
-        titleText = title
-        messageText = message
-        self.image = image
-        self.buttonAlignment = buttonAlignment
+        // Add our custom view to the container
+        popupContainerView.stackView.insertArrangedSubview(customView, atIndex: 0)
+
+        // Set button alignment
+        popupContainerView.buttonStackView.axis = buttonAlignment
     }
 
     // Init with coder not implemented
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
 
-// MARK: View lifecycle
-
-extension PopupDialog {
+    // MARK: - View life cycle
 
     /// Replaces controller view with popup view
     public override func loadView() {
-        view = PopupDialogView(frame: UIScreen.mainScreen().bounds)
+        view = PopupDialogContainerView(frame: UIScreen.mainScreen().bounds)
     }
 
     public override func viewWillAppear(animated: Bool) {
@@ -94,74 +122,20 @@ extension PopupDialog {
 
         // FIXME: Make sure this is called only once
         appendButtons()
-    }
-}
-
-// MARK: View proxies
-
-extension PopupDialog {
-
-    /// The dialog image
-    public var image: UIImage? {
-        get { return popupView.imageView.image }
-        set {
-            popupView.imageView.image = newValue
-            popupView.imageHeightConstraint?.constant = popupView.imageView.pv_heightForImageView()
-            popupView.pv_layoutIfNeededAnimated()
-        }
+        view.layoutIfNeeded()
     }
 
-    /// The title text of the dialog
-    public var titleText: String? {
-        get { return popupView.titleLabel.text }
-        set {
-            popupView.titleLabel.text = newValue
-            popupView.pv_layoutIfNeededAnimated()
-        }
-    }
-
-    /// The message text of the dialog
-    public var messageText: String? {
-        get { return popupView.messageLabel.text }
-        set {
-            popupView.messageLabel.text = newValue
-            popupView.pv_layoutIfNeededAnimated()
-        }
-    }
-
-    /// The button alignment of the alert dialog
-    public var buttonAlignment: UILayoutConstraintAxis {
-        get { return popupView.buttonStackView.axis }
-        set {
-            popupView.buttonStackView.axis = newValue
-            popupView.pv_layoutIfNeededAnimated()
-        }
-    }
-
-    /// The transition style
-    public var transitionStyle: PopupDialogTransitionStyle {
-        get { return presentationManager.transitionStyle }
-        set { presentationManager.transitionStyle = newValue }
-    }
-}
-
-// MARK: Button actions
-
-extension PopupDialog {
+    // MARK: - Button related
 
     /*!
      Appends the buttons added to the popup dialog
      to the placeholder stack view
      */
     private func appendButtons() {
-
-        // Configure the button stack view
-        popupView.buttonStackView.axis = buttonAlignment
-
         // Add action to buttons
         for (index, button) in buttons.enumerate() {
-            button.needsLeftSeparator = buttonAlignment == .Horizontal && index > 0
-            popupView.buttonStackView.addArrangedSubview(button)
+            button.needsLeftSeparator = popupContainerView.buttonStackView.axis == .Horizontal && index > 0
+            popupContainerView.buttonStackView.addArrangedSubview(button)
             button.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
         }
     }
@@ -199,5 +173,24 @@ extension PopupDialog {
         button.buttonAction?()
         dismissViewControllerAnimated(true, completion: nil)
     }
+}
 
+// MARK: - View proxy values
+
+extension PopupDialog {
+
+    /// The button alignment of the alert dialog
+    public var buttonAlignment: UILayoutConstraintAxis {
+        get { return popupContainerView.buttonStackView.axis }
+        set {
+            popupContainerView.buttonStackView.axis = newValue
+            popupContainerView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The transition style
+    public var transitionStyle: PopupDialogTransitionStyle {
+        get { return presentationManager.transitionStyle }
+        set { presentationManager.transitionStyle = newValue }
+    }
 }

@@ -30,7 +30,7 @@ import FXBlurView
 /// The (blurred) overlay view below the popup dialog
 final public class PopupDialogOverlayView: UIView {
 
-    // MARK: Appearance
+    // MARK: - Appearance
 
     // The blur radius of the overlay view
     public dynamic var blurRadius: Float {
@@ -59,7 +59,7 @@ final public class PopupDialogOverlayView: UIView {
         set { overlay.alpha = CGFloat(newValue) }
     }
 
-    // MARK: Views
+    // MARK: - Views
 
     internal lazy var blurView: FXBlurView = {
         let blurView = FXBlurView(frame: .zero)
@@ -77,7 +77,7 @@ final public class PopupDialogOverlayView: UIView {
         return overlay
     }()
 
-    // MARK: Inititalizers
+    // MARK: - Inititalizers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -88,7 +88,7 @@ final public class PopupDialogOverlayView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: View setup
+    // MARK: - View setup
 
     private func setupView() {
 
