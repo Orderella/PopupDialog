@@ -21,22 +21,24 @@ class AppearanceTests: XCTestCase {
         XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
         // Get popup dialog view
-        guard let view = popup.view as? PopupDialogView else {
+        guard let view = popup.popupView as? PopupDialogView else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
 
+        // Popup container defaults
+        XCTAssertEqual(popup.popupContainerView.backgroundColor, UIColor.whiteColor())
+        XCTAssertEqual(popup.popupContainerView.cornerRadius, 4)
+        XCTAssertTrue(popup.popupContainerView.shadowEnabled)
+        XCTAssertEqual(popup.popupContainerView.shadowColor, UIColor.blackColor())
+
         // Popup view defaults
-        XCTAssertEqual(view.backgroundColor, UIColor.whiteColor())
         XCTAssertEqual(view.titleFont, UIFont.boldSystemFontOfSize(14))
         XCTAssertEqual(view.titleColor, UIColor(white: 0.4, alpha: 1))
         XCTAssertTrue (view.titleTextAlignment == .Center)
         XCTAssertEqual(view.messageFont, UIFont.systemFontOfSize(14))
         XCTAssertEqual(view.messageColor, UIColor(white: 0.6, alpha: 1))
         XCTAssertTrue (view.messageTextAlignment == .Center)
-        XCTAssertEqual(view.cornerRadius, 4)
-        XCTAssertTrue(view.shadowEnabled)
-        XCTAssertEqual(view.shadowColor, UIColor.blackColor())
 
         // Button defaults
         let defaultButton = DefaultButton(title: "", action: nil)
@@ -51,7 +53,6 @@ class AppearanceTests: XCTestCase {
         XCTAssertEqual(overlay.blurRadius, 8)
         XCTAssertTrue(overlay.blurEnabled)
         XCTAssertEqual(overlay.opacity, 0.7)
-
     }
 
     func testCustomAppearance() {
@@ -65,9 +66,11 @@ class AppearanceTests: XCTestCase {
         pv.messageFont          = UIFont(name: "HelveticaNeue", size: 16)!
         pv.messageColor         = UIColor.redColor()
         pv.messageTextAlignment = .Right
-        pv.cornerRadius         = 10
-        pv.shadowEnabled        = false
-        pv.shadowColor          = UIColor.greenColor()
+
+        let pcv = PopupDialogContainerView.appearance()
+        pcv.cornerRadius        = 10
+        pcv.shadowEnabled       = false
+        pcv.shadowColor         = UIColor.greenColor()
 
         // Customize overlay appearance
         let ov = PopupDialogOverlayView.appearance()
@@ -91,9 +94,11 @@ class AppearanceTests: XCTestCase {
         XCTAssertEqual(pv.messageFont, UIFont(name: "HelveticaNeue", size: 16)!)
         XCTAssertEqual(pv.messageColor, UIColor.redColor())
         XCTAssertTrue (pv.messageTextAlignment == .Right)
-        XCTAssertEqual(pv.cornerRadius, 10)
-        XCTAssertFalse(pv.shadowEnabled)
-        XCTAssertEqual(pv.shadowColor, UIColor.greenColor())
+
+        // Popup container view customized appearance
+        XCTAssertEqual(pcv.cornerRadius, 10)
+        XCTAssertFalse(pcv.shadowEnabled)
+        XCTAssertEqual(pcv.shadowColor, UIColor.greenColor())
 
         // Overlay customized appearance
         XCTAssertEqual(ov.color, UIColor.yellowColor())
