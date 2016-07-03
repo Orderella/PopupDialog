@@ -248,6 +248,7 @@ pod 'PopupDialog', '~> 0.1'
 
 ## Changelog
 
+* **0.1.6** Defer button action until animation completes
 * **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment, transitionStyle)
 * **0.1.4** Pick transition animation style
 * **0.1.3** Big screen support<br>Exposed basic shadow appearance
