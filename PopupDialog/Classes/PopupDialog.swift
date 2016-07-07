@@ -119,6 +119,14 @@ extension PopupDialog {
             popupView.pv_layoutIfNeededAnimated()
         }
     }
+    
+    /// The title color of the dialog
+    public var titleColor: UIColor?{
+        get { return popupView.titleLabel.textColor }
+        set {
+            popupView.titleLabel.textColor = newValue
+        }
+    }
 
     /// The message text of the dialog
     public var messageText: String? {
@@ -126,6 +134,14 @@ extension PopupDialog {
         set {
             popupView.messageLabel.text = newValue
             popupView.pv_layoutIfNeededAnimated()
+        }
+    }
+    
+    /// The message color of the dialog
+    public var messageColor: UIColor?{
+        get { return popupView.messageLabel.textColor }
+        set {
+            popupView.messageLabel.textColor = newValue
         }
     }
 
