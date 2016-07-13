@@ -26,19 +26,19 @@
 
 import UIKit
 
-final class PopupDialogDefaultViewController: UIViewController {
+final public class PopupDialogDefaultViewController: UIViewController {
 
     public var standardView: PopupDialogDefaultView {
        return view as! PopupDialogDefaultView
     }
 
-    override func loadView() {
+    override public func loadView() {
         super.loadView()
         view = PopupDialogDefaultView(frame: .zero)
     }
 }
 
-extension PopupDialogDefaultViewController {
+public extension PopupDialogDefaultViewController {
 
     // MARK: - Setter / Getter
 
