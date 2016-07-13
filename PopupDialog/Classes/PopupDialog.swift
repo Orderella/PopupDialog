@@ -27,7 +27,7 @@ import Foundation
 import UIKit
 
 /// Creates a Popup dialog similar to UIAlertController
-final public class PopupDialog<T: UIView>: UIViewController {
+final public class PopupDialog<T: UIViewController>: UIViewController {
 
     // MARK: Private / Internal
 
@@ -45,7 +45,7 @@ final public class PopupDialog<T: UIView>: UIViewController {
     // MARK: Public
 
     /// The content view of the popup dialog
-    public var popupView: T
+    public var viewController: T
 
     // MARK: - Initializers
 
@@ -68,31 +68,32 @@ final public class PopupDialog<T: UIView>: UIViewController {
                 transitionStyle: PopupDialogTransitionStyle = .BounceUp) {
 
         // Create and configure the standard popup dialog view
-        let view = PopupDialogView(frame: .zero)
+        let viewController = PopupDialogDefaultViewController()
+        let view = viewController.standardView
         view.titleText = title
         view.messageText = message
         view.image = image
 
         // Call designated initializer
-        self.init(view: view as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle)
+        self.init(viewController: viewController as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle)
     }
 
     /*!
      Creates a popup dialog containing a custom view
 
-     - parameter view:      A custom view to be displayed
+     - parameter viewController:  A custom view controller to be displayed
      - parameter buttonAlignment: The dialog button alignment
      - parameter transitionStyle: The dialog transition style
 
      - returns: Popup dialog with custom view
      */
     public init(
-        view: T,
+        viewController: T,
         buttonAlignment: UILayoutConstraintAxis = .Vertical,
         transitionStyle: PopupDialogTransitionStyle = .BounceUp) {
 
         presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle)
-        popupView = view
+        self.viewController = viewController
 
         super.init(nibName: nil, bundle: nil)
 
@@ -101,7 +102,7 @@ final public class PopupDialog<T: UIView>: UIViewController {
         modalPresentationStyle = .Custom
 
         // Add our custom view to the container
-        popupContainerView.stackView.insertArrangedSubview(view, atIndex: 0)
+        popupContainerView.stackView.insertArrangedSubview(viewController.view, atIndex: 0)
 
         // Set button alignment
         popupContainerView.buttonStackView.axis = buttonAlignment
@@ -134,6 +135,10 @@ final public class PopupDialog<T: UIView>: UIViewController {
      */
     private func appendButtons() {
         // Add action to buttons
+        if buttons.isEmpty {
+            popupContainerView.stackView.removeArrangedSubview(popupContainerView.buttonStackView)
+        }
+
         for (index, button) in buttons.enumerate() {
             button.needsLeftSeparator = popupContainerView.buttonStackView.axis == .Horizontal && index > 0
             popupContainerView.buttonStackView.addArrangedSubview(button)

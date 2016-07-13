@@ -21,7 +21,7 @@ class AppearanceTests: XCTestCase {
         XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
         // Get popup dialog view
-        guard let view = popup.popupView as? PopupDialogView else {
+        guard let view = popup.viewController.view as? PopupDialogDefaultView else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
@@ -58,7 +58,7 @@ class AppearanceTests: XCTestCase {
     func testCustomAppearance() {
 
         // Customize view appearance
-        let pv = PopupDialogView.appearance()
+        let pv = PopupDialogDefaultView.appearance()
         pv.backgroundColor      = UIColor.blackColor()
         pv.titleFont            = UIFont(name: "HelveticaNeue", size: 14)!
         pv.titleColor           = UIColor.redColor()

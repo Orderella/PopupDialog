@@ -27,7 +27,7 @@ import Foundation
 import UIKit
 
 /// The main view of the popup dialog
-final public class PopupDialogView: UIView {
+final public class PopupDialogDefaultView: UIView {
 
     // MARK: - Appearance
 
@@ -189,9 +189,10 @@ final public class PopupDialogView: UIView {
 
         // Main stack view constraints
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[stackView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView]-30-|", options: [], metrics: nil, views: views)
 
         // ImageView constraints
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: [], metrics: nil, views: views)
         imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 0, constant: 0)
         constraints.append(imageHeightConstraint!)
 

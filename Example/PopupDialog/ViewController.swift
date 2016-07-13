@@ -34,25 +34,32 @@ class ViewController: UIViewController {
 
     // MARK: Actions
 
-    @IBAction func showKittenDialogTapped(sender: UIButton) {
-        showKittenDialog()
+    @IBAction func showImageDialogTapped(sender: UIButton) {
+        showImageDialog()
     }
 
-    @IBAction func showOtherDialogTapped(sender: UIButton) {
-        showKittenGoneDialog()
+    @IBAction func showStandardDialogTapped(sender: UIButton) {
+        showStandardDialog()
+    }
+
+    @IBAction func showCustomDialogTapped(sender: UIButton) {
+        showCustomDialog()
     }
 
     // MARK: Popup Dialog examples
 
-    func showKittenDialog() {
+    /*!
+     Displays the default dialog with an image on top
+     */
+    func showImageDialog() {
 
         // Prepare the popup assets
         let title = "THIS IS THE CUTE CAT DIALOG"
-        let message = "The above image shows a cute little christmas kitten, in case you don't know kitten. Or Santa.\nSo, what to do next?"
+        let message = "The above image shows a cute little christmas kitten, in case you don't know kitten. Or Santa. So, what to do next?"
         let image = UIImage(named: "santa_cat")
 
         // Create the dialog
-        let alert = PopupDialog(title: title, message: message, image: image)
+        let popup = PopupDialog(title: title, message: message, image: image)
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL CAT") {
@@ -70,20 +77,23 @@ class ViewController: UIViewController {
         }
 
         // Add buttons to dialog
-        alert.addButtons([buttonOne, buttonTwo, buttonThree])
+        popup.addButtons([buttonOne, buttonTwo, buttonThree])
 
         // Present dialog
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.presentViewController(popup, animated: true, completion: nil)
     }
 
-    func showKittenGoneDialog() {
+    /*!
+     Displays the standard dialog without image, just as the system dialog
+     */
+    func showStandardDialog() {
 
-        // Prepare the popup assets
+        // Prepare the popup
         let title = "Where's the kitten?".uppercaseString
         let message = "It seems there is no kitten in this dialog.\nHave you seen it anywhere?"
 
         // Create the dialog
-        let alert = PopupDialog(title: title, message: message, buttonAlignment: .Horizontal)
+        let popup = PopupDialog(title: title, message: message, transitionStyle: .ZoomIn, buttonAlignment: .Horizontal)
 
         // Create first button
         let buttonOne = CancelButton(title: "NO") {
@@ -96,10 +106,36 @@ class ViewController: UIViewController {
         }
 
         // Add buttons to dialog
-        alert.addButtons([buttonOne, buttonTwo])
+        popup.addButtons([buttonOne, buttonTwo])
 
         // Present dialog
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.presentViewController(popup, animated: true, completion: nil)
     }
 
+    /*!
+     Displays a custom view controller instead of the default view.
+     Buttons can be still added, if needed
+     */
+    func showCustomDialog() {
+
+        // Create a custom view controller
+        let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
+
+        // Create the dialog
+        let popup = PopupDialog(viewController: ratingVC, transitionStyle: .BounceDown, buttonAlignment: .Horizontal)
+
+        // Create first button
+        let buttonOne = CancelButton(title: "CANCEL") {}
+
+        // Create second button
+        let buttonTwo = DefaultButton(title: "RATE") {
+            self.kittenLabel.text = "You rated \(ratingVC.cosmosStarRating.rating) stars"
+        }
+
+        // Add buttons to dialog
+        popup.addButtons([buttonOne, buttonTwo])
+
+        // Present dialog
+        presentViewController(popup, animated: true, completion: nil)
+    }
 }

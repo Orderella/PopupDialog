@@ -1,5 +1,6 @@
 //
-//  PopupDialogStandardButtons.swift
+//  PopupDialogDefaultViewController.swift
+//  Pods
 //
 //  Copyright (c) 2016 Orderella Ltd. (http://orderella.co.uk)
 //  Author - Martin Wildfeuer (http://www.mwfire.de)
@@ -23,32 +24,16 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
 import UIKit
 
-// MARK: Default button
+final class PopupDialogDefaultViewController: UIViewController {
 
-/// Represents the default button for the popup dialog
-public final class DefaultButton: PopupDialogButton {}
-
-// MARK: Cancel button
-
-/// Represents a cancel button for the popup dialog
-public final class CancelButton: PopupDialogButton {
-
-    override public func setupView() {
-        defaultTitleColor = UIColor.lightGrayColor()
-        super.setupView()
+    public var standardView: PopupDialogDefaultView {
+       return view as! PopupDialogDefaultView
     }
-}
 
-// MARK: destructive button
-
-/// Represents a destructive button for the popup dialog
-public final class DestructiveButton: PopupDialogButton {
-
-    override public func setupView() {
-        defaultTitleColor = UIColor.redColor()
-        super.setupView()
+    override func loadView() {
+        super.loadView()
+        view = PopupDialogDefaultView(frame: .zero)
     }
 }

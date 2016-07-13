@@ -23,19 +23,19 @@
                                 <rect key="frame" x="20" y="503" width="280" height="45"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="9fv-Vh-liG"/>
+                                    <constraint firstAttribute="height" constant="45" id="jAD-W4-dOg"/>
                                 </constraints>
-                                <state key="normal" title="Show Other Dialog"/>
+                                <state key="normal" title="Show Custom Dialog"/>
                                 <connections>
-                                    <action selector="showOtherDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GVb-2Y-Kif"/>
+                                    <action selector="showCustomDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Fr5-zl-t7U"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7G-uG-kym">
-                                <rect key="frame" x="20" y="443" width="280" height="45"/>
+                                <rect key="frame" x="20" y="444" width="280" height="45"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Show Kitten Dialog"/>
+                                <state key="normal" title="Show Standard Dialog"/>
                                 <connections>
-                                    <action selector="showKittenDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="YTI-i9-Ap9"/>
+                                    <action selector="showStandardDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="L5k-x3-YHR"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the buttons!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUr-OR-AC7">
@@ -44,23 +44,35 @@
                                 <color key="textColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWW-W3-vVg">
+                                <rect key="frame" x="20" y="385" width="280" height="45"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Show Image Dialog"/>
+                                <connections>
+                                    <action selector="showImageDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="a9D-7Y-eaO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1Ib-rL-PNU" secondAttribute="bottom" constant="20" id="5gD-vc-7B0"/>
-                            <constraint firstItem="PUr-OR-AC7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="9N0-sv-VnG"/>
-                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="height" secondItem="d7G-uG-kym" secondAttribute="height" id="9Pe-cT-BOi"/>
-                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="d7G-uG-kym" secondAttribute="leading" id="Dbc-8k-zU8"/>
-                            <constraint firstItem="yCg-ou-HQf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="eqQ-xp-XVP"/>
-                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="hgh-SQ-7QD"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="yCg-ou-HQf" secondAttribute="bottom" id="jFE-NP-rq7"/>
-                            <constraint firstAttribute="trailing" secondItem="yCg-ou-HQf" secondAttribute="trailing" id="jwK-bn-Adl"/>
-                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="top" secondItem="d7G-uG-kym" secondAttribute="bottom" constant="15" id="ogb-Kf-IwC"/>
-                            <constraint firstAttribute="trailing" secondItem="1Ib-rL-PNU" secondAttribute="trailing" constant="20" id="ptB-Mo-w56"/>
-                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="width" secondItem="d7G-uG-kym" secondAttribute="width" id="qNO-yY-bVj"/>
-                            <constraint firstItem="PUr-OR-AC7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="sMA-dN-Fo7"/>
-                            <constraint firstItem="yCg-ou-HQf" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="sV8-Jb-e8L"/>
-                            <constraint firstAttribute="trailing" secondItem="PUr-OR-AC7" secondAttribute="trailing" constant="20" id="zGt-Z8-G9J"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="top" secondItem="d7G-uG-kym" secondAttribute="bottom" constant="14" id="0Ub-Ew-9kD"/>
+                            <constraint firstAttribute="trailing" secondItem="yCg-ou-HQf" secondAttribute="trailing" id="0WO-uG-XCW"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="height" secondItem="d7G-uG-kym" secondAttribute="height" id="0jw-KY-do1"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="yCg-ou-HQf" secondAttribute="bottom" id="0sN-bz-fuy"/>
+                            <constraint firstItem="d7G-uG-kym" firstAttribute="top" secondItem="UWW-W3-vVg" secondAttribute="bottom" constant="14" id="8Ho-Y3-WvF"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1Ib-rL-PNU" secondAttribute="bottom" constant="20" id="AyH-mH-6Gi"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="d7G-uG-kym" secondAttribute="leading" id="B9Q-Ea-aA1"/>
+                            <constraint firstItem="PUr-OR-AC7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="FE7-kI-sSi"/>
+                            <constraint firstItem="d7G-uG-kym" firstAttribute="width" secondItem="UWW-W3-vVg" secondAttribute="width" id="IV3-YY-k6T"/>
+                            <constraint firstItem="d7G-uG-kym" firstAttribute="height" secondItem="UWW-W3-vVg" secondAttribute="height" id="JWw-Fa-DGU"/>
+                            <constraint firstItem="d7G-uG-kym" firstAttribute="leading" secondItem="UWW-W3-vVg" secondAttribute="leading" id="VYV-nL-PHX"/>
+                            <constraint firstAttribute="trailing" secondItem="PUr-OR-AC7" secondAttribute="trailing" constant="20" id="Z5n-KK-G7h"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="ad3-v2-SFT"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="width" secondItem="d7G-uG-kym" secondAttribute="width" id="hLd-MW-vXX"/>
+                            <constraint firstItem="yCg-ou-HQf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="kxT-O9-Khq"/>
+                            <constraint firstAttribute="trailing" secondItem="1Ib-rL-PNU" secondAttribute="trailing" constant="20" id="sel-EO-jmj"/>
+                            <constraint firstItem="yCg-ou-HQf" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="vUy-fM-eSF"/>
+                            <constraint firstItem="PUr-OR-AC7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="z9O-vl-xIT"/>
                         </constraints>
                     </view>
                     <connections>

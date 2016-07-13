@@ -106,7 +106,7 @@ final public class PopupDialogContainerView: UIView {
         let stackView = UIStackView(arrangedSubviews: [self.buttonStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .Vertical
-        stackView.spacing = 30
+        stackView.spacing = 0
         return stackView
     }()
 

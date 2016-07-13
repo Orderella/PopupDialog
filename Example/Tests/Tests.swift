@@ -21,7 +21,7 @@ class Tests: XCTestCase {
         XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
         // Get popup dialog view
-        guard let view = popup.popupView as? PopupDialogView else {
+        guard let view = popup.viewController.view as? PopupDialogDefaultView else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
@@ -42,7 +42,7 @@ class Tests: XCTestCase {
         XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
         // Get popup dialog view
-        guard let view = popup.popupView as? PopupDialogView else {
+        guard let view = popup.viewController.view as? PopupDialogDefaultView else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
@@ -81,7 +81,7 @@ class Tests: XCTestCase {
         popup.beginAppearanceTransition(true, animated: false)
 
         // Get popup dialog view
-        guard let view = popup.popupView as? PopupDialogView else {
+         guard let view = popup.viewController.view as? PopupDialogDefaultView else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
