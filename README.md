@@ -34,6 +34,14 @@ You can set a transition animation style with `.BounceUp` being the default. See
 
 Buttons can be aligned either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
 
+Instead of using the default view (image, title, message), you can also init PopupDialog with a custom view controller.
+
+```swift
+public init(viewController: T
+            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+            buttonAlignment: UILayoutConstraintAxis = .Vertical)
+```
+
 ## Example
 
 You can find this example project in the repo. To run it, clone the repo, and run `pod install` from the Example directory first.
@@ -71,16 +79,18 @@ self.presentViewController(alert, animated: true, completion: nil)
 
 ```
 
-## Dialog properties
+## Default Dialog properties
 
-After the dialog has been presented, the initial dialog parameters can be updated "at runtime". The following example shows the properties available to you. Changes will be animated.
+If you use the default dialog, after the dialog has been presented, the initial dialog parameters can be updated. The following example shows the properties available to you. Changes will be animated.
 
 ```swift
 // Create the dialog
-let alert = PopupDialog(title: title, message: message, image: image)
+let popup = PopupDialog(title: title, message: message, image: image)
 
 // Present dialog
-self.presentViewController(alert, animated: true, completion: nil)
+self.presentViewController(popup, animated: true, completion: nil)
+
+let view = popup.viewController
 
 // Set dialog properties
 alert.image = UIImage(...)
