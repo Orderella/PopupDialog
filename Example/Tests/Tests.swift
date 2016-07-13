@@ -21,14 +21,14 @@ class Tests: XCTestCase {
         XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
         // Get popup dialog view
-        guard let view = popup.viewController.view as? PopupDialogDefaultView else {
+        guard let vc = popup.viewController as? PopupDialogDefaultViewController else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
 
-        XCTAssertEqual(view.titleText, "Test Title", "Popup Dialog title should be set correctly")
-        XCTAssertEqual(view.messageText, "Test Message", "Popup Dialog message should be set correctly")
-        XCTAssertNil(view.image, "Popup Dialog image should be nil")
+        XCTAssertEqual(vc.titleText, "Test Title", "Popup Dialog title should be set correctly")
+        XCTAssertEqual(vc.messageText, "Test Message", "Popup Dialog message should be set correctly")
+        XCTAssertNil(vc.image, "Popup Dialog image should be nil")
     }
 
     func testImageDialogInstantiation() {
@@ -42,12 +42,12 @@ class Tests: XCTestCase {
         XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
         // Get popup dialog view
-        guard let view = popup.viewController.view as? PopupDialogDefaultView else {
+        guard let vc = popup.viewController as? PopupDialogDefaultViewController else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
 
-        XCTAssertNotNil(view.image, "Popup dialog image should not be nil")
+        XCTAssertNotNil(vc.image, "Popup dialog image should not be nil")
     }
 
     func testDialogPropertyAccess() {
@@ -81,7 +81,7 @@ class Tests: XCTestCase {
         popup.beginAppearanceTransition(true, animated: false)
 
         // Get popup dialog view
-         guard let view = popup.viewController.view as? PopupDialogDefaultView else {
+         guard let vc = popup.viewController as? PopupDialogDefaultViewController else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
@@ -90,13 +90,13 @@ class Tests: XCTestCase {
         let image = UIImage(named: "santa_cat", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
-        view.titleText = "New Test Title"
-        view.messageText = "New Test Message"
-        view.image = image
+        vc.titleText = "New Test Title"
+        vc.messageText = "New Test Message"
+        vc.image = image
 
-        XCTAssertEqual(view.titleText, "New Test Title")
-        XCTAssertEqual(view.messageText, "New Test Message")
-        XCTAssertNotNil(view.image)
+        XCTAssertEqual(vc.titleText, "New Test Title")
+        XCTAssertEqual(vc.messageText, "New Test Message")
+        XCTAssertNotNil(vc.image)
     }
 
 
@@ -122,7 +122,7 @@ class Tests: XCTestCase {
         // Show popup dialog
         popup.beginAppearanceTransition(true, animated: false)
 
-        //XCTAssertEqual(popup.popupContainerView.buttonStackView.arrangedSubviews.count, 4, "Popup dialog should display four buttons")
+        XCTAssertEqual(popup.popupContainerView.buttonStackView.arrangedSubviews.count, 4, "Popup dialog should display four buttons")
     }
 
     func testButtonTaps() {

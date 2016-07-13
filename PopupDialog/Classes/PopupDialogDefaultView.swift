@@ -67,35 +67,6 @@ final public class PopupDialogDefaultView: UIView {
         set { messageLabel.textAlignment = newValue }
     }
 
-    // MARK: - Setter / Getter
-
-    /// The dialog image
-    public var image: UIImage? {
-        get { return imageView.image }
-        set {
-            imageView.image = newValue
-            pv_layoutIfNeededAnimated()
-        }
-    }
-
-    /// The title text of the dialog
-    public var titleText: String? {
-        get { return titleLabel.text }
-        set {
-            titleLabel.text = newValue
-            pv_layoutIfNeededAnimated()
-        }
-    }
-
-    /// The message text of the dialog
-    public var messageText: String? {
-        get { return messageLabel.text }
-        set {
-            messageLabel.text = newValue
-            pv_layoutIfNeededAnimated()
-        }
-    }
-
     // MARK: - Views
 
     /// The view that will contain the image, if set

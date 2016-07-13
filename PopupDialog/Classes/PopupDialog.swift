@@ -69,10 +69,9 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
-        let view = viewController.standardView
-        view.titleText = title
-        view.messageText = message
-        view.image = image
+        viewController.titleText   = title
+        viewController.messageText = message
+        viewController.image       = image
 
         // Call designated initializer
         self.init(viewController: viewController as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle)

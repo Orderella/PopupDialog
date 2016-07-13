@@ -37,3 +37,35 @@ final class PopupDialogDefaultViewController: UIViewController {
         view = PopupDialogDefaultView(frame: .zero)
     }
 }
+
+extension PopupDialogDefaultViewController {
+
+    // MARK: - Setter / Getter
+
+    /// The dialog image
+    public var image: UIImage? {
+        get { return standardView.imageView.image }
+        set {
+            standardView.imageView.image = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The title text of the dialog
+    public var titleText: String? {
+        get { return standardView.titleLabel.text }
+        set {
+            standardView.titleLabel.text = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The message text of the dialog
+    public var messageText: String? {
+        get { return standardView.messageLabel.text }
+        set {
+            standardView.messageLabel.text = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+}
