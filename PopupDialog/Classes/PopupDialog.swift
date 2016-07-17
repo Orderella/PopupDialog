@@ -58,7 +58,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      - parameter buttonAlignment: The dialog button alignment
      - parameter transitionStyle: The dialog transition style
 
-     - returns: Popup dialog standard style
+     - returns: Popup dialog default style
      */
     public convenience init(
                 title: String?,
@@ -84,7 +84,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      - parameter buttonAlignment: The dialog button alignment
      - parameter transitionStyle: The dialog transition style
 
-     - returns: Popup dialog with custom view
+     - returns: Popup dialog with a custom view controller
      */
     public init(
         viewController: T,
