@@ -30,7 +30,7 @@ class ViewController: UIViewController {
 
     // MARK: Outlets
 
-    @IBOutlet weak var kittenLabel: UILabel!
+    @IBOutlet weak var label: UILabel!
 
     // MARK: Actions
 
@@ -54,26 +54,26 @@ class ViewController: UIViewController {
     func showImageDialog() {
 
         // Prepare the popup assets
-        let title = "THIS IS THE CUTE CAT DIALOG"
-        let message = "The above image shows a cute little christmas kitten, in case you don't know kitten. Or Santa. So, what to do next?"
-        let image = UIImage(named: "santa_cat")
+        let title = "THIS IS THE DIALOG TITLE"
+        let message = "This is the message section of the popup dialog default view"
+        let image = UIImage(named: "pexels-photo-103290")
 
         // Create the dialog
         let popup = PopupDialog(title: title, message: message, image: image)
 
         // Create first button
-        let buttonOne = CancelButton(title: "CANCEL CAT") {
-            self.kittenLabel.text = "You canceled the cat. Whatever that means..."
+        let buttonOne = CancelButton(title: "CANCEL") {
+            self.label.text = "You canceled the car dialog."
         }
 
         // Create second button
-        let buttonTwo = DefaultButton(title: "PLAY WITH CAT") {
-            self.kittenLabel.text = "Phew, that was exhausting!"
+        let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
+            self.label.text = "What a beauty!"
         }
 
         // Create third button
-        let buttonThree = DefaultButton(title: "PET CAT") {
-            self.kittenLabel.text = "The cat purrs happily :)"
+        let buttonThree = DefaultButton(title: "BUY CAR") {
+            self.label.text = "Ah, maybe next time :)"
         }
 
         // Add buttons to dialog
@@ -89,20 +89,20 @@ class ViewController: UIViewController {
     func showStandardDialog() {
 
         // Prepare the popup
-        let title = "Where's the kitten?".uppercaseString
-        let message = "It seems there is no kitten in this dialog.\nHave you seen it anywhere?"
+        let title = "THIS IS A DIALOG WITHOUT IMAGE"
+        let message = "If you don't pass an image to the default dialog, it will display just as a regular dialog. Moreover, this features the zoom transition"
 
         // Create the dialog
         let popup = PopupDialog(title: title, message: message, transitionStyle: .ZoomIn, buttonAlignment: .Horizontal)
 
         // Create first button
-        let buttonOne = CancelButton(title: "NO") {
-            self.kittenLabel.text = "Oh noes :("
+        let buttonOne = CancelButton(title: "CANCEL") {
+            self.label.text = "You canceled the default dialog"
         }
 
         // Create second button
-        let buttonTwo = DefaultButton(title: "YES") {
-            self.kittenLabel.text = "Ah! It's in the other dialog, isn't it?"
+        let buttonTwo = DefaultButton(title: "OK") {
+            self.label.text = "You ok'd the default dialog"
         }
 
         // Add buttons to dialog
@@ -125,11 +125,13 @@ class ViewController: UIViewController {
         let popup = PopupDialog(viewController: ratingVC, transitionStyle: .BounceDown, buttonAlignment: .Horizontal)
 
         // Create first button
-        let buttonOne = CancelButton(title: "CANCEL") {}
+        let buttonOne = CancelButton(title: "CANCEL") {
+            self.label.text = "You canceled the rating dialog"
+        }
 
         // Create second button
         let buttonTwo = DefaultButton(title: "RATE") {
-            self.kittenLabel.text = "You rated \(ratingVC.cosmosStarRating.rating) stars"
+            self.label.text = "You rated \(ratingVC.cosmosStarRating.rating) stars"
         }
 
         // Add buttons to dialog

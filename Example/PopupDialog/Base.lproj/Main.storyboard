@@ -16,12 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cute_cat" translatesAutoresizingMaskIntoConstraints="NO" id="yCg-ou-HQf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pexels-photo-92637" translatesAutoresizingMaskIntoConstraints="NO" id="yCg-ou-HQf">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ib-rL-PNU">
                                 <rect key="frame" x="20" y="503" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80479525862068968" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="jAD-W4-dOg"/>
                                 </constraints>
@@ -32,26 +32,26 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7G-uG-kym">
                                 <rect key="frame" x="20" y="444" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Show Standard Dialog"/>
                                 <connections>
                                     <action selector="showStandardDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="L5k-x3-YHR"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the buttons!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUr-OR-AC7">
-                                <rect key="frame" x="20" y="28" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWW-W3-vVg">
                                 <rect key="frame" x="20" y="385" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.79816810344827582" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Show Image Dialog"/>
                                 <connections>
                                     <action selector="showImageDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="a9D-7Y-eaO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the buttons!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUr-OR-AC7">
+                                <rect key="frame" x="20" y="52" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -72,11 +72,11 @@
                             <constraint firstItem="yCg-ou-HQf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="kxT-O9-Khq"/>
                             <constraint firstAttribute="trailing" secondItem="1Ib-rL-PNU" secondAttribute="trailing" constant="20" id="sel-EO-jmj"/>
                             <constraint firstItem="yCg-ou-HQf" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="vUy-fM-eSF"/>
-                            <constraint firstItem="PUr-OR-AC7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="z9O-vl-xIT"/>
+                            <constraint firstItem="PUr-OR-AC7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="32" id="z9O-vl-xIT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="kittenLabel" destination="PUr-OR-AC7" id="hXV-ng-Xs8"/>
+                        <outlet property="label" destination="PUr-OR-AC7" id="maG-JJ-iw4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -85,6 +85,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cute_cat" width="266" height="400"/>
+        <image name="pexels-photo-92637" width="375" height="667"/>
     </resources>
 </document>
