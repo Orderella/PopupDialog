@@ -34,7 +34,7 @@ class Tests: XCTestCase {
     func testImageDialogInstantiation() {
 
         // Create image
-        let image = UIImage(named: "santa_cat", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
+        let image = UIImage(named: "pexels-photo-103290", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         // Instantiate dialog with image
@@ -60,7 +60,7 @@ class Tests: XCTestCase {
         popup.beginAppearanceTransition(true, animated: false)
 
         // Create image
-        let image = UIImage(named: "santa_cat", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
+        let image = UIImage(named: "pexels-photo-103290", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         // Change values after init
@@ -87,7 +87,7 @@ class Tests: XCTestCase {
         }
 
         // Create image
-        let image = UIImage(named: "santa_cat", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
+        let image = UIImage(named: "pexels-photo-103290", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         vc.titleText = "New Test Title"
