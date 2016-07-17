@@ -253,7 +253,7 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'PopupDialog', '~> 0.1'
+pod 'PopupDialog', '~> 0.2'
 ```
 
 ## Changelog
@@ -273,9 +273,8 @@ for Orderella Ltd., [orderella.co.uk](http://orderella.co.uk)
 
 ## Images in the sample project
 
-The sample project features two images:<br>
-Santa cat image courtesy of m_bartosch at FreeDigitalPhotos.net<br>
-Cute kitten image courtesy of Tina Phillips at FreeDigitalPhotos.net<br>
+The sample project features two images from Markus Spiske raumrot.com:<br>
+[Vintage Car One](https://www.pexels.com/photo/lights-vintage-luxury-tires-103290/) | [Vintage Car Two](https://www.pexels.com/photo/lights-car-vintage-luxury-92637/)<br>
 Thanks a lot for providing these :)
 
 
