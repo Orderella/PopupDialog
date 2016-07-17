@@ -223,8 +223,8 @@ cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 
 ```
 
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogDark01.png?raw=true" width="240">
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogDark02.png?raw=true" width="240">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogDark01.png?raw=true" width="260">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogDark02.png?raw=true" width="260">
 
 I can see that there is room for more customization options. I might add more of them over time.
 
