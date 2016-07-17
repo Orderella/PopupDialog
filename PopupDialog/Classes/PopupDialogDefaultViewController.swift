@@ -1,6 +1,5 @@
 //
 //  PopupDialogDefaultViewController.swift
-//  Pods
 //
 //  Copyright (c) 2016 Orderella Ltd. (http://orderella.co.uk)
 //  Author - Martin Wildfeuer (http://www.mwfire.de)
