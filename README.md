@@ -10,9 +10,9 @@
 
 Popup Dialog is a simple, customizable alert view with a syntax similar to  UIAlertController, written in Swift.
 
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog01.gif?raw=true" width="210">
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog02.gif?raw=true" width="210">
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog03.gif?raw=true" width="210">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog01.gif?raw=true" width="230">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog02.gif?raw=true" width="230">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog03.gif?raw=true" width="230">
 
 ## Usage
 
