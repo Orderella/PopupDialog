@@ -10,8 +10,9 @@
 
 Popup Dialog is a simple, customizable alert view with a syntax similar to  UIAlertController, written in Swift.
 
-![PopupDialog example one](http://www.mwfire.de/orderella/github/PopupDialog01.gif "PopupDialog example one")
-![PopupDialog example two](http://www.mwfire.de/orderella/github/PopupDialog02.gif "PopupDialog example two")
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog01.gif?raw=true" width="210">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog02.gif?raw=true" width="210">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog03.gif?raw=true" width="210">
 
 ## Usage
 
@@ -222,8 +223,8 @@ cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 
 ```
 
-![PopupDialog example three](http://www.mwfire.de/orderella/github/PopupDialogDark01.png "PopupDialog example three")
-![PopupDialog example four](http://www.mwfire.de/orderella/github/PopupDialogDark02.png "PopupDialog example four")
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogDark01.png?raw=true" width="240">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogDark02.png?raw=true" width="240">
 
 I can see that there is room for more customization options. I might add more of them over time.
 
