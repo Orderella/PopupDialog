@@ -1,31 +1,74 @@
-<center>
 <img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogLogo.png?raw=true" width="300">
-</center>
 
 <p>&nbsp;</p>
 
-<center>
 [![Version](https://img.shields.io/cocoapods/v/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![License](https://img.shields.io/cocoapods/l/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![Platform](https://img.shields.io/cocoapods/p/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
+[![codebeat badge](https://codebeat.co/badges/006f8d13-072a-42bb-a584-6b97e60201e1)](https://codebeat.co/projects/github-com-orderella-popupdialog)
 [![Build Status Master](https://travis-ci.org/Orderella/PopupDialog.svg?branch=master)](https://travis-ci.org/Orderella/PopupDialog)
 [![Build Status Development](https://travis-ci.org/Orderella/PopupDialog.svg?branch=development)](https://travis-ci.org/Orderella/PopupDialog)
-</center>
 
 <p>&nbsp;</p>
 
 ## Introduction
 
-Popup Dialog is a simple, customizable alert view with a syntax similar to  UIAlertController, written in Swift.
+Popup Dialog is a simple, customizable popup dialog written in Swift.
 
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog01.gif?raw=true" width="230">
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog02.gif?raw=true" width="230">
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog03.gif?raw=true" width="230">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog01.gif?raw=true" width="250">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog02.gif?raw=true" width="250">
+<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog03.gif?raw=true" width="250">
+
+## Installation
+
+PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'PopupDialog', '~> 0.2'
+```
+
+## Example
+
+You can find this and more example projects in the repo. To run it, clone the repo, and run `pod install` from the Example directory first.
+
+```swift
+// Prepare the popup assets
+let title = "THIS IS THE DIALOG TITLE"
+let message = "This is the message section of the popup dialog default view"
+let image = UIImage(named: "pexels-photo-103290")
+
+// Create the dialog
+let popup = PopupDialog(title: title, message: message, image: image)
+
+// Create buttons
+let buttonOne = CancelButton(title: "CANCEL") {
+    print("You canceled the car dialog.")
+}
+
+let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
+    print("What a beauty!")
+}
+
+let buttonThree = DefaultButton(title: "BUY CAR") {
+    print("Ah, maybe next time :)")
+}
+
+// Add buttons to dialog
+// Alternatively, you can use popup.addButton(buttonOne)
+// to add a single button
+popup.addButtons([buttonOne, buttonTwo, buttonThree])
+
+// Present dialog
+self.presentViewController(popup, animated: true, completion: nil)
+
+```
 
 ## Usage
 
-PopupDialog is a subclass of UIViewController and as such can be added to your view controller modally.
-The full initializer looks as follows:
+PopupDialog is a subclass of UIViewController and as such can be added to your view controller modally. You can initialize it either with the handy default view or a custom view controller.
+
+### Default view
 
 ```swift
 public init(title: String?,
@@ -35,15 +78,13 @@ public init(title: String?,
             buttonAlignment: UILayoutConstraintAxis = .Vertical)
 ```
 
+The default view initializer is a convenient way of creating a popup with image, title and message (see image one and two).
+
 Bascially, all parameters are optional, although this makes no sense at all. You want to at least add a message and a single button, otherwise the dialog can't be dismissed. I am planning on implementing dismiss by background tap or swipe in the future.
 
 If you provide an image it will be pinned to the top/left/right of the dialog. The ratio of the image will be used to set the height of the image view, so no distortion will occur.
 
-You can set a transition animation style with `.BounceUp` being the default. See "Transition animations".
-
-Buttons can be aligned either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
-
-Instead of using the default view (image, title, message), you can also init PopupDialog with a custom view controller.
+### Custom View Controller
 
 ```swift
 public init(viewController: T
@@ -51,41 +92,32 @@ public init(viewController: T
             buttonAlignment: UILayoutConstraintAxis = .Vertical)
 ```
 
-## Example
+You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
 
-You can find this example project in the repo. To run it, clone the repo, and run `pod install` from the Example directory first.
+Buttons are added below the controllers view, however, these buttons are optional. If you decide to not add any buttons, you have to take care of closing the dialog manually. Being a subclass of view controller. This can be easily done via `dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?)`.
+
+### Transition Animations
+
+You can set a transition animation style with `.BounceUp` being the default.The following transition styles are available
 
 ```swift
-let title = "This is a title"
-let message = "This is a message"
-let image = UIImage(named: "santa_cat")
-
-// Create the dialog
-let alert = PopupDialog(title: title, message: message, image: image)
-
-// Create a button with cancel style
-let buttonOne = CancelButton(title: "CANCEL CAT") {
-    print("You canceled the cat. Whatever that means...")
+public enum PopupDialogTransitionStyle: Int {
+    case BounceUp
+    case BounceDown
+    case ZoomIn
+    case FadeIn
 }
+```
 
-// Create a button with default style
-let buttonTwo = DefaultButton(title: "PLAY WITH CAT") {
-    print("Phew, that was exhausting!")
+### Button alignment
+
+Buttons can be distributed either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
+
+```swift
+public enum UILayoutConstraintAxis : Int {   
+    case Horizontal
+    case Vertical
 }
-
-// Create a button with destructive style
-let buttonThree = DestructiveButton(title: "PET CAT") {
-    print("The cat purrs happily :)")
-}
-
-// Add buttons to dialog
-// Optionally, single buttons can be added
-// with addButton(button: PopupDialogButton)
-alert.addButtons([buttonOne, buttonTwo, buttonThree])
-
-// Present dialog
-self.presentViewController(alert, animated: true, completion: nil)
-
 ```
 
 ## Default Dialog properties
@@ -109,35 +141,16 @@ alert.buttonAlignment = .Horizontal
 alert.transitionStyle = .BounceUp
 ```
 
-## Transition animations
 
-
-The following transition styles can be set at initialization
-
-```swift
-/*!
- - BounceUp:   Dialog bounces in from bottom and is dismissed to bottom
- - BounceDown: Dialog bounces in from top and is dismissed to top
- - ZoomIn:     Dialog zooms in and is dismissed by zooming out
- - FadeIn:     Dialog fades in and is dismissed by fading out
- */
-public enum PopupDialogTransitionStyle: Int {
-    case BounceUp
-    case BounceDown
-    case ZoomIn
-    case FadeIn
-}
-```
 
 ## Appearance
 
-Many aspects of the popup dialog can be customized. Dialogs are supposed to have 
-mostly the same layout throughout the app, therefore global appearance settings should make this easier. Find below the appearance settings and their default values.
+Many aspects of the popup dialog can be customized. Dialogs are supposed to have mostly the same layout throughout the app, therefore global appearance settings should make this easier. Find below the appearance settings and their default values.
 
-#### Dialog View Appearance Settings
+#### Dialog Default View Appearance Settings
 
 ```swift
-var dialogAppearance = PopupDialogView.appearance()
+var dialogAppearance = PopupDialogDefaultView.appearance()
 
 dialogAppearance.backgroundColor      = UIColor.whiteColor()
 dialogAppearance.titleFont            = UIFont.boldSystemFontOfSize(14)
@@ -256,17 +269,9 @@ Other than that, PopupDialog unit tests are included in the Example folder.
 As this dialog is based on UIStackViews, a minimum Version of iOS 9.0 is required.
 This dialog was written with Swift 2.2, 3.X compatability will be published on a seperate branch soon.
 
-## Installation
-
-PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'PopupDialog', '~> 0.2'
-```
-
 ## Changelog
 
+* **0.2.0** Custom view controllers
 * **0.1.6** Defer button action until animation completes
 * **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment, transitionStyle)
 * **0.1.4** Pick transition animation style
