@@ -41,6 +41,8 @@ public extension PopupDialogDefaultViewController {
 
     // MARK: - Setter / Getter
 
+    // MARK: Content
+
     /// The dialog image
     public var image: UIImage? {
         get { return standardView.imageView.image }
@@ -64,6 +66,62 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.messageLabel.text }
         set {
             standardView.messageLabel.text = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    // MARK: Appearance
+
+    /// The font and size of the title label
+    public dynamic var titleFont: UIFont {
+        get { return standardView.titleFont }
+        set {
+            standardView.titleFont = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The color of the title label
+    public dynamic var titleColor: UIColor? {
+        get { return standardView.titleLabel.textColor }
+        set {
+            standardView.titleColor = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The text alignment of the title label
+    public dynamic var titleTextAlignment: NSTextAlignment {
+        get { return standardView.titleTextAlignment }
+        set {
+            standardView.titleTextAlignment = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The font and size of the body label
+    public dynamic var messageFont: UIFont {
+        get { return standardView.messageFont}
+        set {
+            standardView.messageFont = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The color of the message label
+    public dynamic var messageColor: UIColor? {
+        get { return standardView.messageColor }
+        set {
+            standardView.messageColor = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
+    /// The text alignment of the message label
+    public dynamic var messageTextAlignment: NSTextAlignment {
+        get { return standardView.messageTextAlignment }
+        set {
+            standardView.messageTextAlignment = newValue
             standardView.pv_layoutIfNeededAnimated()
         }
     }
