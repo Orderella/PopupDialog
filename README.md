@@ -19,6 +19,8 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 <img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog02.gif?raw=true" width="250">
 <img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog03.gif?raw=true" width="250">
 
+<p>&nbsp;</p>
+
 ## Installation
 
 PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
@@ -27,6 +29,8 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'PopupDialog', '~> 0.2'
 ```
+
+<p>&nbsp;</p>
 
 ## Example
 
@@ -64,11 +68,13 @@ self.presentViewController(popup, animated: true, completion: nil)
 
 ```
 
+<p>&nbsp;</p>
+
 ## Usage
 
 PopupDialog is a subclass of UIViewController and as such can be added to your view controller modally. You can initialize it either with the handy default view or a custom view controller.
 
-### Default view
+### Default Dialog
 
 ```swift
 public init(title: String?,
@@ -78,7 +84,7 @@ public init(title: String?,
             buttonAlignment: UILayoutConstraintAxis = .Vertical)
 ```
 
-The default view initializer is a convenient way of creating a popup with image, title and message (see image one and two).
+The default dialog initializer is a convenient way of creating a popup with image, title and message (see image one and two).
 
 Bascially, all parameters are optional, although this makes no sense at all. You want to at least add a message and a single button, otherwise the dialog can't be dismissed. I am planning on implementing dismiss by background tap or swipe in the future.
 
@@ -94,7 +100,7 @@ public init(viewController: T
 
 You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
 
-Buttons are added below the controllers view, however, these buttons are optional. If you decide to not add any buttons, you have to take care of closing the dialog manually. Being a subclass of view controller. This can be easily done via `dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?)`.
+Buttons are added below the controllers view, however, these buttons are optional. If you decide to not add any buttons, you have to take care of dismissing the dialog manually. Being a subclass of view controller, this can be easily done via `dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?)`.
 
 ### Transition Animations
 
@@ -120,9 +126,11 @@ public enum UILayoutConstraintAxis : Int {
 }
 ```
 
-## Default Dialog properties
+<p>&nbsp;</p>
 
-If you use the default dialog, after the dialog has been presented, the initial dialog parameters can be updated. The following example shows the properties available to you. Changes will be animated.
+## Default Dialog Properties
+
+If you are use tinge default dialog, you can change selected properties at runtime.
 
 ```swift
 // Create the dialog
@@ -131,23 +139,31 @@ let popup = PopupDialog(title: title, message: message, image: image)
 // Present dialog
 self.presentViewController(popup, animated: true, completion: nil)
 
-let view = popup.viewController
+// Get the default view controller and cast it
+// Admittedly, this is a bit unfortunate :(
+// I will look into a better way of doing this soon
+let vc = popup.viewController as! PopupDialogDefaultViewController
 
 // Set dialog properties
-alert.image = UIImage(...)
-alert.titleText = "..."
-alert.messageText = "..."
-alert.buttonAlignment = .Horizontal
-alert.transitionStyle = .BounceUp
+vc.image = UIImage(...)
+vc.titleText = "..."
+vc.messageText = "..."
+vc.buttonAlignment = .Horizontal
+vc.transitionStyle = .BounceUp
 ```
 
+<p>&nbsp;</p>
 
+## Styling PopupDialog
 
-## Appearance
+Appearance is the preferred way of customizing the style of PopupDialog.
+The idea of PopupDialog is to define a theme in a single place, without having to provide style settings with every single instantiation. This way, creating a PopupDialog requires only minimal code to be written and no "wrappers"
 
-Many aspects of the popup dialog can be customized. Dialogs are supposed to have mostly the same layout throughout the app, therefore global appearance settings should make this easier. Find below the appearance settings and their default values.
+This makes even more sense, as popup dialogs and alerts are supposed to look consistent throughout the app, that is, maintain a single style.
 
 #### Dialog Default View Appearance Settings
+
+If you are using the default popup view, the following appearance settings are available:
 
 ```swift
 var dialogAppearance = PopupDialogDefaultView.appearance()
@@ -166,6 +182,8 @@ dialogAppearance.shadowColor          = UIColor.blackColor()
 
 #### Overlay View Appearance Settings
 
+This refers to the view that is used as an overlay above the underlying view controller but below the popup dialog view. If that makes sense ;)
+
 ```swift
 let overlayAppearance = PopupDialogOverlayView.appearance()
 
@@ -177,10 +195,9 @@ overlayAppearance.opacity     = 0.7
 
 #### Button Appearance Settings
 
+The standard button classes available are `DefaultButton`, `CancelButton` and `DestructiveButton`. All buttons feature the same appearance settings and can be styled seperately.
+
 ```swift
-// The standard button classes available are DefaultButton, CancelButton
-// and DestructiveButton. On all buttons the same appearance can be set.
-// Below, only the differences are highlighted
 var buttonAppearance = DefaultButton.appearance()
 
 // Default button
@@ -188,6 +205,8 @@ buttonAppearance.titleFont      = UIFont.systemFontOfSize(14)
 buttonAppearance.titleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
 buttonAppearance.buttonColor    = UIColor.clearColor()
 buttonAppearance.separatorColor = UIColor(white: 0.9, alpha: 1)
+
+// Below, only the differences are highlighted
 
 // Cancel button
 CancelButton.appearance().titleColor = UIColor.lightGrayColor()
@@ -214,13 +233,15 @@ public final class SolidBlueButton: PopupDialogButton {
 
 These buttons can be customized with the appearance settings given above as well.
 
-#### Dark mode example
+<p>&nbsp;</p>
+
+### Dark mode example
 
 The following is an example of a *Dark Mode* theme. You can find this in the Example project `AppDelegate`, just uncomment it to apply the custom appearance.
 
 ```swift
 // Customize dialog appearance
-let pv = PopupDialogView.appearance()
+let pv = PopupDialogDefaultView.appearance()
 pv.backgroundColor      = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
 pv.titleFont            = UIFont(name: "HelveticaNeue-Light", size: 16)!
 pv.titleColor           = UIColor.whiteColor()
@@ -249,10 +270,13 @@ cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 
 I can see that there is room for more customization options. I might add more of them over time.
 
+<p>&nbsp;</p>
+
 ## Screen sizes and rotation
 
 Rotation and all screen sizes are supported. However, the dialog will never exceed a width of 340 points. This way, the dialog won't be too big on devices like iPads. However, landscape mode will not work well if the height of the dialog exceeds the width of the screen.
 
+<p>&nbsp;</p>
 
 ## Testing
 
@@ -264,14 +288,18 @@ public func tapButtonWithIndex(index: Int)
 
 Other than that, PopupDialog unit tests are included in the Example folder.
 
+<p>&nbsp;</p>
+
 ## Requirements
 
 As this dialog is based on UIStackViews, a minimum Version of iOS 9.0 is required.
 This dialog was written with Swift 2.2, 3.X compatability will be published on a seperate branch soon.
 
+<p>&nbsp;</p>
+
 ## Changelog
 
-* **0.2.0** Custom view controllers
+* **0.2.0** You can now pass custom view controllers to the dialog. This introduces breaking changes.
 * **0.1.6** Defer button action until animation completes
 * **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment, transitionStyle)
 * **0.1.4** Pick transition animation style
@@ -280,10 +308,14 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 * **0.1.1** Added themeing example
 * **0.1.0** Intitial version
 
+<p>&nbsp;</p>
+
 ## Author
 
 Martin Wildfeuer, mwfire@mwfire.de
 for Orderella Ltd., [orderella.co.uk](http://orderella.co.uk)
+
+<p>&nbsp;</p>
 
 ## Images in the sample project
 
@@ -291,6 +323,7 @@ The sample project features two images from Markus Spiske raumrot.com:<br>
 [Vintage Car One](https://www.pexels.com/photo/lights-vintage-luxury-tires-103290/) | [Vintage Car Two](https://www.pexels.com/photo/lights-car-vintage-luxury-92637/)<br>
 Thanks a lot for providing these :)
 
+<p>&nbsp;</p>
 
 ## License
 
