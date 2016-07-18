@@ -41,8 +41,8 @@ public class PopupDialogButton: UIButton {
 
     /// The title color of the button
     public dynamic var titleColor: UIColor? {
-        get { return titleColorForState(.Normal) }
-        set { setTitleColor(newValue, forState: .Normal) }
+        get { return self.titleColor(for: UIControlState()) }
+        set { setTitleColor(newValue, for: UIControlState()) }
     }
 
     /// The background color of the button
@@ -61,9 +61,9 @@ public class PopupDialogButton: UIButton {
     }
 
     /// Default appearance of the button
-    public var defaultTitleFont      = UIFont.systemFontOfSize(14)
+    public var defaultTitleFont      = UIFont.systemFont(ofSize: 14)
     public var defaultTitleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
-    public var defaultButtonColor    = UIColor.clearColor()
+    public var defaultButtonColor    = UIColor.clear()
     public var defaultSeparatorColor = UIColor(white: 0.9, alpha: 1)
 
     /// The action called when the button is tapped
@@ -111,7 +111,7 @@ public class PopupDialogButton: UIButton {
         super.init(frame: .zero)
 
         // Set the button title
-        setTitle(title, forState: .Normal)
+        setTitle(title, for: UIControlState())
 
         // Setup the views
         setupView()
@@ -126,7 +126,7 @@ public class PopupDialogButton: UIButton {
     public func setupView() {
 
         // Default appearance
-        setTitleColor(defaultTitleColor, forState: .Normal)
+        setTitleColor(defaultTitleColor, for: UIControlState())
         titleLabel?.font              = defaultTitleFont
         backgroundColor               = defaultButtonColor
         separator.backgroundColor     = defaultSeparatorColor
@@ -138,17 +138,17 @@ public class PopupDialogButton: UIButton {
 
         let views = ["separator": separator, "leftSeparator": leftSeparator, "button": self]
         var constraints = [NSLayoutConstraint]()
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[button(45)]", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[separator]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[separator(1)]", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[leftSeparator(1)]", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[leftSeparator]|", options: [], metrics: nil, views: views)
-        NSLayoutConstraint.activateConstraints(constraints)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[button(45)]", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[separator]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[separator(1)]", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[leftSeparator(1)]", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[leftSeparator]|", options: [], metrics: nil, views: views)
+        NSLayoutConstraint.activate(constraints)
     }
 
-    public override var highlighted: Bool {
+    public override var isHighlighted: Bool {
         didSet {
-            highlighted ? pv_fade(.Out, 0.5) : pv_fade(.In, 1.0)
+            isHighlighted ? pv_fade(.out, 0.5) : pv_fade(.in, 1.0)
         }
     }
 }

@@ -64,8 +64,8 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
                 title: String?,
                 message: String?,
                 image: UIImage? = nil,
-                buttonAlignment: UILayoutConstraintAxis = .Vertical,
-                transitionStyle: PopupDialogTransitionStyle = .BounceUp) {
+                buttonAlignment: UILayoutConstraintAxis = .vertical,
+                transitionStyle: PopupDialogTransitionStyle = .bounceUp) {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
@@ -88,8 +88,8 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      */
     public init(
         viewController: T,
-        buttonAlignment: UILayoutConstraintAxis = .Vertical,
-        transitionStyle: PopupDialogTransitionStyle = .BounceUp) {
+        buttonAlignment: UILayoutConstraintAxis = .vertical,
+        transitionStyle: PopupDialogTransitionStyle = .bounceUp) {
 
         presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle)
         self.viewController = viewController
@@ -98,10 +98,10 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
 
         // Define presentation styles
         transitioningDelegate = presentationManager
-        modalPresentationStyle = .Custom
+        modalPresentationStyle = .custom
 
         // Add our custom view to the container
-        popupContainerView.stackView.insertArrangedSubview(viewController.view, atIndex: 0)
+        popupContainerView.stackView.insertArrangedSubview(viewController.view, at: 0)
 
         // Set button alignment
         popupContainerView.buttonStackView.axis = buttonAlignment
@@ -116,10 +116,10 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
 
     /// Replaces controller view with popup view
     public override func loadView() {
-        view = PopupDialogContainerView(frame: UIScreen.mainScreen().bounds)
+        view = PopupDialogContainerView(frame: UIScreen.main().bounds)
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         // FIXME: Make sure this is called only once
@@ -138,10 +138,10 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
             popupContainerView.stackView.removeArrangedSubview(popupContainerView.buttonStackView)
         }
 
-        for (index, button) in buttons.enumerate() {
-            button.needsLeftSeparator = popupContainerView.buttonStackView.axis == .Horizontal && index > 0
+        for (index, button) in buttons.enumerated() {
+            button.needsLeftSeparator = popupContainerView.buttonStackView.axis == .horizontal && index > 0
             popupContainerView.buttonStackView.addArrangedSubview(button)
-            button.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
     }
 
@@ -149,7 +149,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      Adds a single PopupDialogButton to the Popup dialog
      - parameter button: A PopupDialogButton instance
      */
-    public func addButton(button: PopupDialogButton) {
+    public func addButton(_ button: PopupDialogButton) {
         buttons.append(button)
     }
 
@@ -157,13 +157,13 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      Adds an array of PopupDialogButtons to the Popup dialog
      - parameter buttons: A list of PopupDialogButton instances
      */
-    public func addButtons(buttons: [PopupDialogButton]) {
+    public func addButtons(_ buttons: [PopupDialogButton]) {
         self.buttons += buttons
     }
 
     /// Calls the action closure of the button instance tapped
-    @objc private func buttonTapped(button: PopupDialogButton) {
-        dismissViewControllerAnimated(true) {
+    @objc private func buttonTapped(_ button: PopupDialogButton) {
+        dismiss(animated: true) {
             button.buttonAction?()
         }
     }
@@ -173,10 +173,10 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      Makes testing a breeze
      - parameter index: The index of the button to tap
      */
-    public func tapButtonWithIndex(index: Int) {
+    public func tapButtonWithIndex(_ index: Int) {
         let button = buttons[index]
         button.buttonAction?()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 

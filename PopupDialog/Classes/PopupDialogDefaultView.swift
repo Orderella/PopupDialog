@@ -73,7 +73,7 @@ final public class PopupDialogDefaultView: UIView {
     internal lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
@@ -81,9 +81,9 @@ final public class PopupDialogDefaultView: UIView {
     internal lazy var titleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = .Center
+        titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor(white: 0.4, alpha: 1)
-        titleLabel.font = UIFont.boldSystemFontOfSize(14)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
         return titleLabel
     }()
 
@@ -91,9 +91,9 @@ final public class PopupDialogDefaultView: UIView {
     internal lazy var messageLabel: UILabel = {
         let messageLabel = UILabel(frame: .zero)
         messageLabel.numberOfLines = 0
-        messageLabel.textAlignment = .Center
+        messageLabel.textAlignment = .center
         messageLabel.textColor = UIColor(white: 0.6, alpha: 1)
-        messageLabel.font = UIFont.systemFontOfSize(14)
+        messageLabel.font = UIFont.systemFont(ofSize: 14)
         return messageLabel
     }()
 
@@ -101,7 +101,7 @@ final public class PopupDialogDefaultView: UIView {
     internal lazy var textStackView: UIStackView = {
         let textStackView = UIStackView(arrangedSubviews: [self.titleLabel, self.messageLabel])
         textStackView.translatesAutoresizingMaskIntoConstraints = false
-        textStackView.axis = .Vertical
+        textStackView.axis = .vertical
         textStackView.spacing = 12
         return textStackView
     }()
@@ -116,9 +116,9 @@ final public class PopupDialogDefaultView: UIView {
         let rightSpacer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         let spacerStackView = UIStackView(arrangedSubviews: [leftSpacer, self.textStackView, rightSpacer])
         spacerStackView.translatesAutoresizingMaskIntoConstraints = false
-        spacerStackView.axis = .Horizontal
+        spacerStackView.axis = .horizontal
         spacerStackView.spacing = 12
-        spacerStackView.distribution = .FillProportionally
+        spacerStackView.distribution = .fillProportionally
         return spacerStackView
     }()
 
@@ -126,7 +126,7 @@ final public class PopupDialogDefaultView: UIView {
     internal lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [self.imageView, self.spacerStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .Vertical
+        stackView.axis = .vertical
         stackView.spacing = 30
         return stackView
     }()
@@ -159,16 +159,16 @@ final public class PopupDialogDefaultView: UIView {
         var constraints = [NSLayoutConstraint]()
 
         // Main stack view constraints
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[stackView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView]-30-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]-30-|", options: [], metrics: nil, views: views)
 
         // ImageView constraints
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: [], metrics: nil, views: views)
-        imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 0, constant: 0)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
+        imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 0, constant: 0)
         constraints.append(imageHeightConstraint!)
 
         // Activate constraints
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
     }
 
     public override func layoutSubviews() {

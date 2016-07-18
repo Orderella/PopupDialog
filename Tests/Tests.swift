@@ -34,7 +34,7 @@ class Tests: XCTestCase {
     func testImageDialogInstantiation() {
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
+        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main(), compatibleWith: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         // Instantiate dialog with image
@@ -60,15 +60,15 @@ class Tests: XCTestCase {
         popup.beginAppearanceTransition(true, animated: false)
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
+        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main(), compatibleWith: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         // Change values after init
-        popup.buttonAlignment = .Vertical
-        popup.transitionStyle = .FadeIn
+        popup.buttonAlignment = .vertical
+        popup.transitionStyle = .fadeIn
 
-        XCTAssertTrue(popup.buttonAlignment == .Vertical)
-        XCTAssertTrue(popup.transitionStyle == .FadeIn)
+        XCTAssertTrue(popup.buttonAlignment == .vertical)
+        XCTAssertTrue(popup.transitionStyle == .fadeIn)
     }
 
     func testDialogViewPropertyAccess() {
@@ -87,7 +87,7 @@ class Tests: XCTestCase {
         }
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: nil)
+        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main(), compatibleWith: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         vc.titleText = "New Test Title"
@@ -111,7 +111,7 @@ class Tests: XCTestCase {
         for index in 1...4 {
             let button = DefaultButton(title: "Test \(index)") { _ in }
             XCTAssertNotNil(button, "Button should be non-nil")
-            XCTAssertEqual(button.titleForState(.Normal), "Test \(index)", "Button title should be set correctly")
+            XCTAssertEqual(button.title(for: []), "Test \(index)", "Button title should be set correctly")
             XCTAssertNotNil(button.buttonAction, "Button action should be non-nil")
             buttons.append(button)
         }
@@ -127,7 +127,7 @@ class Tests: XCTestCase {
 
     func testButtonTaps() {
 
-        let expectation = expectationWithDescription("Button action needs to be called")
+        let exp = expectation(withDescription: "Button action needs to be called")
 
         // Instantiate dialog
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
@@ -135,7 +135,7 @@ class Tests: XCTestCase {
 
         let button = DefaultButton(title: "Test") {
             XCTAssert(true, "Button action should be called")
-            expectation.fulfill()
+            exp.fulfill()
         }
 
         // Add button
@@ -147,7 +147,7 @@ class Tests: XCTestCase {
         // Tap button with 0 index
         popup.tapButtonWithIndex(0)
 
-        waitForExpectationsWithTimeout(2.0, handler: nil)
+        waitForExpectations(withTimeout: 2.0, handler: nil)
     }
 
     func testCustomViewController() {

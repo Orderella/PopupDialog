@@ -34,15 +34,15 @@ class ViewController: UIViewController {
 
     // MARK: Actions
 
-    @IBAction func showImageDialogTapped(sender: UIButton) {
+    @IBAction func showImageDialogTapped(_ sender: UIButton) {
         showImageDialog()
     }
 
-    @IBAction func showStandardDialogTapped(sender: UIButton) {
+    @IBAction func showStandardDialogTapped(_ sender: UIButton) {
         showStandardDialog()
     }
 
-    @IBAction func showCustomDialogTapped(sender: UIButton) {
+    @IBAction func showCustomDialogTapped(_ sender: UIButton) {
         showCustomDialog()
     }
 
@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         popup.addButtons([buttonOne, buttonTwo, buttonThree])
 
         // Present dialog
-        self.presentViewController(popup, animated: true, completion: nil)
+        self.present(popup, animated: true, completion: nil)
     }
 
     /*!
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         let message = "If you don't pass an image to the default dialog, it will display just as a regular dialog. Moreover, this features the zoom transition"
 
         // Create the dialog
-        let popup = PopupDialog(title: title, message: message, transitionStyle: .ZoomIn, buttonAlignment: .Horizontal)
+        let popup = PopupDialog(title: title, message: message, transitionStyle: .zoomIn, buttonAlignment: .horizontal)
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL") {
@@ -109,7 +109,7 @@ class ViewController: UIViewController {
         popup.addButtons([buttonOne, buttonTwo])
 
         // Present dialog
-        self.presentViewController(popup, animated: true, completion: nil)
+        self.present(popup, animated: true, completion: nil)
     }
 
     /*!
@@ -122,7 +122,7 @@ class ViewController: UIViewController {
         let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
 
         // Create the dialog
-        let popup = PopupDialog(viewController: ratingVC, transitionStyle: .BounceDown, buttonAlignment: .Horizontal)
+        let popup = PopupDialog(viewController: ratingVC, transitionStyle: .bounceDown, buttonAlignment: .horizontal)
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL") {
@@ -138,6 +138,6 @@ class ViewController: UIViewController {
         popup.addButtons([buttonOne, buttonTwo])
 
         // Present dialog
-        presentViewController(popup, animated: true, completion: nil)
+        present(popup, animated: true, completion: nil)
     }
 }

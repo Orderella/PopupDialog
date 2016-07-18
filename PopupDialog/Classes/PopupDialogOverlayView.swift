@@ -40,9 +40,9 @@ final public class PopupDialogOverlayView: UIView {
 
     // Turns the blur of the overlay view on or off
     public dynamic var blurEnabled: Bool {
-        get { return blurView.blurEnabled }
+        get { return blurView.isBlurEnabled }
         set {
-            blurView.blurEnabled = newValue
+            blurView.isBlurEnabled = newValue
             blurView.alpha = newValue ? 1 : 0
         }
     }
@@ -64,15 +64,15 @@ final public class PopupDialogOverlayView: UIView {
     internal lazy var blurView: FXBlurView = {
         let blurView = FXBlurView(frame: .zero)
         blurView.blurRadius = 8
-        blurView.tintColor = UIColor.clearColor()
-        blurView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        blurView.tintColor = UIColor.clear()
+        blurView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         return blurView
     }()
 
     internal lazy var overlay: UIView = {
         let overlay = UIView(frame: .zero)
-        overlay.backgroundColor = UIColor.blackColor()
-        overlay.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        overlay.backgroundColor = UIColor.black()
+        overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         overlay.alpha = 0.7
         return overlay
     }()
@@ -93,8 +93,8 @@ final public class PopupDialogOverlayView: UIView {
     private func setupView() {
 
         // Self appearance
-        self.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-        self.backgroundColor = UIColor.clearColor()
+        self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        self.backgroundColor = UIColor.clear()
         self.alpha = 0
 
         // Add subviews
