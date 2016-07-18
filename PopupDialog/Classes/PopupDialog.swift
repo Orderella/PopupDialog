@@ -72,6 +72,9 @@ final public class PopupDialog: UIViewController {
         messageText = message
         self.image = image
         self.buttonAlignment = buttonAlignment
+        
+        let tap = UITapGestureRecognizer(target: self, action: "handleTap:")
+        view.addGestureRecognizer(tap)
     }
 
     // Init with coder not implemented
@@ -79,6 +82,19 @@ final public class PopupDialog: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: Handle gesture
+
+extension PopupDialog {
+    
+    func handleTap(gesture: UITapGestureRecognizer) {
+        guard gesture.state == .Ended else {
+            return
+        }
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
 
 // MARK: View lifecycle
 
