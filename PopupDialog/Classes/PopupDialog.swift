@@ -51,14 +51,15 @@ final public class PopupDialog: UIViewController {
      - parameter title:   The dialog title
      - parameter message: The dialog body
      - parameter image:   The image displayed on top
-
+     - parameter quickDismiss: dismiss the dialog when tapping in empty area
      - returns: Popup dialog view
      */
     public init(title: String?,
                 message: String?,
                 image: UIImage? = nil,
                 transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-                buttonAlignment: UILayoutConstraintAxis = .Vertical) {
+                buttonAlignment: UILayoutConstraintAxis = .Vertical,
+                quickDismiss: Bool = true) {
 
         presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle)
         super.init(nibName: nil, bundle: nil)
@@ -72,6 +73,12 @@ final public class PopupDialog: UIViewController {
         messageText = message
         self.image = image
         self.buttonAlignment = buttonAlignment
+        
+        if quickDismiss {
+            let tap = UITapGestureRecognizer(target: self, action: "handleTap:")
+            view.addGestureRecognizer(tap)
+        }
+
     }
 
     // Init with coder not implemented
@@ -79,6 +86,19 @@ final public class PopupDialog: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+// MARK: Handle gesture
+
+extension PopupDialog {
+    
+    func handleTap(gesture: UITapGestureRecognizer) {
+        guard gesture.state == .Ended else {
+            return
+        }
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
 
 // MARK: View lifecycle
 
