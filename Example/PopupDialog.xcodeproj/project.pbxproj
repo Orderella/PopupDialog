@@ -20,6 +20,7 @@
 		C792534A1D33E2C600A0FCA1 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79253481D33E2C600A0FCA1 /* RatingViewController.swift */; };
 		C792534B1D33E2C600A0FCA1 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79253491D33E2C600A0FCA1 /* RatingViewController.xib */; };
 		C792534D1D34E36D00A0FCA1 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = C792534C1D34E36D00A0FCA1 /* CosmosDistrib.swift */; };
+		C7A667451D3CEE5500DE5036 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A667441D3CEE5500DE5036 /* CustomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		C79253481D33E2C600A0FCA1 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		C79253491D33E2C600A0FCA1 /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
 		C792534C1D34E36D00A0FCA1 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
+		C7A667441D3CEE5500DE5036 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		DF1B9919BA34CE12A9B2990A /* PopupDialog.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopupDialog.podspec; path = ../PopupDialog.podspec; sourceTree = "<group>"; };
 		F2AE7E70D898C743E01C0374 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C7A667441D3CEE5500DE5036 /* CustomViewController.swift */,
 				607FACEB1AFB9204008FA782 /* Tests.swift */,
 				C783A7B61D1BDFF900A0DFB7 /* AppearanceTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -387,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7A667451D3CEE5500DE5036 /* CustomViewController.swift in Sources */,
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
 				C783A7B71D1BDFF900A0DFB7 /* AppearanceTests.swift in Sources */,
 			);

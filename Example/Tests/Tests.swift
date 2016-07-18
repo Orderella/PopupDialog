@@ -149,4 +149,26 @@ class Tests: XCTestCase {
 
         waitForExpectationsWithTimeout(2.0, handler: nil)
     }
+
+    func testCustomViewController() {
+
+        // Create a custom view controller
+        let vc = CustomViewController(nibName: nil, bundle: nil)
+
+        // Init the popup with a custom view controller
+        let popup = PopupDialog(viewController: vc)
+
+        // Make sure the view controller is our custom view controller
+        XCTAssertEqual(vc, popup.viewController)
+
+        // Make sure the initial text is the expected one
+        XCTAssertEqual(vc.testProperty, "I am a test")
+
+        // Change the text
+        popup.viewController.testProperty = "Changed"
+
+        // Make sure the changed text is the expected one
+        XCTAssertEqual(vc.testProperty, "Changed")
+        XCTAssertEqual(popup.viewController.testProperty, "Changed")
+    }
 }
