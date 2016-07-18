@@ -157,7 +157,7 @@ vc.transitionStyle = .BounceUp
 ## Styling PopupDialog
 
 Appearance is the preferred way of customizing the style of PopupDialog.
-The idea of PopupDialog is to define a theme in a single place, without having to provide style settings with every single instantiation. This way, creating a PopupDialog requires only minimal code to be written and no "wrappers"
+The idea of PopupDialog is to define a theme in a single place, without having to provide style settings with every single instantiation. This way, creating a PopupDialog requires only minimal code to be written and no "wrappers".
 
 This makes even more sense, as popup dialogs and alerts are supposed to look consistent throughout the app, that is, maintain a single style.
 
@@ -313,7 +313,8 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 ## Author
 
 Martin Wildfeuer, mwfire@mwfire.de
-for Orderella Ltd., [orderella.co.uk](http://orderella.co.uk)
+for Orderella Ltd., [orderella.co.uk](http://orderella.co.uk)<br>
+You might also follow me on Twitter, [@theMWFire](https://twitter.com/theMWFire)
 
 <p>&nbsp;</p>
 
