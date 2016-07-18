@@ -1,4 +1,4 @@
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogLogo.png?raw=true" width="300">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialogLogo.png?raw=true" width="300">
 
 <p>&nbsp;</p>
 
@@ -15,9 +15,9 @@
 
 Popup Dialog is a simple, customizable popup dialog written in Swift.
 
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog01.gif?raw=true" width="250">
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog02.gif?raw=true" width="250">
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialog03.gif?raw=true" width="250">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog01.gif?raw=true" width="250">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog02.gif?raw=true" width="250">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog03.gif?raw=true" width="250">
 
 <p>&nbsp;</p>
 
@@ -28,6 +28,12 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'PopupDialog', '~> 0.2'
+```
+
+Note: if you are looking for a Swift 3 version of PopupDialog, specify the following branch in your podfile:
+
+```ruby
+pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :branch => 'Swift3'
 ```
 
 <p>&nbsp;</p>
@@ -80,8 +86,8 @@ PopupDialog is a subclass of UIViewController and as such can be added to your v
 public init(title: String?,
             message: String?,
             image: UIImage? = nil,
-            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-            buttonAlignment: UILayoutConstraintAxis = .Vertical)
+            transitionStyle: PopupDialogTransitionStyle = .bounceUp,
+            buttonAlignment: UILayoutConstraintAxis = .vertical)
 ```
 
 The default dialog initializer is a convenient way of creating a popup with image, title and message (see image one and two).
@@ -94,8 +100,8 @@ If you provide an image it will be pinned to the top/left/right of the dialog. T
 
 ```swift
 public init(viewController: T
-            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-            buttonAlignment: UILayoutConstraintAxis = .Vertical)
+            transitionStyle: PopupDialogTransitionStyle = .bounceUp,
+            buttonAlignment: UILayoutConstraintAxis = .vertical)
 ```
 
 You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
@@ -104,25 +110,25 @@ Buttons are added below the controllers view, however, these buttons are optiona
 
 ### Transition Animations
 
-You can set a transition animation style with `.BounceUp` being the default.The following transition styles are available
+You can set a transition animation style with `.bounceUp` being the default. The following transition styles are available
 
 ```swift
 public enum PopupDialogTransitionStyle: Int {
-    case BounceUp
-    case BounceDown
-    case ZoomIn
-    case FadeIn
+    case bounceUp
+    case bounceDown
+    case zoomIn
+    case fadeIn
 }
 ```
 
 ### Button alignment
 
-Buttons can be distributed either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
+Buttons can be distributed either `.horizontal` or `.vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
 
 ```swift
 public enum UILayoutConstraintAxis : Int {   
-    case Horizontal
-    case Vertical
+    case horizontal
+    case vertical
 }
 ```
 
@@ -130,7 +136,7 @@ public enum UILayoutConstraintAxis : Int {
 
 ## Default Dialog Properties
 
-If you are use tinge default dialog, you can change selected properties at runtime.
+If you are using thee default dialog, you can change selected properties at runtime:
 
 ```swift
 // Create the dialog
@@ -168,16 +174,16 @@ If you are using the default popup view, the following appearance settings are a
 ```swift
 var dialogAppearance = PopupDialogDefaultView.appearance()
 
-dialogAppearance.backgroundColor      = UIColor.whiteColor()
+dialogAppearance.backgroundColor      = UIColor.white()
 dialogAppearance.titleFont            = UIFont.boldSystemFontOfSize(14)
 dialogAppearance.titleColor           = UIColor(white: 0.4, alpha: 1)
-dialogAppearance.titleTextAlignment   = .Center
+dialogAppearance.titleTextAlignment   = .center
 dialogAppearance.messageFont          = UIFont.systemFontOfSize(14)
 dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
-dialogAppearance.messageTextAlignment = .Center
+dialogAppearance.messageTextAlignment = .center
 dialogAppearance.cornerRadius         = 4
 dialogAppearance.shadowEnabled        = true
-dialogAppearance.shadowColor          = UIColor.blackColor()
+dialogAppearance.shadowColor          = UIColor.black()
 ```
 
 #### Overlay View Appearance Settings
@@ -187,7 +193,7 @@ This refers to the view that is used as an overlay above the underlying view con
 ```swift
 let overlayAppearance = PopupDialogOverlayView.appearance()
 
-overlayAppearance.color       = UIColor.blackColor()
+overlayAppearance.color       = UIColor.black()
 overlayAppearance.blurRadius  = 20
 overlayAppearance.blurEnabled = true
 overlayAppearance.opacity     = 0.7
@@ -201,9 +207,9 @@ The standard button classes available are `DefaultButton`, `CancelButton` and `D
 var buttonAppearance = DefaultButton.appearance()
 
 // Default button
-buttonAppearance.titleFont      = UIFont.systemFontOfSize(14)
+buttonAppearance.titleFont      = UIFont.systemFont(ofSize: 14)
 buttonAppearance.titleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
-buttonAppearance.buttonColor    = UIColor.clearColor()
+buttonAppearance.buttonColor    = UIColor.clear()
 buttonAppearance.separatorColor = UIColor(white: 0.9, alpha: 1)
 
 // Below, only the differences are highlighted
@@ -265,8 +271,8 @@ cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 
 ```
 
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogDark01.png?raw=true" width="260">
-<img src="https://github.com/Orderella/PopupDialog/blob/feature/customView/Assets/PopupDialogDark02.png?raw=true" width="260">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialogDark01.png?raw=true" width="260">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialogDark02.png?raw=true" width="260">
 
 I can see that there is room for more customization options. I might add more of them over time.
 
@@ -286,7 +292,7 @@ PopupDialog exposes a nice and handy method that lets you trigger a button tap p
 public func tapButtonWithIndex(index: Int)
 ```
 
-Other than that, PopupDialog unit tests are included in the Example folder.
+Other than that, PopupDialog unit tests are included in the root folder.
 
 <p>&nbsp;</p>
 
@@ -299,6 +305,7 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 
 ## Changelog
 
+* **0.3.0** Swift 3 compatibility
 * **0.2.0** You can now pass custom view controllers to the dialog. This introduces breaking changes.
 * **0.1.6** Defer button action until animation completes
 * **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment, transitionStyle)
