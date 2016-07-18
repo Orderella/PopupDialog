@@ -18,7 +18,6 @@
 		C792534A1D33E2C600A0FCA1 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79253481D33E2C600A0FCA1 /* RatingViewController.swift */; };
 		C792534B1D33E2C600A0FCA1 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79253491D33E2C600A0FCA1 /* RatingViewController.xib */; };
 		C792534D1D34E36D00A0FCA1 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = C792534C1D34E36D00A0FCA1 /* CosmosDistrib.swift */; };
-		C7A667471D3D02ED00DE5036 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C7A667461D3D02ED00DE5036 /* Info.plist */; };
 		C7A6674B1D3D030200DE5036 /* AppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A667481D3D030200DE5036 /* AppearanceTests.swift */; };
 		C7A6674C1D3D030200DE5036 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A667491D3D030200DE5036 /* CustomViewController.swift */; };
 		C7A6674D1D3D030200DE5036 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6674A1D3D030200DE5036 /* Tests.swift */; };
@@ -229,7 +228,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -277,7 +276,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7A667471D3D02ED00DE5036 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
