@@ -86,8 +86,8 @@ PopupDialog is a subclass of UIViewController and as such can be added to your v
 public init(title: String?,
             message: String?,
             image: UIImage? = nil,
-            transitionStyle: PopupDialogTransitionStyle = .bounceUp,
-            buttonAlignment: UILayoutConstraintAxis = .vertical)
+            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+            buttonAlignment: UILayoutConstraintAxis = .Vertical)
 ```
 
 The default dialog initializer is a convenient way of creating a popup with image, title and message (see image one and two).
@@ -100,8 +100,8 @@ If you provide an image it will be pinned to the top/left/right of the dialog. T
 
 ```swift
 public init(viewController: T
-            transitionStyle: PopupDialogTransitionStyle = .bounceUp,
-            buttonAlignment: UILayoutConstraintAxis = .vertical)
+            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+            buttonAlignment: UILayoutConstraintAxis = .Vertical)
 ```
 
 You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
@@ -110,25 +110,25 @@ Buttons are added below the controllers view, however, these buttons are optiona
 
 ### Transition Animations
 
-You can set a transition animation style with `.bounceUp` being the default. The following transition styles are available
+You can set a transition animation style with `.BounceUp` being the default. The following transition styles are available
 
 ```swift
 public enum PopupDialogTransitionStyle: Int {
-    case bounceUp
-    case bounceDown
-    case zoomIn
-    case fadeIn
+    case BounceUp
+    case BounceDown
+    case ZoomIn
+    case FadeIn
 }
 ```
 
 ### Button alignment
 
-Buttons can be distributed either `.horizontal` or `.vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
+Buttons can be distributed either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
 
 ```swift
 public enum UILayoutConstraintAxis : Int {   
-    case horizontal
-    case vertical
+    case Horizontal
+    case Vertical
 }
 ```
 
