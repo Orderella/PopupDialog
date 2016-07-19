@@ -30,7 +30,7 @@ it, simply add the following line to your Podfile:
 pod 'PopupDialog', '~> 0.2'
 ```
 
-Note: if you are looking for a Swift 3 version of PopupDialog, specify the following branch in your podfile:
+If you are looking for a Swift 3 version of PopupDialog, specify the following branch in your podfile:
 
 ```ruby
 pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :branch => 'Swift3'
@@ -305,7 +305,6 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 
 ## Changelog
 
-* **0.3.0** Swift 3 compatibility
 * **0.2.0** You can now pass custom view controllers to the dialog. This introduces breaking changes.
 * **0.1.6** Defer button action until animation completes
 * **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment, transitionStyle)
