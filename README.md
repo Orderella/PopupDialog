@@ -86,8 +86,8 @@ PopupDialog is a subclass of UIViewController and as such can be added to your v
 public init(title: String?,
             message: String?,
             image: UIImage? = nil,
-            transitionStyle: PopupDialogTransitionStyle = .bounceUp,
-            buttonAlignment: UILayoutConstraintAxis = .vertical)
+            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+            buttonAlignment: UILayoutConstraintAxis = .Vertical)
 ```
 
 The default dialog initializer is a convenient way of creating a popup with image, title and message (see image one and two).
@@ -100,8 +100,8 @@ If you provide an image it will be pinned to the top/left/right of the dialog. T
 
 ```swift
 public init(viewController: T
-            transitionStyle: PopupDialogTransitionStyle = .bounceUp,
-            buttonAlignment: UILayoutConstraintAxis = .vertical)
+            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+            buttonAlignment: UILayoutConstraintAxis = .Vertical)
 ```
 
 You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
@@ -110,25 +110,25 @@ Buttons are added below the controllers view, however, these buttons are optiona
 
 ### Transition Animations
 
-You can set a transition animation style with `.bounceUp` being the default. The following transition styles are available
+You can set a transition animation style with `.BounceUp` being the default. The following transition styles are available
 
 ```swift
 public enum PopupDialogTransitionStyle: Int {
-    case bounceUp
-    case bounceDown
-    case zoomIn
-    case fadeIn
+    case BounceUp
+    case BounceDown
+    case ZoomIn
+    case FadeIn
 }
 ```
 
 ### Button alignment
 
-Buttons can be distributed either `.horizontal` or `.vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
+Buttons can be distributed either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
 
 ```swift
 public enum UILayoutConstraintAxis : Int {   
-    case horizontal
-    case vertical
+    case Horizontal
+    case Vertical
 }
 ```
 
@@ -174,16 +174,16 @@ If you are using the default popup view, the following appearance settings are a
 ```swift
 var dialogAppearance = PopupDialogDefaultView.appearance()
 
-dialogAppearance.backgroundColor      = UIColor.white()
+dialogAppearance.backgroundColor      = UIColor.whiteColor()
 dialogAppearance.titleFont            = UIFont.boldSystemFontOfSize(14)
 dialogAppearance.titleColor           = UIColor(white: 0.4, alpha: 1)
-dialogAppearance.titleTextAlignment   = .center
+dialogAppearance.titleTextAlignment   = .Center
 dialogAppearance.messageFont          = UIFont.systemFontOfSize(14)
 dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
-dialogAppearance.messageTextAlignment = .center
+dialogAppearance.messageTextAlignment = .Center
 dialogAppearance.cornerRadius         = 4
 dialogAppearance.shadowEnabled        = true
-dialogAppearance.shadowColor          = UIColor.black()
+dialogAppearance.shadowColor          = UIColor.blackColor()
 ```
 
 #### Overlay View Appearance Settings
@@ -193,7 +193,7 @@ This refers to the view that is used as an overlay above the underlying view con
 ```swift
 let overlayAppearance = PopupDialogOverlayView.appearance()
 
-overlayAppearance.color       = UIColor.black()
+overlayAppearance.color       = UIColor.blackColor()
 overlayAppearance.blurRadius  = 20
 overlayAppearance.blurEnabled = true
 overlayAppearance.opacity     = 0.7
@@ -207,9 +207,9 @@ The standard button classes available are `DefaultButton`, `CancelButton` and `D
 var buttonAppearance = DefaultButton.appearance()
 
 // Default button
-buttonAppearance.titleFont      = UIFont.systemFont(ofSize: 14)
+buttonAppearance.titleFont      = UIFont.systemFontOfSize(14)
 buttonAppearance.titleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
-buttonAppearance.buttonColor    = UIColor.clear()
+buttonAppearance.buttonColor    = UIColor.clearColor()
 buttonAppearance.separatorColor = UIColor(white: 0.9, alpha: 1)
 
 // Below, only the differences are highlighted
