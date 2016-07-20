@@ -19,6 +19,16 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 <img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog02.gif?raw=true" width="250">
 <img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog03.gif?raw=true" width="250">
 
+### Features
+
+* Easy to use API with hardly any boilerplate code
+* Convenient default view with image, title, message
+* Supports custom view controllers
+* Slick transition animations
+* Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
+* Can be dismissed via swipe and background tap
+* Works on all devices and screens
+
 <p>&nbsp;</p>
 
 ## Installation
@@ -83,25 +93,29 @@ PopupDialog is a subclass of UIViewController and as such can be added to your v
 ### Default Dialog
 
 ```swift
-public init(title: String?,
-            message: String?,
-            image: UIImage? = nil,
-            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-            buttonAlignment: UILayoutConstraintAxis = .Vertical)
+public convenience init(
+    title: String?,
+    message: String?,
+    image: UIImage? = nil,
+    buttonAlignment: UILayoutConstraintAxis = .Vertical,
+    transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+    gestureDismissal: Bool = true) 
 ```
 
 The default dialog initializer is a convenient way of creating a popup with image, title and message (see image one and two).
 
-Bascially, all parameters are optional, although this makes no sense at all. You want to at least add a message and a single button, otherwise the dialog can't be dismissed. I am planning on implementing dismiss by background tap or swipe in the future.
+Bascially, all parameters are optional, although this makes no sense at all. You want to at least add a message and a single button, otherwise the dialog can't be dismissed, unless you do it manually.
 
 If you provide an image it will be pinned to the top/left/right of the dialog. The ratio of the image will be used to set the height of the image view, so no distortion will occur.
 
 ### Custom View Controller
 
 ```swift
-public init(viewController: T
-            transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-            buttonAlignment: UILayoutConstraintAxis = .Vertical)
+public init(
+    viewController: T,
+    buttonAlignment: UILayoutConstraintAxis = .Vertical,
+    transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+    gestureDismissal: Bool = true) 
 ```
 
 You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
@@ -131,6 +145,10 @@ public enum UILayoutConstraintAxis : Int {
     case Vertical
 }
 ```
+
+### Gesture Dismissal
+
+Gesture dismissal allows your dialog being dismissed either by a background tap or by swiping the dialog down. By default, this is set to `true`. You can prevent this behavior by setting `gestureDismissal` to `false` in the initializer. If a popup dialog is dismissed via gestures, no further actions are triggered.
 
 <p>&nbsp;</p>
 
@@ -305,6 +323,7 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 
 ## Changelog
 
+* **0.2.1** Dismiss via background tap or swipe down transition
 * **0.2.0** You can now pass custom view controllers to the dialog. This introduces breaking changes.
 * **0.1.6** Defer button action until animation completes
 * **0.1.5** Exposed dialog properties<br>(titleText, messageText, image, buttonAlignment, transitionStyle)
@@ -320,7 +339,7 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 
 Martin Wildfeuer, mwfire@mwfire.de
 for Orderella Ltd., [orderella.co.uk](http://orderella.co.uk)<br>
-You might also follow me on Twitter, [@theMWFire](https://twitter.com/theMWFire)
+You might also want to follow us on Twitter, [@theMWFire](https://twitter.com/theMWFire) | [@Orderella](https://twitter.com/orderella)
 
 <p>&nbsp;</p>
 
