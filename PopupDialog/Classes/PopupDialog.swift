@@ -32,7 +32,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
     // MARK: Private / Internal
 
     /// The custom transition presentation manager
-    private var presentationManager: PopupDialogPresentationManager!
+    private var presentationManager: PresentationManager!
 
     /// Interactor class for pan gesture dismissal
     private lazy var interactor: InteractiveTransition = {
@@ -103,7 +103,10 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
         self.viewController = viewController
         super.init(nibName: nil, bundle: nil)
 
-        presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle, interactor: interactor)
+        // Init the presentation manager
+        presentationManager = PresentationManager(transitionStyle: transitionStyle, interactor: interactor)
+
+        // Assign the interactor view controller
         interactor.viewController = self
 
         // Define presentation styles

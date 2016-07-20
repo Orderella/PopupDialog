@@ -26,7 +26,7 @@
 import Foundation
 import UIKit
 
-final internal class PopupDialogPresentationManager: NSObject, UIViewControllerTransitioningDelegate {
+final internal class PresentationManager: NSObject, UIViewControllerTransitioningDelegate {
 
     var transitionStyle: PopupDialogTransitionStyle
     var interactor: InteractiveTransition
@@ -38,7 +38,7 @@ final internal class PopupDialogPresentationManager: NSObject, UIViewControllerT
     }
 
     func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        let presentationController = PopupDialogPresentationController(presentedViewController: presented, presentingViewController: source)
+        let presentationController = PresentationController(presentedViewController: presented, presentingViewController: source)
         return presentationController
     }
 
