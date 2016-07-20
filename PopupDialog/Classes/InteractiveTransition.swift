@@ -56,6 +56,7 @@ final internal class InteractiveTransition: UIPercentDrivenInteractiveTransition
             cancelInteractiveTransition()
         case .Ended:
             hasStarted = false
+            completionSpeed = 0.55
             shouldFinish ? finishInteractiveTransition() : cancelInteractiveTransition()
         default:
             break
