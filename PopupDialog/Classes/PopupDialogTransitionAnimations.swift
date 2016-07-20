@@ -162,7 +162,7 @@ final internal class FadeTransition: TransitionAnimator {
 final internal class DismissInteractiveTransition: TransitionAnimator {
 
     init() {
-        super.init(inDuration: 0.22, outDuration: 0.4, direction: .Out)
+        super.init(inDuration: 0.22, outDuration: 0.32, direction: .Out)
     }
 
     override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {

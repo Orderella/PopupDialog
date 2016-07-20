@@ -57,12 +57,12 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
     /*!
      Creates a standard popup dialog with title, message and image field
 
-     - parameter title:           The dialog title
-     - parameter message:         The dialog message
-     - parameter image:           The dialog image
-     - parameter buttonAlignment: The dialog button alignment
-     - parameter transitionStyle: The dialog transition style
-     - parameter allowGestures:   Indicates if dialog can be dismissed via pan gesture
+     - parameter title:            The dialog title
+     - parameter message:          The dialog message
+     - parameter image:            The dialog image
+     - parameter buttonAlignment:  The dialog button alignment
+     - parameter transitionStyle:  The dialog transition style
+     - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
 
      - returns: Popup dialog default style
      */
@@ -72,7 +72,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
                 image: UIImage? = nil,
                 buttonAlignment: UILayoutConstraintAxis = .Vertical,
                 transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-                allowGestures: Bool = true) {
+                gestureDismissal: Bool = true) {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
@@ -81,16 +81,16 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
         viewController.image       = image
 
         // Call designated initializer
-        self.init(viewController: viewController as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, allowGestures: allowGestures)
+        self.init(viewController: viewController as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal:  gestureDismissal)
     }
 
     /*!
      Creates a popup dialog containing a custom view
 
-     - parameter viewController:  A custom view controller to be displayed
-     - parameter buttonAlignment: The dialog button alignment
-     - parameter transitionStyle: The dialog transition style
-     - parameter allowGestures:   Indicates if dialog can be dismissed via pan gesture
+     - parameter viewController:   A custom view controller to be displayed
+     - parameter buttonAlignment:  The dialog button alignment
+     - parameter transitionStyle:  The dialog transition style
+     - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
 
      - returns: Popup dialog with a custom view controller
      */
@@ -98,7 +98,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
         viewController: T,
         buttonAlignment: UILayoutConstraintAxis = .Vertical,
         transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-        allowGestures: Bool = true) {
+        gestureDismissal: Bool = true) {
 
         self.viewController = viewController
         super.init(nibName: nil, bundle: nil)
@@ -117,7 +117,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
         popupContainerView.buttonStackView.axis = buttonAlignment
 
         // Allow for dialog dismissal on background tap and dialog pan gesture
-        if allowGestures {
+        if gestureDismissal {
             let panRecognizer = UIPanGestureRecognizer(target: interactor, action: #selector(InteractiveTransition.handlePan))
             popupContainerView.stackView.addGestureRecognizer(panRecognizer)
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
