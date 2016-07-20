@@ -29,9 +29,11 @@ import UIKit
 final internal class PopupDialogPresentationManager: NSObject, UIViewControllerTransitioningDelegate {
 
     var transitionStyle: PopupDialogTransitionStyle
+    var interactor: InteractiveTransition
 
-    init(transitionStyle: PopupDialogTransitionStyle) {
+    init(transitionStyle: PopupDialogTransitionStyle, interactor: InteractiveTransition) {
         self.transitionStyle = transitionStyle
+        self.interactor = interactor
         super.init()
     }
 
@@ -59,6 +61,10 @@ final internal class PopupDialogPresentationManager: NSObject, UIViewControllerT
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
+        if interactor.hasStarted || interactor.shouldFinish {
+            return DismissInteractiveTransition()
+        }
+
         var transition: TransitionAnimator
         switch transitionStyle {
         case .BounceUp:
@@ -72,5 +78,9 @@ final internal class PopupDialogPresentationManager: NSObject, UIViewControllerT
         }
 
         return transition
+    }
+
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 }

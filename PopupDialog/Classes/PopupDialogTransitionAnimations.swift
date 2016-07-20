@@ -157,3 +157,21 @@ final internal class FadeTransition: TransitionAnimator {
         }
     }
 }
+
+/// Used for the always drop out animation with pan gesture dismissal
+final internal class DismissInteractiveTransition: TransitionAnimator {
+
+    init() {
+        super.init(inDuration: 0.22, outDuration: 0.4, direction: .Out)
+    }
+
+    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(transitionContext)
+        UIView.animateWithDuration(outDuration, delay: 0.0, options: [], animations: {
+            self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
+            self.from.view.alpha = 0.0
+        }) { (completed) in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+        }
+    }
+}

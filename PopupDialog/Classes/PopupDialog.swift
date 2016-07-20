@@ -32,7 +32,12 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
     // MARK: Private / Internal
 
     /// The custom transition presentation manager
-    private let presentationManager: PopupDialogPresentationManager
+    private var presentationManager: PopupDialogPresentationManager!
+
+    /// Interactor class for pan gesture dismissal
+    private lazy var interactor: InteractiveTransition = {
+       return InteractiveTransition()
+    }()
 
     /// Returns the controllers view
     internal var popupContainerView: PopupDialogContainerView {
@@ -57,6 +62,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      - parameter image:           The dialog image
      - parameter buttonAlignment: The dialog button alignment
      - parameter transitionStyle: The dialog transition style
+     - parameter allowGestures:   Indicates if dialog can be dismissed via pan gesture
 
      - returns: Popup dialog default style
      */
@@ -65,7 +71,8 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
                 message: String?,
                 image: UIImage? = nil,
                 buttonAlignment: UILayoutConstraintAxis = .Vertical,
-                transitionStyle: PopupDialogTransitionStyle = .BounceUp) {
+                transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+                allowGestures: Bool = true) {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
@@ -74,7 +81,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
         viewController.image       = image
 
         // Call designated initializer
-        self.init(viewController: viewController as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle)
+        self.init(viewController: viewController as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, allowGestures: allowGestures)
     }
 
     /*!
@@ -83,18 +90,21 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      - parameter viewController:  A custom view controller to be displayed
      - parameter buttonAlignment: The dialog button alignment
      - parameter transitionStyle: The dialog transition style
+     - parameter allowGestures:   Indicates if dialog can be dismissed via pan gesture
 
      - returns: Popup dialog with a custom view controller
      */
     public init(
         viewController: T,
         buttonAlignment: UILayoutConstraintAxis = .Vertical,
-        transitionStyle: PopupDialogTransitionStyle = .BounceUp) {
+        transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+        allowGestures: Bool = true) {
 
-        presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle)
         self.viewController = viewController
-
         super.init(nibName: nil, bundle: nil)
+
+        presentationManager = PopupDialogPresentationManager(transitionStyle: transitionStyle, interactor: interactor)
+        interactor.viewController = self
 
         // Define presentation styles
         transitioningDelegate = presentationManager
@@ -105,6 +115,14 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
 
         // Set button alignment
         popupContainerView.buttonStackView.axis = buttonAlignment
+
+        // Allow for dialog dismissal on background tap and dialog pan gesture
+        if allowGestures {
+            let panRecognizer = UIPanGestureRecognizer(target: interactor, action: #selector(InteractiveTransition.handlePan))
+            popupContainerView.stackView.addGestureRecognizer(panRecognizer)
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            popupContainerView.addGestureRecognizer(tapRecognizer)
+        }
     }
 
     // Init with coder not implemented
@@ -124,6 +142,23 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
 
         // FIXME: Make sure this is called only once
         appendButtons()
+    }
+
+    // MARK - Dismissal related
+
+    @objc private func handleTap(sender: UITapGestureRecognizer) {
+
+        // Make sure it's not a tap on the dialog but the background
+        let point = sender.locationInView(popupContainerView.stackView)
+        guard !popupContainerView.stackView.pointInside(point, withEvent: nil) else { return }
+        dismiss()
+    }
+
+    /*!
+     Dismisses the popup dialog
+     */
+    public func dismiss(completion: (() -> Void)? = nil) {
+        dismissViewControllerAnimated(true, completion: completion)
     }
 
     // MARK: - Button related
@@ -163,7 +198,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
 
     /// Calls the action closure of the button instance tapped
     @objc private func buttonTapped(button: PopupDialogButton) {
-        dismissViewControllerAnimated(true) {
+        dismiss() {
             button.buttonAction?()
         }
     }
@@ -176,7 +211,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
     public func tapButtonWithIndex(index: Int) {
         let button = buttons[index]
         button.buttonAction?()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss()
     }
 }
 
