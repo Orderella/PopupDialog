@@ -5,6 +5,7 @@
 [![Version](https://img.shields.io/cocoapods/v/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![License](https://img.shields.io/cocoapods/l/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![Platform](https://img.shields.io/cocoapods/p/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![codebeat badge](https://codebeat.co/badges/006f8d13-072a-42bb-a584-6b97e60201e1)](https://codebeat.co/projects/github-com-orderella-popupdialog)
 [![Build Status Master](https://travis-ci.org/Orderella/PopupDialog.svg?branch=master)](https://travis-ci.org/Orderella/PopupDialog)
 [![Build Status Development](https://travis-ci.org/Orderella/PopupDialog.svg?branch=development)](https://travis-ci.org/Orderella/PopupDialog)
@@ -21,17 +22,19 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 
 ### Features
 
-* Easy to use API with hardly any boilerplate code
-* Convenient default view with image, title, message
-* Supports custom view controllers
-* Slick transition animations
-* Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
-* Can be dismissed via swipe and background tap
-* Works on all devices and screens
+- [x] Easy to use API with hardly any boilerplate code
+- [x] Convenient default view with image, title, message
+- [x] Supports custom view controllers
+- [x] Slick transition animations
+- [x] Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
+- [x] Can be dismissed via swipe and background tap
+- [x] Works on all devices and screens
 
 <p>&nbsp;</p>
 
 ## Installation
+
+### Cocoapods
 
 PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -44,6 +47,16 @@ If you are looking for a Swift 3 version of PopupDialog, specify the following b
 
 ```ruby
 pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :branch => 'Swift3'
+```
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
 ```
 
 <p>&nbsp;</p>
