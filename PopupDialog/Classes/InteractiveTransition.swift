@@ -40,16 +40,9 @@ final internal class InteractiveTransition: UIPercentDrivenInteractiveTransition
 
     @objc func handlePan(sender: UIPanGestureRecognizer) {
 
-        guard let vc = viewController else {
-            return
-        }
+        guard let vc = viewController else { return }
 
-        // http://www.thorntech.com/2016/02/ios-tutorial-close-modal-dragging/
-        let translation = sender.translationInView(vc.view)
-        let verticalMovement = translation.y / vc.view.bounds.height
-        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-        let downwardMovementPercent = fminf(downwardMovement, 1.0)
-        let progress = CGFloat(downwardMovementPercent)
+        guard let progress = calculateProgress(sender: sender) else { return }
 
         switch sender.state {
         case .Began:
@@ -67,5 +60,26 @@ final internal class InteractiveTransition: UIPercentDrivenInteractiveTransition
         default:
             break
         }
+    }
+}
+
+internal extension InteractiveTransition {
+
+    /*!
+     Translates the pan gesture recognizer position to the progress percentage
+     - parameter sender: A UIPanGestureRecognizer
+     - returns: Progress
+     */
+    func calculateProgress(sender sender: UIPanGestureRecognizer) -> CGFloat? {
+        guard let vc = viewController else { return nil }
+
+        // http://www.thorntech.com/2016/02/ios-tutorial-close-modal-dragging/
+        let translation = sender.translationInView(vc.view)
+        let verticalMovement = translation.y / vc.view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+
+        return progress
     }
 }
