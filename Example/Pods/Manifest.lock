@@ -1,6 +1,6 @@
 PODS:
   - FXBlurView (1.6.4)
-  - PopupDialog (0.2.0):
+  - PopupDialog (0.2.1):
     - FXBlurView
 
 DEPENDENCIES:
@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
-  PopupDialog: e9edabea05ae38a320a63aa1c8f356494b2e734c
+  PopupDialog: bd60419021fd1f18a358b4479569f0706ac5a59b
 
 PODFILE CHECKSUM: d8495001123cc68c0f614ef520d9741b67defd8d
 
