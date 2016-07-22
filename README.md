@@ -227,8 +227,14 @@ let overlayAppearance = PopupDialogOverlayView.appearance()
 overlayAppearance.color       = UIColor.blackColor()
 overlayAppearance.blurRadius  = 20
 overlayAppearance.blurEnabled = true
+overlayAppearance.liveBlur    = false
 overlayAppearance.opacity     = 0.7
 ```
+
+##### Note
+As pointed out by [ExceptionsSG](https://github.com/ExceptionsSG)
+, turning on `liveBlur`, that is realtime updates of the background view, results in a significantly higher CPU usage /power consumption and is therefore turned off by default now.
+Choose wisely whether you need this feature or not ;)
 
 #### Button Appearance Settings
 
