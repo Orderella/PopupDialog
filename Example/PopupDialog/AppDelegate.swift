@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let ov = PopupDialogOverlayView.appearance()
 //        ov.blurEnabled = true
 //        ov.blurRadius  = 30
+//        ov.liveBlur    = true
 //        ov.opacity     = 0.7
 //        ov.color       = UIColor.blackColor()
 //
