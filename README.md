@@ -167,7 +167,7 @@ Gesture dismissal allows your dialog being dismissed either by a background tap 
 
 ## Default Dialog Properties
 
-If you are using thee default dialog, you can change selected properties at runtime:
+If you are using the default dialog, you can change selected properties at runtime:
 
 ```swift
 // Create the dialog
@@ -342,6 +342,7 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 
 ## Changelog
 
+* **0.2.2** Turned off liveBlur by default to increase performance
 * **0.2.1** Dismiss via background tap or swipe down transition
 * **0.2.0** You can now pass custom view controllers to the dialog. This introduces breaking changes.
 * **0.1.6** Defer button action until animation completes
