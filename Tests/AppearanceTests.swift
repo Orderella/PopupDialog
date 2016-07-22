@@ -53,6 +53,7 @@ class AppearanceTests: XCTestCase {
         XCTAssertEqual(overlay.blurRadius, 8)
         XCTAssertTrue(overlay.blurEnabled)
         XCTAssertEqual(overlay.opacity, 0.7)
+        XCTAssertFalse(overlay.liveBlur)
     }
 
     func testCustomAppearance() {
@@ -77,6 +78,7 @@ class AppearanceTests: XCTestCase {
         ov.color = UIColor.yellowColor()
         ov.blurRadius = 20
         ov.blurEnabled = false
+        ov.liveBlur = true
         ov.opacity = 0.5
 
         // Customize default button appearance
@@ -105,6 +107,7 @@ class AppearanceTests: XCTestCase {
         XCTAssertEqual(ov.blurRadius, 20)
         XCTAssertFalse(ov.blurEnabled)
         XCTAssertEqual(ov.opacity, 0.5)
+        XCTAssertTrue(ov.liveBlur)
 
         // Button customized appearance
         XCTAssertEqual(db.titleFont, UIFont(name: "HelveticaNeue", size: 14)!)
