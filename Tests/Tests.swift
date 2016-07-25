@@ -164,11 +164,13 @@ class Tests: XCTestCase {
         // Make sure the initial text is the expected one
         XCTAssertEqual(vc.testProperty, "I am a test")
 
+        let popupVC = popup.viewController as! CustomViewController
+
         // Change the text
-        popup.viewController.testProperty = "Changed"
+        popupVC.testProperty = "Changed"
 
         // Make sure the changed text is the expected one
         XCTAssertEqual(vc.testProperty, "Changed")
-        XCTAssertEqual(popup.viewController.testProperty, "Changed")
+        XCTAssertEqual(popupVC.testProperty, "Changed")
     }
 }

@@ -27,7 +27,7 @@ import Foundation
 import UIKit
 
 /// Creates a Popup dialog similar to UIAlertController
-final public class PopupDialog<T: UIViewController>: UIViewController {
+final public class PopupDialog: UIViewController {
 
     // MARK: Private / Internal
 
@@ -50,7 +50,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
     // MARK: Public
 
     /// The content view of the popup dialog
-    public var viewController: T
+    public var viewController: UIViewController
 
     // MARK: - Initializers
 
@@ -81,7 +81,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
         viewController.image       = image
 
         // Call designated initializer
-        self.init(viewController: viewController as! T, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal:  gestureDismissal)
+        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal:  gestureDismissal)
     }
 
     /*!
@@ -95,7 +95,7 @@ final public class PopupDialog<T: UIViewController>: UIViewController {
      - returns: Popup dialog with a custom view controller
      */
     public init(
-        viewController: T,
+        viewController: UIViewController,
         buttonAlignment: UILayoutConstraintAxis = .Vertical,
         transitionStyle: PopupDialogTransitionStyle = .BounceUp,
         gestureDismissal: Bool = true) {
