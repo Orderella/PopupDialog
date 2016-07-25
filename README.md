@@ -28,6 +28,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 - [x] Slick transition animations
 - [x] Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
 - [x] Can be dismissed via swipe and background tap
+- [x] Objective-C compatible
 - [x] Works on all devices and screens
 
 <p>&nbsp;</p>
@@ -40,7 +41,7 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'PopupDialog', '~> 0.2'
+pod 'PopupDialog', '~> 0.3'
 ```
 
 If you are looking for a Swift 3 version of PopupDialog, specify the following branch in your podfile:
@@ -130,13 +131,13 @@ If you provide an image it will be pinned to the top/left/right of the dialog. T
 
 ```swift
 public init(
-    viewController: T,
+    viewController: UIViewController,
     buttonAlignment: UILayoutConstraintAxis = .Vertical,
     transitionStyle: PopupDialogTransitionStyle = .BounceUp,
     gestureDismissal: Bool = true) 
 ```
 
-You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
+You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog, which has to be casted to your view controllers class to access its properties. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
 
 Buttons are added below the controllers view, however, these buttons are optional. If you decide to not add any buttons, you have to take care of dismissing the dialog manually. Being a subclass of view controller, this can be easily done via `dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?)`.
 
@@ -182,8 +183,7 @@ let popup = PopupDialog(title: title, message: message, image: image)
 self.presentViewController(popup, animated: true, completion: nil)
 
 // Get the default view controller and cast it
-// Admittedly, this is a bit unfortunate :(
-// I will look into a better way of doing this soon
+// Unfortunately, casting is necessary to support Objective-C
 let vc = popup.viewController as! PopupDialogDefaultViewController
 
 // Set dialog properties
@@ -338,6 +338,36 @@ Other than that, PopupDialog unit tests are included in the root folder.
 
 <p>&nbsp;</p>
 
+## Objective-C
+
+PopupDialog can be used in Objective-C projects as well.
+Here is a basic example:
+
+```objective-c
+#import <PopupDialog/PopupDialog-Swift.h>
+
+PopupDialog *popup = [[PopupDialog alloc] initWithTitle:@"TEST"
+                                                message:@"This is a test message!"
+                                                  image:nil
+                                        buttonAlignment:UILayoutConstraintAxisHorizontal
+                                        transitionStyle:PopupDialogTransitionStyleBounceUp
+                                       gestureDismissal:YES];
+
+CancelButton *cancel = [[CancelButton alloc] initWithTitle:@"CANCEL" action:^{
+    // Cancel action
+}];
+
+DefaultButton *ok = [[DefaultButton alloc] initWithTitle:@"OK" action:^{
+    // Ok action
+}];
+
+[popup addButtons: @[cancel, ok]];
+
+[self presentViewController:popup animated:YES completion:nil];
+```
+
+<p>&nbsp;</p>
+
 ## Requirements
 
 As this dialog is based on UIStackViews, a minimum Version of iOS 9.0 is required.
@@ -347,6 +377,7 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 
 ## Changelog
 
+* **0.3.0** Objective-C compatibility
 * **0.2.2** Turned off liveBlur by default to increase performance
 * **0.2.1** Dismiss via background tap or swipe down transition
 * **0.2.0** You can now pass custom view controllers to the dialog. This introduces breaking changes.
