@@ -52,12 +52,17 @@ pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :bran
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+To install, simply add the following line to your Cartfile:
 
-```bash
-$ brew update
-$ brew install carthage
+```ruby
+github "Orderella/PopupDialog"
 ```
+
+### Manually
+
+If you prefer not to use either of the above mentioned dependency managers, you can integrate PopupDialog into your project manually by adding the files contained in the [Classes](https://github.com/Orderella/PopupDialog/tree/master/PopupDialog/Classes)
+folder to your project.
+
 
 <p>&nbsp;</p>
 
