@@ -12,7 +12,7 @@
 
 <p>&nbsp;</p>
 
-## Introduction
+# Introduction
 
 Popup Dialog is a simple, customizable popup dialog written in Swift.
 
@@ -20,7 +20,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 <img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog02.gif?raw=true" width="250">
 <img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog03.gif?raw=true" width="250">
 
-### Features
+## Features
 
 - [x] Easy to use API with hardly any boilerplate code
 - [x] Convenient default view with image, title, message
@@ -33,14 +33,19 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 
 <p>&nbsp;</p>
 
-## Installation
+# Installation
 
-### Cocoapods
+## Cocoapods
 
 PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+it, simply add the following to your Podfile:
 
 ```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+use_frameworks!
+
+target '<Your Target Name>'
 pod 'PopupDialog', '~> 0.3'
 ```
 
@@ -49,7 +54,7 @@ If you are looking for a Swift 3 version of PopupDialog, specify the following b
 ```ruby
 pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :branch => 'Swift3'
 ```
-### Carthage
+## Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
@@ -59,7 +64,7 @@ To install, simply add the following line to your Cartfile:
 github "Orderella/PopupDialog"
 ```
 
-### Manually
+## Manually
 
 If you prefer not to use either of the above mentioned dependency managers, you can integrate PopupDialog into your project manually by adding the files contained in the [Classes](https://github.com/Orderella/PopupDialog/tree/master/PopupDialog/Classes)
 folder to your project.
@@ -67,7 +72,7 @@ folder to your project.
 
 <p>&nbsp;</p>
 
-## Example
+# Example
 
 You can find this and more example projects in the repo. To run it, clone the repo, and run `pod install` from the Example directory first.
 
@@ -105,11 +110,11 @@ self.presentViewController(popup, animated: true, completion: nil)
 
 <p>&nbsp;</p>
 
-## Usage
+# Usage
 
 PopupDialog is a subclass of UIViewController and as such can be added to your view controller modally. You can initialize it either with the handy default view or a custom view controller.
 
-### Default Dialog
+## Default Dialog
 
 ```swift
 public convenience init(
@@ -127,7 +132,7 @@ Bascially, all parameters are optional, although this makes no sense at all. You
 
 If you provide an image it will be pinned to the top/left/right of the dialog. The ratio of the image will be used to set the height of the image view, so no distortion will occur.
 
-### Custom View Controller
+## Custom View Controller
 
 ```swift
 public init(
@@ -141,7 +146,7 @@ You can pass your own view controller to PopupDialog (see image three). It is ac
 
 Buttons are added below the controllers view, however, these buttons are optional. If you decide to not add any buttons, you have to take care of dismissing the dialog manually. Being a subclass of view controller, this can be easily done via `dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?)`.
 
-### Transition Animations
+## Transition Animations
 
 You can set a transition animation style with `.BounceUp` being the default. The following transition styles are available
 
@@ -154,7 +159,7 @@ public enum PopupDialogTransitionStyle: Int {
 }
 ```
 
-### Button alignment
+## Button alignment
 
 Buttons can be distributed either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
 
@@ -165,13 +170,13 @@ public enum UILayoutConstraintAxis : Int {
 }
 ```
 
-### Gesture Dismissal
+## Gesture Dismissal
 
 Gesture dismissal allows your dialog being dismissed either by a background tap or by swiping the dialog down. By default, this is set to `true`. You can prevent this behavior by setting `gestureDismissal` to `false` in the initializer. If a popup dialog is dismissed via gestures, no further actions are triggered.
 
 <p>&nbsp;</p>
 
-## Default Dialog Properties
+# Default Dialog Properties
 
 If you are using the default dialog, you can change selected properties at runtime:
 
@@ -196,14 +201,14 @@ vc.transitionStyle = .BounceUp
 
 <p>&nbsp;</p>
 
-## Styling PopupDialog
+# Styling PopupDialog
 
 Appearance is the preferred way of customizing the style of PopupDialog.
 The idea of PopupDialog is to define a theme in a single place, without having to provide style settings with every single instantiation. This way, creating a PopupDialog requires only minimal code to be written and no "wrappers".
 
 This makes even more sense, as popup dialogs and alerts are supposed to look consistent throughout the app, that is, maintain a single style.
 
-#### Dialog Default View Appearance Settings
+## Dialog Default View Appearance Settings
 
 If you are using the default popup view, the following appearance settings are available:
 
@@ -222,7 +227,7 @@ dialogAppearance.shadowEnabled        = true
 dialogAppearance.shadowColor          = UIColor.blackColor()
 ```
 
-#### Overlay View Appearance Settings
+## Overlay View Appearance Settings
 
 This refers to the view that is used as an overlay above the underlying view controller but below the popup dialog view. If that makes sense ;)
 
@@ -236,12 +241,12 @@ overlayAppearance.liveBlur    = false
 overlayAppearance.opacity     = 0.7
 ```
 
-##### Note
+#### Note
 As pointed out by [ExceptionsSG](https://github.com/ExceptionsSG)
 , turning on `liveBlur`, that is realtime updates of the background view, results in a significantly higher CPU usage /power consumption and is therefore turned off by default now.
 Choose wisely whether you need this feature or not ;)
 
-#### Button Appearance Settings
+## Button Appearance Settings
 
 The standard button classes available are `DefaultButton`, `CancelButton` and `DestructiveButton`. All buttons feature the same appearance settings and can be styled seperately.
 
@@ -283,7 +288,7 @@ These buttons can be customized with the appearance settings given above as well
 
 <p>&nbsp;</p>
 
-### Dark mode example
+## Dark mode example
 
 The following is an example of a *Dark Mode* theme. You can find this in the Example project `AppDelegate`, just uncomment it to apply the custom appearance.
 
@@ -320,13 +325,13 @@ I can see that there is room for more customization options. I might add more of
 
 <p>&nbsp;</p>
 
-## Screen sizes and rotation
+# Screen sizes and rotation
 
 Rotation and all screen sizes are supported. However, the dialog will never exceed a width of 340 points. This way, the dialog won't be too big on devices like iPads. However, landscape mode will not work well if the height of the dialog exceeds the width of the screen.
 
 <p>&nbsp;</p>
 
-## Testing
+# Testing
 
 PopupDialog exposes a nice and handy method that lets you trigger a button tap programmatically:
 
@@ -338,7 +343,7 @@ Other than that, PopupDialog unit tests are included in the root folder.
 
 <p>&nbsp;</p>
 
-## Objective-C
+# Objective-C
 
 PopupDialog can be used in Objective-C projects as well.
 Here is a basic example:
@@ -368,14 +373,14 @@ DefaultButton *ok = [[DefaultButton alloc] initWithTitle:@"OK" action:^{
 
 <p>&nbsp;</p>
 
-## Requirements
+# Requirements
 
 As this dialog is based on UIStackViews, a minimum Version of iOS 9.0 is required.
 This dialog was written with Swift 2.2, 3.X compatability will be published on a seperate branch soon.
 
 <p>&nbsp;</p>
 
-## Changelog
+# Changelog
 
 * **0.3.0** Objective-C compatibility
 * **0.2.2** Turned off liveBlur by default to increase performance
@@ -391,7 +396,7 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 
 <p>&nbsp;</p>
 
-## Author
+# Author
 
 Martin Wildfeuer, mwfire@mwfire.de
 for Orderella Ltd., [orderella.co.uk](http://orderella.co.uk)<br>
@@ -399,7 +404,7 @@ You might also want to follow us on Twitter, [@theMWFire](https://twitter.com/th
 
 <p>&nbsp;</p>
 
-## Images in the sample project
+# Images in the sample project
 
 The sample project features two images from Markus Spiske raumrot.com:<br>
 [Vintage Car One](https://www.pexels.com/photo/lights-vintage-luxury-tires-103290/) | [Vintage Car Two](https://www.pexels.com/photo/lights-car-vintage-luxury-92637/)<br>
@@ -407,6 +412,6 @@ Thanks a lot for providing these :)
 
 <p>&nbsp;</p>
 
-## License
+# License
 
 PopupDialog is available under the MIT license. See the LICENSE file for more info.
