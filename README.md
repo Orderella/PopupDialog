@@ -61,7 +61,7 @@ pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :bran
 To install, simply add the following line to your Cartfile:
 
 ```ruby
-github "Orderella/PopupDialog"
+github "Orderella/PopupDialog" ~> 0.3
 ```
 
 ## Manually
@@ -382,6 +382,7 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 
 # Changelog
 
+* **0.3.1** Fixed Carthage issues
 * **0.3.0** Objective-C compatibility
 * **0.2.2** Turned off liveBlur by default to increase performance
 * **0.2.1** Dismiss via background tap or swipe down transition
