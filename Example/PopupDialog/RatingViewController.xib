@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RatingViewController" customModule="PopupDialog_Example" customModuleProvider="target">
@@ -12,14 +13,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="290" height="168"/>
+            <rect key="frame" x="0.0" y="0.0" width="290" height="182"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IS1-mO-qkH">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="168"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="182"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCC-HX-zVh" customClass="CosmosView" customModule="PopupDialog_Example" customModuleProvider="target">
-                            <rect key="frame" x="54" y="102" width="192" height="38"/>
+                            <rect key="frame" x="54" y="129" width="192" height="38"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="38" id="eTp-yD-1Xd"/>
@@ -41,7 +42,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RATE THIS APP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLW-Lu-VBj">
-                            <rect key="frame" x="75" y="25" width="138" height="21"/>
+                            <rect key="frame" x="75" y="25" width="138" height="19.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="138" id="AeL-Uh-bdN"/>
                             </constraints>
@@ -50,7 +51,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a custom view controller" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQn-L7-aw4">
-                            <rect key="frame" x="33" y="54" width="223" height="21"/>
+                            <rect key="frame" x="33" y="52" width="223" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="1Da-sS-Bkc"/>
                             </constraints>
@@ -58,18 +59,31 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5b1-lD-vmU">
+                            <rect key="frame" x="51" y="78" width="198" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <constraints>
                         <constraint firstItem="QQn-L7-aw4" firstAttribute="leading" secondItem="IS1-mO-qkH" secondAttribute="leading" constant="33" id="1Ax-Mn-I1S"/>
-                        <constraint firstItem="TCC-HX-zVh" firstAttribute="top" secondItem="QQn-L7-aw4" secondAttribute="bottom" constant="27" id="3H8-jg-t34"/>
+                        <constraint firstItem="5b1-lD-vmU" firstAttribute="width" secondItem="IS1-mO-qkH" secondAttribute="width" multiplier="0.66" id="CtN-60-UKG"/>
+                        <constraint firstItem="5b1-lD-vmU" firstAttribute="top" secondItem="TCC-HX-zVh" secondAttribute="bottom" id="Ki7-N1-dj7"/>
                         <constraint firstItem="TCC-HX-zVh" firstAttribute="centerX" secondItem="IS1-mO-qkH" secondAttribute="centerX" id="TIm-QW-CTz"/>
                         <constraint firstAttribute="trailing" secondItem="QQn-L7-aw4" secondAttribute="trailing" constant="44" id="Z2x-jm-vQB"/>
-                        <constraint firstItem="TCC-HX-zVh" firstAttribute="top" secondItem="QQn-L7-aw4" secondAttribute="bottom" constant="27" id="f59-NF-XlK"/>
+                        <constraint firstItem="TCC-HX-zVh" firstAttribute="top" secondItem="5b1-lD-vmU" secondAttribute="bottom" constant="15" id="cCH-3e-jLc"/>
                         <constraint firstItem="QQn-L7-aw4" firstAttribute="top" secondItem="XLW-Lu-VBj" secondAttribute="bottom" constant="8" id="j2I-LU-dmi"/>
                         <constraint firstItem="XLW-Lu-VBj" firstAttribute="top" secondItem="IS1-mO-qkH" secondAttribute="top" constant="25" id="mf9-b7-p4a"/>
                         <constraint firstItem="XLW-Lu-VBj" firstAttribute="centerX" secondItem="IS1-mO-qkH" secondAttribute="centerX" constant="-6" id="pR8-bb-Q05"/>
-                        <constraint firstAttribute="bottom" secondItem="TCC-HX-zVh" secondAttribute="bottom" constant="28" id="y97-Nt-sO7"/>
+                        <constraint firstItem="5b1-lD-vmU" firstAttribute="top" secondItem="QQn-L7-aw4" secondAttribute="bottom" constant="5" id="rhS-hN-ufO"/>
+                        <constraint firstItem="5b1-lD-vmU" firstAttribute="centerX" secondItem="IS1-mO-qkH" secondAttribute="centerX" id="tD7-9G-0Fc"/>
+                        <constraint firstAttribute="bottom" secondItem="TCC-HX-zVh" secondAttribute="bottom" constant="15" id="y97-Nt-sO7"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Ki7-N1-dj7"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -80,7 +94,7 @@
                 <constraint firstAttribute="trailing" secondItem="IS1-mO-qkH" secondAttribute="trailing" constant="-10" id="rlD-9w-zuN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="263" y="273"/>
+            <point key="canvasLocation" x="263" y="268"/>
         </view>
     </objects>
 </document>

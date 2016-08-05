@@ -47,10 +47,19 @@ final public class PopupDialog: UIViewController {
     /// The set of buttons
     private var buttons = [PopupDialogButton]()
 
+    /// Whether keyboard has shifted view
+    private var keyboardShown = false
+
     // MARK: Public
 
     /// The content view of the popup dialog
     public var viewController: UIViewController
+
+    /// Whether or not to shift view for keyboard display
+    public var keyboardShiftsView = true
+
+    /// Percentage of keyboard height to shift view
+    public var keyboardShiftFactor = CGFloat(0.5)
 
     // MARK: - Initializers
 
@@ -145,6 +154,21 @@ final public class PopupDialog: UIViewController {
 
         // FIXME: Make sure this is called only once
         appendButtons()
+
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(keyboardWillShow),
+                                                         name: UIKeyboardWillShowNotification,
+                                                         object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(keyboardWillHide),
+                                                         name: UIKeyboardWillHideNotification,
+                                                         object: nil)
+    }
+
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK - Dismissal related
@@ -215,6 +239,37 @@ final public class PopupDialog: UIViewController {
         let button = buttons[index]
         button.buttonAction?()
         dismiss()
+    }
+
+    /*!
+     Keyboard will show notification listener
+     - parameter notification: Notification data, including keyboard frame info
+     */
+    func keyboardWillShow(notification: NSNotification) {
+        if keyboardShown || !keyboardShiftsView {
+            return
+        }
+
+        guard let kbRect = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+
+        let yOffset = kbRect.CGRectValue().height * keyboardShiftFactor
+        view.frame = CGRectOffset(view.frame, 0, -yOffset)
+
+        keyboardShown = true
+    }
+
+    /*!
+     Keyboard will hide notification listener
+     - parameter notification: Notification data, including keyboard frame info
+     */
+    func keyboardWillHide(notification: NSNotification) {
+        if keyboardShown && keyboardShiftsView {
+            view.frame = UIScreen.mainScreen().bounds
+        }
+
+        keyboardShown = false
     }
 }
 
