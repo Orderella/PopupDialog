@@ -1,5 +1,5 @@
 PODS:
-  - PopupDialog (0.3.0)
+  - PopupDialog (0.3.2)
 
 DEPENDENCIES:
   - PopupDialog (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PopupDialog: b2d1dc31f81c0705189110a66a8f6e9cfc64f87d
+  PopupDialog: 8575b6974bfe39be1735011ea3e8c72efc28e9e1
 
 PODFILE CHECKSUM: d8495001123cc68c0f614ef520d9741b67defd8d
 
