@@ -66,6 +66,9 @@ public class PopupDialogButton: UIButton {
     public var defaultButtonColor    = UIColor.clearColor()
     public var defaultSeparatorColor = UIColor(white: 0.9, alpha: 1)
 
+    /// Whether button should dismiss popup when tapped
+    public var dismissOnTap = true
+
     /// The action called when the button is tapped
     public private(set) var buttonAction: PopupDialogButtonAction?
 
