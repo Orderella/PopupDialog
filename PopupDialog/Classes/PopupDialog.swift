@@ -31,6 +31,9 @@ final public class PopupDialog: UIViewController {
 
     // MARK: Private / Internal
 
+    /// The completion handler
+    private var completion: (() -> Void)? = nil
+
     /// The custom transition presentation manager
     private var presentationManager: PresentationManager!
 
@@ -72,6 +75,7 @@ final public class PopupDialog: UIViewController {
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
      - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
+     - parameter completion:       Completion block invoked when dialog was dismissed
 
      - returns: Popup dialog default style
      */
@@ -81,7 +85,8 @@ final public class PopupDialog: UIViewController {
                 image: UIImage? = nil,
                 buttonAlignment: UILayoutConstraintAxis = .Vertical,
                 transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-                gestureDismissal: Bool = true) {
+                gestureDismissal: Bool = true,
+                completion: (() -> Void)? = nil) {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
@@ -90,7 +95,7 @@ final public class PopupDialog: UIViewController {
         viewController.image       = image
 
         // Call designated initializer
-        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal:  gestureDismissal)
+        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal: gestureDismissal, completion: completion)
     }
 
     /*!
@@ -100,6 +105,7 @@ final public class PopupDialog: UIViewController {
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
      - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
+     - parameter completion:       Completion block invoked when dialog was dismissed
 
      - returns: Popup dialog with a custom view controller
      */
@@ -107,9 +113,11 @@ final public class PopupDialog: UIViewController {
         viewController: UIViewController,
         buttonAlignment: UILayoutConstraintAxis = .Vertical,
         transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-        gestureDismissal: Bool = true) {
+        gestureDismissal: Bool = true,
+        completion: (() -> Void)? = nil) {
 
         self.viewController = viewController
+        self.completion = completion
         super.init(nibName: nil, bundle: nil)
 
         // Init the presentation manager
@@ -162,6 +170,11 @@ final public class PopupDialog: UIViewController {
         removeObservers()
     }
 
+    deinit {
+        completion?()
+        completion = nil
+    }
+
     // MARK - Dismissal related
 
     @objc private func handleTap(sender: UITapGestureRecognizer) {
@@ -176,7 +189,9 @@ final public class PopupDialog: UIViewController {
      Dismisses the popup dialog
      */
     public func dismiss(completion: (() -> Void)? = nil) {
-        dismissViewControllerAnimated(true, completion: completion)
+        dismissViewControllerAnimated(true) {
+            completion?()
+        }
     }
 
     // MARK: - Button related
