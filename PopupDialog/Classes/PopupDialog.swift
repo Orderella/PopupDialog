@@ -217,9 +217,7 @@ final public class PopupDialog: UIViewController {
     /// Calls the action closure of the button instance tapped
     @objc private func buttonTapped(button: PopupDialogButton) {
         if button.dismissOnTap {
-            dismiss() {
-                button.buttonAction?()
-            }
+            dismiss() { button.buttonAction?() }
         } else {
             button.buttonAction?()
         }
@@ -232,8 +230,11 @@ final public class PopupDialog: UIViewController {
      */
     public func tapButtonWithIndex(index: Int) {
         let button = buttons[index]
-        button.buttonAction?()
-        dismiss()
+        if button.dismissOnTap {
+            dismiss() { button.buttonAction?() }
+        } else {
+            button.buttonAction?()
+        }
     }
 }
 
