@@ -122,7 +122,7 @@ class ViewController: UIViewController {
         let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
 
         // Create the dialog
-        let popup = PopupDialog(viewController: ratingVC, transitionStyle: .BounceDown, buttonAlignment: .Horizontal, gestureDismissal: false)
+        let popup = PopupDialog(viewController: ratingVC, transitionStyle: .BounceDown, buttonAlignment: .Horizontal, gestureDismissal: true)
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL") {
