@@ -100,13 +100,13 @@ public class PopupDialogButton: UIButton {
     /*!
      Creates a button that can be added to the popup dialog
 
-     - parameter title:  The button title
-     - parameter color:  The label color
-     - parameter action: The action closure
+     - parameter title:         The button title
+     - parameter dismisssOnTap: Whether a tap automatically dismisses the dialog
+     - parameter action:        The action closure
 
      - returns: PopupDialogButton
      */
-    public init(title: String, action: PopupDialogButtonAction?) {
+    public init(title: String, dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
 
         // Assign the button action
         buttonAction = action
@@ -115,6 +115,8 @@ public class PopupDialogButton: UIButton {
 
         // Set the button title
         setTitle(title, forState: .Normal)
+
+        self.dismissOnTap = dismissOnTap
 
         // Setup the views
         setupView()
