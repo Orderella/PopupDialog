@@ -245,11 +245,7 @@ final public class PopupDialog: UIViewController {
      */
     public func tapButtonWithIndex(index: Int) {
         let button = buttons[index]
-        if button.dismissOnTap {
-            dismiss() { button.buttonAction?() }
-        } else {
-            button.buttonAction?()
-        }
+        button.buttonAction?()
     }
 }
 
