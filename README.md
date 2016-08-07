@@ -54,6 +54,9 @@ If you are looking for a Swift 3 version of PopupDialog, specify the following b
 ```ruby
 pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :branch => 'Swift3'
 ```
+
+Please not the the Swift3 branch might not be up to date until release.
+
 ## Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
