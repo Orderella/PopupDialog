@@ -123,7 +123,8 @@ public convenience init(
     image: UIImage? = nil,
     buttonAlignment: UILayoutConstraintAxis = .Vertical,
     transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-    gestureDismissal: Bool = true) 
+    gestureDismissal: Bool = true,
+    completion: (() -> Void)? = nil) 
 ```
 
 The default dialog initializer is a convenient way of creating a popup with image, title and message (see image one and two).
@@ -139,7 +140,8 @@ public init(
     viewController: UIViewController,
     buttonAlignment: UILayoutConstraintAxis = .Vertical,
     transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-    gestureDismissal: Bool = true) 
+    gestureDismissal: Bool = true,
+    completion: (() -> Void)? = nil) 
 ```
 
 You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog, which has to be casted to your view controllers class to access its properties. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
@@ -172,7 +174,10 @@ public enum UILayoutConstraintAxis : Int {
 
 ## Gesture Dismissal
 
-Gesture dismissal allows your dialog being dismissed either by a background tap or by swiping the dialog down. By default, this is set to `true`. You can prevent this behavior by setting `gestureDismissal` to `false` in the initializer. If a popup dialog is dismissed via gestures, no further actions are triggered.
+Gesture dismissal allows your dialog being dismissed either by a background tap or by swiping the dialog down. By default, this is set to `true`. You can prevent this behavior by setting `gestureDismissal` to `false` in the initializer.
+
+## Completion
+This completion handler is called when the dialog was dismissed. This is especially useful for catching a gesture dismissal.
 
 <p>&nbsp;</p>
 
@@ -242,8 +247,7 @@ overlayAppearance.opacity     = 0.7
 ```
 
 #### Note
-As pointed out by [ExceptionsSG](https://github.com/ExceptionsSG)
-, turning on `liveBlur`, that is realtime updates of the background view, results in a significantly higher CPU usage /power consumption and is therefore turned off by default now.
+Turning on `liveBlur`, that is realtime updates of the background view, results in a significantly higher CPU usage /power consumption and is therefore turned off by default now.
 Choose wisely whether you need this feature or not ;)
 
 ## Button Appearance Settings
@@ -331,6 +335,10 @@ Rotation and all screen sizes are supported. However, the dialog will never exce
 
 <p>&nbsp;</p>
 
+# Working with text fields
+
+If you are using text fields in your custom view controller, popup dialog makes sure that the dialog is positioned above the keybord whenever it appears. You can opt out of this behaviour by setting `keyboardShiftsView` to false on a PopupDialog.
+
 # Testing
 
 PopupDialog exposes a nice and handy method that lets you trigger a button tap programmatically:
@@ -381,7 +389,7 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 <p>&nbsp;</p>
 
 # Changelog
-
+* **0.3.2** Dialog repositioning when interacting with keyboard<br>Non dismissable buttons option<br>Additional completion handler when dialog is dismissed
 * **0.3.1** Fixed Carthage issues
 * **0.3.0** Objective-C compatibility
 * **0.2.2** Turned off liveBlur by default to increase performance
@@ -402,6 +410,9 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 Martin Wildfeuer, mwfire@mwfire.de
 for Orderella Ltd., [orderella.co.uk](http://orderella.co.uk)<br>
 You might also want to follow us on Twitter, [@theMWFire](https://twitter.com/theMWFire) | [@Orderella](https://twitter.com/orderella)
+
+# Thank you
+Thanks to everyone who uses, enhances and improves this library, especially the contributors: [ExceptionsSG](https://github.com/ExceptionsSG), [sjrmanning](https://github.com/sjrmanning), [0x0c](https://github.com/0x0c).
 
 <p>&nbsp;</p>
 
