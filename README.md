@@ -367,13 +367,14 @@ PopupDialog *popup = [[PopupDialog alloc] initWithTitle:@"TEST"
                                                   image:nil
                                         buttonAlignment:UILayoutConstraintAxisHorizontal
                                         transitionStyle:PopupDialogTransitionStyleBounceUp
-                                       gestureDismissal:YES];
+                                       gestureDismissal:YES
+                                             completion:nil];
 
-CancelButton *cancel = [[CancelButton alloc] initWithTitle:@"CANCEL" action:^{
-    // Cancel action
+CancelButton *cancel = [[CancelButton alloc] initWithTitle:@"CANCEL" dismissOnTap:YES action:^{
+    // Default action
 }];
 
-DefaultButton *ok = [[DefaultButton alloc] initWithTitle:@"OK" action:^{
+DefaultButton *ok = [[DefaultButton alloc] initWithTitle:@"OK" dismissOnTap:YES action:^{
     // Ok action
 }];
 
