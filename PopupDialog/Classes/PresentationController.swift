@@ -55,6 +55,7 @@ final internal class PresentationController: UIPresentationController {
 
     override func containerViewWillLayoutSubviews() {
         presentedView()!.frame = frameOfPresentedViewInContainerView()
+        overlay.blurView.setNeedsDisplay()
     }
 
 }

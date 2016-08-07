@@ -29,6 +29,7 @@ class Tests: XCTestCase {
         XCTAssertEqual(vc.titleText, "Test Title", "Popup Dialog title should be set correctly")
         XCTAssertEqual(vc.messageText, "Test Message", "Popup Dialog message should be set correctly")
         XCTAssertNil(vc.image, "Popup Dialog image should be nil")
+        XCTAssertTrue(popup.keyboardShiftsView, "Keyboard shifts view should be true by default")
     }
 
     func testImageDialogInstantiation() {
@@ -66,9 +67,11 @@ class Tests: XCTestCase {
         // Change values after init
         popup.buttonAlignment = .Vertical
         popup.transitionStyle = .FadeIn
+        popup.keyboardShiftsView = false
 
         XCTAssertTrue(popup.buttonAlignment == .Vertical)
         XCTAssertTrue(popup.transitionStyle == .FadeIn)
+        XCTAssertFalse(popup.keyboardShiftsView)
     }
 
     func testDialogViewPropertyAccess() {

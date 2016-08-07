@@ -31,6 +31,9 @@ final public class PopupDialog: UIViewController {
 
     // MARK: Private / Internal
 
+    /// The completion handler
+    private var completion: (() -> Void)? = nil
+
     /// The custom transition presentation manager
     private var presentationManager: PresentationManager!
 
@@ -47,10 +50,19 @@ final public class PopupDialog: UIViewController {
     /// The set of buttons
     private var buttons = [PopupDialogButton]()
 
+    /// Whether keyboard has shifted view
+    internal var keyboardShown = false
+
+    /// Keyboard height
+    internal var keyboardHeight: CGFloat? = nil
+
     // MARK: Public
 
     /// The content view of the popup dialog
     public var viewController: UIViewController
+
+    /// Whether or not to shift view for keyboard display
+    public var keyboardShiftsView = true
 
     // MARK: - Initializers
 
@@ -63,6 +75,7 @@ final public class PopupDialog: UIViewController {
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
      - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
+     - parameter completion:       Completion block invoked when dialog was dismissed
 
      - returns: Popup dialog default style
      */
@@ -72,7 +85,8 @@ final public class PopupDialog: UIViewController {
                 image: UIImage? = nil,
                 buttonAlignment: UILayoutConstraintAxis = .Vertical,
                 transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-                gestureDismissal: Bool = true) {
+                gestureDismissal: Bool = true,
+                completion: (() -> Void)? = nil) {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
@@ -81,7 +95,7 @@ final public class PopupDialog: UIViewController {
         viewController.image       = image
 
         // Call designated initializer
-        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal:  gestureDismissal)
+        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal: gestureDismissal, completion: completion)
     }
 
     /*!
@@ -91,6 +105,7 @@ final public class PopupDialog: UIViewController {
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
      - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
+     - parameter completion:       Completion block invoked when dialog was dismissed
 
      - returns: Popup dialog with a custom view controller
      */
@@ -98,9 +113,11 @@ final public class PopupDialog: UIViewController {
         viewController: UIViewController,
         buttonAlignment: UILayoutConstraintAxis = .Vertical,
         transitionStyle: PopupDialogTransitionStyle = .BounceUp,
-        gestureDismissal: Bool = true) {
+        gestureDismissal: Bool = true,
+        completion: (() -> Void)? = nil) {
 
         self.viewController = viewController
+        self.completion = completion
         super.init(nibName: nil, bundle: nil)
 
         // Init the presentation manager
@@ -145,6 +162,17 @@ final public class PopupDialog: UIViewController {
 
         // FIXME: Make sure this is called only once
         appendButtons()
+        addObservers()
+    }
+
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeObservers()
+    }
+
+    deinit {
+        completion?()
+        completion = nil
     }
 
     // MARK - Dismissal related
@@ -161,7 +189,9 @@ final public class PopupDialog: UIViewController {
      Dismisses the popup dialog
      */
     public func dismiss(completion: (() -> Void)? = nil) {
-        dismissViewControllerAnimated(true, completion: completion)
+        dismissViewControllerAnimated(true) {
+            completion?()
+        }
     }
 
     // MARK: - Button related
@@ -201,7 +231,9 @@ final public class PopupDialog: UIViewController {
 
     /// Calls the action closure of the button instance tapped
     @objc private func buttonTapped(button: PopupDialogButton) {
-        dismiss() {
+        if button.dismissOnTap {
+            dismiss() { button.buttonAction?() }
+        } else {
             button.buttonAction?()
         }
     }
@@ -214,7 +246,6 @@ final public class PopupDialog: UIViewController {
     public func tapButtonWithIndex(index: Int) {
         let button = buttons[index]
         button.buttonAction?()
-        dismiss()
     }
 }
 

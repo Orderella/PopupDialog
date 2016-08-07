@@ -11,13 +11,30 @@ import UIKit
 class RatingViewController: UIViewController {
 
     @IBOutlet weak var cosmosStarRating: CosmosView!
+
+    @IBOutlet weak var commentTextField: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        commentTextField.delegate = self
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func endEditing() {
+        view.endEditing(true)
+    }
+}
+
+extension RatingViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        endEditing()
+        return true
     }
 }

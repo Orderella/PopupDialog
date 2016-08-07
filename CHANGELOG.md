@@ -1,5 +1,6 @@
 # Changelog
 
+* **0.3.2** Dialog repositioning when interacting with keyboard<br>Non dismissable buttons option<br>Additional completion handler when dialog is dismissed
 * **0.3.1** Fixed Carthage issues
 * **0.3.0** Objective-C compatibility
 * **0.2.2** Turned off liveBlur by default to increase performance
