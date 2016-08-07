@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RatingViewController" customModule="PopupDialog_Example" customModuleProvider="target">
             <connections>
+                <outlet property="commentTextField" destination="5b1-lD-vmU" id="Fup-iS-pXW"/>
                 <outlet property="cosmosStarRating" destination="TCC-HX-zVh" id="bov-99-E1X"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -60,7 +61,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5b1-lD-vmU">
-                            <rect key="frame" x="51" y="78" width="198" height="36"/>
+                            <rect key="frame" x="51" y="82" width="198" height="36"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -71,11 +72,11 @@
                         <constraint firstItem="5b1-lD-vmU" firstAttribute="top" secondItem="TCC-HX-zVh" secondAttribute="bottom" id="Ki7-N1-dj7"/>
                         <constraint firstItem="TCC-HX-zVh" firstAttribute="centerX" secondItem="IS1-mO-qkH" secondAttribute="centerX" id="TIm-QW-CTz"/>
                         <constraint firstAttribute="trailing" secondItem="QQn-L7-aw4" secondAttribute="trailing" constant="44" id="Z2x-jm-vQB"/>
-                        <constraint firstItem="TCC-HX-zVh" firstAttribute="top" secondItem="5b1-lD-vmU" secondAttribute="bottom" constant="15" id="cCH-3e-jLc"/>
+                        <constraint firstItem="TCC-HX-zVh" firstAttribute="top" secondItem="5b1-lD-vmU" secondAttribute="bottom" constant="11" id="cCH-3e-jLc"/>
                         <constraint firstItem="QQn-L7-aw4" firstAttribute="top" secondItem="XLW-Lu-VBj" secondAttribute="bottom" constant="8" id="j2I-LU-dmi"/>
                         <constraint firstItem="XLW-Lu-VBj" firstAttribute="top" secondItem="IS1-mO-qkH" secondAttribute="top" constant="25" id="mf9-b7-p4a"/>
                         <constraint firstItem="XLW-Lu-VBj" firstAttribute="centerX" secondItem="IS1-mO-qkH" secondAttribute="centerX" constant="-6" id="pR8-bb-Q05"/>
-                        <constraint firstItem="5b1-lD-vmU" firstAttribute="top" secondItem="QQn-L7-aw4" secondAttribute="bottom" constant="5" id="rhS-hN-ufO"/>
+                        <constraint firstItem="5b1-lD-vmU" firstAttribute="top" secondItem="QQn-L7-aw4" secondAttribute="bottom" constant="9" id="rhS-hN-ufO"/>
                         <constraint firstItem="5b1-lD-vmU" firstAttribute="centerX" secondItem="IS1-mO-qkH" secondAttribute="centerX" id="tD7-9G-0Fc"/>
                         <constraint firstAttribute="bottom" secondItem="TCC-HX-zVh" secondAttribute="bottom" constant="15" id="y97-Nt-sO7"/>
                     </constraints>
