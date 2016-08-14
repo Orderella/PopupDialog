@@ -31,6 +31,9 @@ final public class PopupDialog: UIViewController {
 
     // MARK: Private / Internal
 
+    /// First init flag
+    private var initialized = false
+
     /// The completion handler
     private var completion: (() -> Void)? = nil
 
@@ -160,9 +163,10 @@ final public class PopupDialog: UIViewController {
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
-        // FIXME: Make sure this is called only once
+        guard !initialized else { return }
         appendButtons()
         addObservers()
+        initialized = true
     }
 
     public override func viewWillDisappear(animated: Bool) {

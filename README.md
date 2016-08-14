@@ -393,6 +393,8 @@ This dialog was written with Swift 2.2, 3.X compatability will be published on a
 <p>&nbsp;</p>
 
 # Changelog
+
+* **0.3.3** Fixes buttons being added multiple times
 * **0.3.2** Dialog repositioning when interacting with keyboard<br>Non dismissable buttons option<br>Additional completion handler when dialog is dismissed
 * **0.3.1** Fixed Carthage issues
 * **0.3.0** Objective-C compatibility
