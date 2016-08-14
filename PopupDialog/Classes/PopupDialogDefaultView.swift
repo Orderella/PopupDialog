@@ -25,6 +25,7 @@
 
 import Foundation
 import UIKit
+import TZStackView
 
 /// The main view of the popup dialog
 final public class PopupDialogDefaultView: UIView {
@@ -98,8 +99,8 @@ final public class PopupDialogDefaultView: UIView {
     }()
 
     // The text view containing the labels
-    internal lazy var textStackView: UIStackView = {
-        let textStackView = UIStackView(arrangedSubviews: [self.titleLabel, self.messageLabel])
+    internal lazy var textStackView: TZStackView = {
+        let textStackView = TZStackView(arrangedSubviews: [self.titleLabel, self.messageLabel])
         textStackView.translatesAutoresizingMaskIntoConstraints = false
         textStackView.axis = .Vertical
         textStackView.spacing = 12
@@ -108,13 +109,13 @@ final public class PopupDialogDefaultView: UIView {
 
     /// A horizontal stack view, adding left/right padding
     /// to the textStackView
-    internal lazy var spacerStackView: UIStackView = {
+    internal lazy var spacerStackView: TZStackView = {
         // This is a workaround for adding left and right padding to
         // the textStackView. I tried setting constraints / insets / anchors
         // All these resulted in unsatisfyable constraints
         let leftSpacer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         let rightSpacer = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
-        let spacerStackView = UIStackView(arrangedSubviews: [leftSpacer, self.textStackView, rightSpacer])
+        let spacerStackView = TZStackView(arrangedSubviews: [leftSpacer, self.textStackView, rightSpacer])
         spacerStackView.translatesAutoresizingMaskIntoConstraints = false
         spacerStackView.axis = .Horizontal
         spacerStackView.spacing = 12
@@ -123,8 +124,8 @@ final public class PopupDialogDefaultView: UIView {
     }()
 
     // The main stack view, containing all relevant views
-    internal lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.imageView, self.spacerStackView])
+    internal lazy var stackView: TZStackView = {
+        let stackView = TZStackView(arrangedSubviews: [self.imageView, self.spacerStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .Vertical
         stackView.spacing = 30

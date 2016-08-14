@@ -26,6 +26,7 @@
 
 import Foundation
 import UIKit
+import TZStackView
 
 /// The main view of the popup dialog
 final public class PopupDialogContainerView: UIView {
@@ -93,8 +94,8 @@ final public class PopupDialogContainerView: UIView {
     }()
 
     // The container stack view for buttons
-    internal lazy var buttonStackView: UIStackView = {
-        let buttonStackView = UIStackView()
+    internal lazy var buttonStackView: TZStackView = {
+        let buttonStackView = TZStackView()
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.distribution = .FillEqually
         buttonStackView.spacing = 0
@@ -102,8 +103,8 @@ final public class PopupDialogContainerView: UIView {
     }()
 
     // The main stack view, containing all relevant views
-    internal lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.buttonStackView])
+    internal lazy var stackView: TZStackView = {
+        let stackView = TZStackView(arrangedSubviews: [self.buttonStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .Vertical
         stackView.spacing = 0
