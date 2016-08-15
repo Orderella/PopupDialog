@@ -17,7 +17,6 @@
 		3600883BCD80DC3833F4254ABBFDCC06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D38DACF4DA581A56054294F005D1C43 /* Foundation.framework */; };
 		42D912A8500B4A9761532D71F7C0E7CB /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B461E74005E2E7043164E5F8760F7C0 /* PopupDialogDefaultViewController.swift */; };
 		448348368F343913CE87F40DD966B23E /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966235554F7AE15115A4328C73513B52 /* UIView+Animations.swift */; };
-		54563655421DC8CFF586A351CCA2B346 /* UIImageView+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E1ED23E1DE05DBCFF08493809A16B2 /* UIImageView+Calculations.swift */; };
 		5E46459E1D98B0814BA7A545B14B1067 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D38DACF4DA581A56054294F005D1C43 /* Foundation.framework */; };
 		61F52AEB31E95E548BA9899FE648CA3D /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC9D6859012C9EF94C834711E360977 /* PopupDialogDefaultView.swift */; };
 		65D6FB7DEA10DF13FF05C69725E3CB15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D38DACF4DA581A56054294F005D1C43 /* Foundation.framework */; };
@@ -109,7 +108,6 @@
 		9C77C90A523141F1E51055D15A5AA658 /* Pods-PopupDialog_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PopupDialog_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A04B6A6564BA64B679A41F057B47939D /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+Visibility.swift"; sourceTree = "<group>"; };
 		A0CF44A48D81B21BC89CF4B1FBAD92C2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2E1ED23E1DE05DBCFF08493809A16B2 /* UIImageView+Calculations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImageView+Calculations.swift"; sourceTree = "<group>"; };
 		B3EC899AA6417B7984A6C61997C10B26 /* TZStackViewAlignment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TZStackViewAlignment.swift; path = TZStackView/TZStackViewAlignment.swift; sourceTree = "<group>"; };
 		BF8B6CBA02AD6FA9A43EB03C77864AE0 /* PopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PopupDialog.swift; sourceTree = "<group>"; };
 		C3243D5BD211369CB62FC3E2A18AD4E1 /* PresentationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PresentationManager.swift; sourceTree = "<group>"; };
@@ -338,7 +336,6 @@
 				C3243D5BD211369CB62FC3E2A18AD4E1 /* PresentationManager.swift */,
 				2B9536B027AC0953F64901066E67ACC3 /* TransitionAnimations.swift */,
 				C83A92E320252D3DD9F8A9C8A38281AE /* TransitionAnimator.swift */,
-				B2E1ED23E1DE05DBCFF08493809A16B2 /* UIImageView+Calculations.swift */,
 				966235554F7AE15115A4328C73513B52 /* UIView+Animations.swift */,
 				A04B6A6564BA64B679A41F057B47939D /* UIViewController+Visibility.swift */,
 			);
@@ -532,7 +529,6 @@
 				6CC7CE22B481A29BB1F8DC073CC9BB65 /* PresentationManager.swift in Sources */,
 				9D537FDA29342107E2F6D7222C504B2C /* TransitionAnimations.swift in Sources */,
 				B6D8F99DE69C0C2A0F6DEABC4B4F7FCF /* TransitionAnimator.swift in Sources */,
-				54563655421DC8CFF586A351CCA2B346 /* UIImageView+Calculations.swift in Sources */,
 				448348368F343913CE87F40DD966B23E /* UIView+Animations.swift in Sources */,
 				743F7E682293D4407B28DC911FA6DA4C /* UIViewController+Visibility.swift in Sources */,
 			);
