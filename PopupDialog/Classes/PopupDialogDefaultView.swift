@@ -81,6 +81,7 @@ final public class PopupDialogDefaultView: UIView {
     /// The title label of the dialog
     internal lazy var titleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .Center
         titleLabel.textColor = UIColor(white: 0.4, alpha: 1)
@@ -91,37 +92,13 @@ final public class PopupDialogDefaultView: UIView {
     /// The message label of the dialog
     internal lazy var messageLabel: UILabel = {
         let messageLabel = UILabel(frame: .zero)
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .Center
         messageLabel.textColor = UIColor(white: 0.6, alpha: 1)
         messageLabel.font = UIFont.systemFontOfSize(14)
         return messageLabel
     }()
-
-    // The text view containing the labels
-    internal lazy var textStackView: TZStackView = {
-        let textStackView = TZStackView(arrangedSubviews: [self.titleLabel, self.messageLabel])
-        textStackView.translatesAutoresizingMaskIntoConstraints = false
-        textStackView.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        textStackView.layoutMarginsRelativeArrangement = true
-        textStackView.axis = .Vertical
-        textStackView.spacing = 12
-        return textStackView
-    }()
-
-    // The main stack view, containing all relevant views
-    internal lazy var stackView: TZStackView = {
-        let stackView = TZStackView(arrangedSubviews: [self.imageView, self.textStackView])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .Vertical
-        stackView.spacing = 30
-        return stackView
-    }()
-
-    // MARK: - Constraints
-
-    /// The height constraint of the image view, 0 by default
-    internal var imageHeightConstraint: NSLayoutConstraint?
 
     // MARK: - Initializers
 
@@ -137,29 +114,25 @@ final public class PopupDialogDefaultView: UIView {
     // MARK: - View setup
 
     internal func setupViews() {
-        // Add views
+
+        // Self setup
         translatesAutoresizingMaskIntoConstraints = false
-        addSubview(stackView)
+
+        // Add views
+        addSubview(imageView)
+        addSubview(titleLabel)
+        addSubview(messageLabel)
 
         // Layout views
-        let views = ["stackView": stackView, "imageView": imageView]
+        let views = ["imageView": imageView, "titleLabel": titleLabel, "messageLabel": messageLabel]
         var constraints = [NSLayoutConstraint]()
 
-        // Main stack view constraints
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[stackView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView]-30-|", options: [], metrics: nil, views: views)
-
-        // ImageView constraints
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: [], metrics: nil, views: views)
-        imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 0, constant: 0)
-        constraints.append(imageHeightConstraint!)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(==20@900)-[titleLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(==20@900)-[messageLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView]-(==30@900)-[titleLabel]-(==8@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
 
         // Activate constraints
         NSLayoutConstraint.activateConstraints(constraints)
-    }
-
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        imageHeightConstraint?.constant = imageView.pv_heightForImageView()
     }
 }
