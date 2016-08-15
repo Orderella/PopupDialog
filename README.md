@@ -29,7 +29,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 - [x] Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
 - [x] Can be dismissed via swipe and background tap
 - [x] Objective-C compatible
-- [x] Works on all devices and screens
+- [x] Works on all devices and screens supporting iOS 8.0+
 
 <p>&nbsp;</p>
 
@@ -42,11 +42,11 @@ it, simply add the following to your Podfile:
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '8.0'
 use_frameworks!
 
 target '<Your Target Name>'
-pod 'PopupDialog', '~> 0.3'
+pod 'PopupDialog', '~> 0.4'
 ```
 
 If you are looking for a Swift 3 version of PopupDialog, specify the following branch in your podfile:
@@ -64,7 +64,7 @@ Please not the the Swift3 branch might not be up to date until release.
 To install, simply add the following line to your Cartfile:
 
 ```ruby
-github "Orderella/PopupDialog" ~> 0.3
+github "Orderella/PopupDialog" ~> 0.4
 ```
 
 ## Manually
@@ -80,6 +80,8 @@ folder to your project.
 You can find this and more example projects in the repo. To run it, clone the repo, and run `pod install` from the Example directory first.
 
 ```swift
+import PopupDialog
+
 // Prepare the popup assets
 let title = "THIS IS THE DIALOG TITLE"
 let message = "This is the message section of the popup dialog default view"
@@ -387,13 +389,13 @@ DefaultButton *ok = [[DefaultButton alloc] initWithTitle:@"OK" dismissOnTap:YES 
 
 # Requirements
 
-As this dialog is based on UIStackViews, a minimum Version of iOS 9.0 is required.
-This dialog was written with Swift 2.2, 3.X compatability will be published on a seperate branch soon.
+Minimum requirement is iOS 8.0. This dialog was written with Swift 2.2, 3.X compatibility will be published on a seperate branch soon.
 
 <p>&nbsp;</p>
 
 # Changelog
 
+* **0.4.0** iOS 8 compatibility
 * **0.3.3** Fixes buttons being added multiple times
 * **0.3.2** Dialog repositioning when interacting with keyboard<br>Non dismissable buttons option<br>Additional completion handler when dialog is dismissed
 * **0.3.1** Fixed Carthage issues
