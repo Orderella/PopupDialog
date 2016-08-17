@@ -41,8 +41,6 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following to your Podfile:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
 use_frameworks!
 
 target '<Your Target Name>'
@@ -61,10 +59,11 @@ Please not the the Swift3 branch might not be up to date until release.
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
 
-To install, simply add the following line to your Cartfile:
+To install, simply add the following lines to your Cartfile:
 
 ```ruby
 github "Orderella/PopupDialog" ~> 0.4
+github "tomvanzummeren/TZStackView" ~> 1.2.0
 ```
 
 ## Manually
