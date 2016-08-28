@@ -1,5 +1,5 @@
 //
-//  UIImageView+Calculations.swift
+//  UIViewController+Visibility.swift
 //
 //  Copyright (c) 2016 Orderella Ltd. (http://orderella.co.uk)
 //  Author - Martin Wildfeuer (http://www.mwfire.de)
@@ -26,19 +26,27 @@
 import Foundation
 import UIKit
 
-internal extension UIImageView {
+// http://stackoverflow.com/questions/2777438/how-to-tell-if-uiviewcontrollers-view-is-visible
+internal extension UIViewController {
 
-    /*!
-     Calculates the height of the the UIImageView has to
-     have so the image is displayed correctly
-     - returns: Height to set on the imageView
-     */
-    internal func pv_heightForImageView() -> CGFloat {
-        guard let image = image where image.size.height > 0 else {
-            return 0.0
+    internal var isTopAndVisible: Bool {
+        return isVisible && isTopViewController
+    }
+
+    internal var isVisible: Bool {
+        if isViewLoaded {
+            return view.window != nil
         }
-        let width = frame.size.width
-        let ratio = image.size.height / image.size.width
-        return width * ratio
+        return false
+    }
+
+    internal var isTopViewController: Bool {
+        if self.navigationController != nil {
+            return self.navigationController?.visibleViewController === self
+        } else if self.tabBarController != nil {
+            return self.tabBarController?.selectedViewController == self && self.presentedViewController == nil
+        } else {
+            return self.presentedViewController == nil && self.isVisible
+        }
     }
 }

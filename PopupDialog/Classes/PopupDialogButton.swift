@@ -27,32 +27,32 @@ import Foundation
 import UIKit
 
 /// Represents the default button for the popup dialog
-public class PopupDialogButton: UIButton {
+open class PopupDialogButton: UIButton {
 
     public typealias PopupDialogButtonAction = () -> Void
 
     // MARK: Public
 
     /// The font and size of the button title
-    public dynamic var titleFont: UIFont? {
+    open dynamic var titleFont: UIFont? {
         get { return titleLabel?.font }
         set { titleLabel?.font = newValue }
     }
 
     /// The title color of the button
-    public dynamic var titleColor: UIColor? {
+    open dynamic var titleColor: UIColor? {
         get { return self.titleColor(for: UIControlState()) }
         set { setTitleColor(newValue, for: UIControlState()) }
     }
 
     /// The background color of the button
-    public dynamic var buttonColor: UIColor? {
+    open dynamic var buttonColor: UIColor? {
         get { return backgroundColor }
         set { backgroundColor = newValue }
     }
 
     /// The separator color of this button
-    public dynamic var separatorColor: UIColor? {
+    open dynamic var separatorColor: UIColor? {
         get { return separator.backgroundColor }
         set {
             separator.backgroundColor = newValue
@@ -61,23 +61,26 @@ public class PopupDialogButton: UIButton {
     }
 
     /// Default appearance of the button
-    public var defaultTitleFont      = UIFont.systemFont(ofSize: 14)
-    public var defaultTitleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
-    public var defaultButtonColor    = UIColor.clear()
-    public var defaultSeparatorColor = UIColor(white: 0.9, alpha: 1)
+    open var defaultTitleFont      = UIFont.systemFont(ofSize: 14)
+    open var defaultTitleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
+    open var defaultButtonColor    = UIColor.clear
+    open var defaultSeparatorColor = UIColor(white: 0.9, alpha: 1)
+
+    /// Whether button should dismiss popup when tapped
+    open var dismissOnTap = true
 
     /// The action called when the button is tapped
-    public private(set) var buttonAction: PopupDialogButtonAction?
+    open fileprivate(set) var buttonAction: PopupDialogButtonAction?
 
     // MARK: Private
 
-    private lazy var separator: UIView = {
+    fileprivate lazy var separator: UIView = {
         let line = UIView(frame: .zero)
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
 
-    private lazy var leftSeparator: UIView = {
+    fileprivate lazy var leftSeparator: UIView = {
         let line = UIView(frame: .zero)
         line.translatesAutoresizingMaskIntoConstraints = false
         line.alpha = 0
@@ -97,13 +100,13 @@ public class PopupDialogButton: UIButton {
     /*!
      Creates a button that can be added to the popup dialog
 
-     - parameter title:  The button title
-     - parameter color:  The label color
-     - parameter action: The action closure
+     - parameter title:         The button title
+     - parameter dismisssOnTap: Whether a tap automatically dismisses the dialog
+     - parameter action:        The action closure
 
      - returns: PopupDialogButton
      */
-    public init(title: String, action: PopupDialogButtonAction?) {
+    public init(title: String, dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
 
         // Assign the button action
         buttonAction = action
@@ -112,6 +115,8 @@ public class PopupDialogButton: UIButton {
 
         // Set the button title
         setTitle(title, for: UIControlState())
+
+        self.dismissOnTap = dismissOnTap
 
         // Setup the views
         setupView()
@@ -123,7 +128,7 @@ public class PopupDialogButton: UIButton {
 
     // MARK: View setup
 
-    public func setupView() {
+    open func setupView() {
 
         // Default appearance
         setTitleColor(defaultTitleColor, for: UIControlState())
@@ -146,7 +151,7 @@ public class PopupDialogButton: UIButton {
         NSLayoutConstraint.activate(constraints)
     }
 
-    public override var isHighlighted: Bool {
+    open override var isHighlighted: Bool {
         didSet {
             isHighlighted ? pv_fade(.out, 0.5) : pv_fade(.in, 1.0)
         }

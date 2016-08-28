@@ -26,21 +26,23 @@
 import Foundation
 import UIKit
 
-final internal class PopupDialogPresentationManager: NSObject, UIViewControllerTransitioningDelegate {
+final internal class PresentationManager: NSObject, UIViewControllerTransitioningDelegate {
 
     var transitionStyle: PopupDialogTransitionStyle
+    var interactor: InteractiveTransition
 
-    init(transitionStyle: PopupDialogTransitionStyle) {
+    init(transitionStyle: PopupDialogTransitionStyle, interactor: InteractiveTransition) {
         self.transitionStyle = transitionStyle
+        self.interactor = interactor
         super.init()
     }
 
-    func presentationController(forPresentedViewController presented: UIViewController, presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
-        let presentationController = PopupDialogPresentationController(presentedViewController: presented, presenting: source)
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let presentationController = PresentationController(presentedViewController: presented, presenting: source)
         return presentationController
     }
 
-    func animationController(forPresentedController presented: UIViewController, presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         var transition: TransitionAnimator
         switch transitionStyle {
@@ -57,7 +59,11 @@ final internal class PopupDialogPresentationManager: NSObject, UIViewControllerT
         return transition
     }
 
-    func animationController(forDismissedController dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+
+        if interactor.hasStarted || interactor.shouldFinish {
+            return DismissInteractiveTransition()
+        }
 
         var transition: TransitionAnimator
         switch transitionStyle {
@@ -72,5 +78,9 @@ final internal class PopupDialogPresentationManager: NSObject, UIViewControllerT
         }
 
         return transition
+    }
+
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
     }
 }

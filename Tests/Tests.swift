@@ -29,12 +29,13 @@ class Tests: XCTestCase {
         XCTAssertEqual(vc.titleText, "Test Title", "Popup Dialog title should be set correctly")
         XCTAssertEqual(vc.messageText, "Test Message", "Popup Dialog message should be set correctly")
         XCTAssertNil(vc.image, "Popup Dialog image should be nil")
+        XCTAssertTrue(popup.keyboardShiftsView, "Keyboard shifts view should be true by default")
     }
 
     func testImageDialogInstantiation() {
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main(), compatibleWith: nil)
+        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main, compatibleWith: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         // Instantiate dialog with image
@@ -60,15 +61,17 @@ class Tests: XCTestCase {
         popup.beginAppearanceTransition(true, animated: false)
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main(), compatibleWith: nil)
+        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main, compatibleWith: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         // Change values after init
         popup.buttonAlignment = .vertical
         popup.transitionStyle = .fadeIn
+        popup.keyboardShiftsView = false
 
         XCTAssertTrue(popup.buttonAlignment == .vertical)
         XCTAssertTrue(popup.transitionStyle == .fadeIn)
+        XCTAssertFalse(popup.keyboardShiftsView)
     }
 
     func testDialogViewPropertyAccess() {
@@ -87,7 +90,7 @@ class Tests: XCTestCase {
         }
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main(), compatibleWith: nil)
+        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main, compatibleWith: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         vc.titleText = "New Test Title"
@@ -111,7 +114,7 @@ class Tests: XCTestCase {
         for index in 1...4 {
             let button = DefaultButton(title: "Test \(index)") { _ in }
             XCTAssertNotNil(button, "Button should be non-nil")
-            XCTAssertEqual(button.title(for: []), "Test \(index)", "Button title should be set correctly")
+            XCTAssertEqual(button.title(for: .normal), "Test \(index)", "Button title should be set correctly")
             XCTAssertNotNil(button.buttonAction, "Button action should be non-nil")
             buttons.append(button)
         }
@@ -127,7 +130,7 @@ class Tests: XCTestCase {
 
     func testButtonTaps() {
 
-        let exp = expectation(withDescription: "Button action needs to be called")
+        let expectation = self.expectation(description: "Button action needs to be called")
 
         // Instantiate dialog
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
@@ -135,7 +138,7 @@ class Tests: XCTestCase {
 
         let button = DefaultButton(title: "Test") {
             XCTAssert(true, "Button action should be called")
-            exp.fulfill()
+            expectation.fulfill()
         }
 
         // Add button
@@ -147,7 +150,7 @@ class Tests: XCTestCase {
         // Tap button with 0 index
         popup.tapButtonWithIndex(0)
 
-        waitForExpectations(withTimeout: 2.0, handler: nil)
+        waitForExpectations(timeout: 2.0, handler: nil)
     }
 
     func testCustomViewController() {
@@ -164,11 +167,13 @@ class Tests: XCTestCase {
         // Make sure the initial text is the expected one
         XCTAssertEqual(vc.testProperty, "I am a test")
 
+        let popupVC = popup.viewController as! CustomViewController
+
         // Change the text
-        popup.viewController.testProperty = "Changed"
+        popupVC.testProperty = "Changed"
 
         // Make sure the changed text is the expected one
         XCTAssertEqual(vc.testProperty, "Changed")
-        XCTAssertEqual(popup.viewController.testProperty, "Changed")
+        XCTAssertEqual(popupVC.testProperty, "Changed")
     }
 }

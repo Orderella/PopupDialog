@@ -93,7 +93,9 @@ class ViewController: UIViewController {
         let message = "If you don't pass an image to the default dialog, it will display just as a regular dialog. Moreover, this features the zoom transition"
 
         // Create the dialog
-        let popup = PopupDialog(title: title, message: message, transitionStyle: .zoomIn, buttonAlignment: .horizontal)
+        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .bounceDown, gestureDismissal: true) {
+            print("Completed")
+        }
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL") {
@@ -122,7 +124,7 @@ class ViewController: UIViewController {
         let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
 
         // Create the dialog
-        let popup = PopupDialog(viewController: ratingVC, transitionStyle: .bounceDown, buttonAlignment: .horizontal)
+        let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL") {

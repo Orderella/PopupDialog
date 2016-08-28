@@ -48,6 +48,7 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.imageView.image }
         set {
             standardView.imageView.image = newValue
+            standardView.imageView.isHidden = newValue != nil ? false : true
             standardView.pv_layoutIfNeededAnimated()
         }
     }
@@ -57,6 +58,7 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.titleLabel.text }
         set {
             standardView.titleLabel.text = newValue
+            //standardView.titleLabel.hidden = newValue != nil ? false : true
             standardView.pv_layoutIfNeededAnimated()
         }
     }
@@ -66,6 +68,7 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.messageLabel.text }
         set {
             standardView.messageLabel.text = newValue
+            //standardView.messageLabel.hidden = newValue != nil ? false : true
             standardView.pv_layoutIfNeededAnimated()
         }
     }

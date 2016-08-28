@@ -29,10 +29,10 @@ import UIKit
 /*!
  Presentation transition styles for the popup dialog
 
- - bounceUp:   Dialog bounces in from bottom and is dismissed to bottom
- - bounceDown: Dialog bounces in from top and is dismissed to top
- - zoomIn:     Dialog zooms in and is dismissed by zooming out
- - fadeIn:     Dialog fades in and is dismissed by fading out
+ - BounceUp:   Dialog bounces in from bottom and is dismissed to bottom
+ - BounceDown: Dialog bounces in from top and is dismissed to top
+ - ZoomIn:     Dialog zooms in and is dismissed by zooming out
+ - FadeIn:     Dialog fades in and is dismissed by fading out
  */
 @objc public enum PopupDialogTransitionStyle: Int {
     case bounceUp
@@ -48,8 +48,8 @@ final internal class BounceUpTransition: TransitionAnimator {
         super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    override func animateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
 
         switch direction {
         case .in:
@@ -64,7 +64,7 @@ final internal class BounceUpTransition: TransitionAnimator {
                 self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
                 self.from.view.alpha = 0.0
             }) { (completed) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }
@@ -78,8 +78,8 @@ final internal class BounceDownTransition: TransitionAnimator {
         super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    override func animateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
 
         switch direction {
         case .in:
@@ -94,7 +94,7 @@ final internal class BounceDownTransition: TransitionAnimator {
                 self.from.view.bounds.origin = CGPoint(x: 0, y: self.from.view.bounds.size.height)
                 self.from.view.alpha = 0.0
             }) { (completed) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }
@@ -107,8 +107,8 @@ final internal class ZoomTransition: TransitionAnimator {
         super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    override func animateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
 
         switch direction {
         case .in:
@@ -123,7 +123,7 @@ final internal class ZoomTransition: TransitionAnimator {
                 self.from.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 self.from.view.alpha = 0.0
             }) { (completed) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }
@@ -136,8 +136,8 @@ final internal class FadeTransition: TransitionAnimator {
         super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    override func animateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
 
         switch direction {
         case .in:
@@ -152,8 +152,26 @@ final internal class FadeTransition: TransitionAnimator {
             UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
                 self.from.view.alpha = 0.0
             }) { (completed) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
+        }
+    }
+}
+
+/// Used for the always drop out animation with pan gesture dismissal
+final internal class DismissInteractiveTransition: TransitionAnimator {
+
+    init() {
+        super.init(inDuration: 0.22, outDuration: 0.32, direction: .out)
+    }
+
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
+        UIView.animate(withDuration: outDuration, delay: 0.0, options: [], animations: {
+            self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
+            self.from.view.alpha = 0.0
+        }) { (completed) in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
 }
