@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // Customize dialog appearance
 //        let pv = PopupDialogDefaultView.appearance()
 //        pv.titleFont    = UIFont(name: "HelveticaNeue-Light", size: 16)!
-//        pv.titleColor   = UIColor.whiteColor()
+//        pv.titleColor   = UIColor.white
 //        pv.messageFont  = UIFont(name: "HelveticaNeue", size: 14)!
 //        pv.messageColor = UIColor(white: 0.8, alpha: 1)
 //
@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        pcv.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
 //        pcv.cornerRadius    = 2
 //        pcv.shadowEnabled   = true
-//        pcv.shadowColor     = UIColor.blackColor()
+//        pcv.shadowColor     = UIColor.black
 //
 //        // Customize overlay appearance
 //        let ov = PopupDialogOverlayView.appearance()
@@ -56,12 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        ov.blurRadius  = 30
 //        ov.liveBlur    = true
 //        ov.opacity     = 0.7
-//        ov.color       = UIColor.blackColor()
+//        ov.color       = UIColor.black
 //
 //        // Customize default button appearance
 //        let db = DefaultButton.appearance()
 //        db.titleFont      = UIFont(name: "HelveticaNeue-Medium", size: 14)!
-//        db.titleColor     = UIColor.whiteColor()
+//        db.titleColor     = UIColor.white
 //        db.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
 //        db.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 //
