@@ -38,7 +38,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 ## Cocoapods
 
 PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following to your Podfile:
+the Swift 3 version, simply add the following to your Podfile:
 
 ```ruby
 use_frameworks!
@@ -47,13 +47,13 @@ target '<Your Target Name>'
 pod 'PopupDialog', '~> 0.4'
 ```
 
-If you are looking for a Swift 3 version of PopupDialog, specify the following branch in your podfile:
+If you are looking for a Swift 2.2 compatible version of PopupDialog, specify the following release in your podfile:
 
 ```ruby
 pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :branch => 'Swift3'
 ```
 
-Please not the the Swift3 branch might not be up to date until release.
+Please note the the Swift 2 branch might not be up to date anymore.
 
 ## Carthage
 
@@ -125,8 +125,8 @@ public convenience init(
     title: String?,
     message: String?,
     image: UIImage? = nil,
-    buttonAlignment: UILayoutConstraintAxis = .Vertical,
-    transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+    buttonAlignment: UILayoutConstraintAxis = .vertical,
+    transitionStyle: PopupDialogTransitionStyle = .bounceUp,
     gestureDismissal: Bool = true,
     completion: (() -> Void)? = nil) 
 ```
@@ -142,8 +142,8 @@ If you provide an image it will be pinned to the top/left/right of the dialog. T
 ```swift
 public init(
     viewController: UIViewController,
-    buttonAlignment: UILayoutConstraintAxis = .Vertical,
-    transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+    buttonAlignment: UILayoutConstraintAxis = .vertical,
+    transitionStyle: PopupDialogTransitionStyle = .bounceUp,
     gestureDismissal: Bool = true,
     completion: (() -> Void)? = nil) 
 ```
@@ -158,10 +158,10 @@ You can set a transition animation style with `.BounceUp` being the default. The
 
 ```swift
 public enum PopupDialogTransitionStyle: Int {
-    case BounceUp
-    case BounceDown
-    case ZoomIn
-    case FadeIn
+    case bounceUp
+    case bounceDown
+    case zoomIn
+    case fadeIn
 }
 ```
 
@@ -171,8 +171,8 @@ Buttons can be distributed either `.Horizontal` or `.Vertical`, with the latter 
 
 ```swift
 public enum UILayoutConstraintAxis : Int {   
-    case Horizontal
-    case Vertical
+    case horizontal
+    case vertical
 }
 ```
 
@@ -204,8 +204,8 @@ let vc = popup.viewController as! PopupDialogDefaultViewController
 vc.image = UIImage(...)
 vc.titleText = "..."
 vc.messageText = "..."
-vc.buttonAlignment = .Horizontal
-vc.transitionStyle = .BounceUp
+vc.buttonAlignment = .horizontal
+vc.transitionStyle = .bounceUp
 ```
 
 <p>&nbsp;</p>
@@ -224,16 +224,16 @@ If you are using the default popup view, the following appearance settings are a
 ```swift
 var dialogAppearance = PopupDialogDefaultView.appearance()
 
-dialogAppearance.backgroundColor      = UIColor.whiteColor()
+dialogAppearance.backgroundColor      = UIColor.white
 dialogAppearance.titleFont            = UIFont.boldSystemFontOfSize(14)
 dialogAppearance.titleColor           = UIColor(white: 0.4, alpha: 1)
-dialogAppearance.titleTextAlignment   = .Center
+dialogAppearance.titleTextAlignment   = .center
 dialogAppearance.messageFont          = UIFont.systemFontOfSize(14)
 dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
-dialogAppearance.messageTextAlignment = .Center
+dialogAppearance.messageTextAlignment = .center
 dialogAppearance.cornerRadius         = 4
 dialogAppearance.shadowEnabled        = true
-dialogAppearance.shadowColor          = UIColor.blackColor()
+dialogAppearance.shadowColor          = UIColor.black
 ```
 
 ## Overlay View Appearance Settings
@@ -243,7 +243,7 @@ This refers to the view that is used as an overlay above the underlying view con
 ```swift
 let overlayAppearance = PopupDialogOverlayView.appearance()
 
-overlayAppearance.color       = UIColor.blackColor()
+overlayAppearance.color       = UIColor.black
 overlayAppearance.blurRadius  = 20
 overlayAppearance.blurEnabled = true
 overlayAppearance.liveBlur    = false
@@ -262,18 +262,18 @@ The standard button classes available are `DefaultButton`, `CancelButton` and `D
 var buttonAppearance = DefaultButton.appearance()
 
 // Default button
-buttonAppearance.titleFont      = UIFont.systemFontOfSize(14)
+buttonAppearance.titleFont      = UIFont.systemFont(ofSize: 14)
 buttonAppearance.titleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
-buttonAppearance.buttonColor    = UIColor.clearColor()
+buttonAppearance.buttonColor    = UIColor.clear
 buttonAppearance.separatorColor = UIColor(white: 0.9, alpha: 1)
 
 // Below, only the differences are highlighted
 
 // Cancel button
-CancelButton.appearance().titleColor = UIColor.lightGrayColor()
+CancelButton.appearance().titleColor = UIColor.lightGray
 
 // Destructive button
-DestructiveButton.appearance().titleColor = UIColor.redColor()
+DestructiveButton.appearance().titleColor = UIColor.red
 ```
 
 Moreover, you can create a custom button by subclassing `PopupDialogButton`. The following example creates a solid blue button, featuring a bold white title font. Separators are invisble.
@@ -282,10 +282,10 @@ Moreover, you can create a custom button by subclassing `PopupDialogButton`. The
 public final class SolidBlueButton: PopupDialogButton {
 
     override public func setupView() {
-        defaultFont           = UIFont.boldSystemFontOfSize(16)
-        defaultTitleColor     = UIColor.whiteColor()
-        defaultButtonColor    = UIColor.blueColor()
-        defaultSeparatorColor = UIColor.clearColor()
+        defaultFont           = UIFont.boldSystemFont(ofSize: 16)
+        defaultTitleColor     = UIColor.white
+        defaultButtonColor    = UIColor.blue
+        defaultSeparatorColor = UIColor.clear
         super.setupView()
     }
 }
@@ -305,7 +305,7 @@ The following is an example of a *Dark Mode* theme. You can find this in the Exa
 let pv = PopupDialogDefaultView.appearance()
 pv.backgroundColor      = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
 pv.titleFont            = UIFont(name: "HelveticaNeue-Light", size: 16)!
-pv.titleColor           = UIColor.whiteColor()
+pv.titleColor           = UIColor.white
 pv.messageFont          = UIFont(name: "HelveticaNeue", size: 14)!
 pv.messageColor         = UIColor(white: 0.8, alpha: 1)
 pv.cornerRadius         = 2
@@ -313,7 +313,7 @@ pv.cornerRadius         = 2
 // Customize default button appearance
 let db = DefaultButton.appearance()
 db.titleFont      = UIFont(name: "HelveticaNeue-Medium", size: 14)!
-db.titleColor     = UIColor.whiteColor()
+db.titleColor     = UIColor.white
 db.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
 db.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
 
@@ -388,12 +388,13 @@ DefaultButton *ok = [[DefaultButton alloc] initWithTitle:@"OK" dismissOnTap:YES 
 
 # Requirements
 
-Minimum requirement is iOS 8.0. This dialog was written with Swift 2.2, 3.X compatibility will be published on a seperate branch soon.
+Minimum requirement is iOS 8.0. This dialog was written with Swift 3, for 2.2 compatible versions please specify the X release.
 
 <p>&nbsp;</p>
 
 # Changelog
 
+* **0.5.0** Swift 3
 * **0.4.0** iOS 8 compatibility
 * **0.3.3** Fixes buttons being added multiple times
 * **0.3.2** Dialog repositioning when interacting with keyboard<br>Non dismissable buttons option<br>Additional completion handler when dialog is dismissed
