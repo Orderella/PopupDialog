@@ -9,11 +9,11 @@
 import Foundation
 
 @objc public enum TZStackViewAlignment: Int {
-    case Fill
-    case Center
-    case Leading
-    case Top
-    case Trailing
-    case Bottom
-    case FirstBaseline
+    case fill
+    case center
+    case leading
+    case top
+    case trailing
+    case bottom
+    case firstBaseline
 }

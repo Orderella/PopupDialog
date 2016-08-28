@@ -8,9 +8,9 @@
 import Foundation
 
 @objc public enum TZStackViewDistribution: Int {
-    case Fill
-    case FillEqually
-    case FillProportionally
-    case EqualSpacing
-    case EqualCentering
+    case fill
+    case fillEqually
+    case fillProportionally
+    case equalSpacing
+    case equalCentering
 }

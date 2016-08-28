@@ -35,10 +35,10 @@ import UIKit
  - FadeIn:     Dialog fades in and is dismissed by fading out
  */
 @objc public enum PopupDialogTransitionStyle: Int {
-    case BounceUp
-    case BounceDown
-    case ZoomIn
-    case FadeIn
+    case bounceUp
+    case bounceDown
+    case zoomIn
+    case fadeIn
 }
 
 /// Dialog bounces in from bottom and is dismissed to bottom
@@ -48,23 +48,23 @@ final internal class BounceUpTransition: TransitionAnimator {
         super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
 
         switch direction {
-        case .In:
+        case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
-            UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseOut], animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
                 self.to.view.bounds = self.from.view.bounds
             }) { (completed) in
                 transitionContext.completeTransition(completed)
             }
-        case .Out:
-            UIView.animateWithDuration(outDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
+        case .out:
+            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
                 self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
                 self.from.view.alpha = 0.0
             }) { (completed) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }
@@ -78,23 +78,23 @@ final internal class BounceDownTransition: TransitionAnimator {
         super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
 
         switch direction {
-        case .In:
+        case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: from.view.bounds.size.height)
-            UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseOut], animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
                 self.to.view.bounds = self.from.view.bounds
             }) { (completed) in
                 transitionContext.completeTransition(completed)
             }
-        case .Out:
-            UIView.animateWithDuration(outDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
+        case .out:
+            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
                 self.from.view.bounds.origin = CGPoint(x: 0, y: self.from.view.bounds.size.height)
                 self.from.view.alpha = 0.0
             }) { (completed) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }
@@ -107,23 +107,23 @@ final internal class ZoomTransition: TransitionAnimator {
         super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
 
         switch direction {
-        case .In:
-            to.view.transform = CGAffineTransformMakeScale(0.1, 0.1)
-            UIView.animateWithDuration(0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.CurveEaseOut], animations: {
-                self.to.view.transform = CGAffineTransformMakeScale(1, 1)
+        case .in:
+            to.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
+                self.to.view.transform = CGAffineTransform(scaleX: 1, y: 1)
             }) { (completed) in
                 transitionContext.completeTransition(completed)
             }
-        case .Out:
-            UIView.animateWithDuration(outDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
-                self.from.view.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        case .out:
+            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
+                self.from.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 self.from.view.alpha = 0.0
             }) { (completed) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }
@@ -136,23 +136,23 @@ final internal class FadeTransition: TransitionAnimator {
         super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
     }
 
-    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
 
         switch direction {
-        case .In:
+        case .in:
             to.view.alpha = 0
-            UIView.animateWithDuration(0.6, delay: 0.0, options: [.CurveEaseOut],
+            UIView.animate(withDuration: 0.6, delay: 0.0, options: [.curveEaseOut],
             animations: {
                 self.to.view.alpha = 1
             }) { (completed) in
                 transitionContext.completeTransition(completed)
             }
-        case .Out:
-            UIView.animateWithDuration(outDuration, delay: 0.0, options: [.CurveEaseIn], animations: {
+        case .out:
+            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
                 self.from.view.alpha = 0.0
             }) { (completed) in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             }
         }
     }
@@ -162,16 +162,16 @@ final internal class FadeTransition: TransitionAnimator {
 final internal class DismissInteractiveTransition: TransitionAnimator {
 
     init() {
-        super.init(inDuration: 0.22, outDuration: 0.32, direction: .Out)
+        super.init(inDuration: 0.22, outDuration: 0.32, direction: .out)
     }
 
-    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        super.animateTransition(transitionContext)
-        UIView.animateWithDuration(outDuration, delay: 0.0, options: [], animations: {
+    override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        super.animateTransition(using: transitionContext)
+        UIView.animate(withDuration: outDuration, delay: 0.0, options: [], animations: {
             self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
             self.from.view.alpha = 0.0
         }) { (completed) in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
 }

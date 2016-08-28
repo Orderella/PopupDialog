@@ -34,43 +34,42 @@ internal extension PopupDialog {
 
     /*! Add obserservers for UIKeyboard notifications */
     internal func addObservers() {
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(orientationChanged),
-                                                         name: UIDeviceOrientationDidChangeNotification,
+        NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged),
+                                                         name: NSNotification.Name.UIDeviceOrientationDidChange,
                                                          object: nil)
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(keyboardWillShow),
-                                                         name: UIKeyboardWillShowNotification,
+                                                         name: NSNotification.Name.UIKeyboardWillShow,
                                                          object: nil)
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(keyboardWillHide),
-                                                         name: UIKeyboardWillHideNotification,
+                                                         name: NSNotification.Name.UIKeyboardWillHide,
                                                          object: nil)
 
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
                                                          selector: #selector(keyboardWillChangeFrame),
-                                                         name: UIKeyboardWillChangeFrameNotification,
+                                                         name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                          object: nil)
     }
 
     /*! Remove observers */
     internal func removeObservers() {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: UIDeviceOrientationDidChangeNotification,
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name.UIDeviceOrientationDidChange,
                                                             object: nil)
 
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: UIKeyboardWillShowNotification,
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name.UIKeyboardWillShow,
                                                             object: nil)
 
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: UIKeyboardWillHideNotification,
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name.UIKeyboardWillHide,
                                                             object: nil)
 
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-                                                            name: UIKeyboardWillChangeFrameNotification,
+        NotificationCenter.default.removeObserver(self,
+                                                            name: NSNotification.Name.UIKeyboardWillChangeFrame,
                                                             object: nil)
     }
 
@@ -80,7 +79,7 @@ internal extension PopupDialog {
      Keyboard will show notification listener
      - parameter notification: NSNotification
      */
-    @objc private func keyboardWillShow(notification: NSNotification) {
+    @objc fileprivate func keyboardWillShow(_ notification: Notification) {
         guard isTopAndVisible else { return }
         keyboardShown = true
         centerPopup()
@@ -90,7 +89,7 @@ internal extension PopupDialog {
      Keyboard will hide notification listener
      - parameter notification: NSNotification
      */
-    @objc private func keyboardWillHide(notification: NSNotification) {
+    @objc fileprivate func keyboardWillHide(_ notification: Notification) {
         guard isTopAndVisible else { return }
         keyboardShown = false
         centerPopup()
@@ -100,22 +99,22 @@ internal extension PopupDialog {
      Keyboard will change frame notification listener
      - parameter notification: NSNotification
      */
-    @objc private func keyboardWillChangeFrame(notification: NSNotification) {
-        guard let keyboardRect = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+    @objc fileprivate func keyboardWillChangeFrame(_ notification: Notification) {
+        guard let keyboardRect = (notification as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
             return
         }
-        keyboardHeight = keyboardRect.CGRectValue().height
+        keyboardHeight = keyboardRect.cgRectValue.height
     }
 
     /*!
      Listen to orientation changes
      - parameter notification: NSNotification
      */
-    @objc private func orientationChanged(notification: NSNotification) {
+    @objc fileprivate func orientationChanged(_ notification: Notification) {
         if keyboardShown { centerPopup() }
     }
 
-    private func centerPopup() {
+    fileprivate func centerPopup() {
 
         // Make sure keyboard should reposition on keayboard notifications
         guard keyboardShiftsView else { return }

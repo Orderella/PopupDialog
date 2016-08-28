@@ -48,7 +48,7 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.imageView.image }
         set {
             standardView.imageView.image = newValue
-            standardView.imageView.hidden = newValue != nil ? false : true
+            standardView.imageView.isHidden = newValue != nil ? false : true
             standardView.pv_layoutIfNeededAnimated()
         }
     }
