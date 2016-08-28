@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         let message = "If you don't pass an image to the default dialog, it will display just as a regular dialog. Moreover, this features the zoom transition"
 
         // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: nil, buttonAlignment: .vertical, transitionStyle: .bounceDown, gestureDismissal: true) {
+        let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true) {
             print("Completed")
         }
 
