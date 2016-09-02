@@ -1,27 +1,19 @@
 # references:
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
-
+# Blatantly stolen from Alamofire .travis.yml
 
 language: objective-c
 env:
   global:
+  - WORKSPACE=Example/PopupDialog.xcworkspace
   - IOS_SCHEME="PopupDialog-Example"
   - IOS_SIM="iphonesimulator"
 matrix:
   include:
     - os: osx
       osx_image: xcode8
-      env: DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"
-    - os: osx
-      osx_image: xcode8
       env: DESTINATION="OS=8.4,name=iPhone 6" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - os: osx
-      osx_image: xcode8
-      env: DESTINATION="OS=9.0,name=iPhone 6" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - os: osx
-      osx_image: xcode8
-      env: DESTINATION="OS=9.1,name=iPhone 6 Plus" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
     - os: osx
       osx_image: xcode8
       env: DESTINATION="OS=9.3,name=iPhone 6S Plus" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
@@ -36,3 +28,27 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
+
+  # Build Framework in Debug and Run Tests if specified
+  - if [ $RUN_TESTS == "YES" ]; then
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
+    else
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
+    fi
+
+  # Build Framework in Release and Run Tests if specified
+  - if [ $RUN_TESTS == "YES" ]; then
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
+    else
+      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
+    fi
+
+  # Build Example in Debug if specified
+  - if [ $BUILD_EXAMPLE == "YES" ]; then
+      xcodebuild -workspace "$WORKSPACE" -scheme "$EXAMPLE_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty -c;
+    fi
+
+  # Run `pod lib lint` if specified
+  - if [ $POD_LINT == "YES" ]; then
+      pod lib lint;
+    fi
