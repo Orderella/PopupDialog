@@ -2,13 +2,46 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode7.3
+
 language: objective-c
-# cache: cocoapods
+env:
+  global:
+  - IOS_SCHEME="PopupDialog-Example"
+  - IOS_SIM="iphonesimulator"
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode8
+      env: DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"
+    - os: osx
+      osx_image: xcode8
+      env: DESTINATION="OS=8.2,name=iPhone 5" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    - os: osx
+      osx_image: xcode8
+      env: DESTINATION="OS=8.3,name=iPhone 5S" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    - os: osx
+      osx_image: xcode8
+      env: DESTINATION="OS=8.4,name=iPhone 6" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    - os: osx
+      osx_image: xcode8
+      env: DESTINATION="OS=9.0,name=iPhone 6" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    - os: osx
+      osx_image: xcode8
+      env: DESTINATION="OS=9.1,name=iPhone 6 Plus" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    - os: osx
+      osx_image: xcode8
+      env: DESTINATION="OS=9.2,name=iPhone 6S" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    - os: osx
+      osx_image: xcode8
+      env: DESTINATION="OS=9.3,name=iPhone 6S Plus" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+    - os: osx
+      env: DESTINATION="OS=10.0,name=iPhone 6S" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}10.0" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
+      osx_image: xcode8
 podfile: Example/Podfile
 before_install:
-- gem install cocoapods # Since Travis is not always on latest version
-- pod install --project-directory=Example
+  - gem install cocoapods # Since Travis is not always on latest version
+  - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -workspace Example/PopupDialog.xcworkspace -scheme PopupDialog-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
-- pod lib lint
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
