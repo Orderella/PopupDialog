@@ -32,10 +32,13 @@ final internal class PresentationController: UIPresentationController {
         return PopupDialogOverlayView(frame: .zero)
     }()
 
-    override init(presentedViewController: UIViewController, presentingViewController: UIViewController) {
+    override init(presentedViewController: UIViewController, presentingViewController: UIViewController?) {
         super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
-        overlay.blurView.underlyingView = presentingViewController.view
-        overlay.frame = presentingViewController.view.bounds
+
+        if let presentingController = presentingViewController {
+          overlay.blurView.underlyingView = presentingController.view
+          overlay.frame = presentingController.view.bounds
+        }
     }
 
     override func presentationTransitionWillBegin() {

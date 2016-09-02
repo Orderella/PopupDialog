@@ -37,7 +37,7 @@ final internal class PresentationManager: NSObject, UIViewControllerTransitionin
         super.init()
     }
 
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
         let presentationController = PresentationController(presentedViewController: presented, presentingViewController: source)
         return presentationController
     }
