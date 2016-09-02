@@ -15,12 +15,6 @@ matrix:
       env: DESTINATION="OS=8.1,name=iPhone 4S" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"
     - os: osx
       osx_image: xcode8
-      env: DESTINATION="OS=8.2,name=iPhone 5" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - os: osx
-      osx_image: xcode8
-      env: DESTINATION="OS=8.3,name=iPhone 5S" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - os: osx
-      osx_image: xcode8
       env: DESTINATION="OS=8.4,name=iPhone 6" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
     - os: osx
       osx_image: xcode8
@@ -28,9 +22,6 @@ matrix:
     - os: osx
       osx_image: xcode8
       env: DESTINATION="OS=9.1,name=iPhone 6 Plus" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
-    - os: osx
-      osx_image: xcode8
-      env: DESTINATION="OS=9.2,name=iPhone 6S" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
     - os: osx
       osx_image: xcode8
       env: DESTINATION="OS=9.3,name=iPhone 6S Plus" SCHEME="$IOS_SCHEME" SDK="${IOS_SIM}9.3" RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
