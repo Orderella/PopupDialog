@@ -44,16 +44,16 @@ the Swift 3 version, simply add the following to your Podfile:
 use_frameworks!
 
 target '<Your Target Name>'
-pod 'PopupDialog', '~> 0.4'
+pod 'PopupDialog', '~> 0.5'
 ```
 
 If you are looking for a Swift 2.2 compatible version of PopupDialog, specify the following release in your podfile:
 
 ```ruby
-pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :branch => 'Swift3'
+pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :tag => '4.0'
 ```
 
-Please note the the Swift 2 branch might not be up to date anymore.
+Please note the the Swift 2 release might not be up to date.
 
 ## Carthage
 
@@ -225,10 +225,10 @@ If you are using the default popup view, the following appearance settings are a
 var dialogAppearance = PopupDialogDefaultView.appearance()
 
 dialogAppearance.backgroundColor      = UIColor.white
-dialogAppearance.titleFont            = UIFont.boldSystemFontOfSize(14)
+dialogAppearance.titleFont            = UIFont.boldSystemFont(ofSize: 14)
 dialogAppearance.titleColor           = UIColor(white: 0.4, alpha: 1)
 dialogAppearance.titleTextAlignment   = .center
-dialogAppearance.messageFont          = UIFont.systemFontOfSize(14)
+dialogAppearance.messageFont          = UIFont.systemFont(ofSize: 14)
 dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
 dialogAppearance.messageTextAlignment = .center
 dialogAppearance.cornerRadius         = 4
