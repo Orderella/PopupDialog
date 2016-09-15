@@ -53,7 +53,7 @@ If you are looking for a Swift 2.2 compatible version of PopupDialog, specify th
 pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :tag => '4.0'
 ```
 
-Please note the the Swift 2 release might not be up to date.
+Please note the the Swift 2 release will not be maintained when Swift 3 was officially released.
 
 ## Carthage
 
@@ -62,7 +62,7 @@ Please note the the Swift 2 release might not be up to date.
 To install, simply add the following lines to your Cartfile:
 
 ```ruby
-github "Orderella/PopupDialog" ~> 0.4
+github "Orderella/PopupDialog" ~> 0.5
 github "tomvanzummeren/TZStackView" ~> 1.2.0
 ```
 
@@ -394,7 +394,7 @@ Minimum requirement is iOS 8.0. This dialog was written with Swift 3, for 2.2 co
 
 # Changelog
 
-* **0.5.0** Swift 3
+* **0.5.0** Swift 3 compatibility
 * **0.4.0** iOS 8 compatibility
 * **0.3.3** Fixes buttons being added multiple times
 * **0.3.2** Dialog repositioning when interacting with keyboard<br>Non dismissable buttons option<br>Additional completion handler when dialog is dismissed
