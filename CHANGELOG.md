@@ -1,5 +1,6 @@
 # Changelog
 
+* **0.5.0** Swift 3 compatibility
 * **0.4.0** iOS 8 compatibility
 * **0.3.3** Fixes buttons being added multiple times
 * **0.3.2** Dialog repositioning when interacting with keyboard<br>Non dismissable buttons option<br>Additional completion handler when dialog is dismissed
