@@ -1,5 +1,5 @@
 PODS:
-  - PopupDialog (0.4.0):
+  - PopupDialog (0.5.0):
     - TZStackView
   - TZStackView (1.2.0)
 
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PopupDialog: 5f87c0c97af1cf5f2eee6e5a83421c3fc0d22fb5
+  PopupDialog: f45cfc603a2c16664d18b9cc1b38ece3bedcbdc9
   TZStackView: 4b82373b4aabe4d99adf739a34e1bc6755149272
 
 PODFILE CHECKSUM: d8495001123cc68c0f614ef520d9741b67defd8d
