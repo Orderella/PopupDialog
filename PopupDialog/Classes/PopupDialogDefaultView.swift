@@ -25,7 +25,6 @@
 
 import Foundation
 import UIKit
-import TZStackView
 
 /// The main view of the popup dialog
 final public class PopupDialogDefaultView: UIView {

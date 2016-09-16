@@ -63,7 +63,6 @@ To install, simply add the following lines to your Cartfile:
 
 ```ruby
 github "Orderella/PopupDialog" ~> 0.5
-github "tomvanzummeren/TZStackView" ~> 1.2.0
 ```
 
 ## Manually

@@ -134,7 +134,7 @@ final public class PopupDialog: UIViewController {
         modalPresentationStyle = .custom
 
         // Add our custom view to the container
-        popupContainerView.stackView.insertArrangedSubview(viewController.view, atIndex: 0)
+        popupContainerView.stackView.insertArrangedSubview(viewController.view, at: 0)
 
         // Set button alignment
         popupContainerView.buttonStackView.axis = buttonAlignment
