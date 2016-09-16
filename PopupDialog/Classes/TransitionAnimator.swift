@@ -31,31 +31,31 @@ internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioni
 
     var to: UIViewController!
     var from: UIViewController!
-    let inDuration: NSTimeInterval
-    let outDuration: NSTimeInterval
+    let inDuration: TimeInterval
+    let outDuration: TimeInterval
     let direction: AnimationDirection
 
-    init(inDuration: NSTimeInterval, outDuration: NSTimeInterval, direction: AnimationDirection) {
+    init(inDuration: TimeInterval, outDuration: TimeInterval, direction: AnimationDirection) {
         self.inDuration = inDuration
         self.outDuration = outDuration
         self.direction = direction
         super.init()
     }
 
-    internal func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return direction == .In ? inDuration : outDuration
+    internal func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return direction == .in ? inDuration : outDuration
     }
 
-    internal func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    internal func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         switch direction {
-        case .In:
-            to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-            from = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-            let container = transitionContext.containerView()!
+        case .in:
+            to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
+            from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
+            let container = transitionContext.containerView
             container.addSubview(to.view)
-        case .Out:
-            to = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
-            from = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
+        case .out:
+            to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
+            from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
         }
     }
 }

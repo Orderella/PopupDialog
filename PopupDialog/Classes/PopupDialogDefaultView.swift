@@ -25,7 +25,6 @@
 
 import Foundation
 import UIKit
-import TZStackView
 
 /// The main view of the popup dialog
 final public class PopupDialogDefaultView: UIView {
@@ -74,7 +73,7 @@ final public class PopupDialogDefaultView: UIView {
     internal lazy var imageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
@@ -83,9 +82,9 @@ final public class PopupDialogDefaultView: UIView {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = .Center
+        titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor(white: 0.4, alpha: 1)
-        titleLabel.font = UIFont.boldSystemFontOfSize(14)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 14)
         return titleLabel
     }()
 
@@ -94,9 +93,9 @@ final public class PopupDialogDefaultView: UIView {
         let messageLabel = UILabel(frame: .zero)
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.numberOfLines = 0
-        messageLabel.textAlignment = .Center
+        messageLabel.textAlignment = .center
         messageLabel.textColor = UIColor(white: 0.6, alpha: 1)
-        messageLabel.font = UIFont.systemFontOfSize(14)
+        messageLabel.font = UIFont.systemFont(ofSize: 14)
         return messageLabel
     }()
 
@@ -124,15 +123,15 @@ final public class PopupDialogDefaultView: UIView {
         addSubview(messageLabel)
 
         // Layout views
-        let views = ["imageView": imageView, "titleLabel": titleLabel, "messageLabel": messageLabel]
+        let views = ["imageView": imageView, "titleLabel": titleLabel, "messageLabel": messageLabel] as [String : Any]
         var constraints = [NSLayoutConstraint]()
 
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(==20@900)-[titleLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(==20@900)-[messageLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView]-(==30@900)-[titleLabel]-(==8@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==20@900)-[titleLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==20@900)-[messageLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]-(==30@900)-[titleLabel]-(==8@900)-[messageLabel]-(==30@900)-|", options: [], metrics: nil, views: views)
 
         // Activate constraints
-        NSLayoutConstraint.activateConstraints(constraints)
+        NSLayoutConstraint.activate(constraints)
     }
 }

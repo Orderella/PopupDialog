@@ -37,29 +37,29 @@ final internal class PresentationManager: NSObject, UIViewControllerTransitionin
         super.init()
     }
 
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        let presentationController = PresentationController(presentedViewController: presented, presentingViewController: source)
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let presentationController = PresentationController(presentedViewController: presented, presenting: source)
         return presentationController
     }
 
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         var transition: TransitionAnimator
         switch transitionStyle {
-        case .BounceUp:
-            transition = BounceUpTransition(direction: .In)
-        case .BounceDown:
-            transition = BounceDownTransition(direction: .In)
-        case .ZoomIn:
-            transition = ZoomTransition(direction: .In)
-        case .FadeIn:
-            transition = FadeTransition(direction: .In)
+        case .bounceUp:
+            transition = BounceUpTransition(direction: .in)
+        case .bounceDown:
+            transition = BounceDownTransition(direction: .in)
+        case .zoomIn:
+            transition = ZoomTransition(direction: .in)
+        case .fadeIn:
+            transition = FadeTransition(direction: .in)
         }
 
         return transition
     }
 
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         if interactor.hasStarted || interactor.shouldFinish {
             return DismissInteractiveTransition()
@@ -67,20 +67,20 @@ final internal class PresentationManager: NSObject, UIViewControllerTransitionin
 
         var transition: TransitionAnimator
         switch transitionStyle {
-        case .BounceUp:
-            transition = BounceUpTransition(direction: .Out)
-        case .BounceDown:
-            transition = BounceDownTransition(direction: .Out)
-        case .ZoomIn:
-            transition = ZoomTransition(direction: .Out)
-        case .FadeIn:
-            transition = FadeTransition(direction: .Out)
+        case .bounceUp:
+            transition = BounceUpTransition(direction: .out)
+        case .bounceDown:
+            transition = BounceDownTransition(direction: .out)
+        case .zoomIn:
+            transition = ZoomTransition(direction: .out)
+        case .fadeIn:
+            transition = FadeTransition(direction: .out)
         }
 
         return transition
     }
 
-    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
 }

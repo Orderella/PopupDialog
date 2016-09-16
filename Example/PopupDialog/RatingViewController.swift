@@ -33,7 +33,7 @@ class RatingViewController: UIViewController {
 
 extension RatingViewController: UITextFieldDelegate {
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         endEditing()
         return true
     }
