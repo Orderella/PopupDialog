@@ -109,8 +109,7 @@ let buttonThree = DefaultButton(title: "BUY CAR") {
 popup.addButtons([buttonOne, buttonTwo, buttonThree])
 
 // Present dialog
-self.presentViewController(popup, animated: true, completion: nil)
-
+self.present(popup, animated: true, completion: nil)
 ```
 
 <p>&nbsp;</p>
