@@ -1,7 +1,5 @@
 PODS:
-  - PopupDialog (0.5.0):
-    - TZStackView
-  - TZStackView (1.2.0)
+  - PopupDialog (0.5.0)
 
 DEPENDENCIES:
   - PopupDialog (from `../`)
@@ -11,8 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PopupDialog: f45cfc603a2c16664d18b9cc1b38ece3bedcbdc9
-  TZStackView: 4b82373b4aabe4d99adf739a34e1bc6755149272
+  PopupDialog: 9890441b81105b9076757af2afe2b037be682f3e
 
 PODFILE CHECKSUM: d8495001123cc68c0f614ef520d9741b67defd8d
 

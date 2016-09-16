@@ -16,12 +16,7 @@
   },
   "social_media_url": "https://twitter.com/orderella",
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "PopupDialog/Classes/**/*",
-  "dependencies": {
-    "TZStackView": [
-
-    ]
-  }
+  "source_files": "PopupDialog/Classes/**/*"
 }
