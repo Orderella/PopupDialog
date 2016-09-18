@@ -37,8 +37,8 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 
 ## Cocoapods
 
-PopupDialog is available through [CocoaPods](http://cocoapods.org). To install
-the Swift 3 version, simply add the following to your Podfile:
+PopupDialog is available through [CocoaPods](http://cocoapods.org). For best results with Swift 3, I recommend
+installing CocoaPods version `1.1.0` (which might be a prerelease as of this release). Simply add the following to your Podfile:
 
 ```ruby
 use_frameworks!
@@ -59,7 +59,7 @@ Please note the the Swift 2 release will not be maintained when Swift 3 was offi
 
 ## Carthage
 
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. A minimum version of `0.17` is required.
 
 To install, simply add the following lines to your Cartfile:
 
