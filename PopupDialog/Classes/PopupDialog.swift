@@ -32,16 +32,16 @@ final public class PopupDialog: UIViewController {
     // MARK: Private / Internal
 
     /// First init flag
-    private var initialized = false
+    fileprivate var initialized = false
 
     /// The completion handler
-    private var completion: (() -> Void)? = nil
+    fileprivate var completion: (() -> Void)? = nil
 
     /// The custom transition presentation manager
-    private var presentationManager: PresentationManager!
+    fileprivate var presentationManager: PresentationManager!
 
     /// Interactor class for pan gesture dismissal
-    private lazy var interactor: InteractiveTransition = {
+    fileprivate lazy var interactor: InteractiveTransition = {
        return InteractiveTransition()
     }()
 
@@ -51,7 +51,7 @@ final public class PopupDialog: UIViewController {
     }
 
     /// The set of buttons
-    private var buttons = [PopupDialogButton]()
+    fileprivate var buttons = [PopupDialogButton]()
 
     /// Whether keyboard has shifted view
     internal var keyboardShown = false
@@ -86,8 +86,8 @@ final public class PopupDialog: UIViewController {
                 title: String?,
                 message: String?,
                 image: UIImage? = nil,
-                buttonAlignment: UILayoutConstraintAxis = .Vertical,
-                transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+                buttonAlignment: UILayoutConstraintAxis = .vertical,
+                transitionStyle: PopupDialogTransitionStyle = .bounceUp,
                 gestureDismissal: Bool = true,
                 completion: (() -> Void)? = nil) {
 
@@ -114,8 +114,8 @@ final public class PopupDialog: UIViewController {
      */
     public init(
         viewController: UIViewController,
-        buttonAlignment: UILayoutConstraintAxis = .Vertical,
-        transitionStyle: PopupDialogTransitionStyle = .BounceUp,
+        buttonAlignment: UILayoutConstraintAxis = .vertical,
+        transitionStyle: PopupDialogTransitionStyle = .bounceUp,
         gestureDismissal: Bool = true,
         completion: (() -> Void)? = nil) {
 
@@ -131,10 +131,10 @@ final public class PopupDialog: UIViewController {
 
         // Define presentation styles
         transitioningDelegate = presentationManager
-        modalPresentationStyle = .Custom
+        modalPresentationStyle = .custom
 
         // Add our custom view to the container
-        popupContainerView.stackView.insertArrangedSubview(viewController.view, atIndex: 0)
+        popupContainerView.stackView.insertArrangedSubview(viewController.view, at: 0)
 
         // Set button alignment
         popupContainerView.buttonStackView.axis = buttonAlignment
@@ -157,10 +157,10 @@ final public class PopupDialog: UIViewController {
 
     /// Replaces controller view with popup view
     public override func loadView() {
-        view = PopupDialogContainerView(frame: UIScreen.mainScreen().bounds)
+        view = PopupDialogContainerView(frame: UIScreen.main.bounds)
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         guard !initialized else { return }
@@ -169,7 +169,7 @@ final public class PopupDialog: UIViewController {
         initialized = true
     }
 
-    public override func viewWillDisappear(animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeObservers()
     }
@@ -181,19 +181,19 @@ final public class PopupDialog: UIViewController {
 
     // MARK - Dismissal related
 
-    @objc private func handleTap(sender: UITapGestureRecognizer) {
+    @objc fileprivate func handleTap(_ sender: UITapGestureRecognizer) {
 
         // Make sure it's not a tap on the dialog but the background
-        let point = sender.locationInView(popupContainerView.stackView)
-        guard !popupContainerView.stackView.pointInside(point, withEvent: nil) else { return }
+        let point = sender.location(in: popupContainerView.stackView)
+        guard !popupContainerView.stackView.point(inside: point, with: nil) else { return }
         dismiss()
     }
 
     /*!
      Dismisses the popup dialog
      */
-    public func dismiss(completion: (() -> Void)? = nil) {
-        dismissViewControllerAnimated(true) {
+    public func dismiss(_ completion: (() -> Void)? = nil) {
+        self.dismiss(animated: true) {
             completion?()
         }
     }
@@ -204,16 +204,16 @@ final public class PopupDialog: UIViewController {
      Appends the buttons added to the popup dialog
      to the placeholder stack view
      */
-    private func appendButtons() {
+    fileprivate func appendButtons() {
         // Add action to buttons
         if buttons.isEmpty {
             popupContainerView.stackView.removeArrangedSubview(popupContainerView.buttonStackView)
         }
 
-        for (index, button) in buttons.enumerate() {
-            button.needsLeftSeparator = popupContainerView.buttonStackView.axis == .Horizontal && index > 0
+        for (index, button) in buttons.enumerated() {
+            button.needsLeftSeparator = popupContainerView.buttonStackView.axis == .horizontal && index > 0
             popupContainerView.buttonStackView.addArrangedSubview(button)
-            button.addTarget(self, action: #selector(buttonTapped(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
     }
 
@@ -221,7 +221,7 @@ final public class PopupDialog: UIViewController {
      Adds a single PopupDialogButton to the Popup dialog
      - parameter button: A PopupDialogButton instance
      */
-    public func addButton(button: PopupDialogButton) {
+    public func addButton(_ button: PopupDialogButton) {
         buttons.append(button)
     }
 
@@ -229,12 +229,12 @@ final public class PopupDialog: UIViewController {
      Adds an array of PopupDialogButtons to the Popup dialog
      - parameter buttons: A list of PopupDialogButton instances
      */
-    public func addButtons(buttons: [PopupDialogButton]) {
+    public func addButtons(_ buttons: [PopupDialogButton]) {
         self.buttons += buttons
     }
 
     /// Calls the action closure of the button instance tapped
-    @objc private func buttonTapped(button: PopupDialogButton) {
+    @objc fileprivate func buttonTapped(_ button: PopupDialogButton) {
         if button.dismissOnTap {
             dismiss() { button.buttonAction?() }
         } else {
@@ -247,7 +247,7 @@ final public class PopupDialog: UIViewController {
      Makes testing a breeze
      - parameter index: The index of the button to tap
      */
-    public func tapButtonWithIndex(index: Int) {
+    public func tapButtonWithIndex(_ index: Int) {
         let button = buttons[index]
         button.buttonAction?()
     }

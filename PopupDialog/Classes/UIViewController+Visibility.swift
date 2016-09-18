@@ -34,7 +34,7 @@ internal extension UIViewController {
     }
 
     internal var isVisible: Bool {
-        if isViewLoaded() {
+        if isViewLoaded {
             return view.window != nil
         }
         return false

@@ -28,12 +28,12 @@ import UIKit
 
 /*!
  The intended direction of the animation
- - In:  Animate in
- - Out: Animate out
+ - in:  Animate in
+ - out: Animate out
  */
 internal enum AnimationDirection {
-    case In
-    case Out
+    case `in`
+    case out
 }
 
 internal extension UIView {
@@ -47,18 +47,18 @@ internal extension UIView {
      - parameter value:     The end value of this animation
      - parameter duration:  The duration of this animation
      */
-    internal func pv_fade(direction: AnimationDirection, _ value: Float, duration: CFTimeInterval = 0.08) {
-        layer.removeAnimationForKey(fadeKey)
+    internal func pv_fade(_ direction: AnimationDirection, _ value: Float, duration: CFTimeInterval = 0.08) {
+        layer.removeAnimation(forKey: fadeKey)
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.duration = duration
-        animation.fromValue = layer.presentationLayer()?.opacity
+        animation.fromValue = layer.presentation()?.opacity
         layer.opacity = value
         animation.fillMode = kCAFillModeForwards
-        layer.addAnimation(animation, forKey: fadeKey)
+        layer.add(animation, forKey: fadeKey)
     }
 
-    internal func pv_layoutIfNeededAnimated(duration duration: CFTimeInterval = 0.08) {
-        UIView.animateWithDuration(duration, delay: 0, options: [.CurveEaseInOut], animations: {
+    internal func pv_layoutIfNeededAnimated(duration: CFTimeInterval = 0.08) {
+        UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(), animations: {
             self.layoutIfNeeded()
         }, completion: nil)
     }
