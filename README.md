@@ -52,7 +52,7 @@ pod 'PopupDialog', '~> 0.5'
 If you are looking for a Swift 2.2/iOS8 compatible version of PopupDialog, specify the following release in your podfile:
 
 ```ruby
-pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :tag => '4.0'
+pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :tag => '0.4.0'
 ```
 
 Please note the the Swift 2 release will not be maintained when Swift 3 was officially released.
