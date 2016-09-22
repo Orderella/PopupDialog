@@ -1,5 +1,5 @@
 > Please fill out this template when filing an issue.
-> All ℹ symbols should be replaced with informatin on the issue.
+> All ℹ symbols should be replaced with information on the issue.
 > Please remove this line and all above before submitting.
 
 # Report
