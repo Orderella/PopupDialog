@@ -33,7 +33,7 @@ final internal class PresentationController: UIPresentationController {
     }()
 
     override init(presentedViewController: UIViewController, presentingViewController: UIViewController?) {
-        super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
+        super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController!)
 
         if let presentingController = presentingViewController {
           overlay.blurView.underlyingView = presentingController.view
