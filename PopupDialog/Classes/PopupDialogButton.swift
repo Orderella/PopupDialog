@@ -38,7 +38,10 @@ open class PopupDialogButton: UIButton {
         get { return titleLabel?.font }
         set { titleLabel?.font = newValue }
     }
-
+    
+    /// The height of the button
+    open dynamic var buttonHeight: Int
+    
     /// The title color of the button
     open dynamic var titleColor: UIColor? {
         get { return self.titleColor(for: UIControlState()) }
@@ -106,8 +109,13 @@ open class PopupDialogButton: UIButton {
 
      - returns: PopupDialogButton
      */
-    public init(title: String, dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
+    public init(title: String,
+                height: Int = 45,
+                dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
 
+        // Assign the button height
+        buttonHeight = height
+        
         // Assign the button action
         buttonAction = action
 
@@ -142,8 +150,9 @@ open class PopupDialogButton: UIButton {
         addSubview(leftSeparator)
 
         let views = ["separator": separator, "leftSeparator": leftSeparator, "button": self]
+        let metrics = ["buttonHeight": buttonHeight]
         var constraints = [NSLayoutConstraint]()
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[button(45)]", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[button(buttonHeight)]", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[separator]|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[separator(1)]", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[leftSeparator(1)]", options: [], metrics: nil, views: views)
