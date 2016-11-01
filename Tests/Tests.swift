@@ -136,7 +136,7 @@ class Tests: XCTestCase {
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
         XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
-        let button = DefaultButton(title: "Test") {
+        let button = DefaultButton(title: "Test", height: 70) {
             XCTAssert(true, "Button action should be called")
             expectation.fulfill()
         }
