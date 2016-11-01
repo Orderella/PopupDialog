@@ -99,7 +99,7 @@ let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
     print("What a beauty!")
 }
 
-let buttonThree = DefaultButton(title: "BUY CAR") {
+let buttonThree = DefaultButton(title: "BUY CAR", height: 60) {
     print("Ah, maybe next time :)")
 }
 
@@ -165,7 +165,7 @@ public enum PopupDialogTransitionStyle: Int {
 }
 ```
 
-## Button alignment
+## Button Alignment
 
 Buttons can be distributed either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
 
@@ -394,6 +394,7 @@ Minimum requirement is iOS 8.0. This dialog was written with Swift 3, for 2.2 co
 
 # Changelog
 
+* **0.5.0** Swift 3 compatibility / removed iOS8
 * **0.5.0** Swift 3 compatibility / removed iOS8
 * **0.4.0** iOS 8 compatibility
 * **0.3.3** Fixes buttons being added multiple times
