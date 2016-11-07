@@ -10,5 +10,5 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
   s.source_files = 'PopupDialog/Classes/**/*'
-  s.dependency 'TZStackView'
+  s.dependency 'TZStackView', '1.2.0'
 end
