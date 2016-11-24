@@ -242,7 +242,7 @@ final public class PopupDialog: UIViewController, InteractiveTransitionDelegate 
     /// Calls the action closure of the button instance tapped
     @objc fileprivate func buttonTapped(_ button: PopupDialogButton) {
         if button.dismissOnTap {
-            dismiss(self.completion) { button.buttonAction?() }
+            dismiss() { button.buttonAction?() }
         } else {
             button.buttonAction?()
         }
