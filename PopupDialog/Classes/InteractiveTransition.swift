@@ -25,8 +25,14 @@
 
 import Foundation
 
+protocol InteractiveTransitionDelegate {
+    func interactiveTransitionDidDismissViewController()
+}
+
 // Handles interactive transition triggered via pan gesture recognizer on dialog
 final internal class InteractiveTransition: UIPercentDrivenInteractiveTransition {
+
+    var delegate: InteractiveTransitionDelegate?
 
     // If the interactive transition was started
     var hasStarted = false
@@ -57,7 +63,12 @@ final internal class InteractiveTransition: UIPercentDrivenInteractiveTransition
         case .ended:
             hasStarted = false
             completionSpeed = 0.55
-            shouldFinish ? finish() : cancel()
+            if shouldFinish {
+                finish()
+                delegate?.interactiveTransitionDidDismissViewController()
+            } else {
+                cancel()
+            }
         default:
             break
         }

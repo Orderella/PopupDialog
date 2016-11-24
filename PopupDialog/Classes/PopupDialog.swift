@@ -27,7 +27,7 @@ import Foundation
 import UIKit
 
 /// Creates a Popup dialog similar to UIAlertController
-final public class PopupDialog: UIViewController {
+final public class PopupDialog: UIViewController, InteractiveTransitionDelegate {
 
     // MARK: Private / Internal
 
@@ -42,7 +42,9 @@ final public class PopupDialog: UIViewController {
 
     /// Interactor class for pan gesture dismissal
     fileprivate lazy var interactor: InteractiveTransition = {
-       return InteractiveTransition()
+        let interactor = InteractiveTransition()
+        interactor.delegate = self
+       return interactor
     }()
 
     /// Returns the controllers view
@@ -186,7 +188,11 @@ final public class PopupDialog: UIViewController {
         // Make sure it's not a tap on the dialog but the background
         let point = sender.location(in: popupContainerView.stackView)
         guard !popupContainerView.stackView.point(inside: point, with: nil) else { return }
-        dismiss()
+        dismiss(self.completion)
+    }
+
+    func interactiveTransitionDidDismissViewController() {
+        self.completion?()
     }
 
     /*!
@@ -236,7 +242,7 @@ final public class PopupDialog: UIViewController {
     /// Calls the action closure of the button instance tapped
     @objc fileprivate func buttonTapped(_ button: PopupDialogButton) {
         if button.dismissOnTap {
-            dismiss() { button.buttonAction?() }
+            dismiss(self.completion) { button.buttonAction?() }
         } else {
             button.buttonAction?()
         }
