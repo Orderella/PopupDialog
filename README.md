@@ -47,15 +47,7 @@ target '<Your Target Name>'
 pod 'PopupDialog', '~> 0.5'
 ```
 
-**Please note that iOS8 compatiability was removed as of 0.5.**
-
-If you are looking for a Swift 2.2/iOS8 compatible version of PopupDialog, specify the following release in your podfile:
-
-```ruby
-pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git', :tag => '0.4.0'
-```
-
-Please note the the Swift 2 release will not be maintained when Swift 3 was officially released.
+**Please note that this version is compatiable with iOS8**
 
 ## Carthage
 
@@ -69,7 +61,7 @@ github "Orderella/PopupDialog" ~> 0.5
 
 ## Manually
 
-If you prefer not to use either of the above mentioned dependency managers, you can integrate PopupDialog into your project manually by adding the files contained in the [Classes](https://github.com/Orderella/PopupDialog/tree/master/PopupDialog/Classes)
+If you prefer not to use either of the above mentioned dependency managers, you can integrate PopupDialog into your project manually by adding the files contained in the [Classes](https://github.com/trungp/PopupDialog/tree/master/PopupDialog/Classes)
 folder to your project.
 
 
