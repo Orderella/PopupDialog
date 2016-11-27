@@ -16,7 +16,7 @@
   },
   "social_media_url": "https://twitter.com/orderella",
   "platforms": {
-    "ios": "9.0"
+    "ios": "8.0"
   },
   "source_files": "PopupDialog/Classes/**/*"
 }
