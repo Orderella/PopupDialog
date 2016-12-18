@@ -29,7 +29,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 - [x] Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
 - [x] Can be dismissed via swipe and background tap
 - [x] Objective-C compatible
-- [x] Works on all screens and devices supporting iOS 9.0+
+- [x] Works on all screens and devices supporting iOS 8.0+
 
 <p>&nbsp;</p>
 
@@ -386,7 +386,7 @@ Minimum requirement is iOS 8.0. This dialog was written with Swift 3, for 2.2 co
 
 # Changelog
 
-* **0.5.0** Swift 3 compatibility / removed iOS8
+* **0.5.1** Introduced custom button height parameter<br>Reintroduced iOS8 compatibility
 * **0.5.0** Swift 3 compatibility / removed iOS8
 * **0.4.0** iOS 8 compatibility
 * **0.3.3** Fixes buttons being added multiple times
@@ -413,7 +413,7 @@ for Orderella Ltd., [orderella.co.uk](http://orderella.co.uk)<br>
 You might also want to follow us on Twitter, [@theMWFire](https://twitter.com/theMWFire) | [@Orderella](https://twitter.com/orderella)
 
 # Thank you
-Thanks to everyone who uses, enhances and improves this library, especially the contributors: [Andrew Reed](https://github.com/Reedyuk), [ExceptionsSG](https://github.com/ExceptionsSG), [sjrmanning](https://github.com/sjrmanning), [0x0c](https://github.com/0x0c).
+Thanks to everyone who uses, enhances and improves this library, especially the contributors.
 
 <p>&nbsp;</p>
 
