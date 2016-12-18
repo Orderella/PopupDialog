@@ -30,7 +30,7 @@ import UIKit
 open class PopupDialogButton: UIButton {
 
     public typealias PopupDialogButtonAction = () -> Void
-
+    
     // MARK: Public
 
     /// The font and size of the button title
@@ -59,7 +59,9 @@ open class PopupDialogButton: UIButton {
             leftSeparator.backgroundColor = newValue
         }
     }
-
+    
+    private var buttonHeight:CGFloat
+    
     /// Default appearance of the button
     open var defaultTitleFont      = UIFont.systemFont(ofSize: 14)
     open var defaultTitleColor     = UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
@@ -106,8 +108,9 @@ open class PopupDialogButton: UIButton {
 
      - returns: PopupDialogButton
      */
-    public init(title: String, dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
-
+    public init(title: String, height: CGFloat = 45, dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
+        buttonHeight = height
+        
         // Assign the button action
         buttonAction = action
 
@@ -143,7 +146,7 @@ open class PopupDialogButton: UIButton {
 
         let views = ["separator": separator, "leftSeparator": leftSeparator, "button": self]
         var constraints = [NSLayoutConstraint]()
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[button(45)]", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[button(\(buttonHeight))]", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[separator]|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[separator(1)]", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[leftSeparator(1)]", options: [], metrics: nil, views: views)
