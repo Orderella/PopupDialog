@@ -6,7 +6,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   PopupDialog:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   PopupDialog: f48b2a44b43b57c37368f0c44c2fafc610435537
