@@ -93,21 +93,37 @@ final public class PopupDialogContainerView: UIView {
     }()
 
     // The container stack view for buttons
-    internal lazy var buttonStackView: UIStackView = {
-        let buttonStackView = UIStackView()
-        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
-        buttonStackView.distribution = .fillEqually
-        buttonStackView.spacing = 0
-        return buttonStackView
+    internal lazy var buttonStackView: UIView = {
+        if #available(iOS 9.0, *) {
+            let buttonStackView = UIStackView()
+            buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+            buttonStackView.distribution = .fillEqually
+            buttonStackView.spacing = 0
+            return buttonStackView
+        } else {
+            let buttonStackView = TZStackView()
+            buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+            buttonStackView.distribution = .fillEqually
+            buttonStackView.spacing = 0
+            return buttonStackView
+        }
     }()
 
     // The main stack view, containing all relevant views
-    internal lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.buttonStackView])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 0
-        return stackView
+    internal lazy var stackView: UIView = {
+        if #available(iOS 9.0, *) {
+            let stackView = UIStackView(arrangedSubviews: [self.buttonStackView])
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .vertical
+            stackView.spacing = 0
+            return stackView
+        } else {
+            let stackView = TZStackView(arrangedSubviews: [self.buttonStackView])
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.axis = .vertical
+            stackView.spacing = 0
+            return stackView
+        }
     }()
 
     // MARK: - Constraints
