@@ -6,10 +6,10 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   PopupDialog:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  PopupDialog: f48b2a44b43b57c37368f0c44c2fafc610435537
+  PopupDialog: 1e2439a69aff4f9da2aad173f41f986a4a28fd27
 
 PODFILE CHECKSUM: d8495001123cc68c0f614ef520d9741b67defd8d
 
