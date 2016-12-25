@@ -1,5 +1,5 @@
 PODS:
-  - PopupDialog (0.5.0)
+  - PopupDialog (0.5.1)
 
 DEPENDENCIES:
   - PopupDialog (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PopupDialog: 9890441b81105b9076757af2afe2b037be682f3e
+  PopupDialog: 1e2439a69aff4f9da2aad173f41f986a4a28fd27
 
 PODFILE CHECKSUM: d8495001123cc68c0f614ef520d9741b67defd8d
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

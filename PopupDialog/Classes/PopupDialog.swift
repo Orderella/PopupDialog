@@ -27,7 +27,7 @@ import Foundation
 import UIKit
 
 /// Creates a Popup dialog similar to UIAlertController
-final public class PopupDialog: UIViewController {
+final public class PopupDialog: UIViewController, InteractiveTransitionDelegate {
 
     // MARK: Private / Internal
 
@@ -42,7 +42,9 @@ final public class PopupDialog: UIViewController {
 
     /// Interactor class for pan gesture dismissal
     fileprivate lazy var interactor: InteractiveTransition = {
-       return InteractiveTransition()
+        let interactor = InteractiveTransition()
+        interactor.delegate = self
+       return interactor
     }()
 
     /// Returns the controllers view
@@ -134,10 +136,26 @@ final public class PopupDialog: UIViewController {
         modalPresentationStyle = .custom
 
         // Add our custom view to the container
-        popupContainerView.stackView.insertArrangedSubview(viewController.view, at: 0)
+        if #available(iOS 9.0, *) {
+            if let stackView = popupContainerView.stackView as? UIStackView {
+                stackView.insertArrangedSubview(viewController.view, at: 0)
+            }
+        } else {
+            if let stackView = popupContainerView.stackView as? TZStackView {
+                stackView.insertArrangedSubview(viewController.view, at: 0)
+            }
+        }
 
         // Set button alignment
-        popupContainerView.buttonStackView.axis = buttonAlignment
+        if #available(iOS 9.0, *) {
+            if let stackView = popupContainerView.buttonStackView as? UIStackView {
+                stackView.axis = buttonAlignment
+            }
+        } else {
+            if let stackView = popupContainerView.buttonStackView as? TZStackView {
+                stackView.axis = buttonAlignment
+            }
+        }
 
         // Allow for dialog dismissal on background tap and dialog pan gesture
         if gestureDismissal {
@@ -186,7 +204,11 @@ final public class PopupDialog: UIViewController {
         // Make sure it's not a tap on the dialog but the background
         let point = sender.location(in: popupContainerView.stackView)
         guard !popupContainerView.stackView.point(inside: point, with: nil) else { return }
-        dismiss()
+        dismiss(self.completion)
+    }
+
+    func interactiveTransitionDidDismissViewController() {
+        self.completion?()
     }
 
     /*!
@@ -206,14 +228,30 @@ final public class PopupDialog: UIViewController {
      */
     fileprivate func appendButtons() {
         // Add action to buttons
-        if buttons.isEmpty {
-            popupContainerView.stackView.removeArrangedSubview(popupContainerView.buttonStackView)
-        }
-
-        for (index, button) in buttons.enumerated() {
-            button.needsLeftSeparator = popupContainerView.buttonStackView.axis == .horizontal && index > 0
-            popupContainerView.buttonStackView.addArrangedSubview(button)
-            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        if #available(iOS 9.0, *) {
+            let stackView = popupContainerView.stackView as! UIStackView
+            let buttonStackView = popupContainerView.buttonStackView as! UIStackView
+            if buttons.isEmpty {
+                stackView.removeArrangedSubview(popupContainerView.buttonStackView)
+            }
+            
+            for (index, button) in buttons.enumerated() {
+                button.needsLeftSeparator = buttonStackView.axis == .horizontal && index > 0
+                buttonStackView.addArrangedSubview(button)
+                button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            }
+        } else {
+            let stackView = popupContainerView.stackView as! TZStackView
+            let buttonStackView = popupContainerView.buttonStackView as! TZStackView
+            if buttons.isEmpty {
+                stackView.removeArrangedSubview(popupContainerView.buttonStackView)
+            }
+            
+            for (index, button) in buttons.enumerated() {
+                button.needsLeftSeparator = buttonStackView.axis == .horizontal && index > 0
+                buttonStackView.addArrangedSubview(button)
+                button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+            }
         }
     }
 
@@ -259,9 +297,24 @@ extension PopupDialog {
 
     /// The button alignment of the alert dialog
     public var buttonAlignment: UILayoutConstraintAxis {
-        get { return popupContainerView.buttonStackView.axis }
+        get {
+            if #available(iOS 9.0, *) {
+                let buttonStackView = popupContainerView.buttonStackView as! UIStackView
+                return buttonStackView.axis
+            } else {
+                let buttonStackView = popupContainerView.buttonStackView as! TZStackView
+                return buttonStackView.axis
+            }
+        }
         set {
-            popupContainerView.buttonStackView.axis = newValue
+            if #available(iOS 9.0, *) {
+                let buttonStackView = popupContainerView.buttonStackView as! UIStackView
+                buttonStackView.axis = newValue
+                
+            } else {
+                let buttonStackView = popupContainerView.buttonStackView as! TZStackView
+                buttonStackView.axis = newValue
+            }
             popupContainerView.pv_layoutIfNeededAnimated()
         }
     }

@@ -167,7 +167,7 @@ final internal class DismissInteractiveTransition: TransitionAnimator {
 
     override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
-        UIView.animate(withDuration: outDuration, delay: 0.0, options: [], animations: {
+        UIView.animate(withDuration: outDuration, delay: 0.0, options: [.beginFromCurrentState], animations: {
             self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
             self.from.view.alpha = 0.0
         }) { (completed) in

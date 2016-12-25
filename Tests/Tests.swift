@@ -124,8 +124,13 @@ class Tests: XCTestCase {
 
         // Show popup dialog
         popup.beginAppearanceTransition(true, animated: false)
-
-        XCTAssertEqual(popup.popupContainerView.buttonStackView.arrangedSubviews.count, 4, "Popup dialog should display four buttons")
+        if #available(iOS 9.0, *) {
+            let buttonStackView = popup.popupContainerView.buttonStackView as! UIStackView
+            XCTAssertEqual(buttonStackView.arrangedSubviews.count, 4, "Popup dialog should display four buttons")
+        } else {
+            let buttonStackView = popup.popupContainerView.buttonStackView as! TZStackView
+            XCTAssertEqual(buttonStackView.arrangedSubviews.count, 4, "Popup dialog should display four buttons")
+        }
     }
 
     func testButtonTaps() {
@@ -136,7 +141,7 @@ class Tests: XCTestCase {
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
         XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
-        let button = DefaultButton(title: "Test") {
+        let button = DefaultButton(title: "Test", height: 70) {
             XCTAssert(true, "Button action should be called")
             expectation.fulfill()
         }
