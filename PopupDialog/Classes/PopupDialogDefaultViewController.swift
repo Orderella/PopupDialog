@@ -49,7 +49,6 @@ public extension PopupDialogDefaultViewController {
         set {
             standardView.imageView.image = newValue
             standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView()
-            standardView.pv_layoutIfNeededAnimated()
         }
     }
 
