@@ -1,5 +1,6 @@
 # Changelog
 
+* **0.5.2** Fixed image scaling for default view 
 * **0.5.1** Introduced custom button height parameter<br>Reintroduced iOS8 compatibility
 * **0.5.0** Swift 3 compatibility / removed iOS8
 * **0.4.0** iOS 8 compatibility

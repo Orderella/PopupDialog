@@ -48,8 +48,7 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.imageView.image }
         set {
             standardView.imageView.image = newValue
-            standardView.imageView.isHidden = newValue != nil ? false : true
-            standardView.pv_layoutIfNeededAnimated()
+            standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView()
         }
     }
 
@@ -58,7 +57,6 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.titleLabel.text }
         set {
             standardView.titleLabel.text = newValue
-            //standardView.titleLabel.hidden = newValue != nil ? false : true
             standardView.pv_layoutIfNeededAnimated()
         }
     }
@@ -68,7 +66,6 @@ public extension PopupDialogDefaultViewController {
         get { return standardView.messageLabel.text }
         set {
             standardView.messageLabel.text = newValue
-            //standardView.messageLabel.hidden = newValue != nil ? false : true
             standardView.pv_layoutIfNeededAnimated()
         }
     }
@@ -127,5 +124,10 @@ public extension PopupDialogDefaultViewController {
             standardView.messageTextAlignment = newValue
             standardView.pv_layoutIfNeededAnimated()
         }
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView()
     }
 }
