@@ -186,7 +186,7 @@ If you are using the default dialog, you can change selected properties at runti
 let popup = PopupDialog(title: title, message: message, image: image)
 
 // Present dialog
-self.presentViewController(popup, animated: true, completion: nil)
+self.present(popup, animated: true, completion: nil)
 
 // Get the default view controller and cast it
 // Unfortunately, casting is necessary to support Objective-C
