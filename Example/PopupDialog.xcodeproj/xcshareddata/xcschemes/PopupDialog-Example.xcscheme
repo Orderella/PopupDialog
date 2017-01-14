@@ -53,6 +53,16 @@
                ReferencedContainer = "container:PopupDialog.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C7EA1E071E2A181A009D3044"
+               BuildableName = "PopupDialog_ExampleUITests.xctest"
+               BlueprintName = "PopupDialog_ExampleUITests"
+               ReferencedContainer = "container:PopupDialog.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
