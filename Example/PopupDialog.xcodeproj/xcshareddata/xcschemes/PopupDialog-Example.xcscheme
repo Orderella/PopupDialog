@@ -58,8 +58,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C7EA1E071E2A181A009D3044"
-               BuildableName = "PopupDialog_ExampleUITests.xctest"
-               BlueprintName = "PopupDialog_ExampleUITests"
+               BuildableName = "PopupDialog_UITests.xctest"
+               BlueprintName = "PopupDialog_UITests"
                ReferencedContainer = "container:PopupDialog.xcodeproj">
             </BuildableReference>
          </TestableReference>

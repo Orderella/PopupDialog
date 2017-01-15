@@ -21,7 +21,7 @@
 		C7A6674B1D3D030200DE5036 /* AppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A667481D3D030200DE5036 /* AppearanceTests.swift */; };
 		C7A6674C1D3D030200DE5036 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A667491D3D030200DE5036 /* CustomViewController.swift */; };
 		C7A6674D1D3D030200DE5036 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A6674A1D3D030200DE5036 /* Tests.swift */; };
-		C7EA1E0B1E2A181A009D3044 /* PopupDialog_ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EA1E0A1E2A181A009D3044 /* PopupDialog_ExampleUITests.swift */; };
+		C7EA1E0B1E2A181A009D3044 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EA1E0A1E2A181A009D3044 /* Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +65,8 @@
 		C7A667481D3D030200DE5036 /* AppearanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppearanceTests.swift; path = ../Tests/AppearanceTests.swift; sourceTree = SOURCE_ROOT; };
 		C7A667491D3D030200DE5036 /* CustomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomViewController.swift; path = ../Tests/CustomViewController.swift; sourceTree = SOURCE_ROOT; };
 		C7A6674A1D3D030200DE5036 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tests.swift; path = ../Tests/Tests.swift; sourceTree = SOURCE_ROOT; };
-		C7EA1E081E2A181A009D3044 /* PopupDialog_ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopupDialog_ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7EA1E0A1E2A181A009D3044 /* PopupDialog_ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialog_ExampleUITests.swift; sourceTree = "<group>"; };
+		C7EA1E081E2A181A009D3044 /* PopupDialog_UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopupDialog_UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7EA1E0A1E2A181A009D3044 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		C7EA1E0C1E2A181A009D3044 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF1B9919BA34CE12A9B2990A /* PopupDialog.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PopupDialog.podspec; path = ../PopupDialog.podspec; sourceTree = "<group>"; };
 		F2AE7E70D898C743E01C0374 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for PopupDialog */,
 				607FACE81AFB9204008FA782 /* Tests */,
-				C7EA1E091E2A181A009D3044 /* PopupDialog_ExampleUITests */,
+				C7EA1E091E2A181A009D3044 /* UITests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				BA37539A0708710415235040 /* Pods */,
 				11471FDFE56E95285230212A /* Frameworks */,
@@ -126,7 +126,7 @@
 			children = (
 				607FACD01AFB9204008FA782 /* PopupDialog_Example.app */,
 				607FACE51AFB9204008FA782 /* PopupDialog_Tests.xctest */,
-				C7EA1E081E2A181A009D3044 /* PopupDialog_ExampleUITests.xctest */,
+				C7EA1E081E2A181A009D3044 /* PopupDialog_UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,12 +197,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		C7EA1E091E2A181A009D3044 /* PopupDialog_ExampleUITests */ = {
+		C7EA1E091E2A181A009D3044 /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				C7EA1E0A1E2A181A009D3044 /* PopupDialog_ExampleUITests.swift */,
+				C7EA1E0A1E2A181A009D3044 /* Tests.swift */,
 				C7EA1E0C1E2A181A009D3044 /* Info.plist */,
 			);
+			name = UITests;
 			path = PopupDialog_ExampleUITests;
 			sourceTree = "<group>";
 		};
@@ -250,9 +251,9 @@
 			productReference = 607FACE51AFB9204008FA782 /* PopupDialog_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C7EA1E071E2A181A009D3044 /* PopupDialog_ExampleUITests */ = {
+		C7EA1E071E2A181A009D3044 /* PopupDialog_UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7EA1E111E2A181A009D3044 /* Build configuration list for PBXNativeTarget "PopupDialog_ExampleUITests" */;
+			buildConfigurationList = C7EA1E111E2A181A009D3044 /* Build configuration list for PBXNativeTarget "PopupDialog_UITests" */;
 			buildPhases = (
 				C7EA1E041E2A181A009D3044 /* Sources */,
 				C7EA1E051E2A181A009D3044 /* Frameworks */,
@@ -263,9 +264,9 @@
 			dependencies = (
 				C7EA1E0E1E2A181A009D3044 /* PBXTargetDependency */,
 			);
-			name = PopupDialog_ExampleUITests;
+			name = PopupDialog_UITests;
 			productName = PopupDialog_ExampleUITests;
-			productReference = C7EA1E081E2A181A009D3044 /* PopupDialog_ExampleUITests.xctest */;
+			productReference = C7EA1E081E2A181A009D3044 /* PopupDialog_UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -290,7 +291,6 @@
 					};
 					C7EA1E071E2A181A009D3044 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = Q249KDW6P6;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -311,7 +311,7 @@
 			targets = (
 				607FACCF1AFB9204008FA782 /* PopupDialog_Example */,
 				607FACE41AFB9204008FA782 /* PopupDialog_Tests */,
-				C7EA1E071E2A181A009D3044 /* PopupDialog_ExampleUITests */,
+				C7EA1E071E2A181A009D3044 /* PopupDialog_UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -464,7 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7EA1E0B1E2A181A009D3044 /* PopupDialog_ExampleUITests.swift in Sources */,
+				C7EA1E0B1E2A181A009D3044 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,7 +677,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = Q249KDW6P6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PopupDialog_ExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -694,7 +694,7 @@
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = Q249KDW6P6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PopupDialog_ExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -735,7 +735,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7EA1E111E2A181A009D3044 /* Build configuration list for PBXNativeTarget "PopupDialog_ExampleUITests" */ = {
+		C7EA1E111E2A181A009D3044 /* Build configuration list for PBXNativeTarget "PopupDialog_UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C7EA1E0F1E2A181A009D3044 /* Debug */,
