@@ -63,13 +63,6 @@ class UITests: XCTestCase {
         app.otherElements["Rating"].tap()
         app.buttons["RATE"].tap()
         XCTAssert(app.staticTexts["You rated 3.0 stars"].exists)
-        
-        showCustomDialogButton.tap()
-        let commentTextField = app.textFields["Comment"]
-        commentTextField.tap()
-        commentTextField.typeText("Test")
-        app.buttons["Return"].tap()
-        app.children(matching: .window).element(boundBy: 0).children(matching: .other).element(boundBy: 1).tap()
     }
     
 }
