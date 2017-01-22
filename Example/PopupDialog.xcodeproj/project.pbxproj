@@ -17,7 +17,6 @@
 		C705B7FF1E33A0FE00D042A3 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C705B7FE1E33A0FE00D042A3 /* Tests.swift */; };
 		C705B8011E34D6FF00D042A3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C705B8001E34D6FF00D042A3 /* Info.plist */; };
 		C75C0D6C1E2D81C700CFC9F3 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75C0D6B1E2D81C700CFC9F3 /* FBSnapshotTestCase.framework */; };
-		C75C0D6E1E2D81EB00CFC9F3 /* FBSnapshotTestCase.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C75C0D6B1E2D81C700CFC9F3 /* FBSnapshotTestCase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C75C0D721E2EA11300CFC9F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		C75C0D731E2EA17700CFC9F3 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79253481D33E2C600A0FCA1 /* RatingViewController.swift */; };
 		C75C0D741E2EA17D00CFC9F3 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = C792534C1D34E36D00A0FCA1 /* CosmosDistrib.swift */; };
@@ -49,19 +48,6 @@
 			remoteInfo = PopupDialog_Example;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		C75C0D6D1E2D81D600CFC9F3 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				C75C0D6E1E2D81EB00CFC9F3 /* FBSnapshotTestCase.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		01A15A32B46CCE17ED5729B1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -266,7 +252,6 @@
 				607FACE31AFB9204008FA782 /* Resources */,
 				F0C1001319C9817011628B59 /* [CP] Embed Pods Frameworks */,
 				232D4559EA1929EA9D1D30CB /* [CP] Copy Pods Resources */,
-				C75C0D6D1E2D81D600CFC9F3 /* CopyFiles */,
 			);
 			buildRules = (
 			);
