@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     /*!
      Displays the default dialog with an image on top
      */
-    func showImageDialog() {
+    func showImageDialog(animated: Bool = true) {
 
         // Prepare the popup assets
         let title = "THIS IS THE DIALOG TITLE"
@@ -80,13 +80,13 @@ class ViewController: UIViewController {
         popup.addButtons([buttonOne, buttonTwo, buttonThree])
 
         // Present dialog
-        self.present(popup, animated: true, completion: nil)
+        self.present(popup, animated: animated, completion: nil)
     }
 
     /*!
      Displays the standard dialog without image, just as the system dialog
      */
-    func showStandardDialog() {
+    func showStandardDialog(animated: Bool = true) {
 
         // Prepare the popup
         let title = "THIS IS A DIALOG WITHOUT IMAGE"
@@ -111,14 +111,14 @@ class ViewController: UIViewController {
         popup.addButtons([buttonOne, buttonTwo])
 
         // Present dialog
-        self.present(popup, animated: true, completion: nil)
+        self.present(popup, animated: animated, completion: nil)
     }
 
     /*!
      Displays a custom view controller instead of the default view.
      Buttons can be still added, if needed
      */
-    func showCustomDialog() {
+    func showCustomDialog(animated: Bool = true) {
 
         // Create a custom view controller
         let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
@@ -140,6 +140,6 @@ class ViewController: UIViewController {
         popup.addButtons([buttonOne, buttonTwo])
 
         // Present dialog
-        present(popup, animated: true, completion: nil)
+        present(popup, animated: animated, completion: nil)
     }
 }
