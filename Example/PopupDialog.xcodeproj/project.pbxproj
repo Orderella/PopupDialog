@@ -15,7 +15,6 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		A6CE8063F79CE384B0E3840C /* Pods_PopupDialog_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3AA8A9ACD13E11873ACA45 /* Pods_PopupDialog_Tests.framework */; };
 		C705B7FF1E33A0FE00D042A3 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C705B7FE1E33A0FE00D042A3 /* Tests.swift */; };
-		C705B8011E34D6FF00D042A3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C705B8001E34D6FF00D042A3 /* Info.plist */; };
 		C75C0D6C1E2D81C700CFC9F3 /* FBSnapshotTestCase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75C0D6B1E2D81C700CFC9F3 /* FBSnapshotTestCase.framework */; };
 		C75C0D721E2EA11300CFC9F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		C75C0D731E2EA17700CFC9F3 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79253481D33E2C600A0FCA1 /* RatingViewController.swift */; };
@@ -355,7 +354,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C705B8011E34D6FF00D042A3 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
