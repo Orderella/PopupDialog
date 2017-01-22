@@ -12,6 +12,8 @@ env:
     - DESTINATION="OS=9.2,name=iPhone 5"        SCHEME="$IOS_FRAMEWORK_SCHEME"  SDK="$IOS_SDK"  RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="NO"
 before_install:
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
+  - pod setup
+  - pod install
 script:
   - set -o pipefail
   - xcodebuild -version
