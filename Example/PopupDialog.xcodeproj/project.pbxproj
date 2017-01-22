@@ -721,7 +721,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = PopupDialog_ExampleUITests/Info.plist;
+				INFOPLIST_FILE = ../UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mwfire.PopupDialog-ExampleUITests";
@@ -741,7 +741,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = PopupDialog_ExampleUITests/Info.plist;
+				INFOPLIST_FILE = ../UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.mwfire.PopupDialog-ExampleUITests";
