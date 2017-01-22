@@ -1,5 +1,6 @@
 import UIKit
 import XCTest
+import Nimble
 @testable import PopupDialog
 
 class Tests: XCTestCase {
@@ -18,44 +19,46 @@ class Tests: XCTestCase {
 
         // Instantiate dialog
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
-        XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
+        expect(popup).toNot(beNil())
+        
+        //XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
 
         // Get popup dialog view
         guard let vc = popup.viewController as? PopupDialogDefaultViewController else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
-
-        XCTAssertEqual(vc.titleText, "Test Title", "Popup Dialog title should be set correctly")
-        XCTAssertEqual(vc.messageText, "Test Message", "Popup Dialog message should be set correctly")
-        XCTAssertNil(vc.image, "Popup Dialog image should be nil")
-        XCTAssertTrue(popup.keyboardShiftsView, "Keyboard shifts view should be true by default")
+        
+        expect(vc.titleText)   == "Test Title"
+        expect(vc.messageText) == "Test Message"
+        expect(vc.image).to(beNil())
+        expect(popup.keyboardShiftsView).to(beTrue())
     }
 
     func testImageDialogInstantiation() {
 
         // Create image
         let image = UIImage(named: "pexels-photo-103290", in: Bundle.main, compatibleWith: nil)
-        XCTAssertNotNil(image, "Image should not be nil")
+        expect(image).toNot(beNil())
 
         // Instantiate dialog with image
         let popup = PopupDialog(title: "", message: "", image: image)
-        XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
+        expect(popup).toNot(beNil())
 
         // Get popup dialog view
         guard let vc = popup.viewController as? PopupDialogDefaultViewController else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
-
-        XCTAssertNotNil(vc.image, "Popup dialog image should not be nil")
+        
+        expect(vc.image).toNot(beNil())
     }
 
     func testDialogPropertyAccess() {
 
         // Instantiate dialog
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
-        XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
+        expect(popup).toNot(beNil())
 
         // Show popup dialog
         popup.beginAppearanceTransition(true, animated: false)
@@ -65,20 +68,20 @@ class Tests: XCTestCase {
         XCTAssertNotNil(image, "Image should not be nil")
 
         // Change values after init
-        popup.buttonAlignment = .vertical
-        popup.transitionStyle = .fadeIn
+        popup.buttonAlignment    = .vertical
+        popup.transitionStyle    = .fadeIn
         popup.keyboardShiftsView = false
 
-        XCTAssertTrue(popup.buttonAlignment == .vertical)
-        XCTAssertTrue(popup.transitionStyle == .fadeIn)
-        XCTAssertFalse(popup.keyboardShiftsView)
+        expect(popup.buttonAlignment == .vertical).to(beTrue())
+        expect(popup.transitionStyle == .fadeIn).to(beTrue())
+        expect(popup.keyboardShiftsView).to(beFalse())
     }
 
     func testDialogViewPropertyAccess() {
 
         // Instantiate dialog
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
-        XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
+        expect(popup).toNot(beNil())
 
         // Show popup dialog
         popup.beginAppearanceTransition(true, animated: false)
@@ -91,59 +94,61 @@ class Tests: XCTestCase {
 
         // Create image
         let image = UIImage(named: "pexels-photo-103290", in: Bundle.main, compatibleWith: nil)
-        XCTAssertNotNil(image, "Image should not be nil")
+        expect(image).toNot(beNil())
 
-        vc.titleText = "New Test Title"
+        vc.titleText   = "New Test Title"
         vc.messageText = "New Test Message"
-        vc.image = image
-
-        XCTAssertEqual(vc.titleText, "New Test Title")
-        XCTAssertEqual(vc.messageText, "New Test Message")
-        XCTAssertNotNil(vc.image)
+        vc.image       = image
+        
+        expect(vc.titleText)   == "New Test Title"
+        expect(vc.messageText) == "New Test Message"
+        expect(vc.image).toNot(beNil())
     }
-
 
     func testButtonAssignments() {
 
         // Instantiate dialog
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
-        XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
+        expect(popup).toNot(beNil())
 
         // Create four buttons
         var buttons = [PopupDialogButton]()
         for index in 1...4 {
             let button = DefaultButton(title: "Test \(index)") { _ in }
-            XCTAssertNotNil(button, "Button should be non-nil")
-            XCTAssertEqual(button.title(for: .normal), "Test \(index)", "Button title should be set correctly")
-            XCTAssertNotNil(button.buttonAction, "Button action should be non-nil")
+            expect(button).toNot(beNil())
+            expect(button.title(for: .normal)) == "Test \(index)"
+            expect(button.buttonAction).toNot(beNil())
             buttons.append(button)
         }
 
-        // Add buttons to
+        // Add buttons to dialog
         popup.addButtons(buttons)
 
         // Show popup dialog
         popup.beginAppearanceTransition(true, animated: false)
+        
         if #available(iOS 9.0, *) {
             let buttonStackView = popup.popupContainerView.buttonStackView as! UIStackView
-            XCTAssertEqual(buttonStackView.arrangedSubviews.count, 4, "Popup dialog should display four buttons")
+            expect(buttonStackView.arrangedSubviews.count) == 4
+            expect(buttonStackView.arrangedSubviews) == buttons
         } else {
             let buttonStackView = popup.popupContainerView.buttonStackView as! TZStackView
-            XCTAssertEqual(buttonStackView.arrangedSubviews.count, 4, "Popup dialog should display four buttons")
+            expect(buttonStackView.arrangedSubviews.count) == 4
+            expect(buttonStackView.arrangedSubviews) == buttons
         }
     }
 
     func testButtonTaps() {
 
-        let expectation = self.expectation(description: "Button action needs to be called")
+        // Button action triggered flag
+        var buttonActionTriggered = false
 
         // Instantiate dialog
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
-        XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
+        expect(popup).toNot(beNil())
 
         let button = DefaultButton(title: "Test", height: 70) {
-            XCTAssert(true, "Button action should be called")
-            expectation.fulfill()
+            buttonActionTriggered = true
         }
 
         // Add button
@@ -154,8 +159,8 @@ class Tests: XCTestCase {
 
         // Tap button with 0 index
         popup.tapButtonWithIndex(0)
-
-        waitForExpectations(timeout: 2.0, handler: nil)
+        
+        expect(buttonActionTriggered).toEventually(beTrue())
     }
 
     func testCustomViewController() {
@@ -167,10 +172,10 @@ class Tests: XCTestCase {
         let popup = PopupDialog(viewController: vc)
 
         // Make sure the view controller is our custom view controller
-        XCTAssertEqual(vc, popup.viewController)
+        expect(vc) == popup.viewController
 
         // Make sure the initial text is the expected one
-        XCTAssertEqual(vc.testProperty, "I am a test")
+        expect(vc.testProperty) == "I am a test"
 
         let popupVC = popup.viewController as! CustomViewController
 
@@ -178,7 +183,7 @@ class Tests: XCTestCase {
         popupVC.testProperty = "Changed"
 
         // Make sure the changed text is the expected one
-        XCTAssertEqual(vc.testProperty, "Changed")
-        XCTAssertEqual(popupVC.testProperty, "Changed")
+        expect(vc.testProperty) == "Changed"
+        expect(popupVC.testProperty) == "Changed"
     }
 }
