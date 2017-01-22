@@ -5,7 +5,7 @@ target 'PopupDialog_Example' do
 
   target 'PopupDialog_Tests' do
     inherit! :search_paths
-
-    
+    pod 'Nimble', '~> 5.0.0'
+    pod 'FBSnapshotTestCase'
   end
 end

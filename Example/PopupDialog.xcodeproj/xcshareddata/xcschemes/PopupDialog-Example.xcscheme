@@ -40,7 +40,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldUseLaunchSchemeArgsEnv = "NO"
       codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
@@ -50,6 +50,16 @@
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
                BuildableName = "PopupDialog_Tests.xctest"
                BlueprintName = "PopupDialog_Tests"
+               ReferencedContainer = "container:PopupDialog.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C7EA1E071E2A181A009D3044"
+               BuildableName = "PopupDialog_UITests.xctest"
+               BlueprintName = "PopupDialog_UITests"
                ReferencedContainer = "container:PopupDialog.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -63,6 +73,18 @@
             ReferencedContainer = "container:PopupDialog.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "IMAGE_DIFF_DIR"
+            value = "$(SOURCE_ROOT)/../Tests/FailureDiffs"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "FB_REFERENCE_IMAGE_DIR"
+            value = "$(SOURCE_ROOT)/../Tests/ReferenceImages"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

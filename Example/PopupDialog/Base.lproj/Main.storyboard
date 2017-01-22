@@ -1,27 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="PopupDialog_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="PopupDialog_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pexels-photo-92637" translatesAutoresizingMaskIntoConstraints="NO" id="yCg-ou-HQf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ib-rL-PNU">
-                                <rect key="frame" x="20" y="503" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80479525862068968" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="20" y="602" width="335" height="45"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80479525862068968" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="jAD-W4-dOg"/>
                                 </constraints>
@@ -31,29 +36,29 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7G-uG-kym">
-                                <rect key="frame" x="20" y="444" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="20" y="543" width="335" height="45"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Show Standard Dialog"/>
                                 <connections>
                                     <action selector="showStandardDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="L5k-x3-YHR"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWW-W3-vVg">
-                                <rect key="frame" x="20" y="385" width="280" height="45"/>
-                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.79816810344827582" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="20" y="484" width="335" height="45"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.79816810344827582" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Show Image Dialog"/>
                                 <connections>
                                     <action selector="showImageDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="a9D-7Y-eaO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the buttons!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUr-OR-AC7">
-                                <rect key="frame" x="20" y="52" width="280" height="21"/>
+                                <rect key="frame" x="20" y="52" width="335" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1Ib-rL-PNU" firstAttribute="top" secondItem="d7G-uG-kym" secondAttribute="bottom" constant="14" id="0Ub-Ew-9kD"/>
                             <constraint firstAttribute="trailing" secondItem="yCg-ou-HQf" secondAttribute="trailing" id="0WO-uG-XCW"/>
@@ -87,4 +92,9 @@
     <resources>
         <image name="pexels-photo-92637" width="375" height="667"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>
