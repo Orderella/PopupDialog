@@ -16,9 +16,10 @@
 
 Popup Dialog is a simple, customizable popup dialog written in Swift.
 
-<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog01.gif?raw=true" width="250">
-<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog02.gif?raw=true" width="250">
-<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog03.gif?raw=true" width="250">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog01.gif?raw=true" width="230">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog02.gif?raw=true" width="230">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialog03.gif?raw=true" width="230">
+<img src="https://github.com/Orderella/PopupDialog/blob/master/Assets/PopupDialogDark01.png?raw=true" width="230">
 
 ## Features
 
@@ -386,7 +387,7 @@ Minimum requirement is iOS 8.0. This dialog was written with Swift 3, for 2.2 co
 
 # Changelog
 
-* **0.5.3** Fixed memory leak with custom view controllers
+* **0.5.3** Fixed memory leak with custom view controllers<br>Added UI automation & snapshot tests
 * **0.5.2** Fixed image scaling for default view
 * **0.5.1** Introduced custom button height parameter<br>Reintroduced iOS8 compatibility
 * **0.5.0** Swift 3 compatibility / removed iOS8
