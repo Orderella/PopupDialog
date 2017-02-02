@@ -35,7 +35,7 @@ final public class PopupDialog: UIViewController {
     fileprivate var initialized = false
 
     /// The completion handler
-    fileprivate var completion: (() -> Void)? = nil
+    internal var completion: (() -> Void)? = nil
 
     /// The custom transition presentation manager
     fileprivate var presentationManager: PresentationManager!
