@@ -296,12 +296,25 @@ The following is an example of a *Dark Mode* theme. You can find this in the Exa
 ```swift
 // Customize dialog appearance
 let pv = PopupDialogDefaultView.appearance()
-pv.backgroundColor      = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
-pv.titleFont            = UIFont(name: "HelveticaNeue-Light", size: 16)!
-pv.titleColor           = UIColor.white
-pv.messageFont          = UIFont(name: "HelveticaNeue", size: 14)!
-pv.messageColor         = UIColor(white: 0.8, alpha: 1)
-pv.cornerRadius         = 2
+pv.titleFont    = UIFont(name: "HelveticaNeue-Light", size: 16)!
+pv.titleColor   = UIColor.white
+pv.messageFont  = UIFont(name: "HelveticaNeue", size: 14)!
+pv.messageColor = UIColor(white: 0.8, alpha: 1)
+
+// Customize the container view appearance
+let pcv = PopupDialogContainerView.appearance()
+pcv.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
+pcv.cornerRadius    = 2
+pcv.shadowEnabled   = true
+pcv.shadowColor     = UIColor.black
+
+// Customize overlay appearance
+let ov = PopupDialogOverlayView.appearance()
+ov.blurEnabled = true
+ov.blurRadius  = 30
+ov.liveBlur    = true
+ov.opacity     = 0.7
+ov.color       = UIColor.black
 
 // Customize default button appearance
 let db = DefaultButton.appearance()
