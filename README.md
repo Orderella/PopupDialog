@@ -400,6 +400,7 @@ Minimum requirement is iOS 8.0. This dialog was written with Swift 3, for 2.2 co
 
 # Changelog
 
+* **0.5.4** Fixed bug where blur view would reveal hidden layer<br>Improved view controller lifecycle handling<br>Scroll views can now be used with gesture dismissal
 * **0.5.3** Fixed memory leak with custom view controllers<br>Added UI automation & snapshot tests
 * **0.5.2** Fixed image scaling for default view
 * **0.5.1** Introduced custom button height parameter<br>Reintroduced iOS8 compatibility
