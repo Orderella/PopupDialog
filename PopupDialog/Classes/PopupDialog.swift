@@ -35,7 +35,7 @@ final public class PopupDialog: UIViewController {
     fileprivate var initialized = false
 
     /// The completion handler
-    fileprivate var completion: (() -> Void)? = nil
+    internal var completion: (() -> Void)? = nil
 
     /// The custom transition presentation manager
     fileprivate var presentationManager: PresentationManager!
@@ -205,7 +205,9 @@ final public class PopupDialog: UIViewController {
         // Make sure it's not a tap on the dialog but the background
         let point = sender.location(in: popupContainerView.stackView)
         guard !popupContainerView.stackView.point(inside: point, with: nil) else { return }
-        dismiss()
+        dismiss { 
+            self.completion?()
+        }
     }
 
     /*!

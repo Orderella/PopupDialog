@@ -57,7 +57,14 @@ final internal class InteractiveTransition: UIPercentDrivenInteractiveTransition
         case .ended:
             hasStarted = false
             completionSpeed = 0.55
-            shouldFinish ? finish() : cancel()
+            if shouldFinish {
+                finish()
+                if let control = vc as? PopupDialog {
+                    control.completion?()
+                }
+            } else {
+                cancel()
+            }
         default:
             break
         }
