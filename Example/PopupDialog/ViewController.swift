@@ -89,11 +89,18 @@ class ViewController: UIViewController {
     func showStandardDialog(animated: Bool = true) {
 
         // Prepare the popup
-        let title = "THIS IS A DIALOG WITHOUT IMAGE"
+        let myAttribute = [ NSFontAttributeName: UIFont(name: "Chalkduster", size: 18.0)! ]
+        let myString = NSMutableAttributedString(string: "THIS IS A", attributes: myAttribute )
+        let attrString = NSAttributedString(string: " DIALOG WITHOUT IMAGE")
+        myString.append(attrString)
+        let myRange = NSRange(location: 17, length: 7) // range starting at location 17 with a lenth of 7: "Strings"
+        myString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: myRange)
+        
+//        let title = "THIS IS A DIALOG WITHOUT IMAGE"
         let message = "If you don't pass an image to the default dialog, it will display just as a regular dialog. Moreover, this features the zoom transition"
 
         // Create the dialog
-        let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true) {
+        let popup = PopupDialog(title: myString, message: message, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true) {
             print("Completed")
         }
 
