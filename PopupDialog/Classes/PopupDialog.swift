@@ -81,8 +81,8 @@ final public class PopupDialog: UIViewController {
      - returns: Popup dialog default style
      */
     public convenience init(
-                title: String?,
-                message: String?,
+                title: Any?,
+                message: Any?,
                 image: UIImage? = nil,
                 buttonAlignment: UILayoutConstraintAxis = .vertical,
                 transitionStyle: PopupDialogTransitionStyle = .bounceUp,

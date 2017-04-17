@@ -29,8 +29,8 @@ class Tests: XCTestCase {
             return
         }
         
-        expect(vc.titleText)   == "Test Title"
-        expect(vc.messageText) == "Test Message"
+        expect(vc.titleText as? String)   == "Test Title"
+        expect(vc.messageText as? String) == "Test Message"
         expect(vc.image).to(beNil())
         expect(popup.keyboardShiftsView).to(beTrue())
     }
@@ -100,8 +100,8 @@ class Tests: XCTestCase {
         vc.messageText = "New Test Message"
         vc.image       = image
         
-        expect(vc.titleText)   == "New Test Title"
-        expect(vc.messageText) == "New Test Message"
+        expect(vc.titleText as? String)   == "New Test Title"
+        expect(vc.messageText as? String) == "New Test Message"
         expect(vc.image).toNot(beNil())
     }
 

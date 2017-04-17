@@ -53,19 +53,27 @@ public extension PopupDialogDefaultViewController {
     }
 
     /// The title text of the dialog
-    public var titleText: String? {
+    public var titleText: Any? {
         get { return standardView.titleLabel.text }
         set {
-            standardView.titleLabel.text = newValue
+            if newValue is NSAttributedString {
+                standardView.titleLabel.attributedText = newValue as? NSAttributedString
+            }else if newValue is String {
+                standardView.titleLabel.text = newValue as? String
+            }
             standardView.pv_layoutIfNeededAnimated()
         }
     }
 
     /// The message text of the dialog
-    public var messageText: String? {
+    public var messageText: Any? {
         get { return standardView.messageLabel.text }
         set {
-            standardView.messageLabel.text = newValue
+            if newValue is NSAttributedString {
+                standardView.messageLabel.attributedText = newValue as? NSAttributedString
+            }else if newValue is String{
+                standardView.messageLabel.text = newValue as? String
+            }
             standardView.pv_layoutIfNeededAnimated()
         }
     }
