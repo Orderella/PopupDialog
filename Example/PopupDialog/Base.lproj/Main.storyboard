@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -57,6 +57,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtp-3e-K7t">
+                                <rect key="frame" x="20" y="425" width="335" height="45"/>
+                                <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Show Customized Look Dialog"/>
+                                <connections>
+                                    <action selector="showCustomLookDialogTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GW1-Yg-9X8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -67,15 +75,19 @@
                             <constraint firstItem="d7G-uG-kym" firstAttribute="top" secondItem="UWW-W3-vVg" secondAttribute="bottom" constant="14" id="8Ho-Y3-WvF"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1Ib-rL-PNU" secondAttribute="bottom" constant="20" id="AyH-mH-6Gi"/>
                             <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="d7G-uG-kym" secondAttribute="leading" id="B9Q-Ea-aA1"/>
+                            <constraint firstItem="d7G-uG-kym" firstAttribute="leading" secondItem="jtp-3e-K7t" secondAttribute="leading" id="Dnc-Kx-77F"/>
                             <constraint firstItem="PUr-OR-AC7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="FE7-kI-sSi"/>
                             <constraint firstItem="d7G-uG-kym" firstAttribute="width" secondItem="UWW-W3-vVg" secondAttribute="width" id="IV3-YY-k6T"/>
                             <constraint firstItem="d7G-uG-kym" firstAttribute="height" secondItem="UWW-W3-vVg" secondAttribute="height" id="JWw-Fa-DGU"/>
+                            <constraint firstItem="d7G-uG-kym" firstAttribute="trailing" secondItem="jtp-3e-K7t" secondAttribute="trailing" id="MNP-ZA-SM0"/>
                             <constraint firstItem="d7G-uG-kym" firstAttribute="leading" secondItem="UWW-W3-vVg" secondAttribute="leading" id="VYV-nL-PHX"/>
                             <constraint firstAttribute="trailing" secondItem="PUr-OR-AC7" secondAttribute="trailing" constant="20" id="Z5n-KK-G7h"/>
                             <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="ad3-v2-SFT"/>
                             <constraint firstItem="1Ib-rL-PNU" firstAttribute="width" secondItem="d7G-uG-kym" secondAttribute="width" id="hLd-MW-vXX"/>
                             <constraint firstItem="yCg-ou-HQf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="kxT-O9-Khq"/>
+                            <constraint firstItem="d7G-uG-kym" firstAttribute="height" secondItem="jtp-3e-K7t" secondAttribute="height" id="sLW-8g-ywa"/>
                             <constraint firstAttribute="trailing" secondItem="1Ib-rL-PNU" secondAttribute="trailing" constant="20" id="sel-EO-jmj"/>
+                            <constraint firstItem="UWW-W3-vVg" firstAttribute="top" secondItem="jtp-3e-K7t" secondAttribute="bottom" constant="14" id="tKR-LY-FO7"/>
                             <constraint firstItem="yCg-ou-HQf" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="vUy-fM-eSF"/>
                             <constraint firstItem="PUr-OR-AC7" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="32" id="z9O-vl-xIT"/>
                         </constraints>

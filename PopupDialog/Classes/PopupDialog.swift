@@ -56,6 +56,9 @@ final public class PopupDialog: UIViewController {
 
     /// Keyboard height
     internal var keyboardHeight: CGFloat? = nil
+    
+    /// Popup insets
+    fileprivate var insets = [0,0,0,0]
 
     // MARK: Public
 
@@ -66,37 +69,40 @@ final public class PopupDialog: UIViewController {
     public var keyboardShiftsView = true
 
     // MARK: - Initializers
-
+    
     /*!
-     Creates a standard popup dialog with title, message and image field
-
+     Creates a standard popup dialog with title, message, image and insets
+     
      - parameter title:            The dialog title
      - parameter message:          The dialog message
      - parameter image:            The dialog image
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
      - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
+     - parameter insets:           The dialog insets
      - parameter completion:       Completion block invoked when dialog was dismissed
-
+     
+     
      - returns: Popup dialog default style
      */
     public convenience init(
-                title: String?,
-                message: String?,
-                image: UIImage? = nil,
-                buttonAlignment: UILayoutConstraintAxis = .vertical,
-                transitionStyle: PopupDialogTransitionStyle = .bounceUp,
-                gestureDismissal: Bool = true,
-                completion: (() -> Void)? = nil) {
-
+        title: String?,
+        message: String?,
+        image: UIImage? = nil,
+        buttonAlignment: UILayoutConstraintAxis = .vertical,
+        transitionStyle: PopupDialogTransitionStyle = .bounceUp,
+        gestureDismissal: Bool = true,
+        insets: [Int] = [0,0,0,0],
+        completion: (() -> Void)? = nil) {
+        
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
         viewController.titleText   = title
         viewController.messageText = message
         viewController.image       = image
-
+        
         // Call designated initializer
-        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal: gestureDismissal, completion: completion)
+        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal: gestureDismissal, insets: insets, completion: completion)
     }
 
     /*!
@@ -115,6 +121,7 @@ final public class PopupDialog: UIViewController {
         buttonAlignment: UILayoutConstraintAxis = .vertical,
         transitionStyle: PopupDialogTransitionStyle = .bounceUp,
         gestureDismissal: Bool = true,
+        insets: [Int] = [0,0,0,0],
         completion: (() -> Void)? = nil) {
 
         self.viewController = viewController
@@ -130,19 +137,18 @@ final public class PopupDialog: UIViewController {
         // Define presentation styles
         transitioningDelegate = presentationManager
         modalPresentationStyle = .custom
+        
+        //Set insets for container view
+        self.insets = insets
 
         // Add our custom view to the container
         if #available(iOS 9.0, *) {
             if let stackView = popupContainerView.stackView as? UIStackView {
-                addChildViewController(viewController)
                 stackView.insertArrangedSubview(viewController.view, at: 0)
-                viewController.didMove(toParentViewController: self)
             }
         } else {
             if let stackView = popupContainerView.stackView as? TZStackView {
-                addChildViewController(viewController)
                 stackView.insertArrangedSubview(viewController.view, at: 0)
-                viewController.didMove(toParentViewController: self)
             }
         }
 
@@ -162,7 +168,6 @@ final public class PopupDialog: UIViewController {
             let panRecognizer = UIPanGestureRecognizer(target: interactor, action: #selector(InteractiveTransition.handlePan))
             popupContainerView.stackView.addGestureRecognizer(panRecognizer)
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-            tapRecognizer.cancelsTouchesInView = false
             popupContainerView.addGestureRecognizer(tapRecognizer)
         }
     }
@@ -176,7 +181,7 @@ final public class PopupDialog: UIViewController {
 
     /// Replaces controller view with popup view
     public override func loadView() {
-        view = PopupDialogContainerView(frame: UIScreen.main.bounds)
+        view = PopupDialogContainerView(frame: UIScreen.main.bounds, insets: self.insets)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
