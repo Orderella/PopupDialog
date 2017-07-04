@@ -31,7 +31,9 @@ import UIKit
 final public class PopupDialogContainerView: UIView {
 
     // MARK: - Appearance
-
+    
+    public var insets: [Int] = [0,0,0,0]
+    
     /// The background color of the popup dialog
     override public dynamic var backgroundColor: UIColor? {
         get { return container.backgroundColor }
@@ -137,6 +139,12 @@ final public class PopupDialogContainerView: UIView {
         super.init(frame: frame)
         setupViews()
     }
+    
+    internal init(frame: CGRect, insets:[Int]) {
+        super.init(frame: frame)
+        self.insets = insets
+        setupViews()
+    }
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -156,18 +164,18 @@ final public class PopupDialogContainerView: UIView {
         var constraints = [NSLayoutConstraint]()
 
         // Shadow container constraints
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==20@900)-[shadowContainer(<=340,>=300)]-(>=10,==20@900)-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==32@900)-[shadowContainer(<=340,>=300)]-(>=10,==32@900)-|", options: [], metrics: nil, views: views)
         constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)]
         centerYConstraint = NSLayoutConstraint(item: shadowContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
         constraints.append(centerYConstraint!)
-
+        
         // Container constraints
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[container]|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: views)
 
         // Main stack view constraints
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-"+String(insets[0])+"-[stackView]-"+String(insets[3])+"-|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-"+String(insets[2])+"-[stackView]-"+String(insets[1])+"-|", options: [], metrics: nil, views: views)        
 
         // Activate constraints
         NSLayoutConstraint.activate(constraints)

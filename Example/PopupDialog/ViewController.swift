@@ -45,6 +45,10 @@ class ViewController: UIViewController {
     @IBAction func showCustomDialogTapped(_ sender: UIButton) {
         showCustomDialog()
     }
+    
+    @IBAction func showCustomLookDialogTapped(_ sender: UIButton) {
+        showCustomLookDialog()
+    }
 
     // MARK: Popup Dialog examples
 
@@ -113,6 +117,45 @@ class ViewController: UIViewController {
         // Present dialog
         self.present(popup, animated: animated, completion: nil)
     }
+    
+    /*!
+     Displays the standard dialog without image, just as the system dialog
+     */
+    func showCustomLookDialog(animated: Bool = true) {
+        
+        // Prepare the popup
+        let title = "THIS IS A CUSTOM LOOK DIALOG"
+        let message = "All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy All work and no play makes Jack a dull boy"
+        
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true, insets: [0,24,24,24]) {
+            print("Completed")
+        }
+        
+        // Create first button
+        let buttonOne = SolidBlueButton.init(title: "Ok", height: 45) {
+            self.label.text = "You ok'd the customized look dialog"
+        }
+        
+        // Add buttons to dialog
+        popup.addButtons([buttonOne])
+        
+        //Styling
+        let dialogAppearance = PopupDialogDefaultView.appearance()
+        dialogAppearance.backgroundColor      = UIColor.white
+        dialogAppearance.titleFont            = UIFont.boldSystemFont(ofSize: 16)
+        dialogAppearance.titleColor           = UIColor.black
+        dialogAppearance.titleTextAlignment   = .center
+        dialogAppearance.messageFont          = UIFont.italicSystemFont(ofSize: 12)
+        dialogAppearance.messageColor         = UIColor.darkGray
+        dialogAppearance.messageTextAlignment = .center
+        
+        popup.transitionStyle = .bounceUp
+        
+        // Present dialog
+        self.present(popup, animated: animated, completion: nil)
+    }
+
 
     /*!
      Displays a custom view controller instead of the default view.
@@ -141,5 +184,19 @@ class ViewController: UIViewController {
 
         // Present dialog
         present(popup, animated: animated, completion: nil)
+    }
+}
+
+
+
+public final class SolidBlueButton: PopupDialogButton {
+    
+    override public func setupView() {
+        let buttonAppearance = SolidBlueButton.appearance()
+        buttonAppearance.titleFont      = UIFont.systemFont(ofSize: 16)
+        buttonAppearance.titleColor     = UIColor.white
+        buttonAppearance.buttonColor    = UIColor.blue
+        self.layer.cornerRadius         = 22
+        super.setupView()
     }
 }
