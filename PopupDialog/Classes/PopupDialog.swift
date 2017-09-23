@@ -163,6 +163,7 @@ final public class PopupDialog: UIViewController {
             popupContainerView.stackView.addGestureRecognizer(panRecognizer)
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
             tapRecognizer.cancelsTouchesInView = false
+            panRecognizer.cancelsTouchesInView = false
             popupContainerView.addGestureRecognizer(tapRecognizer)
         }
     }
