@@ -131,7 +131,7 @@ public class TZStackView: UIView {
         addHiddenListener(arrangedSubview)
     }
 
-    func hiddenAnimationStopped() {
+    @objc func hiddenAnimationStopped() {
         var queueEntriesToRemove = [TZAnimationDidStopQueueEntry]()
         for entry in animationDidStopQueueEntries {
             let view = entry.view
@@ -595,7 +595,7 @@ public class TZStackView: UIView {
         let attribute2 = attr2 != nil ? attr2! : attr1
 
         let constraint = NSLayoutConstraint(item: view1, attribute: attr1, relatedBy: relation, toItem: view2, attribute: attribute2, multiplier: multiplier, constant: c)
-        constraint.priority = priority
+        constraint.priority = UILayoutPriority(rawValue: priority)
         return constraint
     }
     
