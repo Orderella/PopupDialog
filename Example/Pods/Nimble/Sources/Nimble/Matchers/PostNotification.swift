@@ -15,9 +15,9 @@ internal class NotificationCollector {
     }
 
     func startObserving() {
-        self.token = self.notificationCenter.addObserver(forName: nil, object: nil, queue: nil) {
+        self.token = self.notificationCenter.addObserver(forName: nil, object: nil, queue: nil) { [weak self] n in
             // linux-swift gets confused by .append(n)
-            [weak self] n in self?.observedNotifications.append(n)
+            self?.observedNotifications.append(n)
         }
     }
 
@@ -41,14 +41,14 @@ let notificationCenterDefault = NotificationCenter.default
 public func postNotifications<T>(
     _ notificationsMatcher: T,
     fromNotificationCenter center: NotificationCenter = notificationCenterDefault)
-    -> MatcherFunc<Any>
+    -> Predicate<Any>
     where T: Matcher, T.ValueType == [Notification]
 {
-    let _ = mainThread // Force lazy-loading of this value
+    _ = mainThread // Force lazy-loading of this value
     let collector = NotificationCollector(notificationCenter: center)
     collector.startObserving()
     var once: Bool = false
-    return MatcherFunc { actualExpression, failureMessage in
+    return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
         let collectorNotificationsExpression = Expression(memoizedExpression: { _ in
             return collector.observedNotifications
             }, location: actualExpression.location, withoutCaching: true)

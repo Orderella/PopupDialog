@@ -595,7 +595,7 @@ public class TZStackView: UIView {
         let attribute2 = attr2 != nil ? attr2! : attr1
 
         let constraint = NSLayoutConstraint(item: view1, attribute: attr1, relatedBy: relation, toItem: view2, attribute: attribute2, multiplier: multiplier, constant: c)
-        constraint.priority = UILayoutPriority(rawValue: priority)
+        constraint.priority = UILayoutPriority(priority)
         return constraint
     }
     

@@ -114,7 +114,7 @@ class Tests: XCTestCase {
         // Create four buttons
         var buttons = [PopupDialogButton]()
         for index in 1...4 {
-            let button = DefaultButton(title: "Test \(index)") { _ in }
+            let button = DefaultButton(title: "Test \(index)") {}
             expect(button).toNot(beNil())
             expect(button.title(for: .normal)) == "Test \(index)"
             expect(button.buttonAction).toNot(beNil())

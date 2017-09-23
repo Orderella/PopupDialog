@@ -4,7 +4,7 @@ import PopupDialog
 import FBSnapshotTestCase
 
 class SnapshotTests: FBSnapshotTestCase {
-    
+
     var vc: ViewController!
     var window: UIWindow!
     

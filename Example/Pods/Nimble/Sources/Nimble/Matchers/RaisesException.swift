@@ -16,8 +16,8 @@ public func raiseException(
     named: String? = nil,
     reason: String? = nil,
     userInfo: NSDictionary? = nil,
-    closure: ((NSException) -> Void)? = nil) -> MatcherFunc<Any> {
-        return MatcherFunc { actualExpression, failureMessage in
+    closure: ((NSException) -> Void)? = nil) -> Predicate<Any> {
+        return Predicate.fromDeprecatedClosure { actualExpression, failureMessage in
 
             var exception: NSException?
             let capture = NMBExceptionCapture(handler: ({ e in
@@ -52,7 +52,7 @@ internal func setFailureMessageForException(
         if let userInfo = userInfo {
             failureMessage.postfixMessage += " with userInfo <\(userInfo)>"
         }
-        if let _ = closure {
+        if closure != nil {
             failureMessage.postfixMessage += " that satisfies block"
         }
         if named == nil && reason == nil && userInfo == nil && closure == nil {
@@ -97,11 +97,11 @@ internal func exceptionMatchesNonNilFieldsOrClosure(
                 }
             }
         }
-        
+
         return matches
 }
 
-public class NMBObjCRaiseExceptionMatcher : NSObject, NMBMatcher {
+public class NMBObjCRaiseExceptionMatcher: NSObject, NMBMatcher {
     internal var _name: String?
     internal var _reason: String?
     internal var _userInfo: NSDictionary?
