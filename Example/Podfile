@@ -5,7 +5,7 @@ target 'PopupDialog_Example' do
 
   target 'PopupDialog_Tests' do
     inherit! :search_paths
-    pod 'Nimble', '~> 7.0.1', :inhibit_warnings => true
-    pod 'FBSnapshotTestCase', :inhibit_warnings => true
+    pod 'Nimble', '~> 7.0.2'
+    pod 'FBSnapshotTestCase', :git => 'https://github.com/facebook/ios-snapshot-test-case.git', :commit => 'ed4e6a6'
   end
 end

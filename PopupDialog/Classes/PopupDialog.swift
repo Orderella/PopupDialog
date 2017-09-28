@@ -132,29 +132,15 @@ final public class PopupDialog: UIViewController {
         modalPresentationStyle = .custom
 
         // Add our custom view to the container
-        if #available(iOS 9.0, *) {
-            if let stackView = popupContainerView.stackView as? UIStackView {
-                addChildViewController(viewController)
-                stackView.insertArrangedSubview(viewController.view, at: 0)
-                viewController.didMove(toParentViewController: self)
-            }
-        } else {
-            if let stackView = popupContainerView.stackView as? TZStackView {
-                addChildViewController(viewController)
-                stackView.insertArrangedSubview(viewController.view, at: 0)
-                viewController.didMove(toParentViewController: self)
-            }
+        if let stackView = popupContainerView.stackView as? UIStackView {
+            addChildViewController(viewController)
+            stackView.insertArrangedSubview(viewController.view, at: 0)
+            viewController.didMove(toParentViewController: self)
         }
 
         // Set button alignment
-        if #available(iOS 9.0, *) {
-            if let stackView = popupContainerView.buttonStackView as? UIStackView {
-                stackView.axis = buttonAlignment
-            }
-        } else {
-            if let stackView = popupContainerView.buttonStackView as? TZStackView {
-                stackView.axis = buttonAlignment
-            }
+        if let stackView = popupContainerView.buttonStackView as? UIStackView {
+            stackView.axis = buttonAlignment
         }
 
         // Allow for dialog dismissal on background tap and dialog pan gesture
@@ -226,30 +212,16 @@ final public class PopupDialog: UIViewController {
      */
     fileprivate func appendButtons() {
         // Add action to buttons
-        if #available(iOS 9.0, *) {
-            let stackView = popupContainerView.stackView as! UIStackView
-            let buttonStackView = popupContainerView.buttonStackView as! UIStackView
-            if buttons.isEmpty {
-                stackView.removeArrangedSubview(popupContainerView.buttonStackView)
-            }
-            
-            for (index, button) in buttons.enumerated() {
-                button.needsLeftSeparator = buttonStackView.axis == .horizontal && index > 0
-                buttonStackView.addArrangedSubview(button)
-                button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-            }
-        } else {
-            let stackView = popupContainerView.stackView as! TZStackView
-            let buttonStackView = popupContainerView.buttonStackView as! TZStackView
-            if buttons.isEmpty {
-                stackView.removeArrangedSubview(popupContainerView.buttonStackView)
-            }
-            
-            for (index, button) in buttons.enumerated() {
-                button.needsLeftSeparator = buttonStackView.axis == .horizontal && index > 0
-                buttonStackView.addArrangedSubview(button)
-                button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-            }
+        let stackView = popupContainerView.stackView as! UIStackView
+        let buttonStackView = popupContainerView.buttonStackView as! UIStackView
+        if buttons.isEmpty {
+            stackView.removeArrangedSubview(popupContainerView.buttonStackView)
+        }
+        
+        for (index, button) in buttons.enumerated() {
+            button.needsLeftSeparator = buttonStackView.axis == .horizontal && index > 0
+            buttonStackView.addArrangedSubview(button)
+            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
     }
 
@@ -296,23 +268,12 @@ extension PopupDialog {
     /// The button alignment of the alert dialog
     public var buttonAlignment: UILayoutConstraintAxis {
         get {
-            if #available(iOS 9.0, *) {
-                let buttonStackView = popupContainerView.buttonStackView as! UIStackView
-                return buttonStackView.axis
-            } else {
-                let buttonStackView = popupContainerView.buttonStackView as! TZStackView
-                return buttonStackView.axis
-            }
+            let buttonStackView = popupContainerView.buttonStackView as! UIStackView
+            return buttonStackView.axis
         }
         set {
-            if #available(iOS 9.0, *) {
-                let buttonStackView = popupContainerView.buttonStackView as! UIStackView
-                buttonStackView.axis = newValue
-                
-            } else {
-                let buttonStackView = popupContainerView.buttonStackView as! TZStackView
-                buttonStackView.axis = newValue
-            }
+            let buttonStackView = popupContainerView.buttonStackView as! UIStackView
+            buttonStackView.axis = newValue
             popupContainerView.pv_layoutIfNeededAnimated()
         }
     }

@@ -30,7 +30,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 - [x] Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
 - [x] Can be dismissed via swipe and background tap
 - [x] Objective-C compatible
-- [x] Works on all screens and devices supporting iOS 8.0+
+- [x] Works on all screens and devices supporting iOS 9.0+
 
 <p>&nbsp;</p>
 

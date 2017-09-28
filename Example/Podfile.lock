@@ -4,23 +4,31 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - Nimble (7.0.1)
+  - Nimble (7.0.2)
   - PopupDialog (0.5.5)
 
 DEPENDENCIES:
-  - FBSnapshotTestCase
-  - Nimble (~> 7.0.1)
+  - FBSnapshotTestCase (from `https://github.com/facebook/ios-snapshot-test-case.git`, commit `ed4e6a6`)
+  - Nimble (~> 7.0.2)
   - PopupDialog (from `../`)
 
 EXTERNAL SOURCES:
+  FBSnapshotTestCase:
+    :commit: ed4e6a6
+    :git: https://github.com/facebook/ios-snapshot-test-case.git
   PopupDialog:
     :path: ../
 
+CHECKOUT OPTIONS:
+  FBSnapshotTestCase:
+    :commit: ed4e6a6
+    :git: https://github.com/facebook/ios-snapshot-test-case.git
+
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
-  PopupDialog: 225730beae654bda8a08539651dd7b7328b0a643
+  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
+  PopupDialog: abde67c6c6eefa978e701592cc3d584949f1f73b
 
-PODFILE CHECKSUM: a0dda4ae0b8bb2b4bb94d619b5861a46445b877a
+PODFILE CHECKSUM: d407a6e884b39227622bceb36b17006781dd4e86
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

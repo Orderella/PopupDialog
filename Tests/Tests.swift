@@ -12,7 +12,7 @@ class Tests: XCTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+        super.tearDown() 
     }
 
     func testStandardDialogInstantiation() {
@@ -126,16 +126,10 @@ class Tests: XCTestCase {
 
         // Show popup dialog
         popup.beginAppearanceTransition(true, animated: false)
-        
-        if #available(iOS 9.0, *) {
-            let buttonStackView = popup.popupContainerView.buttonStackView as! UIStackView
-            expect(buttonStackView.arrangedSubviews.count) == 4
-            expect(buttonStackView.arrangedSubviews) == buttons
-        } else {
-            let buttonStackView = popup.popupContainerView.buttonStackView as! TZStackView
-            expect(buttonStackView.arrangedSubviews.count) == 4
-            expect(buttonStackView.arrangedSubviews) == buttons
-        }
+
+        let buttonStackView = popup.popupContainerView.buttonStackView as! UIStackView
+        expect(buttonStackView.arrangedSubviews.count) == 4
+        expect(buttonStackView.arrangedSubviews) == buttons
     }
 
     func testButtonTaps() {

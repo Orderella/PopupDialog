@@ -14,9 +14,9 @@
     "git": "https://github.com/orderella/PopupDialog.git",
     "tag": "0.5.5"
   },
-  "social_media_url": "https://twitter.com/orderella",
+  "social_media_url": "https://twitter.com/mwfire",
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "PopupDialog/Classes/**/*"
 }
