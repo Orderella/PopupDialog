@@ -5,7 +5,7 @@ PODS:
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
   - Nimble (7.0.2)
-  - PopupDialog (0.5.5)
+  - PopupDialog (0.6.0)
   - SwiftLint (0.22.0)
 
 DEPENDENCIES:
@@ -29,9 +29,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
-  PopupDialog: abde67c6c6eefa978e701592cc3d584949f1f73b
+  PopupDialog: 6382b868ea57e78032725d54a4dfbc57d27f7281
   SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
 
-PODFILE CHECKSUM: a1a35a2feac40f2e2d5ae90528e30c28c62eb87e
+PODFILE CHECKSUM: 7a27ac877c3a93aa83583a4625417841e72145e5
 
 COCOAPODS: 1.3.1
