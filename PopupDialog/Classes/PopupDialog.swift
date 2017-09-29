@@ -35,7 +35,7 @@ final public class PopupDialog: UIViewController {
     fileprivate var initialized = false
 
     /// The completion handler
-    fileprivate var completion: (() -> Void)? = nil
+    fileprivate var completion: (() -> Void)?
 
     /// The custom transition presentation manager
     fileprivate var presentationManager: PresentationManager!
@@ -45,7 +45,7 @@ final public class PopupDialog: UIViewController {
 
     /// Returns the controllers view
     internal var popupContainerView: PopupDialogContainerView {
-        return view as! PopupDialogContainerView
+        return view as! PopupDialogContainerView // swiftlint:disable:this force_cast
     }
 
     /// The set of buttons
@@ -55,7 +55,7 @@ final public class PopupDialog: UIViewController {
     internal var keyboardShown = false
 
     /// Keyboard height
-    internal var keyboardHeight: CGFloat? = nil
+    internal var keyboardHeight: CGFloat?
 
     // MARK: Public
 
@@ -132,16 +132,21 @@ final public class PopupDialog: UIViewController {
         modalPresentationStyle = .custom
 
         // Add our custom view to the container
-        if let stackView = popupContainerView.stackView as? UIStackView {
-            addChildViewController(viewController)
-            stackView.insertArrangedSubview(viewController.view, at: 0)
-            viewController.didMove(toParentViewController: self)
-        }
+        addChildViewController(viewController)
+        popupContainerView.stackView.insertArrangedSubview(viewController.view, at: 0)
+        popupContainerView.buttonStackView.axis = buttonAlignment
+        viewController.didMove(toParentViewController: self)
+        
+//        if let stackView = popupContainerView.stackView as? UIStackView {
+//            addChildViewController(viewController)
+//            stackView.insertArrangedSubview(viewController.view, at: 0)
+//            viewController.didMove(toParentViewController: self)
+//        }
 
-        // Set button alignment
-        if let stackView = popupContainerView.buttonStackView as? UIStackView {
-            stackView.axis = buttonAlignment
-        }
+//        // Set button alignment
+//        if let stackView = popupContainerView.buttonStackView as? UIStackView {
+//            stackView.axis = buttonAlignment
+//        }
 
         // Allow for dialog dismissal on background tap and dialog pan gesture
         if gestureDismissal {
@@ -185,7 +190,7 @@ final public class PopupDialog: UIViewController {
         completion = nil
     }
 
-    // MARK - Dismissal related
+    // MARK: - Dismissal related
 
     @objc fileprivate func handleTap(_ sender: UITapGestureRecognizer) {
 
@@ -211,9 +216,10 @@ final public class PopupDialog: UIViewController {
      to the placeholder stack view
      */
     fileprivate func appendButtons() {
+        
         // Add action to buttons
-        let stackView = popupContainerView.stackView as! UIStackView
-        let buttonStackView = popupContainerView.buttonStackView as! UIStackView
+        let stackView = popupContainerView.stackView
+        let buttonStackView = popupContainerView.buttonStackView
         if buttons.isEmpty {
             stackView.removeArrangedSubview(popupContainerView.buttonStackView)
         }
@@ -244,7 +250,7 @@ final public class PopupDialog: UIViewController {
     /// Calls the action closure of the button instance tapped
     @objc fileprivate func buttonTapped(_ button: PopupDialogButton) {
         if button.dismissOnTap {
-            dismiss() { button.buttonAction?() }
+            dismiss({ button.buttonAction?() })
         } else {
             button.buttonAction?()
         }
@@ -268,12 +274,10 @@ extension PopupDialog {
     /// The button alignment of the alert dialog
     public var buttonAlignment: UILayoutConstraintAxis {
         get {
-            let buttonStackView = popupContainerView.buttonStackView as! UIStackView
-            return buttonStackView.axis
+            return popupContainerView.buttonStackView.axis
         }
         set {
-            let buttonStackView = popupContainerView.buttonStackView as! UIStackView
-            buttonStackView.axis = newValue
+            popupContainerView.buttonStackView .axis = newValue
             popupContainerView.pv_layoutIfNeededAnimated()
         }
     }

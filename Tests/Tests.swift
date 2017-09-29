@@ -127,7 +127,7 @@ class Tests: XCTestCase {
         // Show popup dialog
         popup.beginAppearanceTransition(true, animated: false)
 
-        let buttonStackView = popup.popupContainerView.buttonStackView as! UIStackView
+        let buttonStackView = popup.popupContainerView.buttonStackView
         expect(buttonStackView.arrangedSubviews.count) == 4
         expect(buttonStackView.arrangedSubviews) == buttons
     }

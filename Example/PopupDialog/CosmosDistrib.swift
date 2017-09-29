@@ -15,6 +15,8 @@
 
 import UIKit
 
+//swiftlint:disable file_length
+
 /**
  
  Functions for making cosmos view accessible.
@@ -172,16 +174,16 @@ struct CosmosDefaultSettings {
      
      */
     static let starPoints: [CGPoint] = [
-        CGPoint(x: 49.5,  y: 0.0),
-        CGPoint(x: 60.5,  y: 35.0),
+        CGPoint(x: 49.5, y: 0.0),
+        CGPoint(x: 60.5, y: 35.0),
         CGPoint(x: 99.0, y: 35.0),
-        CGPoint(x: 67.5,  y: 58.0),
-        CGPoint(x: 78.5,  y: 92.0),
-        CGPoint(x: 49.5,    y: 71.0),
-        CGPoint(x: 20.5,  y: 92.0),
-        CGPoint(x: 31.5,  y: 58.0),
-        CGPoint(x: 0.0,   y: 35.0),
-        CGPoint(x: 38.5,  y: 35.0)
+        CGPoint(x: 67.5, y: 58.0),
+        CGPoint(x: 78.5, y: 92.0),
+        CGPoint(x: 49.5, y: 71.0),
+        CGPoint(x: 20.5, y: 92.0),
+        CGPoint(x: 31.5, y: 58.0),
+        CGPoint(x: 0.0, y: 35.0),
+        CGPoint(x: 38.5, y: 35.0)
     ]
     
     /// Size of a single star.
@@ -206,9 +208,7 @@ struct CosmosDefaultSettings {
     
     /// Calculates the size of the default text font. It is used for making the text size configurable from the storyboard.
     static var textSize: Double {
-        get {
-            return Double(textFont.pointSize)
-        }
+        return Double(textFont.pointSize)
     }
     
     
@@ -397,7 +397,7 @@ class CosmosLayers {
      
      */
     class func positionStarLayers(_ layers: [CALayer], starMargin: Double) {
-        var positionX:CGFloat = 0
+        var positionX: CGFloat = 0
         
         for layer in layers {
             layer.position.x = positionX
@@ -699,14 +699,14 @@ public struct CosmosSettings {
      Image used for the filled portion of the star. By default the star is drawn from the array of points unless an image is supplied.
      
      */
-    public var filledImage: UIImage? = nil
+    public var filledImage: UIImage?
     
     /**
      
      Image used for the empty portion of the star. By default the star is drawn from the array of points unless an image is supplied.
      
      */
-    public var emptyImage: UIImage? = nil
+    public var emptyImage: UIImage?
     
     // MARK: - Text settings
     // -----------------------------
@@ -774,7 +774,6 @@ class CosmosSize {
 // CosmosText.swift
 //
 // ----------------------------
-
 
 
 import UIKit
@@ -864,7 +863,7 @@ struct CosmosTouch {
                               starSize: Double, starMargin: Double) -> Double {
         
         if position < 0 { return 0 }
-        var positionRemainder = position;
+        var positionRemainder = position
         
         // Calculate the number of times the star with a margin fits the position
         // This will be the whole part of the rating
@@ -878,8 +877,7 @@ struct CosmosTouch {
         
         positionRemainder -= rating * (starSize + starMargin)
         
-        if positionRemainder > starSize
-        {
+        if positionRemainder > starSize {
             rating += 1
         } else {
             rating += positionRemainder / starSize
@@ -1069,7 +1067,7 @@ import UIKit
         // Position stars after the text for right-to-left languages
         if RightToLeft.isRightToLeft(self) {
             for starLayer in layers {
-                starLayer.position.x += textLayer.bounds.width + CGFloat(settings.textMargin);
+                starLayer.position.x += textLayer.bounds.width + CGFloat(settings.textMargin)
             }
             
             allLayers.insert(textLayer, at: 0)
@@ -1097,7 +1095,7 @@ import UIKit
     }
     
     /// Returns the content size to fit all the star and text layers.
-    override open var intrinsicContentSize:CGSize {
+    override open var intrinsicContentSize: CGSize {
         return viewSize
     }
     
@@ -1128,10 +1126,10 @@ import UIKit
     // MARK: - Touch recognition
     
     /// Closure will be called when user touches the cosmos view. The touch rating argument is passed to the closure.
-    open var didTouchCosmos: ((Double)->())?
+    open var didTouchCosmos: ((Double) -> Void)?
     
     /// Closure will be called when the user lifts finger from the cosmos view. The touch rating argument is passed to the closure.
-    open var didFinishTouchingCosmos: ((Double)->())?
+    open var didFinishTouchingCosmos: ((Double) -> Void)?
     
     /// Overriding the function to detect the first touch gesture.
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -1330,8 +1328,8 @@ struct CosmosTouchTarget {
     static func optimize(_ bounds: CGRect) -> CGRect {
         let recommendedHitSize: CGFloat = 44
         
-        var hitWidthIncrease:CGFloat = recommendedHitSize - bounds.width
-        var hitHeightIncrease:CGFloat = recommendedHitSize - bounds.height
+        var hitWidthIncrease: CGFloat = recommendedHitSize - bounds.width
+        var hitHeightIncrease: CGFloat = recommendedHitSize - bounds.height
         
         if hitWidthIncrease < 0 { hitWidthIncrease = 0 }
         if hitHeightIncrease < 0 { hitHeightIncrease = 0 }

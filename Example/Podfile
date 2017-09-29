@@ -1,11 +1,15 @@
 use_frameworks!
 
 target 'PopupDialog_Example' do
+
   pod 'PopupDialog', :path => '../'
+  pod 'SwiftLint', '~> 0.22'
 
   target 'PopupDialog_Tests' do
     inherit! :search_paths
+
     pod 'Nimble', '~> 7.0.2'
     pod 'FBSnapshotTestCase', :git => 'https://github.com/facebook/ios-snapshot-test-case.git', :commit => 'ed4e6a6'
+
   end
 end

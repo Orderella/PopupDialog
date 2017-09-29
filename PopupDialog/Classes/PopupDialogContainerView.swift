@@ -93,7 +93,7 @@ final public class PopupDialogContainerView: UIView {
     }()
 
     // The container stack view for buttons
-    internal lazy var buttonStackView: UIView = {
+    internal lazy var buttonStackView: UIStackView = {
         let buttonStackView = UIStackView()
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.distribution = .fillEqually
@@ -102,7 +102,7 @@ final public class PopupDialogContainerView: UIView {
     }()
 
     // The main stack view, containing all relevant views
-    internal lazy var stackView: UIView = {
+    internal lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [self.buttonStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -113,7 +113,7 @@ final public class PopupDialogContainerView: UIView {
     // MARK: - Constraints
 
     /// The center constraint of the shadow container
-    internal var centerYConstraint: NSLayoutConstraint? = nil
+    internal var centerYConstraint: NSLayoutConstraint?
 
     // MARK: - Initializers
 
@@ -143,8 +143,11 @@ final public class PopupDialogContainerView: UIView {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==20@900)-[shadowContainer(<=340,>=300)]-(>=10,==20@900)-|", options: [], metrics: nil, views: views)
         constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)]
         centerYConstraint = NSLayoutConstraint(item: shadowContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        constraints.append(centerYConstraint!)
-
+        
+        if let centerYConstraint = centerYConstraint {
+            constraints.append(centerYConstraint)
+        }
+        
         // Container constraints
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[container]|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: views)

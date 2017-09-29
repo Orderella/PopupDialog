@@ -1,0 +1,50 @@
+
+included:
+  - ../PopupDialog
+
+excluded:
+  - Carthage
+  - Pods
+  - External
+
+disabled_rules:
+  - line_length
+  - type_name
+  - todo
+  - valid_docs
+  - conditional_binding_cascade
+  - trailing_newline
+  - trailing_whitespace
+
+opt_in_rules:
+  - empty_count
+  - force_unwrapping
+
+force_cast: warning
+
+vertical_whitespace:
+  max_empty_lines: 2
+
+function_parameter_count:
+  - 6 #warning
+  - 8 #error
+
+cyclomatic_complexity:
+  - 20 #warning
+  - 35 #error
+
+file_length:
+  - 400 #warning
+  - 600 #error
+
+function_body_length:
+  - 40 #warning
+  - 80 #error
+
+line_length:
+  - 300 #warning
+  - 350 #error
+
+type_body_length:
+  - 400 #warning
+  - 500 #error

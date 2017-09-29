@@ -231,6 +231,7 @@
 				607FACCE1AFB9204008FA782 /* Resources */,
 				368055865A985A905B06421A /* [CP] Embed Pods Frameworks */,
 				DE703773686CA2C68FC0ABDA /* [CP] Copy Pods Resources */,
+				EEAA888D1F7DA68800B25D56 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -443,6 +444,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PopupDialog_Example/Pods-PopupDialog_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EEAA888D1F7DA68800B25D56 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		F0C1001319C9817011628B59 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

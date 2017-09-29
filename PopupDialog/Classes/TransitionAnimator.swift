@@ -29,7 +29,7 @@ import UIKit
 /// Base class for custom transition animations
 internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
-    var to: UIViewController!
+    var to: UIViewController! // swiftlint:disable:this identifier_name
     var from: UIViewController!
     let inDuration: TimeInterval
     let outDuration: TimeInterval
@@ -49,13 +49,20 @@ internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioni
     internal func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         switch direction {
         case .in:
-            to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
-            from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
+            guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
+                let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
+            
+            self.to = to
+            self.from = from
+
             let container = transitionContext.containerView
             container.addSubview(to.view)
         case .out:
-            to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
-            from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
+            guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
+                let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
+            
+            self.to = to
+            self.from = from
         }
     }
 }

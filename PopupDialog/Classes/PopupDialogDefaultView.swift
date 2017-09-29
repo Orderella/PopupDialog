@@ -137,7 +137,10 @@ final public class PopupDialogDefaultView: UIView {
         
         // ImageView height constraint
         imageHeightConstraint = NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: imageView, attribute: .height, multiplier: 0, constant: 0)
-        constraints.append(imageHeightConstraint!)
+        
+        if let imageHeightConstraint = imageHeightConstraint {
+            constraints.append(imageHeightConstraint)
+        }
 
         // Activate constraints
         NSLayoutConstraint.activate(constraints)

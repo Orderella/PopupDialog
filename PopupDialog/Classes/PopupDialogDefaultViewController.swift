@@ -28,7 +28,7 @@ import UIKit
 final public class PopupDialogDefaultViewController: UIViewController {
 
     public var standardView: PopupDialogDefaultView {
-       return view as! PopupDialogDefaultView
+       return view as! PopupDialogDefaultView // swiftlint:disable:this force_cast
     }
 
     override public func loadView() {
