@@ -36,6 +36,8 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 
 # Installation
 
+This version is Swift 4 compatible. For the Swift 3 version, please use [V0.5.4](https://github.com/Orderella/PopupDialog/releases/tag/0.5.4).
+
 ## Cocoapods
 
 PopupDialog is available through [CocoaPods](http://cocoapods.org). Simply add the following to your Podfile:
