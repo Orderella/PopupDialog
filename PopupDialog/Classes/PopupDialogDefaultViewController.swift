@@ -28,7 +28,7 @@ import UIKit
 final public class PopupDialogDefaultViewController: UIViewController {
 
     public var standardView: PopupDialogDefaultView {
-       return view as! PopupDialogDefaultView
+       return view as! PopupDialogDefaultView // swiftlint:disable:this force_cast
     }
 
     override public func loadView() {
@@ -73,7 +73,7 @@ public extension PopupDialogDefaultViewController {
     // MARK: Appearance
 
     /// The font and size of the title label
-    public dynamic var titleFont: UIFont {
+    @objc public dynamic var titleFont: UIFont {
         get { return standardView.titleFont }
         set {
             standardView.titleFont = newValue
@@ -82,7 +82,7 @@ public extension PopupDialogDefaultViewController {
     }
 
     /// The color of the title label
-    public dynamic var titleColor: UIColor? {
+    @objc public dynamic var titleColor: UIColor? {
         get { return standardView.titleLabel.textColor }
         set {
             standardView.titleColor = newValue
@@ -91,7 +91,7 @@ public extension PopupDialogDefaultViewController {
     }
 
     /// The text alignment of the title label
-    public dynamic var titleTextAlignment: NSTextAlignment {
+    @objc public dynamic var titleTextAlignment: NSTextAlignment {
         get { return standardView.titleTextAlignment }
         set {
             standardView.titleTextAlignment = newValue
@@ -100,7 +100,7 @@ public extension PopupDialogDefaultViewController {
     }
 
     /// The font and size of the body label
-    public dynamic var messageFont: UIFont {
+    @objc public dynamic var messageFont: UIFont {
         get { return standardView.messageFont}
         set {
             standardView.messageFont = newValue
@@ -109,7 +109,7 @@ public extension PopupDialogDefaultViewController {
     }
 
     /// The color of the message label
-    public dynamic var messageColor: UIColor? {
+    @objc public dynamic var messageColor: UIColor? {
         get { return standardView.messageColor }
         set {
             standardView.messageColor = newValue
@@ -118,7 +118,7 @@ public extension PopupDialogDefaultViewController {
     }
 
     /// The text alignment of the message label
-    public dynamic var messageTextAlignment: NSTextAlignment {
+    @objc public dynamic var messageTextAlignment: NSTextAlignment {
         get { return standardView.messageTextAlignment }
         set {
             standardView.messageTextAlignment = newValue

@@ -1,6 +1,6 @@
 {
   "name": "PopupDialog",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "summary": "A simple custom popup dialog view controller",
   "homepage": "https://github.com/orderella/PopupDialog",
   "license": {
@@ -12,11 +12,11 @@
   },
   "source": {
     "git": "https://github.com/orderella/PopupDialog.git",
-    "tag": "0.5.3"
+    "tag": "0.6.0"
   },
-  "social_media_url": "https://twitter.com/orderella",
+  "social_media_url": "https://twitter.com/mwfire",
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "PopupDialog/Classes/**/*"
 }

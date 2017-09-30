@@ -52,7 +52,7 @@
             break
           }
 
-          assert(comparisonSuccess, message: "Snapshot comparison failed: \(error)", file: file, line: line)
+          assert(comparisonSuccess, message: "Snapshot comparison failed: \(String(describing: error))", file: file, line: line)
         }
       } else {
         XCTFail("Missing value for referenceImagesDirectory - Set FB_REFERENCE_IMAGE_DIR as Environment variable in your scheme.")

@@ -32,7 +32,7 @@ import UIKit
  - out: Animate out
  */
 internal enum AnimationDirection {
-    case `in`
+    case `in` // swiftlint:disable:this identifier_name
     case out
 }
 
