@@ -30,26 +30,12 @@ final public class PopupDialogOverlayView: UIView {
 
     // MARK: - Appearance
 
-    ///  The blur radius of the overlay view
-    @objc public dynamic var blurRadius: Float {
-        get { return Float(blurView.blurRadius) }
-        set { blurView.blurRadius = CGFloat(newValue) }
-    }
-
     /// Turns the blur of the overlay view on or off
     @objc public dynamic var blurEnabled: Bool {
-        get { return blurView.isBlurEnabled }
+        get { return blurView.alpha == 1 }
         set {
-            blurView.isBlurEnabled = newValue
             blurView.alpha = newValue ? 1 : 0
         }
-    }
-
-    /// Whether the blur view should allow for
-    /// dynamic rendering of the background
-    @objc public dynamic var liveBlur: Bool {
-        get { return blurView.isDynamic }
-        set { return blurView.isDynamic = newValue }
     }
 
     /// The background color of the overlay view
@@ -66,12 +52,12 @@ final public class PopupDialogOverlayView: UIView {
 
     // MARK: - Views
 
-    internal lazy var blurView: FXBlurView = {
-        let blurView = FXBlurView(frame: .zero)
-        blurView.blurRadius = 8
-        blurView.isDynamic = false
-        blurView.tintColor = UIColor.clear
-        blurView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    internal lazy var blurView: UIVisualEffectView = {
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = .zero
+        blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         return blurView
     }()
 
