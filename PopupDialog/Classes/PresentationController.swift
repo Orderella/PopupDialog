@@ -37,7 +37,7 @@ final internal class PresentationController: UIPresentationController {
         
         guard let presentingViewController = presentingViewController else { return }
         
-        overlay.overlay = presentingViewController.view
+        overlay.contentView = presentingViewController.view
         overlay.frame = presentingViewController.view.bounds
     }
 
@@ -65,6 +65,7 @@ final internal class PresentationController: UIPresentationController {
         
         presentedView.frame = frameOfPresentedViewInContainerView
         overlay.blurView.setNeedsDisplay()
+        overlay.contentView.setNeedsDisplay()
     }
 
 }

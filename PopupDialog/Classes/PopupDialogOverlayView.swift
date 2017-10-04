@@ -68,6 +68,12 @@ final public class PopupDialogOverlayView: UIView {
         overlay.alpha = 0.7
         return overlay
     }()
+    
+    internal lazy var contentView: UIView = {
+        let view = UIView()
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        return view
+    }()
 
     // MARK: - Inititalizers
 
@@ -92,6 +98,7 @@ final public class PopupDialogOverlayView: UIView {
         // Add subviews
         addSubview(blurView)
         addSubview(overlay)
+        addSubview(contentView)
     }
 
 }
