@@ -34,28 +34,28 @@ open class PopupDialogButton: UIButton {
     // MARK: Public
 
     /// The font and size of the button title
-    open dynamic var titleFont: UIFont? {
+    @objc open dynamic var titleFont: UIFont? {
         get { return titleLabel?.font }
         set { titleLabel?.font = newValue }
     }
     
     /// The height of the button
-    open dynamic var buttonHeight: Int
+    @objc open dynamic var buttonHeight: Int
     
     /// The title color of the button
-    open dynamic var titleColor: UIColor? {
+    @objc open dynamic var titleColor: UIColor? {
         get { return self.titleColor(for: UIControlState()) }
         set { setTitleColor(newValue, for: UIControlState()) }
     }
 
     /// The background color of the button
-    open dynamic var buttonColor: UIColor? {
+    @objc open dynamic var buttonColor: UIColor? {
         get { return backgroundColor }
         set { backgroundColor = newValue }
     }
 
     /// The separator color of this button
-    open dynamic var separatorColor: UIColor? {
+    @objc open dynamic var separatorColor: UIColor? {
         get { return separator.backgroundColor }
         set {
             separator.backgroundColor = newValue

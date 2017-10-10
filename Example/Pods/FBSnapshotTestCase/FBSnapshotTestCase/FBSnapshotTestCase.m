@@ -69,11 +69,12 @@
                              identifier:(NSString *)identifier
                                suffixes:(NSOrderedSet *)suffixes
                               tolerance:(CGFloat)tolerance
+              defaultReferenceDirectory:(NSString *)defaultReferenceDirectory
 {
   if (nil == viewOrLayer) {
     return @"Object to be snapshotted must not be nil";
   }
-  NSString *referenceImageDirectory = [self getReferenceImageDirectoryWithDefault:(@ FB_REFERENCE_IMAGE_DIR)];
+  NSString *referenceImageDirectory = [self getReferenceImageDirectoryWithDefault:defaultReferenceDirectory];
   if (referenceImageDirectory == nil) {
     return @"Missing value for referenceImagesDirectory - Set FB_REFERENCE_IMAGE_DIR as Environment variable in your scheme.";
   }
