@@ -1,6 +1,6 @@
 import UIKit
 
-extension PopupDialog {
+public extension PopupDialog {
     public func animateTo(_ vc: UIViewController) {
         let stackView = popupContainerView.stackView
         let vcToRemove = childViewControllers[0]
