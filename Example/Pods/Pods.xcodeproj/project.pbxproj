@@ -57,7 +57,6 @@
 		62D26CE7BA3AEDB4E5E87218FDCBBA90 /* Functional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0C44E25E74141129D6FE97C6B65C5 /* Functional.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		64819C8D4EBD3386377D0F84DC909F8B /* CwlCatchException.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFFAE3D2A9358993E0E36FF217CE885 /* CwlCatchException.m */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		65985C142EE8A74E6E56D5E30A39C79C /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBC7876D8C226A7C571B9F04148B365 /* Expectation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
-		6875E10A1F8CB102004019EB /* PopupDialogExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6875E1091F8CB102004019EB /* PopupDialogExtension.swift */; };
 		68FD03C72D719117929696B62038B3D7 /* NMBExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E436B464D645A982AEBF7B98638E2C /* NMBExpectation.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		69DA8B003216466C60F029CBD79897F1 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = A23CC50FB26F113CA8B1E8BCFC3B0887 /* UIImage+Compare.m */; };
 		6AA8595EE5AE4271AC683A7E672635C0 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD43C4422C48F19B5C661D9B7C262B5 /* InteractiveTransition.swift */; };
@@ -222,7 +221,6 @@
 		5F366F190FE8EB900A572BC38A02C5F9 /* Pods-PopupDialog_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PopupDialog_Tests-resources.sh"; sourceTree = "<group>"; };
 		60787812C79B4112D548832FA92DECBD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FDB255BD804B4EFE71D6F9B831779 /* DSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DSL.h; path = Sources/NimbleObjectiveC/DSL.h; sourceTree = "<group>"; };
-		6875E1091F8CB102004019EB /* PopupDialogExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogExtension.swift; sourceTree = "<group>"; };
 		6E4822334421C58E5C3129363ABC2E1A /* Pods-PopupDialog_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PopupDialog_Tests.modulemap"; sourceTree = "<group>"; };
 		7218FC32137D7CD2A5E17361D811CFD6 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
 		7494E8E289C29FA8DBBA58033D057AB8 /* BeNil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeNil.swift; path = Sources/Nimble/Matchers/BeNil.swift; sourceTree = "<group>"; };
@@ -639,7 +637,6 @@
 				184A8A083D8510FFC190C79C587F4C30 /* PopupDialogDefaultButtons.swift */,
 				33B87610AAA0567C2C73685E64F2AD52 /* PopupDialogDefaultView.swift */,
 				DB94C173A9FAF01C73F92F313B57BFBE /* PopupDialogDefaultViewController.swift */,
-				6875E1091F8CB102004019EB /* PopupDialogExtension.swift */,
 				4EF5A0532FC12B5F0F1E7E01CDFDA565 /* PopupDialogOverlayView.swift */,
 				A25222DA91F419E8C972BE7EB9D2D06E /* PresentationController.swift */,
 				2E1B51BF97412F896820EFE941433059 /* PresentationManager.swift */,
@@ -930,7 +927,6 @@
 				78D143A5E47863877445C52CCC4B849A /* PopupDialog-dummy.m in Sources */,
 				D39FAD2171BA36FF931E056930C45BA3 /* PopupDialog.swift in Sources */,
 				5F2D07DBE9D9A18BA36F5CE5CA815A72 /* PopupDialogButton.swift in Sources */,
-				6875E10A1F8CB102004019EB /* PopupDialogExtension.swift in Sources */,
 				B31117BF9E0973519DEBB1E264A06D9D /* PopupDialogContainerView.swift in Sources */,
 				8C3E7019828CE684476C5B0EB61E823E /* PopupDialogDefaultButtons.swift in Sources */,
 				173BF85138FEF63C56BCE7E45E6C07BF /* PopupDialogDefaultView.swift in Sources */,
