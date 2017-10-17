@@ -65,6 +65,49 @@ final public class PopupDialogContainerView: UIView {
         set { shadowContainer.layer.shadowColor = newValue?.cgColor }
     }
 
+    /// We keep a reference to this constraint so we can change the top offset when the iconView size changes
+    internal var stackViewTopConstraint: NSLayoutConstraint!
+
+    internal var iconView: UIView? {
+        didSet {
+            oldValue?.removeFromSuperview()
+
+            guard let iconView = iconView else {
+                stackViewTopConstraint.constant = 0
+                iconViewContainer?.removeFromSuperview()
+                iconViewContainer = nil
+                return
+            }
+
+            if iconViewContainer == nil {
+                let v = UIView()
+                iconViewContainer = v
+                v.clipsToBounds = false
+                shadowContainer.addSubview(v)
+            }
+
+            iconViewContainer?.layer.shadowColor = iconView.layer.shadowColor
+            iconViewContainer?.layer.shadowPath = iconView.layer.shadowPath
+            iconViewContainer?.layer.shadowOffset = iconView.layer.shadowOffset
+            iconViewContainer?.layer.shadowOpacity = iconView.layer.shadowOpacity
+            iconViewContainer?.layer.shadowRadius = iconView.layer.shadowRadius
+
+            iconView.layer.shadowOpacity = 0
+            iconView.layer.shadowPath = nil
+            iconView.layer.shadowOffset = CGSize.zero
+            iconView.layer.shadowOpacity = 0
+            iconView.layer.shadowRadius = 0
+            iconViewContainer?.addSubview(iconView)
+
+            if let popupDialogIconView = iconView as? IconView {
+                popupDialogIconView.popupDialogContainerView = self
+            }
+            stackViewTopConstraint.constant = iconView.frame.size.height / 2.0
+        }
+    }
+
+    internal var iconViewContainer: UIView?
+
     // MARK: - Views
 
     /// The shadow container is the basic view of the PopupDialog
@@ -122,6 +165,7 @@ final public class PopupDialogContainerView: UIView {
         setupViews()
     }
 
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -143,20 +187,38 @@ final public class PopupDialogContainerView: UIView {
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==20@900)-[shadowContainer(<=340,>=300)]-(>=10,==20@900)-|", options: [], metrics: nil, views: views)
         constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)]
         centerYConstraint = NSLayoutConstraint(item: shadowContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        
+
         if let centerYConstraint = centerYConstraint {
             constraints.append(centerYConstraint)
         }
-        
+
         // Container constraints
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[container]|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: views)
 
         // Main stack view constraints
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: views)
+        stackViewTopConstraint = stackView.topAnchor.constraint(equalTo: container.topAnchor, constant: 50)
+        constraints += [
+            stackViewTopConstraint,
+            stackView.leftAnchor.constraint(equalTo: container.leftAnchor),
+            stackView.rightAnchor.constraint(equalTo: container.rightAnchor),
+            stackView.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+        ]
 
         // Activate constraints
         NSLayoutConstraint.activate(constraints)
+    }
+
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        guard let iconView = iconView else {
+            return
+        }
+
+        iconView.frame.origin = CGPoint.zero
+        var frame = iconView.frame
+        frame.origin.y = -frame.size.width / 2.0
+        frame.origin.x = (shadowContainer.frame.size.width / 2.0) - (iconView.frame.size.width / 2.0)
+        iconViewContainer?.frame = frame
     }
 }

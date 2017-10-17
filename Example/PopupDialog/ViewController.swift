@@ -110,6 +110,15 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
+        let iconView = IconView(shape: .circle)
+        iconView.width = 100
+        iconView.borderWidth = 2.0
+        iconView.image = UIImage(named: "star")
+
+        iconView.tintColor = UIColor.yellow
+        iconView.backgroundColor = UIColor.purple
+        popup.addIconView(iconView)
+
         // Present dialog
         self.present(popup, animated: animated, completion: nil)
     }
@@ -124,7 +133,10 @@ class ViewController: UIViewController {
         let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
 
         // Create the dialog
-        let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+        let popup = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true)
+
+        let pcv = PopupDialogContainerView.appearance()
+        pcv.cornerRadius = 10
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL", height: 60) {
@@ -139,7 +151,19 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
+        let iconView = IconView(shape: .octagon)
+        iconView.width = 120
+        iconView.image = UIImage(named: "star")
+        iconView.tintColor = UIColor.black
+        iconView.backgroundColor = UIColor.orange
+        iconView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        iconView.layer.shadowColor = UIColor.black.cgColor
+        iconView.layer.shadowOpacity = 0.25
+        iconView.layer.shadowRadius = 2.0
+        popup.addIconView(iconView)
+
         // Present dialog
         present(popup, animated: animated, completion: nil)
+        popup.transitionStyle = .bounceUp
     }
 }
