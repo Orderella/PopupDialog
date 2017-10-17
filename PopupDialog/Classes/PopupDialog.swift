@@ -37,6 +37,9 @@ final public class PopupDialog: UIViewController {
     /// The completion handler
     fileprivate var completion: (() -> Void)?
 
+    /// The iconView holder
+    fileprivate var iconView: UIView?
+
     /// The custom transition presentation manager
     fileprivate var presentationManager: PresentationManager!
 
@@ -177,6 +180,7 @@ final public class PopupDialog: UIViewController {
         guard !initialized else { return }
         appendButtons()
         addObservers()
+        prependIcon()
         initialized = true
     }
 
@@ -229,6 +233,22 @@ final public class PopupDialog: UIViewController {
             buttonStackView.addArrangedSubview(button)
             button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         }
+    }
+
+    /*!
+     Prepends an UIView on top of the dialog
+     */
+    fileprivate func prependIcon() {
+        popupContainerView.iconView = iconView
+    }
+
+    /*!
+     Adds a single UIView to the Popup Dialog
+     - see: IconView
+     - parameter iconView: A UIView, for instance an IconView
+     */
+    public func addIconView(_ iconView: UIView) {
+        self.iconView = iconView
     }
 
     /*!
@@ -288,3 +308,4 @@ extension PopupDialog {
         set { presentationManager.transitionStyle = newValue }
     }
 }
+
