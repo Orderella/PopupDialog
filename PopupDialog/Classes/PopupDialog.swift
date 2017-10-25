@@ -299,6 +299,7 @@ extension PopupDialog {
         viewController = vc
         viewController.didMove(toParentViewController: self)
         vcToRemove.removeFromParentViewController()
+        vcToRemove.view.removeFromSuperview()
         
         UIView.transition(
             with: popupContainerView.stackView,
@@ -307,7 +308,7 @@ extension PopupDialog {
             animations: {
                 stackView.removeArrangedSubview(vcToRemove.view)
                 stackView.addArrangedSubview(vc.view)
-        }
+            }
         )
         UIView.transition(with: popupContainerView, duration: 0.35, options: [.transitionFlipFromRight], animations: nil)
     }
