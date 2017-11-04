@@ -136,17 +136,6 @@ final public class PopupDialog: UIViewController {
         popupContainerView.stackView.insertArrangedSubview(viewController.view, at: 0)
         popupContainerView.buttonStackView.axis = buttonAlignment
         viewController.didMove(toParentViewController: self)
-        
-//        if let stackView = popupContainerView.stackView as? UIStackView {
-//            addChildViewController(viewController)
-//            stackView.insertArrangedSubview(viewController.view, at: 0)
-//            viewController.didMove(toParentViewController: self)
-//        }
-
-//        // Set button alignment
-//        if let stackView = popupContainerView.buttonStackView as? UIStackView {
-//            stackView.axis = buttonAlignment
-//        }
 
         // Allow for dialog dismissal on background tap and dialog pan gesture
         if gestureDismissal {
