@@ -45,6 +45,31 @@ class ViewController: UIViewController {
     @IBAction func showCustomDialogTapped(_ sender: UIButton) {
         showCustomDialog()
     }
+    
+    // MARK: prepareForSegue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case .some("dialogSegue"):
+            let segue = segue as! PopupDialogSegue
+            
+            // Create first button
+            let buttonOne = CancelButton(title: "CANCEL") {
+                self.label.text = "You canceled the custom dialog."
+            }
+            
+            // Create second button
+            let buttonTwo = DefaultButton(title: "LOVE SOCCER") {
+                self.label.text = "Yeah! We all do."
+            }
+            
+            segue.buttons = [buttonOne, buttonTwo]
+            segue.buttonAlignment = .horizontal
+            break
+        default:
+            break
+        }
+    }
 
     // MARK: Popup Dialog examples
 
