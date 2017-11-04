@@ -214,7 +214,7 @@ This makes even more sense, as popup dialogs and alerts are supposed to look con
 If you are using the default popup view, the following appearance settings are available:
 
 ```swift
-var dialogAppearance = PopupDialogDefaultView.appearance()
+let dialogAppearance = PopupDialogDefaultView.appearance()
 
 dialogAppearance.backgroundColor      = UIColor.white
 dialogAppearance.titleFont            = UIFont.boldSystemFont(ofSize: 14)
@@ -223,9 +223,19 @@ dialogAppearance.titleTextAlignment   = .center
 dialogAppearance.messageFont          = UIFont.systemFont(ofSize: 14)
 dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
 dialogAppearance.messageTextAlignment = .center
-dialogAppearance.cornerRadius         = 4
-dialogAppearance.shadowEnabled        = true
-dialogAppearance.shadowColor          = UIColor.black
+```
+
+## Dialog Container Appearance Settings
+
+The container view contains the PopupDialogDefaultView or your custom view controller. the following appearence settings are available:
+
+```swift
+let containerAppearance = PopupDialogContainerView.appearance()
+
+containerAppearance.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
+containerAppearance.cornerRadius    = 2
+containerAppearance.shadowEnabled   = true
+containerAppearance.shadowColor     = UIColor.black
 ```
 
 ## Overlay View Appearance Settings
