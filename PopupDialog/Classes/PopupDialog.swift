@@ -173,10 +173,10 @@ final public class PopupDialog: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addObservers()
 
         guard !initialized else { return }
         appendButtons()
-        addObservers()
         initialized = true
     }
 
