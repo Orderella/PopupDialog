@@ -62,7 +62,7 @@ internal extension UIView {
     // Slightly modified
     internal func pv_shake() {
         layer.removeAnimation(forKey: shakeKey)
-        let vals: [Double] = [-3, 3, -3, 3, -2, 2, 0]
+        let vals: [Double] = [-2, 2, -2, 2, 0]
         
         let translation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         translation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -76,7 +76,7 @@ internal extension UIView {
         
         let shakeGroup: CAAnimationGroup = CAAnimationGroup()
         shakeGroup.animations = [translation, rotation]
-        shakeGroup.duration = 0.4
+        shakeGroup.duration = 0.3
         self.layer.add(shakeGroup, forKey: shakeKey)
     }
 }
