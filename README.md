@@ -87,7 +87,8 @@ let buttonOne = CancelButton(title: "CANCEL") {
     print("You canceled the car dialog.")
 }
 
-let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
+// This button will not the dismiss the dialog
+let buttonTwo = DefaultButton(title: "ADMIRE CAR", dismissOnTap: false) {
     print("What a beauty!")
 }
 
@@ -156,6 +157,10 @@ public enum PopupDialogTransitionStyle: Int {
     case fadeIn
 }
 ```
+
+## Shake animation
+
+If you happen to use PopupDialog to validate text input, for example, you can call the handy `shake()` method on PopupDialog.
 
 ## Button Alignment
 

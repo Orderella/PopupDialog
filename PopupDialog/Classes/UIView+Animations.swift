@@ -40,13 +40,8 @@ internal extension UIView {
 
     /// The key for the fade animation
     internal var fadeKey: String { return "FadeAnimation" }
+    internal var shakeKey: String { return "ShakeAnimation" }
 
-    /*!
-     Applies a fade animation to this view
-     - parameter direction: Animation direction
-     - parameter value:     The end value of this animation
-     - parameter duration:  The duration of this animation
-     */
     internal func pv_fade(_ direction: AnimationDirection, _ value: Float, duration: CFTimeInterval = 0.08) {
         layer.removeAnimation(forKey: fadeKey)
         let animation = CABasicAnimation(keyPath: "opacity")
@@ -61,5 +56,27 @@ internal extension UIView {
         UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(), animations: {
             self.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    // As found at https://gist.github.com/mourad-brahim/cf0bfe9bec5f33a6ea66#file-uiview-animations-swift-L9
+    // Slightly modified
+    internal func pv_shake() {
+        layer.removeAnimation(forKey: shakeKey)
+        let vals: [Double] = [-3, 3, -3, 3, -2, 2, 0]
+        
+        let translation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        translation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        translation.values = vals
+        
+        let rotation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
+        rotation.values = vals.map { (degrees: Double) in
+            let radians: Double = (Double.pi * degrees) / 180.0
+            return radians
+        }
+        
+        let shakeGroup: CAAnimationGroup = CAAnimationGroup()
+        shakeGroup.animations = [translation, rotation]
+        shakeGroup.duration = 0.4
+        self.layer.add(shakeGroup, forKey: shakeKey)
     }
 }

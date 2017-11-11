@@ -277,3 +277,10 @@ extension PopupDialog {
         set { presentationManager.transitionStyle = newValue }
     }
 }
+
+extension PopupDialog {
+    
+    public func shake() {
+        popupContainerView.pv_shake()
+    }
+}

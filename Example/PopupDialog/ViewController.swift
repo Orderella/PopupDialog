@@ -75,9 +75,14 @@ class ViewController: UIViewController {
         let buttonThree = DefaultButton(title: "BUY CAR") {
             self.label.text = "Ah, maybe next time :)"
         }
+        
+        // Create fourth (shake) button
+        let buttonFour = DefaultButton(title: "SHAKE", dismissOnTap: false) {
+            popup.shake()
+        }
 
         // Add buttons to dialog
-        popup.addButtons([buttonOne, buttonTwo, buttonThree])
+        popup.addButtons([buttonOne, buttonTwo, buttonThree, buttonFour])
 
         // Present dialog
         self.present(popup, animated: animated, completion: nil)
