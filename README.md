@@ -121,6 +121,7 @@ public convenience init(
     buttonAlignment: UILayoutConstraintAxis = .vertical,
     transitionStyle: PopupDialogTransitionStyle = .bounceUp,
     gestureDismissal: Bool = true,
+    hideStatusBar: Bool = false,
     completion: (() -> Void)? = nil) 
 ```
 
@@ -138,6 +139,7 @@ public init(
     buttonAlignment: UILayoutConstraintAxis = .vertical,
     transitionStyle: PopupDialogTransitionStyle = .bounceUp,
     gestureDismissal: Bool = true,
+    hideStatusBar: Bool = false,
     completion: (() -> Void)? = nil) 
 ```
 
@@ -389,6 +391,7 @@ PopupDialog *popup = [[PopupDialog alloc] initWithTitle:@"TEST"
                                         buttonAlignment:UILayoutConstraintAxisHorizontal
                                         transitionStyle:PopupDialogTransitionStyleBounceUp
                                        gestureDismissal:YES
+                                          hideStatusBar:NO
                                              completion:nil];
 
 CancelButton *cancel = [[CancelButton alloc] initWithTitle:@"CANCEL" dismissOnTap:YES action:^{
@@ -413,7 +416,7 @@ Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for suppor
 <p>&nbsp;</p>
 
 # Changelog
-
+* **0.6.1** Added shake animation<br>Introduced hideStatusBar option
 * **0.6.0** Swift 4 support<br>Dropped iOS8 compatibility
 * **0.5.4** Fixed bug where blur view would reveal hidden layer<br>Improved view controller lifecycle handling<br>Scroll views can now be used with gesture dismissal
 * **0.5.3** Fixed memory leak with custom view controllers<br>Added UI automation & snapshot tests

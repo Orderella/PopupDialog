@@ -1,5 +1,6 @@
 # Changelog
 
+* **0.6.1** Added shake animation<br>Introduced hideStatusBar option
 * **0.6.0** Swift 4 support<br>Dropped iOS8 compatibility
 * **0.5.4** Fixed bug where blur view would reveal hidden layer<br>Improved view controller lifecycle handling<br>Scroll views can now be used with gesture dismissal
 * **0.5.3** Fixed memory leak with custom view controllers<br>Added UI automation & snapshot tests
