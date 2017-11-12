@@ -33,6 +33,10 @@ final public class PopupDialog: UIViewController {
 
     /// First init flag
     fileprivate var initialized = false
+    
+    /// StatusBar display related
+    fileprivate let hideStatusBar: Bool
+    fileprivate var statusBarShouldBeHidden: Bool = false
 
     /// The completion handler
     fileprivate var completion: (() -> Void)?
@@ -87,6 +91,7 @@ final public class PopupDialog: UIViewController {
                 buttonAlignment: UILayoutConstraintAxis = .vertical,
                 transitionStyle: PopupDialogTransitionStyle = .bounceUp,
                 gestureDismissal: Bool = true,
+                hideStatusBar: Bool = false,
                 completion: (() -> Void)? = nil) {
 
         // Create and configure the standard popup dialog view
@@ -96,7 +101,7 @@ final public class PopupDialog: UIViewController {
         viewController.image       = image
 
         // Call designated initializer
-        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal: gestureDismissal, completion: completion)
+        self.init(viewController: viewController, buttonAlignment: buttonAlignment, transitionStyle: transitionStyle, gestureDismissal: gestureDismissal, hideStatusBar: hideStatusBar, completion: completion)
     }
 
     /*!
@@ -115,9 +120,11 @@ final public class PopupDialog: UIViewController {
         buttonAlignment: UILayoutConstraintAxis = .vertical,
         transitionStyle: PopupDialogTransitionStyle = .bounceUp,
         gestureDismissal: Bool = true,
+        hideStatusBar: Bool = false,
         completion: (() -> Void)? = nil) {
 
         self.viewController = viewController
+        self.hideStatusBar = hideStatusBar
         self.completion = completion
         super.init(nibName: nil, bundle: nil)
 
@@ -130,6 +137,9 @@ final public class PopupDialog: UIViewController {
         // Define presentation styles
         transitioningDelegate = presentationManager
         modalPresentationStyle = .custom
+        
+        // StatusBar setup
+        modalPresentationCapturesStatusBarAppearance = true
 
         // Add our custom view to the container
         addChildViewController(viewController)
@@ -167,6 +177,15 @@ final public class PopupDialog: UIViewController {
         guard !initialized else { return }
         appendButtons()
         initialized = true
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        statusBarShouldBeHidden = hideStatusBar
+        UIView.animate(withDuration: 0.15) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
@@ -254,6 +273,16 @@ final public class PopupDialog: UIViewController {
         let button = buttons[index]
         button.buttonAction?()
     }
+    
+    // MARK: - StatusBar display related
+    
+    public override var prefersStatusBarHidden: Bool {
+        return statusBarShouldBeHidden
+    }
+    
+    public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
 }
 
 // MARK: - View proxy values
@@ -278,8 +307,11 @@ extension PopupDialog {
     }
 }
 
+// MARK: - Shake
+
 extension PopupDialog {
     
+    /// Performs a shake animation on the dialog
     public func shake() {
         popupContainerView.pv_shake()
     }
