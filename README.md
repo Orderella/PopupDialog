@@ -87,7 +87,8 @@ let buttonOne = CancelButton(title: "CANCEL") {
     print("You canceled the car dialog.")
 }
 
-let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
+// This button will not the dismiss the dialog
+let buttonTwo = DefaultButton(title: "ADMIRE CAR", dismissOnTap: false) {
     print("What a beauty!")
 }
 
@@ -120,6 +121,7 @@ public convenience init(
     buttonAlignment: UILayoutConstraintAxis = .vertical,
     transitionStyle: PopupDialogTransitionStyle = .bounceUp,
     gestureDismissal: Bool = true,
+    hideStatusBar: Bool = false,
     completion: (() -> Void)? = nil) 
 ```
 
@@ -137,6 +139,7 @@ public init(
     buttonAlignment: UILayoutConstraintAxis = .vertical,
     transitionStyle: PopupDialogTransitionStyle = .bounceUp,
     gestureDismissal: Bool = true,
+    hideStatusBar: Bool = false,
     completion: (() -> Void)? = nil) 
 ```
 
@@ -156,6 +159,10 @@ public enum PopupDialogTransitionStyle: Int {
     case fadeIn
 }
 ```
+
+## Shake animation
+
+If you happen to use PopupDialog to validate text input, for example, you can call the handy `shake()` method on PopupDialog.
 
 ## Button Alignment
 
@@ -214,7 +221,7 @@ This makes even more sense, as popup dialogs and alerts are supposed to look con
 If you are using the default popup view, the following appearance settings are available:
 
 ```swift
-var dialogAppearance = PopupDialogDefaultView.appearance()
+let dialogAppearance = PopupDialogDefaultView.appearance()
 
 dialogAppearance.backgroundColor      = UIColor.white
 dialogAppearance.titleFont            = UIFont.boldSystemFont(ofSize: 14)
@@ -223,9 +230,19 @@ dialogAppearance.titleTextAlignment   = .center
 dialogAppearance.messageFont          = UIFont.systemFont(ofSize: 14)
 dialogAppearance.messageColor         = UIColor(white: 0.6, alpha: 1)
 dialogAppearance.messageTextAlignment = .center
-dialogAppearance.cornerRadius         = 4
-dialogAppearance.shadowEnabled        = true
-dialogAppearance.shadowColor          = UIColor.black
+```
+
+## Dialog Container Appearance Settings
+
+The container view contains the PopupDialogDefaultView or your custom view controller. the following appearence settings are available:
+
+```swift
+let containerAppearance = PopupDialogContainerView.appearance()
+
+containerAppearance.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
+containerAppearance.cornerRadius    = 2
+containerAppearance.shadowEnabled   = true
+containerAppearance.shadowColor     = UIColor.black
 ```
 
 ## Overlay View Appearance Settings
@@ -374,6 +391,7 @@ PopupDialog *popup = [[PopupDialog alloc] initWithTitle:@"TEST"
                                         buttonAlignment:UILayoutConstraintAxisHorizontal
                                         transitionStyle:PopupDialogTransitionStyleBounceUp
                                        gestureDismissal:YES
+                                          hideStatusBar:NO
                                              completion:nil];
 
 CancelButton *cancel = [[CancelButton alloc] initWithTitle:@"CANCEL" dismissOnTap:YES action:^{
@@ -398,7 +416,7 @@ Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for suppor
 <p>&nbsp;</p>
 
 # Changelog
-
+* **0.6.1** Added shake animation<br>Introduced hideStatusBar option
 * **0.6.0** Swift 4 support<br>Dropped iOS8 compatibility
 * **0.5.4** Fixed bug where blur view would reveal hidden layer<br>Improved view controller lifecycle handling<br>Scroll views can now be used with gesture dismissal
 * **0.5.3** Fixed memory leak with custom view controllers<br>Added UI automation & snapshot tests
