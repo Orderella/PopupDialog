@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         let image = UIImage(named: "pexels-photo-103290")
 
         // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: image)
+        let popup = PopupDialog(title: title, message: message, image: image, preferredWidth: 580)
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL") {
