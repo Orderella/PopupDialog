@@ -120,6 +120,7 @@ public convenience init(
     image: UIImage? = nil,
     buttonAlignment: UILayoutConstraintAxis = .vertical,
     transitionStyle: PopupDialogTransitionStyle = .bounceUp,
+    preferredWidth: CGFloat = 340,
     gestureDismissal: Bool = true,
     hideStatusBar: Bool = false,
     completion: (() -> Void)? = nil) 
@@ -138,6 +139,7 @@ public init(
     viewController: UIViewController,
     buttonAlignment: UILayoutConstraintAxis = .vertical,
     transitionStyle: PopupDialogTransitionStyle = .bounceUp,
+    preferredWidth: CGFloat = 340,
     gestureDismissal: Bool = true,
     hideStatusBar: Bool = false,
     completion: (() -> Void)? = nil) 
@@ -147,9 +149,20 @@ You can pass your own view controller to PopupDialog (see image three). It is ac
 
 Buttons are added below the controllers view, however, these buttons are optional. If you decide to not add any buttons, you have to take care of dismissing the dialog manually. Being a subclass of view controller, this can be easily done via `dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?)`.
 
-## Transition Animations
+## Button Alignment
 
-You can set a transition animation style with `.BounceUp` being the default. The following transition styles are available
+Buttons can be distributed either `.horizontal` or `.vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
+
+```swift
+public enum UILayoutConstraintAxis : Int {
+case horizontal
+case vertical
+}
+```
+
+## Transition Style
+
+You can set a transition animation style with `.bounceUp` being the default. The following transition styles are available
 
 ```swift
 public enum PopupDialogTransitionStyle: Int {
@@ -160,24 +173,15 @@ public enum PopupDialogTransitionStyle: Int {
 }
 ```
 
-## Shake animation
+## Preferred Width
 
-If you happen to use PopupDialog to validate text input, for example, you can call the handy `shake()` method on PopupDialog.
-
-## Button Alignment
-
-Buttons can be distributed either `.Horizontal` or `.Vertical`, with the latter being the default. Please note distributing buttons horizontally might not be a good idea if you have more than two buttons.
-
-```swift
-public enum UILayoutConstraintAxis : Int {   
-    case horizontal
-    case vertical
-}
-```
+PopupDialog will always try to have a max width of 340 . On iPhones with smaller screens, like iPhone 5 SE, width would be 320.
+340 is also the standard width for iPads. By setting preferredWidth you can override the max width of 340 for iPads only.
 
 ## Gesture Dismissal
 
 Gesture dismissal allows your dialog being dismissed either by a background tap or by swiping the dialog down. By default, this is set to `true`. You can prevent this behavior by setting `gestureDismissal` to `false` in the initializer.
+
 
 ## Completion
 This completion handler is called when the dialog was dismissed. This is especially useful for catching a gesture dismissal.
@@ -390,6 +394,7 @@ PopupDialog *popup = [[PopupDialog alloc] initWithTitle:@"TEST"
                                                   image:nil
                                         buttonAlignment:UILayoutConstraintAxisHorizontal
                                         transitionStyle:PopupDialogTransitionStyleBounceUp
+                                         preferredWidth: 340.0,
                                        gestureDismissal:YES
                                           hideStatusBar:NO
                                              completion:nil];
@@ -409,6 +414,15 @@ DefaultButton *ok = [[DefaultButton alloc] initWithTitle:@"OK" dismissOnTap:YES 
 
 <p>&nbsp;</p>
 
+
+# Bonus
+
+## Shake animation
+
+If you happen to use PopupDialog to validate text input, for example, you can call the handy `shake()` method on PopupDialog.
+
+<p>&nbsp;</p>
+
 # Requirements
 
 Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for support of older versions please head over to releases.
@@ -416,6 +430,7 @@ Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for suppor
 <p>&nbsp;</p>
 
 # Changelog
+* **0.6.2** Added preferredWidth option for iPads
 * **0.6.1** Added shake animation<br>Introduced hideStatusBar option
 * **0.6.0** Swift 4 support<br>Dropped iOS8 compatibility
 * **0.5.4** Fixed bug where blur view would reveal hidden layer<br>Improved view controller lifecycle handling<br>Scroll views can now be used with gesture dismissal
