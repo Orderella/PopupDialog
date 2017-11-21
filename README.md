@@ -467,14 +467,6 @@ Thanks to everyone who uses, enhances and improves this library, especially the 
 
 <p>&nbsp;</p>
 
-# Images in the sample project
-
-The sample project features two images from Markus Spiske raumrot.com:<br>
-[Vintage Car One](https://www.pexels.com/photo/lights-vintage-luxury-tires-103290/) | [Vintage Car Two](https://www.pexels.com/photo/lights-car-vintage-luxury-92637/)<br>
-Thanks a lot for providing these :)
-
-<p>&nbsp;</p>
-
 # License
 
 PopupDialog is available under the MIT license. See the LICENSE file for more info.
