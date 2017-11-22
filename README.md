@@ -155,8 +155,8 @@ Buttons can be distributed either `.horizontal` or `.vertical`, with the latter 
 
 ```swift
 public enum UILayoutConstraintAxis : Int {
-case horizontal
-case vertical
+	case horizontal
+	case vertical
 }
 ```
 
