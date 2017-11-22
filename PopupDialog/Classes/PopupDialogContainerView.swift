@@ -110,6 +110,7 @@ final public class PopupDialogContainerView: UIView {
         return stackView
     }()
     
+    // The preferred width for iPads
     fileprivate let preferredWidth: CGFloat
 
     // MARK: - Constraints
@@ -118,12 +119,6 @@ final public class PopupDialogContainerView: UIView {
     internal var centerYConstraint: NSLayoutConstraint?
 
     // MARK: - Initializers
-
-//    internal override init(frame: CGRect) {
-//        self.init(frame: frame, maxWidth: <#T##CGFloat#>)
-////        super.init(frame: frame)
-////        setupViews()
-//    }
     
     internal init(frame: CGRect, preferredWidth: CGFloat) {
         self.preferredWidth = preferredWidth
