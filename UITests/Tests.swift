@@ -26,16 +26,12 @@ class UITests: XCTestCase {
         XCTAssert(app.staticTexts["Tap the buttons!"].exists)
         
         app.buttons["Show Image Dialog"].tap()
-        app.buttons["ADMIRE CAR"].tap()
-        XCTAssert(app.staticTexts["What a beauty!"].exists)
-        
-        app.buttons["Show Image Dialog"].tap()
-        app.buttons["BUY CAR"].tap()
-        XCTAssert(app.staticTexts["Ah, maybe next time :)"].exists)
+        app.buttons["OK"].tap()
+        XCTAssert(app.staticTexts["You ok'd the image dialog"].exists)
         
         app.buttons["Show Image Dialog"].tap()
         app.buttons["CANCEL"].tap()
-        XCTAssert(app.staticTexts["You canceled the car dialog."].exists)
+        XCTAssert(app.staticTexts["You canceled the image dialog"].exists)
     }
     
     func testDefaultDialogWithoutImage() {

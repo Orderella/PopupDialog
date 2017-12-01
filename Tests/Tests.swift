@@ -21,8 +21,6 @@ class Tests: XCTestCase {
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
         expect(popup).toNot(beNil())
         
-        //XCTAssertNotNil(popup, "Popup Dialog should be non-nil")
-
         // Get popup dialog view
         guard let vc = popup.viewController as? PopupDialogDefaultViewController else {
             XCTFail("Could not instantiate Popup Dialog view")
@@ -38,7 +36,7 @@ class Tests: XCTestCase {
     func testImageDialogInstantiation() {
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main, compatibleWith: nil)
+        let image = UIImage(named: "colorful", in: Bundle.main, compatibleWith: nil)
         expect(image).toNot(beNil())
 
         // Instantiate dialog with image
@@ -64,7 +62,7 @@ class Tests: XCTestCase {
         popup.beginAppearanceTransition(true, animated: false)
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main, compatibleWith: nil)
+        let image = UIImage(named: "colorful", in: Bundle.main, compatibleWith: nil)
         XCTAssertNotNil(image, "Image should not be nil")
 
         // Change values after init
@@ -93,7 +91,7 @@ class Tests: XCTestCase {
         }
 
         // Create image
-        let image = UIImage(named: "pexels-photo-103290", in: Bundle.main, compatibleWith: nil)
+        let image = UIImage(named: "colorful", in: Bundle.main, compatibleWith: nil)
         expect(image).toNot(beNil())
 
         vc.titleText   = "New Test Title"

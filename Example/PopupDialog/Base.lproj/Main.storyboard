@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,14 +18,14 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pexels-photo-92637" translatesAutoresizingMaskIntoConstraints="NO" id="yCg-ou-HQf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorful_background" translatesAutoresizingMaskIntoConstraints="NO" id="yCg-ou-HQf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ib-rL-PNU">
-                                <rect key="frame" x="20" y="602" width="335" height="45"/>
+                                <rect key="frame" x="20" y="671" width="374" height="45"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80479525862068968" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="jAD-W4-dOg"/>
@@ -36,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7G-uG-kym">
-                                <rect key="frame" x="20" y="543" width="335" height="45"/>
+                                <rect key="frame" x="20" y="612" width="374" height="45"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Show Standard Dialog"/>
                                 <connections>
@@ -44,7 +44,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWW-W3-vVg">
-                                <rect key="frame" x="20" y="484" width="335" height="45"/>
+                                <rect key="frame" x="20" y="553" width="374" height="45"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="1" blue="1" alpha="0.79816810344827582" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Show Image Dialog"/>
                                 <connections>
@@ -52,9 +52,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the buttons!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUr-OR-AC7">
-                                <rect key="frame" x="20" y="52" width="335" height="21"/>
+                                <rect key="frame" x="20" y="52" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -66,11 +66,13 @@
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="yCg-ou-HQf" secondAttribute="bottom" id="0sN-bz-fuy"/>
                             <constraint firstItem="d7G-uG-kym" firstAttribute="top" secondItem="UWW-W3-vVg" secondAttribute="bottom" constant="14" id="8Ho-Y3-WvF"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1Ib-rL-PNU" secondAttribute="bottom" constant="20" id="AyH-mH-6Gi"/>
-                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="d7G-uG-kym" secondAttribute="leading" id="B9Q-Ea-aA1"/>
+                            <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d7G-uG-kym" secondAttribute="leading" id="B9Q-Ea-aA1"/>
                             <constraint firstItem="PUr-OR-AC7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="FE7-kI-sSi"/>
                             <constraint firstItem="d7G-uG-kym" firstAttribute="width" secondItem="UWW-W3-vVg" secondAttribute="width" id="IV3-YY-k6T"/>
                             <constraint firstItem="d7G-uG-kym" firstAttribute="height" secondItem="UWW-W3-vVg" secondAttribute="height" id="JWw-Fa-DGU"/>
-                            <constraint firstItem="d7G-uG-kym" firstAttribute="leading" secondItem="UWW-W3-vVg" secondAttribute="leading" id="VYV-nL-PHX"/>
+                            <constraint firstAttribute="trailing" secondItem="UWW-W3-vVg" secondAttribute="trailing" constant="20" id="N42-3Q-6Ls"/>
+                            <constraint firstAttribute="trailing" secondItem="d7G-uG-kym" secondAttribute="trailing" constant="20" id="Qri-de-IEc"/>
+                            <constraint firstItem="d7G-uG-kym" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UWW-W3-vVg" secondAttribute="leading" id="VYV-nL-PHX"/>
                             <constraint firstAttribute="trailing" secondItem="PUr-OR-AC7" secondAttribute="trailing" constant="20" id="Z5n-KK-G7h"/>
                             <constraint firstItem="1Ib-rL-PNU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="ad3-v2-SFT"/>
                             <constraint firstItem="1Ib-rL-PNU" firstAttribute="width" secondItem="d7G-uG-kym" secondAttribute="width" id="hLd-MW-vXX"/>
@@ -90,11 +92,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pexels-photo-92637" width="375" height="667"/>
+        <image name="colorful_background" width="375" height="667"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
 </document>

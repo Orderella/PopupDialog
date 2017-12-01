@@ -215,7 +215,7 @@
 				C705B7FE1E33A0FE00D042A3 /* Tests.swift */,
 			);
 			name = UITests;
-			path = PopupDialog_ExampleUITests;
+			path = ../UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

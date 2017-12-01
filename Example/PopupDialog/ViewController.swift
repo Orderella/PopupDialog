@@ -55,25 +55,25 @@ class ViewController: UIViewController {
 
         // Prepare the popup assets
         let title = "THIS IS THE DIALOG TITLE"
-        let message = "This is the message section of the popup dialog default view"
-        let image = UIImage(named: "pexels-photo-103290")
+        let message = "This is the message section of the PopupDialog default view"
+        let image = UIImage(named: "colorful")
 
         // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: image)
+        let popup = PopupDialog(title: title, message: message, image: image, preferredWidth: 580)
 
         // Create first button
-        let buttonOne = CancelButton(title: "CANCEL") {
-            self.label.text = "You canceled the car dialog."
+        let buttonOne = CancelButton(title: "CANCEL") { [weak self] in
+            self?.label.text = "You canceled the image dialog"
+        }
+        
+        // Create fourth (shake) button
+        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) {
+            popup.shake()
         }
 
         // Create second button
-        let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
-            self.label.text = "What a beauty!"
-        }
-
-        // Create third button
-        let buttonThree = DefaultButton(title: "BUY CAR") {
-            self.label.text = "Ah, maybe next time :)"
+        let buttonThree = DefaultButton(title: "OK") { [weak self] in
+            self?.label.text = "You ok'd the image dialog"
         }
 
         // Add buttons to dialog
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
     }
 
     /*!
-     Displays the standard dialog without image, just as the system dialog
+     Displays the default dialog without image, just as the system dialog
      */
     func showStandardDialog(animated: Bool = true) {
 
@@ -93,7 +93,12 @@ class ViewController: UIViewController {
         let message = "If you don't pass an image to the default dialog, it will display just as a regular dialog. Moreover, this features the zoom transition"
 
         // Create the dialog
-        let popup = PopupDialog(title: title, message: message, buttonAlignment: .horizontal, transitionStyle: .zoomIn, gestureDismissal: true) {
+        let popup = PopupDialog(title: title,
+                                message: message,
+                                buttonAlignment: .horizontal,
+                                transitionStyle: .zoomIn,
+                                gestureDismissal: true,
+                                hideStatusBar: true) {
             print("Completed")
         }
 
