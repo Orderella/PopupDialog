@@ -72,6 +72,11 @@ final public class PopupDialog: UIViewController {
     /// Whether or not to shift view for keyboard display
     public var keyboardShiftsView = true
 
+    /// View containing the popup dialog and any buttons
+    public var popupDialogContainerView: UIView {
+        return popupContainerView.container
+    }
+
     // MARK: - Initializers
 
     /*!
