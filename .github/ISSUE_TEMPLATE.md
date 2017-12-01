@@ -7,20 +7,17 @@
 ## Environment
 Please provide information on your development environment, so we can build with the same scenario.
 
-- Mac OS version (e.g. 10.12): ℹ
-- Xcode version (e.g. 8.0): ℹ
+- Xcode version (e.g. 9.1): ℹ
 - PopupDialog version (e.g. 0.5.0): ℹ
 - Minimum deployment target (e.g. 9.0): ℹ
 - Language (Objective-C / Swift): ℹ
-- In case of Swift - Version (e.g. 3.0): ℹ
+- In case of Swift - Version (e.g. 4): ℹ
 
 ## Dependency management
 If you are not using any dependency managers, you can remove this section.
-> Please note: If you are using CocoaPods with Xcode 8, CocoaPods 1.1.0 is required.
 
 - Dependency manager (e.g. CocoaPods): ℹ
-- Version (e.g. 1.1.0): ℹ 
-
+- Version (e.g. 1.3.1): ℹ 
 
 ## What did you do?
 
