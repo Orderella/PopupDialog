@@ -1,0 +1,6 @@
+framework module DynamicBlurView {
+  umbrella header "DynamicBlurView-umbrella.h"
+
+  export *
+  module * { export * }
+}

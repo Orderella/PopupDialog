@@ -10,6 +10,8 @@
 #endif
 #endif
 
-FOUNDATION_EXPORT double PopupDialogVersionNumber;
-FOUNDATION_EXPORT const unsigned char PopupDialogVersionString[];
+#import "DynamicBlurView.h"
+
+FOUNDATION_EXPORT double DynamicBlurViewVersionNumber;
+FOUNDATION_EXPORT const unsigned char DynamicBlurViewVersionString[];
 

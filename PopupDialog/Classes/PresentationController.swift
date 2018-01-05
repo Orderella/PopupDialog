@@ -37,7 +37,7 @@ final internal class PresentationController: UIPresentationController {
         
         guard let presentingViewController = presentingViewController else { return }
         
-        overlay.blurView.underlyingView = presentingViewController.view
+        //overlay.blurView.underlyingView = presentingViewController.view
         overlay.frame = presentingViewController.view.bounds
     }
 
