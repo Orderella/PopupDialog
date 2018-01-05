@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        // Customize dialog appearance
 //        let pv = PopupDialogDefaultView.appearance()
 //        pv.titleFont    = UIFont(name: "HelveticaNeue-Light", size: 16)!
-//        pv.titleColor   = UIColor.white
+//        pv.titleColor   = .white
 //        pv.messageFont  = UIFont(name: "HelveticaNeue", size: 14)!
 //        pv.messageColor = UIColor(white: 0.8, alpha: 1)
 //
