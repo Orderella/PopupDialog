@@ -45,7 +45,7 @@ final public class PopupDialogOverlayView: UIView {
     
     /// Whether the blur view should allow for
     /// live rendering of the background
-    @objc public dynamic var isLiveBlurEnabled: Bool {
+    @objc public dynamic var liveBlurEnabled: Bool {
         get { return blurView.trackingMode == .common }
         set {
             if newValue {
@@ -121,8 +121,8 @@ extension PopupDialogOverlayView {
     /// dynamic rendering of the background
     @available(*, deprecated, message: "liveBlur has been deprecated and will be removed with future versions of PopupDialog. Please use isLiveBlurEnabled instead.")
     @objc public dynamic var liveBlur: Bool {
-        get { return isLiveBlurEnabled }
-        set { isLiveBlurEnabled = newValue }
+        get { return liveBlurEnabled }
+        set { liveBlurEnabled = newValue }
     }
     
 }
