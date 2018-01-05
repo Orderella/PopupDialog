@@ -37,15 +37,15 @@ final public class PopupDialogOverlayView: UIView {
         set { blurView.isHidden = !newValue }
     }
     
-    ///  The blur radius of the overlay view
+    /// The blur radius of the overlay view
     @objc public dynamic var blurRadius: CGFloat {
         get { return blurView.blurRadius }
         set { blurView.blurRadius = newValue }
     }
-
+    
     /// Whether the blur view should allow for
-    /// dynamic rendering of the background
-    @objc public dynamic var liveBlur: Bool {
+    /// live rendering of the background
+    @objc public dynamic var isLiveBlurEnabled: Bool {
         get { return blurView.trackingMode == .common }
         set {
             if newValue {
@@ -55,7 +55,7 @@ final public class PopupDialogOverlayView: UIView {
             }
         }
     }
-
+    
     /// The background color of the overlay view
     @objc public dynamic var color: UIColor? {
         get { return overlay.backgroundColor }
@@ -75,14 +75,14 @@ final public class PopupDialogOverlayView: UIView {
         blurView.blurRadius = 8
         blurView.trackingMode = .none
         blurView.isDeepRendering = true
-        blurView.tintColor = UIColor.clear
+        blurView.tintColor = .clear
         blurView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         return blurView
     }()
 
     internal lazy var overlay: UIView = {
         let overlay = UIView(frame: .zero)
-        overlay.backgroundColor = UIColor.black
+        overlay.backgroundColor = .black
         overlay.alpha = 0.7
         overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         return overlay
@@ -103,14 +103,26 @@ final public class PopupDialogOverlayView: UIView {
 
     fileprivate func setupView() {
 
-        // Self appearance
-        self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        self.backgroundColor = UIColor.clear
-        self.alpha = 0
+        autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        backgroundColor = .clear
+        alpha = 0
 
-        // Add subviews
         addSubview(blurView)
         addSubview(overlay)
     }
 
+}
+
+// MARK: - Deprecated
+
+extension PopupDialogOverlayView {
+    
+    /// Whether the blur view should allow for
+    /// dynamic rendering of the background
+    @available(*, deprecated, message: "liveBlur has been deprecated and will be removed with future versions of PopupDialog. Please use isLiveBlurEnabled instead.")
+    @objc public dynamic var liveBlur: Bool {
+        get { return isLiveBlurEnabled }
+        set { isLiveBlurEnabled = newValue }
+    }
+    
 }
