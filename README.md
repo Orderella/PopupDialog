@@ -127,7 +127,7 @@ public convenience init(
     completion: (() -> Void)? = nil) 
 ```
 
-The default dialog initializer is a convenient way of creating a popup with image, title and message (see image one and two).
+The default dialog initializer is a convenient way of creating a popup with image, title and message (see image one and three).
 
 Bascially, all parameters are optional, although this makes no sense at all. You want to at least add a message and a single button, otherwise the dialog can't be dismissed, unless you do it manually.
 
@@ -146,7 +146,7 @@ public init(
     completion: (() -> Void)? = nil) 
 ```
 
-You can pass your own view controller to PopupDialog (see image three). It is accessible via the `viewController` property of PopupDialog, which has to be casted to your view controllers class to access its properties. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
+You can pass your own view controller to PopupDialog (see image two). It is accessible via the `viewController` property of PopupDialog, which has to be casted to your view controllers class to access its properties. Make sure the custom view defines all constraints needed, so you don't run into any autolayout issues.
 
 Buttons are added below the controllers view, however, these buttons are optional. If you decide to not add any buttons, you have to take care of dismissing the dialog manually. Being a subclass of view controller, this can be easily done via `dismissViewControllerAnimated(flag: Bool, completion: (() -> Void)?)`.
 
@@ -183,6 +183,9 @@ PopupDialog will always try to have a max width of 340 . On iPhones with smaller
 
 Gesture dismissal allows your dialog being dismissed either by a background tap or by swiping the dialog down. By default, this is set to `true`. You can prevent this behavior by setting `gestureDismissal` to `false` in the initializer.
 
+## Hide Status Bar
+
+PopupDialog can hide the status bar whenever it is displayed. Defaults to `false`. Make sure to add `UIViewControllerBasedStatusBarAppearance` to `Info.plist` and set it to `YES`.
 
 ## Completion
 This completion handler is called when the dialog was dismissed. This is especially useful for catching a gesture dismissal.
