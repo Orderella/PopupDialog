@@ -265,8 +265,7 @@ overlayAppearance.opacity         = 0.7
 ```
 
 #### Note
-Turning on `liveBlur`, that is realtime updates of the background view, results in a significantly higher CPU usage /power consumption and is therefore turned off by default now.
-Choose wisely whether you need this feature or not ;)
+Setting `liveBlurEnabled` to true, that is enabling realtime updates of the background view, results in a significantly higher CPU usage /power consumption and is therefore turned off by default. Choose wisely whether you need this feature or not ;)
 
 ## Button Appearance Settings
 
