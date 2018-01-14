@@ -28,18 +28,9 @@ import UIKit
 
 final internal class PresentationController: UIPresentationController {
 
-    fileprivate lazy var overlay: PopupDialogOverlayView = {
+    private lazy var overlay: PopupDialogOverlayView = {
         return PopupDialogOverlayView(frame: .zero)
     }()
-
-    override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
-        super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
-        
-        guard let presentingViewController = presentingViewController else { return }
-        
-        overlay.blurView.underlyingView = presentingViewController.view
-        overlay.frame = presentingViewController.view.bounds
-    }
 
     override func presentationTransitionWillBegin() {
         
@@ -48,23 +39,23 @@ final internal class PresentationController: UIPresentationController {
         overlay.frame = containerView.bounds
         containerView.insertSubview(overlay, at: 0)
 
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ -> Void in
-            self.overlay.alpha = 1.0
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
+            self?.overlay.alpha = 1.0
         }, completion: nil)
     }
 
     override func dismissalTransitionWillBegin() {
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ -> Void in
-            self.overlay.alpha = 0.0
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] _ in
+            self?.overlay.alpha = 0.0
         }, completion: nil)
     }
 
     override func containerViewWillLayoutSubviews() {
-        
+
         guard let presentedView = presentedView else { return }
-        
+
         presentedView.frame = frameOfPresentedViewInContainerView
-        overlay.blurView.setNeedsDisplay()
+        overlay.blurView.refresh()
     }
 
 }

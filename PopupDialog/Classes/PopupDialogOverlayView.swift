@@ -24,62 +24,67 @@
 //
 
 import Foundation
+import DynamicBlurView
 
 /// The (blurred) overlay view below the popup dialog
 final public class PopupDialogOverlayView: UIView {
 
     // MARK: - Appearance
 
-    ///  The blur radius of the overlay view
-    @objc public dynamic var blurRadius: Float {
-        get { return Float(blurView.blurRadius) }
-        set { blurView.blurRadius = CGFloat(newValue) }
-    }
-
     /// Turns the blur of the overlay view on or off
     @objc public dynamic var blurEnabled: Bool {
-        get { return blurView.isBlurEnabled }
+        get { return !blurView.isHidden }
+        set { blurView.isHidden = !newValue }
+    }
+    
+    /// The blur radius of the overlay view
+    @objc public dynamic var blurRadius: CGFloat {
+        get { return blurView.blurRadius }
+        set { blurView.blurRadius = newValue }
+    }
+    
+    /// Whether the blur view should allow for
+    /// live rendering of the background
+    @objc public dynamic var liveBlurEnabled: Bool {
+        get { return blurView.trackingMode == .common }
         set {
-            blurView.isBlurEnabled = newValue
-            blurView.alpha = newValue ? 1 : 0
+            if newValue {
+                blurView.trackingMode = .common
+            } else {
+                blurView.trackingMode = .none
+            }
         }
     }
-
-    /// Whether the blur view should allow for
-    /// dynamic rendering of the background
-    @objc public dynamic var liveBlur: Bool {
-        get { return blurView.isDynamic }
-        set { return blurView.isDynamic = newValue }
-    }
-
+    
     /// The background color of the overlay view
     @objc public dynamic var color: UIColor? {
         get { return overlay.backgroundColor }
         set { overlay.backgroundColor = newValue }
     }
 
-    /// The opacity of the overay view
-    @objc public dynamic var opacity: Float {
-        get { return Float(overlay.alpha) }
-        set { overlay.alpha = CGFloat(newValue) }
+    /// The opacity of the overlay view
+    @objc public dynamic var opacity: CGFloat {
+        get { return overlay.alpha }
+        set { overlay.alpha = newValue }
     }
 
     // MARK: - Views
 
-    internal lazy var blurView: FXBlurView = {
-        let blurView = FXBlurView(frame: .zero)
+    internal lazy var blurView: DynamicBlurView = {
+        let blurView = DynamicBlurView(frame: .zero)
         blurView.blurRadius = 8
-        blurView.isDynamic = false
-        blurView.tintColor = UIColor.clear
+        blurView.trackingMode = .none
+        blurView.isDeepRendering = true
+        blurView.tintColor = .clear
         blurView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         return blurView
     }()
 
     internal lazy var overlay: UIView = {
         let overlay = UIView(frame: .zero)
-        overlay.backgroundColor = UIColor.black
-        overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        overlay.backgroundColor = .black
         overlay.alpha = 0.7
+        overlay.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         return overlay
     }()
 
@@ -98,14 +103,26 @@ final public class PopupDialogOverlayView: UIView {
 
     fileprivate func setupView() {
 
-        // Self appearance
-        self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        self.backgroundColor = UIColor.clear
-        self.alpha = 0
+        autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        backgroundColor = .clear
+        alpha = 0
 
-        // Add subviews
         addSubview(blurView)
         addSubview(overlay)
     }
 
+}
+
+// MARK: - Deprecated
+
+extension PopupDialogOverlayView {
+    
+    /// Whether the blur view should allow for
+    /// dynamic rendering of the background
+    @available(*, deprecated, message: "liveBlur has been deprecated and will be removed with future versions of PopupDialog. Please use isLiveBlurEnabled instead.")
+    @objc public dynamic var liveBlur: Bool {
+        get { return liveBlurEnabled }
+        set { liveBlurEnabled = newValue }
+    }
+    
 }
