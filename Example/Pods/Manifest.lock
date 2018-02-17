@@ -1,14 +1,14 @@
 PODS:
-  - DynamicBlurView (2.0.0)
+  - DynamicBlurView (2.0.2)
   - FBSnapshotTestCase (2.1.4):
     - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - Nimble (7.0.2)
-  - PopupDialog (0.7.0):
+  - Nimble (7.0.3)
+  - PopupDialog (0.7.1):
     - DynamicBlurView (~> 2.0)
-  - SwiftLint (0.24.0)
+  - SwiftLint (0.25.0)
 
 DEPENDENCIES:
   - FBSnapshotTestCase (from `https://github.com/facebook/ios-snapshot-test-case.git`, commit `ed4e6a6`)
@@ -29,12 +29,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/facebook/ios-snapshot-test-case.git
 
 SPEC CHECKSUMS:
-  DynamicBlurView: 7b1bfbc1e7a0606b8a1855ff809ccaccfbda6b30
+  DynamicBlurView: aa6db4defc6e537eb86fc5e58dd3991666178399
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
-  PopupDialog: b59d5a92b015dde35a1af6aacf19e960f432aef8
-  SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  PopupDialog: 7b2ad0681c470eb159c33a17c4c3109debd65d5a
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
 
 PODFILE CHECKSUM: 7a27ac877c3a93aa83583a4625417841e72145e5
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

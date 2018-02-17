@@ -26,7 +26,7 @@ extension CGImage {
     }
 
     func blurred(with boxSize: UInt32, iterations: Int, blendColor: UIColor?, blendMode: CGBlendMode) -> CGImage? {
-        guard let provider = dataProvider else {
+        guard let providerData = dataProvider?.data else {
             return nil
         }
 
@@ -45,7 +45,7 @@ extension CGImage {
             free(tempData)
         }
 
-        let source = CFDataGetBytePtr(provider.data)
+        let source = CFDataGetBytePtr(providerData)
         memcpy(inBuffer.data, source, bytes)
 
         for _ in 0..<iterations {
