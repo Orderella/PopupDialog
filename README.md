@@ -57,7 +57,6 @@ To install, simply add the following lines to your Cartfile:
 
 ```ruby
 github "Orderella/PopupDialog" ~> 0.7
-github "KyoheiG3/DynamicBlurView" ~> 2.0
 ```
 
 ## Manually
