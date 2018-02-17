@@ -70,7 +70,7 @@ open class PopupDialogButton: UIButton {
     open var defaultSeparatorColor = UIColor(white: 0.9, alpha: 1)
 
     /// Whether button should dismiss popup when tapped
-    open var dismissOnTap = true
+    @objc open var dismissOnTap = true
 
     /// The action called when the button is tapped
     open fileprivate(set) var buttonAction: PopupDialogButtonAction?
@@ -109,7 +109,7 @@ open class PopupDialogButton: UIButton {
 
      - returns: PopupDialogButton
      */
-    public init(title: String,
+    @objc public init(title: String,
                 height: Int = 45,
                 dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
 

@@ -89,7 +89,7 @@ final public class PopupDialog: UIViewController {
 
      - returns: Popup dialog default style
      */
-    public convenience init(
+    @objc public convenience init(
                 title: String?,
                 message: String?,
                 image: UIImage? = nil,
@@ -129,7 +129,7 @@ final public class PopupDialog: UIViewController {
 
      - returns: Popup dialog with a custom view controller
      */
-    public init(
+    @objc public init(
         viewController: UIViewController,
         buttonAlignment: UILayoutConstraintAxis = .vertical,
         transitionStyle: PopupDialogTransitionStyle = .bounceUp,
@@ -227,7 +227,7 @@ final public class PopupDialog: UIViewController {
     /*!
      Dismisses the popup dialog
      */
-    public func dismiss(_ completion: (() -> Void)? = nil) {
+    @objc public func dismiss(_ completion: (() -> Void)? = nil) {
         self.dismiss(animated: true) {
             completion?()
         }
@@ -259,7 +259,7 @@ final public class PopupDialog: UIViewController {
      Adds a single PopupDialogButton to the Popup dialog
      - parameter button: A PopupDialogButton instance
      */
-    public func addButton(_ button: PopupDialogButton) {
+    @objc public func addButton(_ button: PopupDialogButton) {
         buttons.append(button)
     }
 
@@ -267,7 +267,7 @@ final public class PopupDialog: UIViewController {
      Adds an array of PopupDialogButtons to the Popup dialog
      - parameter buttons: A list of PopupDialogButton instances
      */
-    public func addButtons(_ buttons: [PopupDialogButton]) {
+    @objc public func addButtons(_ buttons: [PopupDialogButton]) {
         self.buttons += buttons
     }
 
@@ -306,7 +306,7 @@ final public class PopupDialog: UIViewController {
 extension PopupDialog {
 
     /// The button alignment of the alert dialog
-    public var buttonAlignment: UILayoutConstraintAxis {
+    @objc public var buttonAlignment: UILayoutConstraintAxis {
         get {
             return popupContainerView.buttonStackView.axis
         }
@@ -317,7 +317,7 @@ extension PopupDialog {
     }
 
     /// The transition style
-    public var transitionStyle: PopupDialogTransitionStyle {
+    @objc public var transitionStyle: PopupDialogTransitionStyle {
         get { return presentationManager.transitionStyle }
         set { presentationManager.transitionStyle = newValue }
     }
@@ -328,7 +328,7 @@ extension PopupDialog {
 extension PopupDialog {
     
     /// Performs a shake animation on the dialog
-    public func shake() {
+    @objc public func shake() {
         popupContainerView.pv_shake()
     }
 }
