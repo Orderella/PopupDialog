@@ -109,9 +109,7 @@ open class PopupDialogButton: UIButton {
 
      - returns: PopupDialogButton
      */
-    @objc public init(title: String,
-                height: Int = 45,
-                dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
+    @objc public init(title: String, height: Int = 45, dismissOnTap: Bool = true, action: PopupDialogButtonAction?) {
 
         // Assign the button height
         buttonHeight = height
