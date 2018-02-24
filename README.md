@@ -57,7 +57,6 @@ To install, simply add the following lines to your Cartfile:
 
 ```ruby
 github "Orderella/PopupDialog" ~> 0.7
-github "KyoheiG3/DynamicBlurView" ~> 2.0
 ```
 
 ## Manually
@@ -390,30 +389,36 @@ PopupDialog can be used in Objective-C projects as well.
 Here is a basic example:
 
 ```objective-c
-#import <PopupDialog/PopupDialog-Swift.h>
+PopupDialog *popup = [[PopupDialog alloc] initWithTitle: @"Title"
+                                                message: @"This is a message"
+                                                  image: nil
+                                        buttonAlignment: UILayoutConstraintAxisVertical
+                                        transitionStyle: PopupDialogTransitionStyleBounceUp
+                                         preferredWidth: 380
+                                       gestureDismissal: NO
+                                          hideStatusBar: NO
+                                             completion: nil];
 
-PopupDialog *popup = [[PopupDialog alloc] initWithTitle:@"TEST"
-                                                message:@"This is a test message!"
-                                                  image:nil
-                                        buttonAlignment:UILayoutConstraintAxisHorizontal
-                                        transitionStyle:PopupDialogTransitionStyleBounceUp
-                                         preferredWidth:340.0,
-                                       gestureDismissal:YES
-                                          hideStatusBar:NO
-                                             completion:nil];
+DestructiveButton *delete = [[DestructiveButton alloc] initWithTitle: @"Delete"
+                                                              height: 45
+                                                        dismissOnTap: YES
+                                                              action: nil];
 
-CancelButton *cancel = [[CancelButton alloc] initWithTitle:@"CANCEL" dismissOnTap:YES action:^{
-    // Default action
-}];
+CancelButton *cancel = [[CancelButton alloc] initWithTitle: @"Cancel"
+                                                    height: 45
+                                              dismissOnTap: YES
+                                                    action: nil];
 
-DefaultButton *ok = [[DefaultButton alloc] initWithTitle:@"OK" dismissOnTap:YES action:^{
-    // Ok action
-}];
+DefaultButton *ok = [[DefaultButton alloc] initWithTitle: @"OK"
+                                                  height: 45
+                                            dismissOnTap: YES
+                                                  action: nil];
 
-[popup addButtons: @[cancel, ok]];
+[dialog addButtons:@[delete, cancel, ok]];
 
 [self presentViewController:popup animated:YES completion:nil];
 ```
+
 
 <p>&nbsp;</p>
 
@@ -433,6 +438,7 @@ Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for suppor
 <p>&nbsp;</p>
 
 # Changelog
+* **0.7.1** Fixes Objective-C compatability<br>Improved Carthage handling
 * **0.7.0** Removed FXBlurView while switching to DynamicBlurView
 * **0.6.2** Added preferredWidth option for iPads
 * **0.6.1** Added shake animation<br>Introduced hideStatusBar option

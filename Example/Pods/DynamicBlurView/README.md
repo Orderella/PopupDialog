@@ -9,9 +9,7 @@ DynamicBlurView is a dynamic and high performance UIView subclass for Blur.
 
 #### [Appetize's Demo](https://appetize.io/app/9pvxr367tm0jj2bcy8zavxnqkg?device=iphone6&scale=75&orientation=portrait)
 
-![Gif](https://github.com/KyoheiG3/assets/blob/master/DynamicBlurView/home.gif)
-
-![Gif](https://github.com/KyoheiG3/assets/blob/master/DynamicBlurView/home.png)
+![home](https://user-images.githubusercontent.com/5707132/33749021-0342ea8c-dc0f-11e7-9260-af2d2e9c8d0c.gif)![home](https://user-images.githubusercontent.com/5707132/33749025-07595de0-dc0f-11e7-8814-fe757f437b69.png)
 
 
 - Since using the CADisplayLink, it is a high performance.
