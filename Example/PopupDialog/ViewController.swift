@@ -42,13 +42,17 @@ class ViewController: UIViewController {
         showStandardDialog()
     }
 
+    @IBAction func showStandardDialogWithBackgroundImageTapped(_ sender: UIButton) {
+        showStandardDialogWithBackgroundImage()
+    }
+
     @IBAction func showCustomDialogTapped(_ sender: UIButton) {
         showCustomDialog()
     }
 
     // MARK: Popup Dialog examples
 
-    /*!
+    /**
      Displays the default dialog with an image on top
      */
     func showImageDialog(animated: Bool = true) {
@@ -83,7 +87,7 @@ class ViewController: UIViewController {
         self.present(popup, animated: animated, completion: nil)
     }
 
-    /*!
+    /**
      Displays the default dialog without image, just as the system dialog
      */
     func showStandardDialog(animated: Bool = true) {
@@ -106,6 +110,51 @@ class ViewController: UIViewController {
         let buttonOne = CancelButton(title: "CANCEL") {
             self.label.text = "You canceled the default dialog"
         }
+
+        // Create second button
+        let buttonTwo = DefaultButton(title: "OK") {
+            self.label.text = "You ok'd the default dialog"
+        }
+
+        // Add buttons to dialog
+        popup.addButtons([buttonOne, buttonTwo])
+
+        // Present dialog
+        self.present(popup, animated: animated, completion: nil)
+    }
+
+    /**
+     Displays the default dialog without image, just as the system dialog with background image
+     */
+    func showStandardDialogWithBackgroundImage(animated: Bool = true) {
+
+        // Prepare the popup
+        let title = "THIS IS A DIALOG WITH BACKGROUND IMAGE"
+        let message = "Just a regular system dialog with background image. Moreover, this features the zoom transition"
+
+        let backgroundImage = UIImage(named: "colorful")
+
+        // Create the dialog
+        let popup = PopupDialog(title: title,
+                                message: message,
+                                backgroundImage: backgroundImage,
+                                buttonAlignment: .horizontal,
+                                transitionStyle: .zoomIn,
+                                gestureDismissal: true,
+                                hideStatusBar: true) {
+                                    print("Completed")
+        }
+
+        let vc = popup.viewController as! PopupDialogDefaultViewController
+        vc.titleColor = .white
+        vc.messageColor = .white
+
+        // Create first button
+        let buttonOne = CancelButton(title: "CANCEL") {
+            self.label.text = "You canceled the default dialog"
+        }
+
+        buttonOne.titleColor = .white
 
         // Create second button
         let buttonTwo = DefaultButton(title: "OK") {
