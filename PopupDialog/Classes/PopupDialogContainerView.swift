@@ -65,6 +65,16 @@ final public class PopupDialogContainerView: UIView {
         set { shadowContainer.layer.shadowColor = newValue?.cgColor }
     }
 
+    /// The background image
+    @objc public dynamic var backgroundImage: UIImage? {
+        get {
+            return backgroundImageView.image
+        }
+        set {
+            backgroundImageView.image = newValue
+        }
+    }
+
     // MARK: - Views
 
     /// The shadow container is the basic view of the PopupDialog
@@ -90,6 +100,17 @@ final public class PopupDialogContainerView: UIView {
         container.clipsToBounds = true
         container.layer.cornerRadius = 4
         return container
+    }()
+
+    /// The background image view is a subview of container view
+    /// and is stay below of other container subviews
+    internal lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 4
+        return imageView
     }()
 
     // The container stack view for buttons
@@ -137,10 +158,11 @@ final public class PopupDialogContainerView: UIView {
         // Add views
         addSubview(shadowContainer)
         shadowContainer.addSubview(container)
+        container.addSubview(backgroundImageView)
         container.addSubview(stackView)
 
         // Layout views
-        let views = ["shadowContainer": shadowContainer, "container": container, "stackView": stackView]
+        let views = ["shadowContainer": shadowContainer, "container": container, "backgroundImageView": backgroundImageView, "stackView": stackView]
         var constraints = [NSLayoutConstraint]()
 
         // Shadow container constraints
@@ -160,6 +182,10 @@ final public class PopupDialogContainerView: UIView {
         // Container constraints
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[container]|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: views)
+
+        // Background Image View constraints
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[backgroundImageView]|", options: [], metrics: nil, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[backgroundImageView]|", options: [], metrics: nil, views: views)
 
         // Main stack view constraints
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: views)

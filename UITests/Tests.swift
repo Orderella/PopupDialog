@@ -45,6 +45,18 @@ class UITests: XCTestCase {
         app.buttons["CANCEL"].tap()
         XCTAssert(app.staticTexts["You canceled the default dialog"].exists)
     }
+
+    func testDefaultDialogWithBackgroundImage() {
+        XCTAssert(app.staticTexts["Tap the buttons!"].exists)
+
+        app.buttons["Show Standard Dialog + Background Image"].tap()
+        app.buttons["OK"].tap()
+        XCTAssert(app.staticTexts["You ok'd the default dialog"].exists)
+
+        app.buttons["Show Standard Dialog + Background Image"].tap()
+        app.buttons["CANCEL"].tap()
+        XCTAssert(app.staticTexts["You canceled the default dialog"].exists)
+    }
     
     func testCustomDialog() {
         XCTAssert(app.staticTexts["Tap the buttons!"].exists)

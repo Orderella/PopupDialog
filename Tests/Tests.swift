@@ -52,6 +52,18 @@ class Tests: XCTestCase {
         expect(vc.image).toNot(beNil())
     }
 
+    func testBackgroundImageDialogInstantiation() {
+        // Create background image
+        let backgroundImage = UIImage(named: "colorful", in: Bundle.main, compatibleWith: nil)
+        expect(backgroundImage).toNot(beNil())
+
+        // Instantiate dialog with background image
+        let popup = PopupDialog(title: "", message: "", backgroundImage: backgroundImage)
+        expect(popup).toNot(beNil())
+
+        expect(popup.backgroundImage).toNot(beNil())
+    }
+
     func testDialogPropertyAccess() {
 
         // Instantiate dialog
