@@ -41,6 +41,13 @@ class SnapshotTests: FBSnapshotTestCase {
         RunLoop.current.run(mode: .defaultRunLoopMode, before: date)
         FBSnapshotVerifyView(window)
     }
+
+    func testStandartDialogWithBackgroundImage() {
+        vc.showStandardDialogWithBackgroundImage(animated: false)
+        let date = Date(timeIntervalSinceNow: 1)
+        RunLoop.current.run(mode: .defaultRunLoopMode, before: date)
+        FBSnapshotVerifyView(window)
+    }
     
     func testCustomDialog() {
         vc.showCustomDialog(animated: false)
