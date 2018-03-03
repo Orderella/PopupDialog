@@ -69,6 +69,16 @@ final public class PopupDialog: UIViewController {
     /// The content view of the popup dialog
     public var viewController: UIViewController
 
+    /// Background Image
+    public var backgroundImage: UIImage? {
+        get {
+            return (view as? PopupDialogContainerView)?.backgroundImage
+        }
+        set {
+            (view as? PopupDialogContainerView)?.backgroundImage = newValue
+        }
+    }
+
     /// Whether or not to shift view for keyboard display
     public var keyboardShiftsView = true
 
@@ -93,6 +103,7 @@ final public class PopupDialog: UIViewController {
                 title: String?,
                 message: String?,
                 image: UIImage? = nil,
+                backgroundImage: UIImage? = nil,
                 buttonAlignment: UILayoutConstraintAxis = .vertical,
                 transitionStyle: PopupDialogTransitionStyle = .bounceUp,
                 preferredWidth: CGFloat = 340,
@@ -108,6 +119,7 @@ final public class PopupDialog: UIViewController {
 
         // Call designated initializer
         self.init(viewController: viewController,
+                  backgroundImage: backgroundImage,
                   buttonAlignment: buttonAlignment,
                   transitionStyle: transitionStyle,
                   preferredWidth: preferredWidth,
@@ -131,6 +143,7 @@ final public class PopupDialog: UIViewController {
      */
     @objc public init(
         viewController: UIViewController,
+        backgroundImage: UIImage? = nil,
         buttonAlignment: UILayoutConstraintAxis = .vertical,
         transitionStyle: PopupDialogTransitionStyle = .bounceUp,
         preferredWidth: CGFloat = 340,
@@ -143,6 +156,9 @@ final public class PopupDialog: UIViewController {
         self.hideStatusBar = hideStatusBar
         self.completion = completion
         super.init(nibName: nil, bundle: nil)
+
+        // Set background image
+        self.backgroundImage = backgroundImage
 
         // Init the presentation manager
         presentationManager = PresentationManager(transitionStyle: transitionStyle, interactor: interactor)
@@ -183,7 +199,10 @@ final public class PopupDialog: UIViewController {
 
     /// Replaces controller view with popup view
     public override func loadView() {
-        view = PopupDialogContainerView(frame: UIScreen.main.bounds, preferredWidth: preferredWidth)
+        super.loadView()
+        let dialogContainerView = PopupDialogContainerView(frame: UIScreen.main.bounds, preferredWidth: preferredWidth)
+        dialogContainerView.backgroundImage = backgroundImage
+        view = dialogContainerView
     }
 
     public override func viewWillAppear(_ animated: Bool) {
