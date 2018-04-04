@@ -68,7 +68,8 @@ class ViewController: UIViewController {
         
         // Create fourth (shake) button
         let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) {
-            popup.shake()
+            //popup.shake()
+            //Attention: closure will lead a memory leak
         }
 
         // Create second button
