@@ -80,8 +80,12 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo, buttonThree])
 
+        //some animation when the dialog disappear
+        //....
+        
         // Present dialog
-        self.present(popup, animated: animated, completion: nil)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 
     /*!
@@ -116,8 +120,12 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
+        //some animation when the dialog disappear
+        //....
+        
         // Present dialog
-        self.present(popup, animated: animated, completion: nil)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 
     /*!
@@ -145,7 +153,11 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
+        //some animation when the dialog disappear
+        //....
+        
         // Present dialog
-        present(popup, animated: animated, completion: nil)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 }
