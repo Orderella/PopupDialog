@@ -80,7 +80,7 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo, buttonThree])
 
-        //some animation when the dialog disappear
+        //some animation when the dialog appear
         //....
         
         // Present dialog
@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
-        //some animation when the dialog disappear
+        //some animation when the dialog appear
         //....
         
         // Present dialog
@@ -153,7 +153,7 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
-        //some animation when the dialog disappear
+        //some animation when the dialog appear
         //....
         
         // Present dialog
