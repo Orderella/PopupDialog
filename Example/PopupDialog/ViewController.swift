@@ -27,7 +27,37 @@ import UIKit
 import PopupDialog
 
 class ViewController: UIViewController {
+    lazy let imageDialog: PopupDialog = {
+        // Prepare the popup assets
+        let title = "THIS IS THE DIALOG TITLE"
+        let message = "This is the message section of the PopupDialog default view"
+        let image = UIImage(named: "colorful")
 
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, image: image, preferredWidth: 580)
+
+        // Create first button
+        let buttonOne = CancelButton(title: "CANCEL") { [weak self] in
+            self?.label.text = "You canceled the image dialog"
+        }
+        
+        // Create fourth (shake) button
+        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) {
+            popup.shake()
+            //a tmp solution of the closure memory leak problem
+        }
+
+        // Create second button
+        let buttonThree = DefaultButton(title: "OK") { [weak self] in
+            self?.label.text = "You ok'd the image dialog"
+        }
+
+        // Add buttons to dialog
+        popup.addButtons([buttonOne, buttonTwo, buttonThree])
+
+    }()
+    
+    
     // MARK: Outlets
 
     @IBOutlet weak var label: UILabel!
@@ -53,34 +83,13 @@ class ViewController: UIViewController {
      */
     func showImageDialog(animated: Bool = true) {
 
-        // Prepare the popup assets
-        let title = "THIS IS THE DIALOG TITLE"
-        let message = "This is the message section of the PopupDialog default view"
-        let image = UIImage(named: "colorful")
 
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: image, preferredWidth: 580)
-
-        // Create first button
-        let buttonOne = CancelButton(title: "CANCEL") { [weak self] in
-            self?.label.text = "You canceled the image dialog"
-        }
+        //some animation when the dialog appear
+        //....
         
-        // Create fourth (shake) button
-        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) {
-            popup.shake()
-        }
-
-        // Create second button
-        let buttonThree = DefaultButton(title: "OK") { [weak self] in
-            self?.label.text = "You ok'd the image dialog"
-        }
-
-        // Add buttons to dialog
-        popup.addButtons([buttonOne, buttonTwo, buttonThree])
-
         // Present dialog
-        self.present(popup, animated: animated, completion: nil)
+        addChildViewController(imageDialog)
+        view.addSubview(imageDialog.view)
     }
 
     /*!
@@ -115,8 +124,12 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
+        //some animation when the dialog appear
+        //....
+        
         // Present dialog
-        self.present(popup, animated: animated, completion: nil)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 
     /*!
@@ -144,7 +157,11 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
+        //some animation when the dialog appear
+        //....
+        
         // Present dialog
-        present(popup, animated: animated, completion: nil)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 }
