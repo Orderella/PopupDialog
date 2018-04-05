@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         
         // Create fourth (shake) button
         let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) { [weak popup] in
-            popup.shake()
+            popup?.shake()
             //a tmp solution of the closure memory leak problem
         }
 
@@ -83,8 +83,8 @@ class ViewController: UIViewController {
         //....
         
         // Present dialog
-        addChildViewController(imageDialog)
-        view.addSubview(imageDialog.view)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 
     /*!
