@@ -27,36 +27,6 @@ import UIKit
 import PopupDialog
 
 class ViewController: UIViewController {
-    lazy let imageDialog: PopupDialog = {
-        // Prepare the popup assets
-        let title = "THIS IS THE DIALOG TITLE"
-        let message = "This is the message section of the PopupDialog default view"
-        let image = UIImage(named: "colorful")
-
-        // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: image, preferredWidth: 580)
-
-        // Create first button
-        let buttonOne = CancelButton(title: "CANCEL") { [weak self] in
-            self?.label.text = "You canceled the image dialog"
-        }
-        
-        // Create fourth (shake) button
-        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) {
-            popup.shake()
-            //a tmp solution of the closure memory leak problem
-        }
-
-        // Create second button
-        let buttonThree = DefaultButton(title: "OK") { [weak self] in
-            self?.label.text = "You ok'd the image dialog"
-        }
-
-        // Add buttons to dialog
-        popup.addButtons([buttonOne, buttonTwo, buttonThree])
-
-    }()
-    
     
     // MARK: Outlets
 
@@ -82,7 +52,32 @@ class ViewController: UIViewController {
      Displays the default dialog with an image on top
      */
     func showImageDialog(animated: Bool = true) {
+        // Prepare the popup assets
+        let title = "THIS IS THE DIALOG TITLE"
+        let message = "This is the message section of the PopupDialog default view"
+        let image = UIImage(named: "colorful")
 
+        // Create the dialog
+        let popup = PopupDialog(title: title, message: message, image: image, preferredWidth: 580)
+
+        // Create first button
+        let buttonOne = CancelButton(title: "CANCEL") { [weak self] in
+            self?.label.text = "You canceled the image dialog"
+        }
+        
+        // Create fourth (shake) button
+        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) { [weak popup] in
+            popup.shake()
+            //a tmp solution of the closure memory leak problem
+        }
+
+        // Create second button
+        let buttonThree = DefaultButton(title: "OK") { [weak self] in
+            self?.label.text = "You ok'd the image dialog"
+        }
+
+        // Add buttons to dialog
+        popup.addButtons([buttonOne, buttonTwo, buttonThree])
 
         //some animation when the dialog appear
         //....
