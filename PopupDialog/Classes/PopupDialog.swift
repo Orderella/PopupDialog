@@ -52,7 +52,7 @@ final public class PopupDialog: UIViewController {
 
     /// Returns the controllers view
     internal var popupContainerView: PopupDialogContainerView {
-        return view as! PopupDialogContainerView // swiftlint:disable:this force_cast
+        return view.subviews[1] as! PopupDialogContainerView // swiftlint:disable:this force_cast
     }
 
     /// The set of buttons
@@ -183,7 +183,13 @@ final public class PopupDialog: UIViewController {
 
     /// Replaces controller view with popup view
     public override func loadView() {
-        view = PopupDialogContainerView(frame: UIScreen.main.bounds, preferredWidth: preferredWidth)
+        view = UIView()
+        view.frame = UIScreen.main.bounds
+        let backgroudView = UIView()
+        backgroudView.frame = view.frame
+        backgroudView.backgroundColor = UIColor(white:0, alpha:0.6)
+        view.addSubview(backgroudView)
+        view.addSubview(PopupDialogContainerView(frame: UIScreen.main.bounds, preferredWidth: preferredWidth))
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -228,9 +234,9 @@ final public class PopupDialog: UIViewController {
      Dismisses the popup dialog
      */
     @objc public func dismiss(_ completion: (() -> Void)? = nil) {
-        self.dismiss(animated: true) {
-            completion?()
-        }
+        //completion?()
+        view.removeFromSuperview()
+        removeFromParentViewController()
     }
 
     // MARK: - Button related
@@ -273,10 +279,9 @@ final public class PopupDialog: UIViewController {
 
     /// Calls the action closure of the button instance tapped
     @objc fileprivate func buttonTapped(_ button: PopupDialogButton) {
+        button.buttonAction?()
         if button.dismissOnTap {
-            dismiss({ button.buttonAction?() })
-        } else {
-            button.buttonAction?()
+            dismiss()
         }
     }
 

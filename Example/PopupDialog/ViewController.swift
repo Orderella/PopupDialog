@@ -27,7 +27,7 @@ import UIKit
 import PopupDialog
 
 class ViewController: UIViewController {
-
+    
     // MARK: Outlets
 
     @IBOutlet weak var label: UILabel!
@@ -52,7 +52,6 @@ class ViewController: UIViewController {
      Displays the default dialog with an image on top
      */
     func showImageDialog(animated: Bool = true) {
-
         // Prepare the popup assets
         let title = "THIS IS THE DIALOG TITLE"
         let message = "This is the message section of the PopupDialog default view"
@@ -67,8 +66,9 @@ class ViewController: UIViewController {
         }
         
         // Create fourth (shake) button
-        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) {
-            popup.shake()
+        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) { [weak popup] in
+            popup?.shake()
+            //a tmp solution of the closure memory leak problem
         }
 
         // Create second button
@@ -79,8 +79,12 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo, buttonThree])
 
+        //some animation when the dialog appear
+        //....
+        
         // Present dialog
-        self.present(popup, animated: animated, completion: nil)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 
     /*!
@@ -115,8 +119,12 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
+        //some animation when the dialog appear
+        //....
+        
         // Present dialog
-        self.present(popup, animated: animated, completion: nil)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 
     /*!
@@ -144,7 +152,11 @@ class ViewController: UIViewController {
         // Add buttons to dialog
         popup.addButtons([buttonOne, buttonTwo])
 
+        //some animation when the dialog appear
+        //....
+        
         // Present dialog
-        present(popup, animated: animated, completion: nil)
+        addChildViewController(popup)
+        view.addSubview(popup.view)
     }
 }
