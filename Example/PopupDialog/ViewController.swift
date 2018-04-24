@@ -67,8 +67,8 @@ class ViewController: UIViewController {
         }
         
         // Create fourth (shake) button
-        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) {
-            popup.shake()
+        let buttonTwo = DefaultButton(title: "SHAKE", dismissOnTap: false) { [weak popup] in
+            popup?.shake()
         }
 
         // Create second button
