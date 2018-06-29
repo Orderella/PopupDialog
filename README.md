@@ -121,7 +121,8 @@ public convenience init(
     buttonAlignment: UILayoutConstraintAxis = .vertical,
     transitionStyle: PopupDialogTransitionStyle = .bounceUp,
     preferredWidth: CGFloat = 340,
-    gestureDismissal: Bool = true,
+    tapGestureDismissal: Bool = true,
+    panGestureDismissal: Bool = true,
     hideStatusBar: Bool = false,
     completion: (() -> Void)? = nil) 
 ```
@@ -140,7 +141,8 @@ public init(
     buttonAlignment: UILayoutConstraintAxis = .vertical,
     transitionStyle: PopupDialogTransitionStyle = .bounceUp,
     preferredWidth: CGFloat = 340,
-    gestureDismissal: Bool = true,
+    tapGestureDismissal: Bool = true,
+    panGestureDismissal: Bool = true,
     hideStatusBar: Bool = false,
     completion: (() -> Void)? = nil) 
 ```
@@ -180,7 +182,7 @@ PopupDialog will always try to have a max width of 340 . On iPhones with smaller
 
 ## Gesture Dismissal
 
-Gesture dismissal allows your dialog being dismissed either by a background tap or by swiping the dialog down. By default, this is set to `true`. You can prevent this behavior by setting `gestureDismissal` to `false` in the initializer.
+Gesture dismissal allows your dialog being dismissed either by a background tap or by swiping the dialog down. By default, this is set to `true`. You can prevent this behavior by setting either `tapGestureDismissal` or `panGestureDismissal`  to `false` in the initializer.
 
 ## Hide Status Bar
 
@@ -395,7 +397,8 @@ PopupDialog *popup = [[PopupDialog alloc] initWithTitle: @"Title"
                                         buttonAlignment: UILayoutConstraintAxisVertical
                                         transitionStyle: PopupDialogTransitionStyleBounceUp
                                          preferredWidth: 380
-                                       gestureDismissal: NO
+                                    tapGestureDismissal: NO
+                                    panGestureDismissal: NO
                                           hideStatusBar: NO
                                              completion: nil];
 
