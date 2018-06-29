@@ -46,7 +46,7 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). Simply add t
 use_frameworks!
 
 target '<Your Target Name>'
-pod 'PopupDialog', '~> 0.7'
+pod 'PopupDialog', '~> 0.8'
 ```
 
 ## Carthage
@@ -56,7 +56,7 @@ pod 'PopupDialog', '~> 0.7'
 To install, simply add the following lines to your Cartfile:
 
 ```ruby
-github "Orderella/PopupDialog" ~> 0.7
+github "Orderella/PopupDialog" ~> 0.8
 ```
 
 ## Manually
