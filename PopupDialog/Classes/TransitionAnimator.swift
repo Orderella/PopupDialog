@@ -29,7 +29,7 @@ import UIKit
 /// Base class for custom transition animations
 internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
-    var to: UIViewController! // swiftlint:disable:this identifier_name
+    var to: UIViewController!
     var from: UIViewController!
     let inDuration: TimeInterval
     let outDuration: TimeInterval

@@ -1,5 +1,6 @@
 # Changelog
 
+* **0.8.0** Separated tap and pan gesture dismissal
 * **0.7.1** Fixes Objective-C compatability<br>Improved Carthage handling
 * **0.7.0** Removed FXBlurView while switching to DynamicBlurView
 * **0.6.2** Added preferredWidth option for iPads
