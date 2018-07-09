@@ -83,7 +83,8 @@ final public class PopupDialog: UIViewController {
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
      - parameter preferredWidth:   The preferred width for iPad screens
-     - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
+     - parameter tapGestureDismissal: Indicates if dialog can be dismissed via tap gesture
+     - parameter panGestureDismissal: Indicates if dialog can be dismissed via pan gesture
      - parameter hideStatusBar:    Whether to hide the status bar on PopupDialog presentation
      - parameter completion:       Completion block invoked when dialog was dismissed
 
@@ -96,7 +97,8 @@ final public class PopupDialog: UIViewController {
                 buttonAlignment: UILayoutConstraintAxis = .vertical,
                 transitionStyle: PopupDialogTransitionStyle = .bounceUp,
                 preferredWidth: CGFloat = 340,
-                gestureDismissal: Bool = true,
+                tapGestureDismissal: Bool = true,
+                panGestureDismissal: Bool = true,
                 hideStatusBar: Bool = false,
                 completion: (() -> Void)? = nil) {
 
@@ -111,7 +113,8 @@ final public class PopupDialog: UIViewController {
                   buttonAlignment: buttonAlignment,
                   transitionStyle: transitionStyle,
                   preferredWidth: preferredWidth,
-                  gestureDismissal: gestureDismissal,
+                  tapGestureDismissal: tapGestureDismissal,
+                  panGestureDismissal: panGestureDismissal,
                   hideStatusBar: hideStatusBar,
                   completion: completion)
     }
@@ -123,7 +126,8 @@ final public class PopupDialog: UIViewController {
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
      - parameter preferredWidth:   The preferred width for iPad screens
-     - parameter gestureDismissal: Indicates if dialog can be dismissed via pan gesture
+     - parameter tapGestureDismissal: Indicates if dialog can be dismissed via tap gesture
+     - parameter panGestureDismissal: Indicates if dialog can be dismissed via pan gesture
      - parameter hideStatusBar:    Whether to hide the status bar on PopupDialog presentation
      - parameter completion:       Completion block invoked when dialog was dismissed
 
@@ -134,7 +138,8 @@ final public class PopupDialog: UIViewController {
         buttonAlignment: UILayoutConstraintAxis = .vertical,
         transitionStyle: PopupDialogTransitionStyle = .bounceUp,
         preferredWidth: CGFloat = 340,
-        gestureDismissal: Bool = true,
+        tapGestureDismissal: Bool = true,
+        panGestureDismissal: Bool = true,
         hideStatusBar: Bool = false,
         completion: (() -> Void)? = nil) {
 
@@ -163,14 +168,17 @@ final public class PopupDialog: UIViewController {
         popupContainerView.buttonStackView.axis = buttonAlignment
         viewController.didMove(toParentViewController: self)
 
-        // Allow for dialog dismissal on background tap and dialog pan gesture
-        if gestureDismissal {
-            let panRecognizer = UIPanGestureRecognizer(target: interactor, action: #selector(InteractiveTransition.handlePan))
-            popupContainerView.stackView.addGestureRecognizer(panRecognizer)
+        // Allow for dialog dismissal on background tap
+        if tapGestureDismissal {
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
             tapRecognizer.cancelsTouchesInView = false
-            panRecognizer.cancelsTouchesInView = false
             popupContainerView.addGestureRecognizer(tapRecognizer)
+        }
+        // Allow for dialog dismissal on dialog pan gesture
+        if panGestureDismissal {
+            let panRecognizer = UIPanGestureRecognizer(target: interactor, action: #selector(InteractiveTransition.handlePan))
+            panRecognizer.cancelsTouchesInView = false
+            popupContainerView.stackView.addGestureRecognizer(panRecognizer)
         }
     }
 

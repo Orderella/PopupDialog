@@ -48,3 +48,9 @@ line_length:
 type_body_length:
   - 400 #warning
   - 500 #error
+
+identifier_name:
+  excluded:
+    - id
+    - vc
+    - to
