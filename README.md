@@ -214,6 +214,9 @@ vc.titleText = "..."
 vc.messageText = "..."
 vc.buttonAlignment = .horizontal
 vc.transitionStyle = .bounceUp
+
+// You may also set attributed message on the dialog, 
+vc.attributedMessageText = NSAttributedString(...)
 ```
 
 <p>&nbsp;</p>

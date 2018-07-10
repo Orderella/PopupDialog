@@ -70,6 +70,15 @@ public extension PopupDialogDefaultViewController {
         }
     }
 
+    /// The attributed message text of the dialog
+    public var attributedMessageText: NSAttributedString? {
+        get { return standardView.messageLabel.attributedText }
+        set {
+            standardView.messageLabel.attributedText = newValue
+            standardView.pv_layoutIfNeededAnimated()
+        }
+    }
+
     // MARK: Appearance
 
     /// The font and size of the title label
