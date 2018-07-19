@@ -189,7 +189,7 @@ Gesture dismissal allows your dialog being dismissed either by a background tap 
 PopupDialog can hide the status bar whenever it is displayed. Defaults to `false`. Make sure to add `UIViewControllerBasedStatusBarAppearance` to `Info.plist` and set it to `YES`.
 
 ## Completion
-This completion handler is called when the dialog was dismissed. This is especially useful for catching a gesture dismissal.
+This completion handler is called when the dialog was deinited. This is especially useful for catching a gesture dismissal. You can pass additional completion handler for `dismiss` method which is called on dismissed.
 
 <p>&nbsp;</p>
 
