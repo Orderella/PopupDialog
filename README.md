@@ -9,6 +9,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status Master](https://travis-ci.org/Orderella/PopupDialog.svg?branch=master)](https://travis-ci.org/Orderella/PopupDialog)
 [![Build Status Development](https://travis-ci.org/Orderella/PopupDialog.svg?branch=development)](https://travis-ci.org/Orderella/PopupDialog)
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 <p>&nbsp;</p>
 
