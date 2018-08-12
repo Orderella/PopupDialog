@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        pcv.shadowColor     = .black
 //        pcv.shadowOpacity   = 0.6
 //        pcv.shadowRadius    = 20
+//        pcv.shadowOffset    = CGSize(width: 0, height: 8)
 //
 //        // Customize overlay appearance
 //        let ov = PopupDialogOverlayView.appearance()
