@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'PopupDialog'
-  s.version          = '0.8.0'
+  s.version          = '0.8.1'
   s.summary          = 'A simple custom popup dialog view controller'
   s.homepage         = 'https://github.com/orderella/PopupDialog'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
