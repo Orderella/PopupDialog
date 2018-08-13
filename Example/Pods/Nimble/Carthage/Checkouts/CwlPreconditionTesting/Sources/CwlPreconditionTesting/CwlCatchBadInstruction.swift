@@ -89,8 +89,8 @@ import Foundation
 	/// A function for receiving mach messages and parsing the first with mach_exc_server (and if any others are received, throwing them away).
 	private func machMessageHandler(_ arg: UnsafeMutableRawPointer) -> UnsafeMutableRawPointer? {
 		let context = arg.assumingMemoryBound(to: MachContext.self).pointee
-		var request = request_mach_exception_raise_t()
-		var reply = reply_mach_exception_raise_state_t()
+        var request = __Request__exception_raise_t()
+        var reply = __Reply__exception_raise_state_t()
 		
 		var handledfirstException = false
 		repeat { do {
