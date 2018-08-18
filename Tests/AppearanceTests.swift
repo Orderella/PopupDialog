@@ -31,8 +31,12 @@ class AppearanceTests: XCTestCase {
         // Popup container defaults
         expect(popup.popupContainerView.backgroundColor) == UIColor.white
         expect(popup.popupContainerView.cornerRadius)    == 4
-        expect(popup.popupContainerView.shadowColor)     == UIColor.black
         expect(popup.popupContainerView.shadowEnabled).to(beTrue())
+        expect(popup.popupContainerView.shadowColor)     == UIColor.black
+        expect(popup.popupContainerView.shadowRadius)    == 5
+        expect(popup.popupContainerView.shadowOpacity)   == 0.4
+        expect(popup.popupContainerView.shadowOffset)    == CGSize(width: 0, height: 0)
+        expect(popup.popupContainerView.shadowPath).to(beNil())
 
         // Popup view defaults
         expect(view.titleFont)    == .boldSystemFont(ofSize: 14)
@@ -85,6 +89,8 @@ class AppearanceTests: XCTestCase {
         pcv.cornerRadius        = 10
         pcv.shadowEnabled       = false
         pcv.shadowColor         = UIColor.green
+        pcv.shadowOpacity       = 0.2
+        pcv.shadowOffset        = CGSize(width: 2, height: 2)
 
         // Customize overlay appearance
         let ov = PopupDialogOverlayView.appearance()
@@ -111,8 +117,10 @@ class AppearanceTests: XCTestCase {
         expect(pv.messageTextAlignment == .right).to(beTrue())
 
         // Popup container view customized appearance
-        expect(pcv.cornerRadius) == 10
-        expect(pcv.shadowColor)  == UIColor.green
+        expect(pcv.cornerRadius)  == 10
+        expect(pcv.shadowColor)   == UIColor.green
+        expect(pcv.shadowOffset)  == CGSize(width: 2, height: 2)
+        expect(pcv.shadowRadius)  == 0
         expect(pcv.shadowEnabled).to(beFalse())
 
         // Overlay customized appearance
@@ -145,6 +153,9 @@ class AppearanceTests: XCTestCase {
         pcv.cornerRadius        = 4
         pcv.shadowEnabled       = true
         pcv.shadowColor         = UIColor.black
+        pcv.shadowOpacity       = 0.4
+        pcv.shadowRadius        = 5
+        pcv.shadowOffset        = CGSize(width: 0, height: 0)
         
         // Customize overlay appearance
         let ov = PopupDialogOverlayView.appearance()
