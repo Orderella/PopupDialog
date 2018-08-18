@@ -9,6 +9,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status Master](https://travis-ci.org/Orderella/PopupDialog.svg?branch=master)](https://travis-ci.org/Orderella/PopupDialog)
 [![Build Status Development](https://travis-ci.org/Orderella/PopupDialog.svg?branch=development)](https://travis-ci.org/Orderella/PopupDialog)
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
 <p>&nbsp;</p>
 
@@ -252,6 +253,10 @@ containerAppearance.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, a
 containerAppearance.cornerRadius    = 2
 containerAppearance.shadowEnabled   = true
 containerAppearance.shadowColor     = .black
+containerAppearance.shadowOpacity   = 0.6
+containerAppearance.shadowRadius    = 20
+containerAppearance.shadowOffset    = CGSize(width: 0, height: 8)
+containerAppearance.shadowPath      = CGPath(...)
 ```
 
 ## Overlay View Appearance Settings
@@ -441,6 +446,7 @@ Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for suppor
 <p>&nbsp;</p>
 
 # Changelog
+* **0.8.1** Added shadow appearance properties
 * **0.8.0** Separated tap and pan gesture dismissal
 * **0.7.1** Fixes Objective-C compatability<br>Improved Carthage handling
 * **0.7.0** Removed FXBlurView while switching to DynamicBlurView
