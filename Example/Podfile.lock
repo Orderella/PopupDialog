@@ -16,12 +16,18 @@ DEPENDENCIES:
   - PopupDialog (from `../`)
   - SwiftLint (~> 0.22)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DynamicBlurView
+    - Nimble
+    - SwiftLint
+
 EXTERNAL SOURCES:
   FBSnapshotTestCase:
     :commit: ed4e6a6
     :git: https://github.com/facebook/ios-snapshot-test-case.git
   PopupDialog:
-    :path: ../
+    :path: "../"
 
 CHECKOUT OPTIONS:
   FBSnapshotTestCase:
@@ -35,6 +41,6 @@ SPEC CHECKSUMS:
   PopupDialog: 764c106b6ab9175958cf189175fad612a334d87d
   SwiftLint: f6b83e8d95ee1e91e11932d843af4fdcbf3fc764
 
-PODFILE CHECKSUM: 7a27ac877c3a93aa83583a4625417841e72145e5
+PODFILE CHECKSUM: 6c3c44cf7758f39754d4fa821961c1fef59ec16c
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3
