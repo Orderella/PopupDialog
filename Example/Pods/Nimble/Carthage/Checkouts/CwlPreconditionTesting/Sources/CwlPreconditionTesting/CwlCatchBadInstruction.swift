@@ -89,17 +89,22 @@ import Foundation
 	/// A function for receiving mach messages and parsing the first with mach_exc_server (and if any others are received, throwing them away).
 	private func machMessageHandler(_ arg: UnsafeMutableRawPointer) -> UnsafeMutableRawPointer? {
 		let context = arg.assumingMemoryBound(to: MachContext.self).pointee
-		var request = request_mach_exception_raise_t()
-		var reply = reply_mach_exception_raise_state_t()
+        var request = request_mach_exception_raise_t()
+        var reply = reply_mach_exception_raise_state_t()
 		
 		var handledfirstException = false
 		repeat { do {
 			// Request the next mach message from the port
 			request.Head.msgh_local_port = context.currentExceptionPort
 			request.Head.msgh_size = UInt32(MemoryLayout<request_mach_exception_raise_t>.size)
-			try kernCheck { request.withMsgHeaderPointer { requestPtr in
-				mach_msg(requestPtr, MACH_RCV_MSG | MACH_RCV_INTERRUPT, 0, request.Head.msgh_size, context.currentExceptionPort, 0, UInt32(MACH_PORT_NULL))
-			} }
+
+            var localRequest = request
+            
+            try kernCheck {
+                localRequest.withMsgHeaderPointer { requestPtr in
+                    mach_msg(requestPtr, MACH_RCV_MSG | MACH_RCV_INTERRUPT, 0, request.Head.msgh_size, context.currentExceptionPort, 0, UInt32(MACH_PORT_NULL))
+                }
+            }
 			
 			// Prepare the reply structure
 			reply.Head.msgh_bits = MACH_MSGH_BITS(MACH_MSGH_BITS_REMOTE(request.Head.msgh_bits), 0)
@@ -121,9 +126,12 @@ import Foundation
 			}
 			
 			// Send the reply
-			try kernCheck { reply.withMsgHeaderPointer { replyPtr in
-				mach_msg(replyPtr, MACH_SEND_MSG, reply.Head.msgh_size, 0, UInt32(MACH_PORT_NULL), 0, UInt32(MACH_PORT_NULL))
-			} }
+            var localReply = reply
+            try kernCheck {
+                localReply.withMsgHeaderPointer { replyPtr in
+                    mach_msg(replyPtr, MACH_SEND_MSG, reply.Head.msgh_size, 0, UInt32(MACH_PORT_NULL), 0, UInt32(MACH_PORT_NULL))
+                }
+            }
 		} catch let error as NSError where (error.domain == NSMachErrorDomain && (error.code == Int(MACH_RCV_PORT_CHANGED) || error.code == Int(MACH_RCV_INVALID_NAME))) {
 			// Port was already closed before we started or closed while we were listening.
 			// This means the controlling thread shut down.
