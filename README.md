@@ -2,7 +2,7 @@
 
 <p>&nbsp;</p>
 
-![Swift Version](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![License](https://img.shields.io/cocoapods/l/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![Platform](https://img.shields.io/cocoapods/p/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
@@ -37,7 +37,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 
 # Installation
 
-This version is Swift 4 compatible. For the Swift 3 version, please use [V0.5.4](https://github.com/Orderella/PopupDialog/releases/tag/0.5.4).
+This version is Swift 4.2 compatible. For the Swift 3 version, please use [V0.5.4](https://github.com/Orderella/PopupDialog/releases/tag/0.5.4).
 
 ## CocoaPods
 
@@ -47,7 +47,7 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). Simply add t
 use_frameworks!
 
 target '<Your Target Name>'
-pod 'PopupDialog', '~> 0.8'
+pod 'PopupDialog', '~> 0.9'
 ```
 
 ## Carthage
@@ -57,7 +57,7 @@ pod 'PopupDialog', '~> 0.8'
 To install, simply add the following lines to your Cartfile:
 
 ```ruby
-github "Orderella/PopupDialog" ~> 0.8
+github "Orderella/PopupDialog" ~> 0.9
 ```
 
 ## Manually
