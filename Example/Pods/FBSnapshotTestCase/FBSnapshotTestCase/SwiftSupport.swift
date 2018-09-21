@@ -28,7 +28,7 @@
           let referenceImagesDirectory = "\(envReferenceImageDirectory)\(suffix)"
           if viewOrLayer.isKind(of: UIView.self) {
             do {
-                try compareSnapshot(of: viewOrLayer as? UIView, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
+              try compareSnapshot(of: viewOrLayer as! UIView, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
               comparisonSuccess = true
             } catch let error1 as NSError {
               error = error1
@@ -36,7 +36,7 @@
             }
           } else if viewOrLayer.isKind(of: CALayer.self) {
             do {
-                try compareSnapshot(of: viewOrLayer as? CALayer, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
+              try compareSnapshot(of: viewOrLayer as! CALayer, referenceImagesDirectory: referenceImagesDirectory, identifier: identifier, tolerance: tolerance)
               comparisonSuccess = true
             } catch let error1 as NSError {
               error = error1
