@@ -7,7 +7,7 @@ PODS:
     - FBSnapshotTestCase/Core
   - Nimble (7.0.3)
   - PopupDialog (0.8.1):
-    - DynamicBlurView (~> 3.0.1)
+  - DynamicBlurView (~> 3.0.1)
   - SwiftLint (0.26.0)
 
 DEPENDENCIES:

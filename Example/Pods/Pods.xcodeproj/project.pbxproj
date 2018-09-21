@@ -88,6 +88,7 @@
 		96132E7432F8DD315A88A07C6B4F9C72 /* NMBStringify.h in Headers */ = {isa = PBXBuildFile; fileRef = EB1160F37B5347D52F6870DC41CDFE1D /* NMBStringify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9673CF780F48C8E4EC2A331717B1F67C /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 1405F0FB2376FE5AFE14AB9BCC4571C3 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		988EED125395950177DC14AF9BC87D8D /* HaveCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73019209905889DE177923B8981BC31 /* HaveCount.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
+		9989BA22D81729AC56F917E42C7AF4EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2314AE5E7E0F4E333A37DC4B59C9471 /* Foundation.framework */; };
 		A14CE6BBD447FCDF34E0DC60980FB072 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4844BC4C859261A1B3EB767258BC37CA /* InteractiveTransition.swift */; };
 		A272932A4DF9AC2D3B0A21AC70606F6D /* CwlBadInstructionException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC7FFF0286657BC55613F71A7C41B36 /* CwlBadInstructionException.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		A3B22BBDE91CA1EFE283E9D3EED38BFE /* Pods-PopupDialog_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE967C22F5B34233371476B825830F8 /* Pods-PopupDialog_Tests-dummy.m */; };
@@ -1467,7 +1468,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
 				PRODUCT_MODULE_NAME = FBSnapshotTestCase;
