@@ -163,7 +163,7 @@ extension DynamicBlurView {
     private func linkForDisplay() {
         displayLink?.invalidate()
         displayLink = UIScreen.main.displayLink(withTarget: self, selector: #selector(DynamicBlurView.displayDidRefresh(_:)))
-        displayLink?.add(to: .main, forMode: RunLoopMode(rawValue: trackingMode.description))
+        displayLink?.add(to: .main, forMode: RunLoop.Mode(rawValue: trackingMode.description))
     }
 
     @objc private func displayDidRefresh(_ displayLink: CADisplayLink) {
