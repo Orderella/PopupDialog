@@ -25,6 +25,7 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 
 /*!
  The intended direction of the animation
@@ -48,7 +49,7 @@ internal extension UIView {
         animation.duration = duration
         animation.fromValue = layer.presentation()?.opacity
         layer.opacity = value
-        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.fillMode = kCAFillModeForwards
         layer.add(animation, forKey: fadeKey)
     }
 
@@ -65,7 +66,7 @@ internal extension UIView {
         let vals: [Double] = [-2, 2, -2, 2, 0]
         
         let translation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        translation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        translation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         translation.values = vals
         
         let rotation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
