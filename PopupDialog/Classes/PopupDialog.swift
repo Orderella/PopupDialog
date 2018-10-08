@@ -163,10 +163,10 @@ final public class PopupDialog: UIViewController {
         modalPresentationCapturesStatusBarAppearance = true
 
         // Add our custom view to the container
-        addChild(viewController)
+        addChildViewController(viewController)
         popupContainerView.stackView.insertArrangedSubview(viewController.view, at: 0)
         popupContainerView.buttonStackView.axis = buttonAlignment
-        viewController.didMove(toParent: self)
+        viewController.didMove(toParentViewController: self)
 
         // Allow for dialog dismissal on background tap
         if tapGestureDismissal {
