@@ -1,5 +1,6 @@
 # Changelog
 
+* **0.9.1** Fixes Carthage support
 * **0.9.0** Swift 4.2 support
 * **0.8.1** Added shadow appearance properties
 * **0.8.0** Separated tap and pan gesture dismissal
