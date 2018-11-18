@@ -1,6 +1,8 @@
 platform :ios, '9.0'
 use_frameworks!
 
+ENV['COCOAPODS_DISABLE_STATS'] = "true" ## This disabled the Sending Stats when running Pod install in terminal
+
 target 'PopupDialog_Example' do
 
   pod 'PopupDialog', :path => '../'
@@ -9,8 +11,8 @@ target 'PopupDialog_Example' do
   target 'PopupDialog_Tests' do
     inherit! :search_paths
 
-    pod 'Nimble', '~> 7.0.2'
-    pod 'FBSnapshotTestCase', :git => 'https://github.com/facebook/ios-snapshot-test-case.git', :commit => 'ed4e6a6'
+    pod 'Nimble', '~> 7.3.1'
+    pod 'FBSnapshotTestCase', '~> 2.1.4'
 
   end
 end

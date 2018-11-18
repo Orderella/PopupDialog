@@ -28,13 +28,11 @@ import PopupDialog
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        
+    
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Uncomment for a dark theme demo
-
 //        // Customize dialog appearance
 //        let pv = PopupDialogDefaultView.appearance()
 //        pv.titleFont    = UIFont(name: "HelveticaNeue-Light", size: 16)!
@@ -48,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        pcv.cornerRadius    = 2
 //        pcv.shadowEnabled   = true
 //        pcv.shadowColor     = .black
+//        pcv.shadowOpacity   = 0.6
+//        pcv.shadowRadius    = 20
+//        pcv.shadowOffset    = CGSize(width: 0, height: 8)
 //
 //        // Customize overlay appearance
 //        let ov = PopupDialogOverlayView.appearance()
@@ -73,4 +74,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
+    
 }

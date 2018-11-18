@@ -1,10 +1,10 @@
 language: objective-c
-osx_image: xcode9.1
+osx_image: xcode10
 env:
   global:
     - WORKSPACE=Example/PopupDialog.xcworkspace
     - IOS_FRAMEWORK_SCHEME="PopupDialog-Example"
-    - IOS_SDK=iphonesimulator11.1
+    - IOS_SDK=iphonesimulator12.0
     - EXAMPLE_SCHEME="PopupDialog-Example"
   matrix:
     - DESTINATION="OS=11.1,name=iPhone 7 Plus" SIMNAME="com.apple.CoreSimulator.SimDeviceType.iPhone-7-Plus, 11.1" SCHEME="$IOS_FRAMEWORK_SCHEME"  SDK="$IOS_SDK"  RUN_TESTS="YES" BUILD_EXAMPLE="YES" POD_LINT="YES"

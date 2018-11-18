@@ -17,7 +17,7 @@ DynamicBlurView is a dynamic and high performance UIView subclass for Blur.
 
 ## Requirements
 
-- Swift 4.0
+- Swift 4.2
 - iOS 8.0 or later
 - tvOS 9.0 or later
 
@@ -115,7 +115,7 @@ var blurRatio: CGFloat
 ```
 
 - When none of tracking mode, it can change the radius of blur with the ratio. Should set from 0 to 1.
-- Defauot is 1.
+- Default is 1.
 
 ```swift
 var quality: CaptureQuality
