@@ -176,7 +176,7 @@ final public class PopupDialog: UIViewController {
         }
         // Allow for dialog dismissal on dialog pan gesture
         if panGestureDismissal {
-            let panRecognizer = UIPanGestureRecognizer(target: interactor, action: #selector(InteractiveTransition.handlePan))
+            let panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
             panRecognizer.cancelsTouchesInView = false
             popupContainerView.stackView.addGestureRecognizer(panRecognizer)
         }
@@ -229,7 +229,13 @@ final public class PopupDialog: UIViewController {
         // Make sure it's not a tap on the dialog but the background
         let point = sender.location(in: popupContainerView.stackView)
         guard !popupContainerView.stackView.point(inside: point, with: nil) else { return }
-        dismiss()
+        dismiss({ self.completion?() })
+    }
+  
+    @objc fileprivate func handlePan(_ sender: UIPanGestureRecognizer) {
+    
+      dismiss({ self.completion?() })
+      interactor.handlePan(sender)
     }
 
     /*!
