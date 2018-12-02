@@ -54,13 +54,15 @@ final internal class BounceUpTransition: TransitionAnimator {
         switch direction {
         case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
-            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
+                guard let self = self else { return }
                 self.to.view.bounds = self.from.view.bounds
-            }, completion: { completed in
-                transitionContext.completeTransition(completed)
+            }, completion: { _ in
+                transitionContext.completeTransition(true)
             })
         case .out:
-            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
+            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: { [weak self] in
+                guard let self = self else { return }
                 self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
                 self.from.view.alpha = 0.0
             }, completion: { _ in
@@ -84,13 +86,15 @@ final internal class BounceDownTransition: TransitionAnimator {
         switch direction {
         case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: from.view.bounds.size.height)
-            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
+                guard let self = self else { return }
                 self.to.view.bounds = self.from.view.bounds
-            }, completion: { completed in
-                transitionContext.completeTransition(completed)
+            }, completion: { _ in
+                transitionContext.completeTransition(true)
             })
         case .out:
-            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
+            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: { [weak self] in
+                guard let self = self else { return }
                 self.from.view.bounds.origin = CGPoint(x: 0, y: self.from.view.bounds.size.height)
                 self.from.view.alpha = 0.0
             }, completion: { _ in
@@ -113,13 +117,15 @@ final internal class ZoomTransition: TransitionAnimator {
         switch direction {
         case .in:
             to.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
+                guard let self = self else { return }
                 self.to.view.transform = CGAffineTransform(scaleX: 1, y: 1)
-            }, completion: { completed in
-                transitionContext.completeTransition(completed)
+            }, completion: { _ in
+                transitionContext.completeTransition(true)
             })
         case .out:
-            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
+            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: { [weak self] in
+                guard let self = self else { return }
                 self.from.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 self.from.view.alpha = 0.0
             }, completion: { _ in
@@ -143,13 +149,15 @@ final internal class FadeTransition: TransitionAnimator {
         case .in:
             to.view.alpha = 0
             UIView.animate(withDuration: 0.6, delay: 0.0, options: [.curveEaseOut],
-            animations: {
+            animations: { [weak self] in
+                guard let self = self else { return }
                 self.to.view.alpha = 1
-            }, completion: { completed in
-                transitionContext.completeTransition(completed)
+            }, completion: { _ in
+                transitionContext.completeTransition(true)
             })
         case .out:
-            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
+            UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: { [weak self] in
+                guard let self = self else { return }
                 self.from.view.alpha = 0.0
             }, completion: { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
@@ -167,7 +175,8 @@ final internal class DismissInteractiveTransition: TransitionAnimator {
 
     override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
-        UIView.animate(withDuration: outDuration, delay: 0.0, options: [.beginFromCurrentState], animations: {
+        UIView.animate(withDuration: outDuration, delay: 0.0, options: [.beginFromCurrentState], animations: { [weak self] in
+            guard let self = self else { return }
             self.from.view.bounds.origin = CGPoint(x: 0, y: -self.from.view.bounds.size.height)
             self.from.view.alpha = 0.0
         }, completion: { _ in

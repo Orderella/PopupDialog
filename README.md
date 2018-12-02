@@ -446,6 +446,7 @@ Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for suppor
 <p>&nbsp;</p>
 
 # Changelog
+* **0.9.2** Fixes crash when presenting dialog while app is inactive
 * **0.9.1** Fixes Carthage support
 * **0.9.0** Swift 4.2 support
 * **0.8.1** Added shadow appearance properties
