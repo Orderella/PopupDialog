@@ -57,7 +57,7 @@ final internal class BounceUpTransition: TransitionAnimator {
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
                 self.to.view.bounds = self.from.view.bounds
             }, completion: { completed in
-                transitionContext.completeTransition(completed)
+                transitionContext.completeTransition(true)
             })
         case .out:
             UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
@@ -87,7 +87,7 @@ final internal class BounceDownTransition: TransitionAnimator {
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
                 self.to.view.bounds = self.from.view.bounds
             }, completion: { completed in
-                transitionContext.completeTransition(completed)
+                transitionContext.completeTransition(true)
             })
         case .out:
             UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
@@ -116,7 +116,7 @@ final internal class ZoomTransition: TransitionAnimator {
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
                 self.to.view.transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: { completed in
-                transitionContext.completeTransition(completed)
+                transitionContext.completeTransition(true)
             })
         case .out:
             UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
@@ -146,7 +146,7 @@ final internal class FadeTransition: TransitionAnimator {
             animations: {
                 self.to.view.alpha = 1
             }, completion: { completed in
-                transitionContext.completeTransition(completed)
+                transitionContext.completeTransition(true)
             })
         case .out:
             UIView.animate(withDuration: outDuration, delay: 0.0, options: [.curveEaseIn], animations: {
