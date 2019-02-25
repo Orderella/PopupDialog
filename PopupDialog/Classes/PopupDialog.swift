@@ -29,6 +29,8 @@ import UIKit
 /// Creates a Popup dialog similar to UIAlertController
 final public class PopupDialog: UIViewController {
 
+    public typealias AnimationDuration = (in: TimeInterval, out: TimeInterval)
+
     // MARK: Private / Internal
 
     /// First init flag
@@ -71,6 +73,15 @@ final public class PopupDialog: UIViewController {
 
     /// Whether or not to shift view for keyboard display
     public var keyboardShiftsView = true
+
+    public static var animationDefaultDuration: AnimationDuration {
+        get {
+            return TransitionAnimator.defaultDuration
+        }
+        set(duration) {
+            TransitionAnimator.defaultDuration = duration
+        }
+    }
 
     // MARK: - Initializers
 

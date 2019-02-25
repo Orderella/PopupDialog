@@ -28,12 +28,17 @@ import UIKit
 
 /// Base class for custom transition animations
 internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    static var defaultDuration: PopupDialog.AnimationDuration = (in: 0.6, out: 0.2)
 
     var to: UIViewController!
     var from: UIViewController!
     let inDuration: TimeInterval
     let outDuration: TimeInterval
     let direction: AnimationDirection
+
+    convenience init(direction: AnimationDirection) {
+        self.init(inDuration: TransitionAnimator.defaultDuration.in, outDuration: TransitionAnimator.defaultDuration.out, direction: direction)
+    }
 
     init(inDuration: TimeInterval, outDuration: TimeInterval, direction: AnimationDirection) {
         self.inDuration = inDuration

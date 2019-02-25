@@ -44,17 +44,13 @@ import UIKit
 /// Dialog bounces in from bottom and is dismissed to bottom
 final internal class BounceUpTransition: TransitionAnimator {
 
-    init(direction: AnimationDirection) {
-        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
-    }
-
     override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
 
         switch direction {
         case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: -from.view.bounds.size.height)
-            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
+            UIView.animate(withDuration: inDuration, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
                 guard let self = self else { return }
                 self.to.view.bounds = self.from.view.bounds
             }, completion: { _ in
@@ -76,17 +72,13 @@ final internal class BounceUpTransition: TransitionAnimator {
 /// Dialog bounces in from top and is dismissed to top
 final internal class BounceDownTransition: TransitionAnimator {
 
-    init(direction: AnimationDirection) {
-        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
-    }
-
     override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
 
         switch direction {
         case .in:
             to.view.bounds.origin = CGPoint(x: 0, y: from.view.bounds.size.height)
-            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
+            UIView.animate(withDuration: inDuration, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
                 guard let self = self else { return }
                 self.to.view.bounds = self.from.view.bounds
             }, completion: { _ in
@@ -107,17 +99,13 @@ final internal class BounceDownTransition: TransitionAnimator {
 /// Dialog zooms in and is dismissed by zooming out
 final internal class ZoomTransition: TransitionAnimator {
 
-    init(direction: AnimationDirection) {
-        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
-    }
-
     override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
 
         switch direction {
         case .in:
             to.view.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
+            UIView.animate(withDuration: inDuration, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
                 guard let self = self else { return }
                 self.to.view.transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: { _ in
@@ -138,17 +126,13 @@ final internal class ZoomTransition: TransitionAnimator {
 /// Dialog fades in and is dismissed by fading out
 final internal class FadeTransition: TransitionAnimator {
 
-    init(direction: AnimationDirection) {
-        super.init(inDuration: 0.22, outDuration: 0.2, direction: direction)
-    }
-
     override func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         super.animateTransition(using: transitionContext)
 
         switch direction {
         case .in:
             to.view.alpha = 0
-            UIView.animate(withDuration: 0.6, delay: 0.0, options: [.curveEaseOut],
+            UIView.animate(withDuration: inDuration, delay: 0.0, options: [.curveEaseOut],
             animations: { [weak self] in
                 guard let self = self else { return }
                 self.to.view.alpha = 1
