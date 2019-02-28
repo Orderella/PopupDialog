@@ -40,6 +40,8 @@ import UIKit
 /// Creates a Popup dialog similar to UIAlertController
 final public class PopupDialog: UIViewController {
 
+    public typealias TextStylizer = (String) -> NSAttributedString?
+
     // MARK: Private / Internal
 
     /// First init flag
@@ -82,6 +84,12 @@ final public class PopupDialog: UIViewController {
 
     /// Whether or not to shift view for keyboard display
     public var keyboardShiftsView = true
+
+    // Allows you to apply custom styling to the title text
+    @objc public static var titleTextStylizer: TextStylizer?
+
+    // Allows you to apply custom styling to the message text
+    @objc public static var messageTextStylizer: TextStylizer?
 
     // MARK: - Initializers
 

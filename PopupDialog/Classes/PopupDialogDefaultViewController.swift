@@ -56,7 +56,11 @@ public extension PopupDialogDefaultViewController {
     public var titleText: String? {
         get { return standardView.titleLabel.text }
         set {
-            standardView.titleLabel.text = newValue
+            if let stylizer = PopupDialog.titleTextStylizer, let text = newValue {
+                standardView.titleLabel.attributedText = stylizer(text)
+            } else {
+                standardView.titleLabel.text = newValue
+            }
             standardView.pv_layoutIfNeededAnimated()
         }
     }
@@ -65,7 +69,11 @@ public extension PopupDialogDefaultViewController {
     public var messageText: String? {
         get { return standardView.messageLabel.text }
         set {
-            standardView.messageLabel.text = newValue
+            if let stylizer = PopupDialog.messageTextStylizer, let text = newValue {
+                standardView.messageLabel.attributedText = stylizer(text)
+            } else {
+                standardView.messageLabel.text = newValue
+            }
             standardView.pv_layoutIfNeededAnimated()
         }
     }
