@@ -47,7 +47,10 @@ final public class PopupDialogContainerView: UIView {
             container.layer.cornerRadius = radius
         }
     }
-    
+
+    // The style of the dialog
+    @objc public dynamic var style = PopupDialogPresentationStyle.alert
+
     // MARK: Shadow related
 
     /// Enable / disable shadow rendering of the container
@@ -142,7 +145,23 @@ final public class PopupDialogContainerView: UIView {
     // MARK: - Constraints
 
     /// The center constraint of the shadow container
-    internal var centerYConstraint: NSLayoutConstraint?
+    private var verticalPositionConstraint: NSLayoutConstraint?
+
+    // Gets the amount of offset to use to position the dialog correctly vertically
+    private var verticalPositionOffset: CGFloat {
+        if style == .alert {
+            return 0
+        }
+
+        let defaultMargin: CGFloat = 16
+        if #available(iOS 11, *) {
+            // If we already compensate for safe area we don't need to apply default margin
+            return self.layoutMargins.bottom > 0 ? -self.layoutMargins.bottom : -defaultMargin
+        }
+        return -defaultMargin
+    }
+
+    private var layoutConstraints = [NSLayoutConstraint]()
 
     // MARK: - Initializers
     
@@ -165,33 +184,69 @@ final public class PopupDialogContainerView: UIView {
         shadowContainer.addSubview(container)
         container.addSubview(stackView)
 
+    }
+
+    public override func updateConstraints() {
+        super.updateConstraints()
+
+        if layoutConstraints.count > 0 {
+            removeConstraints(layoutConstraints)
+            layoutConstraints.removeAll()
+        }
+
         // Layout views
         let views = ["shadowContainer": shadowContainer, "container": container, "stackView": stackView]
-        var constraints = [NSLayoutConstraint]()
 
         // Shadow container constraints
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
             let metrics = ["preferredWidth": preferredWidth]
-            constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=40)-[shadowContainer(==preferredWidth@900)]-(>=40)-|", options: [], metrics: metrics, views: views)
+            layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=40)-[shadowContainer(==preferredWidth@900)]-(>=40)-|", options: [], metrics: metrics, views: views)
         } else {
-            constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==20@900)-[shadowContainer(<=340,>=300)]-(>=10,==20@900)-|", options: [], metrics: nil, views: views)
+            layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==20@900)-[shadowContainer(<=340,>=300)]-(>=10,==20@900)-|", options: [], metrics: nil, views: views)
         }
-        constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)]
-        centerYConstraint = NSLayoutConstraint(item: shadowContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        
-        if let centerYConstraint = centerYConstraint {
-            constraints.append(centerYConstraint)
+        layoutConstraints += [NSLayoutConstraint(item: shadowContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)]
+
+        if style == .alert {
+            verticalPositionConstraint = NSLayoutConstraint(item: shadowContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
         }
-        
+        else {
+            let offset = self.verticalPositionOffset
+            if #available(iOS 11, *) {
+                verticalPositionConstraint = shadowContainer.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: offset)
+            } else {
+                verticalPositionConstraint = shadowContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: offset)
+            }
+        }
+
+        if let positionConstraint = verticalPositionConstraint {
+            layoutConstraints.append(positionConstraint)
+        }
+
         // Container constraints
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[container]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: views)
+        layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[container]|", options: [], metrics: nil, views: views)
+        layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: views)
 
         // Main stack view constraints
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: views)
+        layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: [], metrics: nil, views: views)
+        layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: [], metrics: nil, views: views)
 
         // Activate constraints
-        NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate(layoutConstraints)
+    }
+
+    internal func adjustPositionForKeyboard(keyboardShown: Bool, keyboardHeight: CGFloat) {
+
+        // Calculate new center of shadow background
+        let position: CGFloat
+        if style == .alert {
+            position = keyboardShown ? keyboardHeight / -2 : 0
+        } else {
+            position = keyboardShown ? -keyboardHeight + verticalPositionOffset : verticalPositionOffset
+        }
+
+        // Reposition and animate
+        verticalPositionConstraint?.constant = position
+
+        self.pv_layoutIfNeededAnimated()
     }
 }

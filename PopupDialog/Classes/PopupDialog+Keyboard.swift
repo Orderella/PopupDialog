@@ -82,7 +82,7 @@ internal extension PopupDialog {
     @objc fileprivate func keyboardWillShow(_ notification: Notification) {
         guard isTopAndVisible else { return }
         keyboardShown = true
-        centerPopup()
+        adjustPopup()
     }
 
     /*!
@@ -92,7 +92,7 @@ internal extension PopupDialog {
     @objc fileprivate func keyboardWillHide(_ notification: Notification) {
         guard isTopAndVisible else { return }
         keyboardShown = false
-        centerPopup()
+        adjustPopup()
     }
 
     /*!
@@ -111,10 +111,10 @@ internal extension PopupDialog {
      - parameter notification: NSNotification
      */
     @objc fileprivate func orientationChanged(_ notification: Notification) {
-        if keyboardShown { centerPopup() }
+        if keyboardShown { adjustPopup() }
     }
 
-    fileprivate func centerPopup() {
+    fileprivate func adjustPopup() {
 
         // Make sure keyboard should reposition on keayboard notifications
         guard keyboardShiftsView else { return }
@@ -122,11 +122,6 @@ internal extension PopupDialog {
         // Make sure a valid keyboard height is available
         guard let keyboardHeight = keyboardHeight else { return }
 
-        // Calculate new center of shadow background
-        let popupCenter =  keyboardShown ? keyboardHeight / -2 : 0
-
-        // Reposition and animate
-        popupContainerView.centerYConstraint?.constant = popupCenter
-        popupContainerView.pv_layoutIfNeededAnimated()
+        popupContainerView.adjustPositionForKeyboard(keyboardShown: keyboardShown, keyboardHeight: keyboardHeight)
     }
 }

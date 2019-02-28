@@ -26,6 +26,17 @@
 import Foundation
 import UIKit
 
+/*!
+ Determines the style of the dialog, similar to the UIKit alert dialogs
+
+ - Alert:       Dialog is shown centered on screen
+ - ActionSheet: Dialog is shown at the bottom of the screen
+ */
+@objc public enum PopupDialogPresentationStyle: Int {
+    case alert
+    case actionSheet
+}
+
 /// Creates a Popup dialog similar to UIAlertController
 final public class PopupDialog: UIViewController {
 
@@ -82,6 +93,7 @@ final public class PopupDialog: UIViewController {
      - parameter image:            The dialog image
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
+     - parameter preferredStyle:   The dialog presentation style
      - parameter preferredWidth:   The preferred width for iPad screens
      - parameter tapGestureDismissal: Indicates if dialog can be dismissed via tap gesture
      - parameter panGestureDismissal: Indicates if dialog can be dismissed via pan gesture
@@ -96,6 +108,7 @@ final public class PopupDialog: UIViewController {
                 image: UIImage? = nil,
                 buttonAlignment: NSLayoutConstraint.Axis = .vertical,
                 transitionStyle: PopupDialogTransitionStyle = .bounceUp,
+                preferredStyle: PopupDialogPresentationStyle = .alert,
                 preferredWidth: CGFloat = 340,
                 tapGestureDismissal: Bool = true,
                 panGestureDismissal: Bool = true,
@@ -112,6 +125,7 @@ final public class PopupDialog: UIViewController {
         self.init(viewController: viewController,
                   buttonAlignment: buttonAlignment,
                   transitionStyle: transitionStyle,
+                  preferredStyle: preferredStyle,
                   preferredWidth: preferredWidth,
                   tapGestureDismissal: tapGestureDismissal,
                   panGestureDismissal: panGestureDismissal,
@@ -125,6 +139,7 @@ final public class PopupDialog: UIViewController {
      - parameter viewController:   A custom view controller to be displayed
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
+     - parameter preferredStyle:   The dialog presentation style
      - parameter preferredWidth:   The preferred width for iPad screens
      - parameter tapGestureDismissal: Indicates if dialog can be dismissed via tap gesture
      - parameter panGestureDismissal: Indicates if dialog can be dismissed via pan gesture
@@ -137,6 +152,7 @@ final public class PopupDialog: UIViewController {
         viewController: UIViewController,
         buttonAlignment: NSLayoutConstraint.Axis = .vertical,
         transitionStyle: PopupDialogTransitionStyle = .bounceUp,
+        preferredStyle: PopupDialogPresentationStyle = .alert,
         preferredWidth: CGFloat = 340,
         tapGestureDismissal: Bool = true,
         panGestureDismissal: Bool = true,
@@ -164,8 +180,9 @@ final public class PopupDialog: UIViewController {
 
         // Add our custom view to the container
         addChild(viewController)
+        popupContainerView.style = preferredStyle
         popupContainerView.stackView.insertArrangedSubview(viewController.view, at: 0)
-        popupContainerView.buttonStackView.axis = buttonAlignment
+        popupContainerView.buttonStackView.axis = preferredStyle == .actionSheet ? .vertical : buttonAlignment
         viewController.didMove(toParent: self)
 
         // Allow for dialog dismissal on background tap
