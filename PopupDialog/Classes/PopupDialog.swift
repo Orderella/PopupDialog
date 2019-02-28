@@ -29,8 +29,6 @@ import UIKit
 /// Creates a Popup dialog similar to UIAlertController
 final public class PopupDialog: UIViewController {
 
-    public typealias AnimationDuration = (in: TimeInterval, out: TimeInterval)
-
     // MARK: Private / Internal
 
     /// First init flag
@@ -73,15 +71,6 @@ final public class PopupDialog: UIViewController {
 
     /// Whether or not to shift view for keyboard display
     public var keyboardShiftsView = true
-
-    public static var animationDefaultDuration: AnimationDuration {
-        get {
-            return TransitionAnimator.defaultDuration
-        }
-        set(duration) {
-            TransitionAnimator.defaultDuration = duration
-        }
-    }
 
     // MARK: - Initializers
 
@@ -297,6 +286,16 @@ final public class PopupDialog: UIViewController {
         } else {
             button.buttonAction?()
         }
+    }
+
+    /*!
+     Sets the default duration to use for the transition animations
+     - parameter inDuration: The TimeInterval to use when showing the dialog
+     - parameter outDuration: The TimeInterval to use when the dialog is dismissed
+     */
+    @objc public class func setAnimationDefaultDurations(inDuration: TimeInterval, outDuration: TimeInterval) {
+        TransitionAnimator.defaultDuration.in = inDuration
+        TransitionAnimator.defaultDuration.out = outDuration
     }
 
     /*!

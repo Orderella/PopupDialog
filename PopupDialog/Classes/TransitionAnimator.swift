@@ -28,7 +28,9 @@ import UIKit
 
 /// Base class for custom transition animations
 internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    static var defaultDuration: PopupDialog.AnimationDuration = (in: 0.6, out: 0.2)
+    typealias AnimationDuration = (in: TimeInterval, out: TimeInterval)
+
+    static var defaultDuration: AnimationDuration = (in: 0.6, out: 0.2)
 
     var to: UIViewController!
     var from: UIViewController!
