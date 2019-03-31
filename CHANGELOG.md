@@ -1,5 +1,5 @@
 # Changelog
-* **0.9.3** Pinned Swift version to 4.2
+* **0.1.0** Pinned Swift version to 4.2<br>Dropped iOS 9 support as of moving to ios-snapshot-test-case
 * **0.9.2** Fixes crash when presenting dialog while app is inactive
 * **0.9.1** Fixes Carthage support
 * **0.9.0** Swift 4.2 support
