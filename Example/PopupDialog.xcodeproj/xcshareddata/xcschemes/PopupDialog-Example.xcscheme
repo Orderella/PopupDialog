@@ -53,11 +53,6 @@
                BlueprintName = "PopupDialog_Tests"
                ReferencedContainer = "container:PopupDialog.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "AppearanceTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
