@@ -33,3 +33,4 @@ DerivedData
 #
 # Pods/
 .idea
+/Tests/FailureDiffs

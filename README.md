@@ -31,7 +31,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 - [x] Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
 - [x] Can be dismissed via swipe and background tap
 - [x] Objective-C compatible
-- [x] Works on all screens and devices supporting iOS 9.0+
+- [x] Works on all screens and devices supporting iOS 10.0+
 
 <p>&nbsp;</p>
 
@@ -47,7 +47,7 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). Simply add t
 use_frameworks!
 
 target '<Your Target Name>'
-pod 'PopupDialog', '~> 0.9'
+pod 'PopupDialog', '~> 1.0'
 ```
 
 ## Carthage
@@ -57,7 +57,7 @@ pod 'PopupDialog', '~> 0.9'
 To install, simply add the following lines to your Cartfile:
 
 ```ruby
-github "Orderella/PopupDialog" ~> 0.9
+github "Orderella/PopupDialog" ~> 1.0
 ```
 
 ## Manually
@@ -441,11 +441,12 @@ If you happen to use PopupDialog to validate text input, for example, you can ca
 
 # Requirements
 
-Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for support of older versions please head over to releases.
+Minimum requirement is iOS 10.0. This dialog was written with Swift 4.2, for support of older versions please head over to releases.
 
 <p>&nbsp;</p>
 
 # Changelog
+* **0.1.0** Pinned Swift version to 4.2<br>Dropped iOS 9 support as of moving to ios-snapshot-test-case
 * **0.9.2** Fixes crash when presenting dialog while app is inactive
 * **0.9.1** Fixes Carthage support
 * **0.9.0** Swift 4.2 support

@@ -12,7 +12,7 @@ class SnapshotTests: FBSnapshotTestCase {
         super.setUp()
     
         recordMode = false
-        isDeviceAgnostic = true
+        fileNameOptions = [.device, .OS, .screenSize, .screenScale]
 
         let bundle = Bundle(for: self.classForCoder)
         let sb = UIStoryboard(name: "Main", bundle: bundle)
