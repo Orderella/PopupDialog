@@ -16,8 +16,8 @@ before_install:
 script:
   - set -o pipefail
   - xcodebuild -version
-  - xcodebuild -showsdks
-  - xcrun simctl list
+  - ios-sim showdevicetypes
+  - ios-sim showsdks
 
   # "Prewarm" simulators as of https://github.com/travis-ci/travis-ci/issues/6675
   - ios-sim start --devicetypeid "$SIMNAME"
