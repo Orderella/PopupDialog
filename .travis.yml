@@ -11,7 +11,7 @@ env:
     - DESTINATION="OS=11.1,name=iPad Air 2" SIMNAME="com.apple.CoreSimulator.SimDeviceType.iPad-Air-2, 11.1" SCHEME="$IOS_FRAMEWORK_SCHEME"  SDK="$IOS_SDK" POD_LINT="NO"
 before_install:
   - npm install ios-sim -g
-  - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
+  - gem install cocoapods --no-document --quiet
   - pod install --project-directory=./Example --repo-update
 script:
   - set -o pipefail
