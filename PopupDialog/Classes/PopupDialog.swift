@@ -26,6 +26,14 @@
 import Foundation
 import UIKit
 
+@objc public protocol PopupDialogDelegate {
+    func popupDialogWillAppear(_ popupDialog: PopupDialog)
+    func popupDialogDidAppear(_ popupDialog: PopupDialog)
+    func popupDialogWillDisappear(_ popupDialog: PopupDialog)
+    func popupDialogDidDisappear(_ popupDialog: PopupDialog)
+    func popupDialogCompleted(_ popupDialog: PopupDialog)
+}
+
 /// Creates a Popup dialog similar to UIAlertController
 final public class PopupDialog: UIViewController {
 
@@ -36,9 +44,9 @@ final public class PopupDialog: UIViewController {
     
     /// Width for iPad displays
     fileprivate let preferredWidth: CGFloat
-
-    /// The completion handler
-    fileprivate var completion: (() -> Void)?
+    
+    /// The PopupDialog delegate
+    weak var delegate: PopupDialogDelegate?
 
     /// The custom transition presentation manager
     fileprivate var presentationManager: PresentationManager!
@@ -97,7 +105,7 @@ final public class PopupDialog: UIViewController {
                 panGestureDismissal: Bool = true,
                 hideStatusBar: Bool = false,
                 statusBarStyle: UIStatusBarStyle = .default,
-                completion: (() -> Void)? = nil) {
+                delegate: PopupDialogDelegate? = nil) {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
@@ -114,7 +122,7 @@ final public class PopupDialog: UIViewController {
                   preferredWidth: preferredWidth,
                   tapGestureDismissal: tapGestureDismissal,
                   panGestureDismissal: panGestureDismissal,
-                  completion: completion)
+                  delegate: delegate)
     }
 
     /*!
@@ -138,11 +146,11 @@ final public class PopupDialog: UIViewController {
         preferredWidth: CGFloat = 340,
         tapGestureDismissal: Bool = true,
         panGestureDismissal: Bool = true,
-        completion: (() -> Void)? = nil) {
+        delegate: PopupDialogDelegate? = nil) {
 
         self.viewController = viewController
         self.preferredWidth = preferredWidth
-        self.completion = completion
+        self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
 
         // Init the presentation manager
@@ -197,6 +205,7 @@ final public class PopupDialog: UIViewController {
         guard !initialized else { return }
         appendButtons()
         initialized = true
+        delegate?.popupDialogWillAppear(self)
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -205,16 +214,24 @@ final public class PopupDialog: UIViewController {
         UIView.animate(withDuration: 0.15) {
             self.setNeedsStatusBarAppearanceUpdate()
         }
+        delegate?.popupDialogDidAppear(self)
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
         removeObservers()
+        delegate?.popupDialogWillDisappear(self)
+    }
+    
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        delegate?.popupDialogDidDisappear(self)
     }
 
     deinit {
-        completion?()
-        completion = nil
+        delegate?.popupDialogCompleted(self)
+        delegate = nil
     }
 
     // MARK: - Dismissal related
@@ -224,16 +241,7 @@ final public class PopupDialog: UIViewController {
         // Make sure it's not a tap on the dialog but the background
         let point = sender.location(in: popupContainerView.stackView)
         guard !popupContainerView.stackView.point(inside: point, with: nil) else { return }
-        dismiss()
-    }
-
-    /*!
-     Dismisses the popup dialog
-     */
-    @objc public func dismiss(_ completion: (() -> Void)? = nil) {
-        self.dismiss(animated: true) {
-            completion?()
-        }
+        self.dismiss(animated: true)
     }
 
     // MARK: - Button related
@@ -277,7 +285,9 @@ final public class PopupDialog: UIViewController {
     /// Calls the action closure of the button instance tapped
     @objc fileprivate func buttonTapped(_ button: PopupDialogButton) {
         if button.dismissOnTap {
-            dismiss({ button.buttonAction?() })
+            self.dismiss(animated: true) {
+                button.buttonAction?()
+            }
         } else {
             button.buttonAction?()
         }
