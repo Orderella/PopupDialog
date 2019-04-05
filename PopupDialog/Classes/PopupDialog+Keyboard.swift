@@ -33,7 +33,7 @@ internal extension PopupDialog {
     // MARK: - Keyboard & orientation observers
 
     /*! Add obserservers for UIKeyboard notifications */
-    internal func addObservers() {
+    func addObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged),
                                                          name: UIDevice.orientationDidChangeNotification,
                                                          object: nil)
@@ -55,7 +55,7 @@ internal extension PopupDialog {
     }
 
     /*! Remove observers */
-    internal func removeObservers() {
+    func removeObservers() {
         NotificationCenter.default.removeObserver(self,
                                                             name: UIDevice.orientationDidChangeNotification,
                                                             object: nil)

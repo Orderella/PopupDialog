@@ -2,7 +2,7 @@
 
 <p>&nbsp;</p>
 
-![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg)
+![Swift Version](https://img.shields.io/badge/Swift-5-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![License](https://img.shields.io/cocoapods/l/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![Platform](https://img.shields.io/cocoapods/p/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
@@ -37,7 +37,7 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 
 # Installation
 
-This version is Swift 4.2 compatible. For the Swift 3 version, please use [V0.5.4](https://github.com/Orderella/PopupDialog/releases/tag/0.5.4).
+This version is Swift 5 compatible. For the Swift 4.2 version, please use [V1.0.0](https://github.com/Orderella/PopupDialog/releases/tag/1.0.0).
 
 ## CocoaPods
 
@@ -47,7 +47,7 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). Simply add t
 use_frameworks!
 
 target '<Your Target Name>'
-pod 'PopupDialog', '~> 1.0'
+pod 'PopupDialog', '~> 1.1'
 ```
 
 ## Carthage
@@ -57,7 +57,7 @@ pod 'PopupDialog', '~> 1.0'
 To install, simply add the following lines to your Cartfile:
 
 ```ruby
-github "Orderella/PopupDialog" ~> 1.0
+github "Orderella/PopupDialog" ~> 1.1
 ```
 
 ## Manually
@@ -441,12 +441,13 @@ If you happen to use PopupDialog to validate text input, for example, you can ca
 
 # Requirements
 
-Minimum requirement is iOS 10.0. This dialog was written with Swift 4.2, for support of older versions please head over to releases.
+Minimum requirement is iOS 10.0. This dialog was written with Swift 5, for support of older versions please head over to releases.
 
 <p>&nbsp;</p>
 
 # Changelog
-* **0.1.0** Pinned Swift version to 4.2<br>Dropped iOS 9 support as of moving to ios-snapshot-test-case
+* **1.1.0** Swift 5 support
+* **1.0.0** Pinned Swift version to 4.2<br>Dropped iOS 9 support as of moving to ios-snapshot-test-case
 * **0.9.2** Fixes crash when presenting dialog while app is inactive
 * **0.9.1** Fixes Carthage support
 * **0.9.0** Swift 4.2 support
