@@ -16,11 +16,11 @@ before_install:
 script:
   - set -o pipefail
   - xcodebuild -version
-  - ios-sim showdevicetypes
-  - ios-sim showsdks
+  - xcodebuild -showsdks
+  - xcrun simctl list
 
   # "Prewarm" simulators as of https://github.com/travis-ci/travis-ci/issues/6675
-  - ios-sim start --devicetypeid "$SIMNAME"
+  # - ios-sim start --devicetypeid "$SIMNAME"
 
   # Build Framework in Debug and run tests
   - xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty -c;
