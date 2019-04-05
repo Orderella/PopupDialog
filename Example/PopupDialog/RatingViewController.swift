@@ -29,6 +29,18 @@ class RatingViewController: UIViewController {
     @objc func endEditing() {
         view.endEditing(true)
     }
+    
+    public override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
 }
 
 extension RatingViewController: UITextFieldDelegate {

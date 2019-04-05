@@ -27,6 +27,10 @@ import UIKit
 
 final public class PopupDialogDefaultViewController: UIViewController {
 
+    /// StatusBar display related
+    internal var hideStatusBar: Bool = false
+    internal var statusBarStyle: UIStatusBarStyle = .default
+    
     public var standardView: PopupDialogDefaultView {
        return view as! PopupDialogDefaultView // swiftlint:disable:this force_cast
     }
@@ -129,5 +133,17 @@ public extension PopupDialogDefaultViewController {
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView()
+    }
+    
+    public override var prefersStatusBarHidden: Bool {
+        return self.hideStatusBar
+    }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.statusBarStyle
+    }
+    
+    public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
     }
 }

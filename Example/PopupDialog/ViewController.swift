@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         let image = UIImage(named: "colorful")
 
         // Create the dialog
-        let popup = PopupDialog(title: title, message: message, image: image, preferredWidth: 580)
+        let popup = PopupDialog(title: title, message: message, image: image, preferredWidth: 580, statusBarStyle: .lightContent)
 
         // Create first button
         let buttonOne = CancelButton(title: "CANCEL") { [weak self] in

@@ -34,10 +34,6 @@ final public class PopupDialog: UIViewController {
     /// First init flag
     fileprivate var initialized = false
     
-    /// StatusBar display related
-    fileprivate let hideStatusBar: Bool
-    fileprivate var statusBarShouldBeHidden: Bool = false
-    
     /// Width for iPad displays
     fileprivate let preferredWidth: CGFloat
 
@@ -100,13 +96,16 @@ final public class PopupDialog: UIViewController {
                 tapGestureDismissal: Bool = true,
                 panGestureDismissal: Bool = true,
                 hideStatusBar: Bool = false,
+                statusBarStyle: UIStatusBarStyle = .default,
                 completion: (() -> Void)? = nil) {
 
         // Create and configure the standard popup dialog view
         let viewController = PopupDialogDefaultViewController()
-        viewController.titleText   = title
-        viewController.messageText = message
-        viewController.image       = image
+        viewController.titleText     = title
+        viewController.messageText   = message
+        viewController.image         = image
+        viewController.hideStatusBar = hideStatusBar
+        viewController.statusBarStyle = statusBarStyle
 
         // Call designated initializer
         self.init(viewController: viewController,
@@ -115,7 +114,6 @@ final public class PopupDialog: UIViewController {
                   preferredWidth: preferredWidth,
                   tapGestureDismissal: tapGestureDismissal,
                   panGestureDismissal: panGestureDismissal,
-                  hideStatusBar: hideStatusBar,
                   completion: completion)
     }
 
@@ -140,12 +138,10 @@ final public class PopupDialog: UIViewController {
         preferredWidth: CGFloat = 340,
         tapGestureDismissal: Bool = true,
         panGestureDismissal: Bool = true,
-        hideStatusBar: Bool = false,
         completion: (() -> Void)? = nil) {
 
         self.viewController = viewController
         self.preferredWidth = preferredWidth
-        self.hideStatusBar = hideStatusBar
         self.completion = completion
         super.init(nibName: nil, bundle: nil)
 
@@ -206,7 +202,6 @@ final public class PopupDialog: UIViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        statusBarShouldBeHidden = hideStatusBar
         UIView.animate(withDuration: 0.15) {
             self.setNeedsStatusBarAppearanceUpdate()
         }
@@ -301,11 +296,15 @@ final public class PopupDialog: UIViewController {
     // MARK: - StatusBar display related
     
     public override var prefersStatusBarHidden: Bool {
-        return statusBarShouldBeHidden
+        return self.viewController.prefersStatusBarHidden
+    }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return self.viewController.preferredStatusBarStyle
     }
     
     public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return .slide
+        return self.viewController.preferredStatusBarUpdateAnimation
     }
 }
 
