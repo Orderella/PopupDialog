@@ -85,6 +85,9 @@ final public class PopupDialog: UIViewController {
     /// Whether or not to shift view for keyboard display
     public var keyboardShiftsView = true
 
+    // Whether to allow users to rotate the screen when a dialog is displayed
+    @objc public static var allowAutorotate = true
+
     // Allows you to apply custom styling to the title text
     @objc public static var titleTextStylizer: TextStylizer?
 
@@ -332,7 +335,13 @@ final public class PopupDialog: UIViewController {
         let button = buttons[index]
         button.buttonAction?()
     }
-    
+
+    // MARK: - Auto rotation
+
+    public override var shouldAutorotate: Bool {
+        return PopupDialog.allowAutorotate
+    }
+
     // MARK: - StatusBar display related
     
     public override var prefersStatusBarHidden: Bool {
