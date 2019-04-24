@@ -156,7 +156,7 @@ final public class PopupDialogContainerView: UIView {
         let defaultMargin: CGFloat = 16
         if #available(iOS 11, *) {
             // If we already compensate for safe area we don't need to apply default margin
-            return self.layoutMargins.bottom > 0 ? -self.layoutMargins.bottom : -defaultMargin
+            return self.layoutMargins.bottom > 0 ? 0 : -defaultMargin
         }
         return -defaultMargin
     }
