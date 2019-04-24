@@ -51,8 +51,15 @@ open class PopupDialogButton: UIButton {
     /// The background color of the button
     @objc open dynamic var buttonColor: UIColor? {
         get { return backgroundColor }
-        set { backgroundColor = newValue }
+        set {
+            backgroundColor = newValue
+            normalButtonColor = newValue
+        }
     }
+
+    private var normalButtonColor: UIColor?
+
+    @objc open dynamic var highlightColor: UIColor?
 
     /// The separator color of this button
     @objc open dynamic var separatorColor: UIColor? {
@@ -160,7 +167,11 @@ open class PopupDialogButton: UIButton {
 
     open override var isHighlighted: Bool {
         didSet {
-            isHighlighted ? pv_fade(.out, 0.5) : pv_fade(.in, 1.0)
+            if let highlightColor = highlightColor, let normalButtonColor = normalButtonColor {
+                backgroundColor = isHighlighted ? highlightColor : normalButtonColor
+            } else {
+                isHighlighted ? pv_fade(.out, 0.5) : pv_fade(.in, 1.0)
+            }
         }
     }
 }
