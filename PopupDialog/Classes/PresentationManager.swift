@@ -54,6 +54,8 @@ final internal class PresentationManager: NSObject, UIViewControllerTransitionin
             transition = ZoomTransition(direction: .in)
         case .fadeIn:
             transition = FadeTransition(direction: .in)
+        case .slideUp:
+            transition = SlideUpTransition(direction: .in)
         }
 
         return transition
@@ -75,6 +77,8 @@ final internal class PresentationManager: NSObject, UIViewControllerTransitionin
             transition = ZoomTransition(direction: .out)
         case .fadeIn:
             transition = FadeTransition(direction: .out)
+        case .slideUp:
+            transition = SlideUpTransition(direction: .out)
         }
 
         return transition
