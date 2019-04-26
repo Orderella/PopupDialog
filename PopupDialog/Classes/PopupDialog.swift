@@ -94,6 +94,9 @@ final public class PopupDialog: UIViewController {
     // Allows you to apply custom styling to the message text
     @objc public static var messageTextStylizer: TextStylizer?
 
+    // Set this to override the default status bar style
+    @objc public static var statusBarStyle = UIStatusBarStyle.default
+
     // MARK: - Initializers
 
     /*!
@@ -350,6 +353,10 @@ final public class PopupDialog: UIViewController {
     
     public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .slide
+    }
+
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return PopupDialog.statusBarStyle
     }
 }
 
