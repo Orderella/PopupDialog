@@ -67,6 +67,7 @@ final internal class BounceUpTransition: TransitionAnimator {
                 self.from.view.alpha = 0.0
             }, completion: { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                self.from.view.alpha = 1.0
             })
         }
     }
@@ -99,6 +100,7 @@ final internal class BounceDownTransition: TransitionAnimator {
                 self.from.view.alpha = 0.0
             }, completion: { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                self.from.view.alpha = 1.0
             })
         }
     }
@@ -130,6 +132,7 @@ final internal class ZoomTransition: TransitionAnimator {
                 self.from.view.alpha = 0.0
             }, completion: { _ in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+                self.from.view.alpha = 1.0
             })
         }
     }
@@ -181,6 +184,7 @@ final internal class DismissInteractiveTransition: TransitionAnimator {
             self.from.view.alpha = 0.0
         }, completion: { _ in
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            self.from.view.alpha = 1.0
         })
     }
 }
