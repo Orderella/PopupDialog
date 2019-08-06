@@ -101,7 +101,7 @@ Authors
 [Jonathan Dann](https://facebook.com/j.p.dann) with significant contributions by
 [Todd Krabach](https://facebook.com/toddkrabach).
 
-Today it is maintained by [Uber](https://github.com/uber) and [Alan Zeino](https://github.com/alanzeino).
+Today it is maintained by [Uber](https://github.com/uber).
 
 License
 -------

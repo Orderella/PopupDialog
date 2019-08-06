@@ -21,13 +21,11 @@ BOOL FBSnapshotTestCaseIs64Bit(void)
 
 NSOrderedSet *FBSnapshotTestCaseDefaultSuffixes(void)
 {
-    NSMutableOrderedSet *suffixesSet = [[NSMutableOrderedSet alloc] init];
-    [suffixesSet addObject:@"_32"];
-    [suffixesSet addObject:@"_64"];
     if (FBSnapshotTestCaseIs64Bit()) {
-        return [suffixesSet reversedOrderedSet];
+        return [NSOrderedSet orderedSetWithObject:@"_64"];
+    } else {
+        return [NSOrderedSet orderedSetWithObject:@"_32"];
     }
-    return [suffixesSet copy];
 }
 
 NSString *FBFileNameIncludeNormalizedFileNameFromOption(NSString *fileName, FBSnapshotTestCaseFileNameIncludeOption option)
@@ -44,8 +42,7 @@ NSString *FBFileNameIncludeNormalizedFileNameFromOption(NSString *fileName, FBSn
     }
 
     if ((option & FBSnapshotTestCaseFileNameIncludeOptionScreenSize) == FBSnapshotTestCaseFileNameIncludeOptionScreenSize) {
-        UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-        CGSize screenSize = keyWindow.bounds.size;
+        CGSize screenSize = [UIScreen mainScreen].bounds.size;
         fileName = [fileName stringByAppendingFormat:@"_%.0fx%.0f", screenSize.width, screenSize.height];
     }
 
@@ -54,7 +51,7 @@ NSString *FBFileNameIncludeNormalizedFileNameFromOption(NSString *fileName, FBSn
     [invalidCharacters formUnionWithCharacterSet:[NSCharacterSet punctuationCharacterSet]];
     NSArray *validComponents = [fileName componentsSeparatedByCharactersInSet:invalidCharacters];
     fileName = [validComponents componentsJoinedByString:@"_"];
-    
+
     if ((option & FBSnapshotTestCaseFileNameIncludeOptionScreenScale) == FBSnapshotTestCaseFileNameIncludeOptionScreenScale) {
         CGFloat screenScale = [[UIScreen mainScreen] scale];
         fileName = [fileName stringByAppendingFormat:@"@%.fx", screenScale];

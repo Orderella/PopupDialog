@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  - FBSnapshotTestCaseFileNameIncludeOptionNone: Don't include any of these options at all.
  - FBSnapshotTestCaseFileNameIncludeOptionDevice: The file name should include the device name, as returned by UIDevice.currentDevice.model.
  - FBSnapshotTestCaseFileNameIncludeOptionOS: The file name should include the OS version, as returned by UIDevice.currentDevice.systemVersion.
- - FBSnapshotTestCaseFileNameIncludeOptionScreenSize: The file name should include the screen size of the current keyWindow, as returned by UIApplication.sharedApplication.keyWindow.bounds.size.
+ - FBSnapshotTestCaseFileNameIncludeOptionScreenSize: The file name should include the screen size of the current device, as returned by UIScreen.mainScreen.bounds.size.
  - FBSnapshotTestCaseFileNameIncludeOptionScreenScale: The file name should include the scale of the current device, as returned by UIScreen.mainScreen.scale.
  */
 typedef NS_OPTIONS(NSUInteger, FBSnapshotTestCaseFileNameIncludeOption) {

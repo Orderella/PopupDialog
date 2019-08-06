@@ -20,7 +20,7 @@
  There are three ways of setting reference image directories.
 
  1. Set the preprocessor macro FB_REFERENCE_IMAGE_DIR to a double quoted
-    c-string with the path.
+    c-string with the path. This only works for Objective-C tests.
  2. Set an environment variable named FB_REFERENCE_IMAGE_DIR with the path. This
     takes precedence over the preprocessor macro to allow for run-time override.
  3. Keep everything unset, which will cause the reference images to be looked up
