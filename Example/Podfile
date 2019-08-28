@@ -6,13 +6,13 @@ ENV['COCOAPODS_DISABLE_STATS'] = "true" ## This disabled the Sending Stats when 
 target 'PopupDialog_Example' do
 
   pod 'PopupDialog', :path => '../'
-  pod 'SwiftLint', '~> 0.22'
+  pod 'SwiftLint', '~> 0.34.0'
 
   target 'PopupDialog_Tests' do
     inherit! :search_paths
 
-    pod 'Nimble', '~> 7.3.1'
-    pod 'iOSSnapshotTestCase', '~> 6.0.2'
+    pod 'Nimble', '~> 8.0.2'
+    pod 'iOSSnapshotTestCase', '~> 6.1.0'
 
   end
 end
