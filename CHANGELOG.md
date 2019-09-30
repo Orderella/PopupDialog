@@ -1,4 +1,5 @@
 # Changelog
+* **1.1.1** Updates dependencies to Swift 5
 * **1.1.0** Swift 5 support
 * **1.0.0** Pinned Swift version to 4.2<br>Dropped iOS 9 support as of moving to ios-snapshot-test-case
 * **0.9.2** Fixes crash when presenting dialog while app is inactive
