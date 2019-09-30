@@ -19,10 +19,11 @@
     "ios": "10.0"
   },
   "source_files": "PopupDialog/Classes/**/*",
-  "swift_version": "5",
+  "swift_versions": "5",
   "dependencies": {
     "DynamicBlurView": [
-      "~> 3.0.1"
+      "~> 4.0"
     ]
-  }
+  },
+  "swift_version": "5"
 }
