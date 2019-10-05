@@ -278,7 +278,7 @@ Setting `liveBlurEnabled` to true, that is enabling realtime updates of the back
 
 ## Button Appearance Settings
 
-The standard button classes available are `DefaultButton`, `CancelButton` and `DestructiveButton`. All buttons feature the same appearance settings and can be styled seperately.
+The standard button classes available are `DefaultButton`, `CancelButton` and `DestructiveButton`. All buttons feature the same appearance settings and can be styled separately.
 
 ```swift
 var buttonAppearance = DefaultButton.appearance()
@@ -298,7 +298,7 @@ CancelButton.appearance().titleColor = .lightGray
 DestructiveButton.appearance().titleColor = .red
 ```
 
-Moreover, you can create a custom button by subclassing `PopupDialogButton`. The following example creates a solid blue button, featuring a bold white title font. Separators are invisble.
+Moreover, you can create a custom button by subclassing `PopupDialogButton`. The following example creates a solid blue button, featuring a bold white title font. Separators are invisible.
 
 ```swift
 public final class SolidBlueButton: PopupDialogButton {
@@ -376,7 +376,7 @@ Rotation and all screen sizes are supported. However, the dialog will never exce
 
 # Working with text fields
 
-If you are using text fields in your custom view controller, popup dialog makes sure that the dialog is positioned above the keybord whenever it appears. You can opt out of this behaviour by setting `keyboardShiftsView` to false on a PopupDialog.
+If you are using text fields in your custom view controller, popup dialog makes sure that the dialog is positioned above the keyboard whenever it appears. You can opt out of this behaviour by setting `keyboardShiftsView` to false on a PopupDialog.
 
 # Testing
 
