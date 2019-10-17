@@ -307,6 +307,10 @@ final public class PopupDialog: UIViewController {
     public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .slide
     }
+
+    public override var childForStatusBarStyle: UIViewController? {
+        return viewController
+    }
 }
 
 // MARK: - View proxy values
