@@ -10,6 +10,10 @@ import UIKit
 
 class RatingViewController: UIViewController {
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     @IBOutlet weak var cosmosStarRating: CosmosView!
 
     @IBOutlet weak var commentTextField: UITextField!
