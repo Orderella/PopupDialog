@@ -2,7 +2,7 @@
 
 <p>&nbsp;</p>
 
-![Swift Version](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![Swift Version](https://img.shields.io/badge/Swift-5-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![License](https://img.shields.io/cocoapods/l/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
 [![Platform](https://img.shields.io/cocoapods/p/PopupDialog.svg?style=flat)](http://cocoapods.org/pods/PopupDialog)
@@ -31,13 +31,13 @@ Popup Dialog is a simple, customizable popup dialog written in Swift.
 - [x] Fully themeable via appearance, including fonts, colors, corner radius, shadow, overlay color and blur, etc.
 - [x] Can be dismissed via swipe and background tap
 - [x] Objective-C compatible
-- [x] Works on all screens and devices supporting iOS 9.0+
+- [x] Works on all screens and devices supporting iOS 10.0+
 
 <p>&nbsp;</p>
 
 # Installation
 
-This version is Swift 4 compatible. For the Swift 3 version, please use [V0.5.4](https://github.com/Orderella/PopupDialog/releases/tag/0.5.4).
+This version is Swift 5 compatible. For the Swift 4.2 version, please use [V1.0.0](https://github.com/Orderella/PopupDialog/releases/tag/1.0.0).
 
 ## CocoaPods
 
@@ -47,7 +47,7 @@ PopupDialog is available through [CocoaPods](http://cocoapods.org). Simply add t
 use_frameworks!
 
 target '<Your Target Name>'
-pod 'PopupDialog', '~> 0.8'
+pod 'PopupDialog', '~> 1.1'
 ```
 
 ## Carthage
@@ -57,7 +57,7 @@ pod 'PopupDialog', '~> 0.8'
 To install, simply add the following lines to your Cartfile:
 
 ```ruby
-github "Orderella/PopupDialog" ~> 0.8
+github "Orderella/PopupDialog" ~> 1.1
 ```
 
 ## Manually
@@ -244,7 +244,7 @@ dialogAppearance.messageTextAlignment = .center
 
 ## Dialog Container Appearance Settings
 
-The container view contains the PopupDialogDefaultView or your custom view controller. the following appearence settings are available:
+The container view contains the PopupDialogDefaultView or your custom view controller. the following appearance settings are available:
 
 ```swift
 let containerAppearance = PopupDialogContainerView.appearance()
@@ -278,7 +278,7 @@ Setting `liveBlurEnabled` to true, that is enabling realtime updates of the back
 
 ## Button Appearance Settings
 
-The standard button classes available are `DefaultButton`, `CancelButton` and `DestructiveButton`. All buttons feature the same appearance settings and can be styled seperately.
+The standard button classes available are `DefaultButton`, `CancelButton` and `DestructiveButton`. All buttons feature the same appearance settings and can be styled separately.
 
 ```swift
 var buttonAppearance = DefaultButton.appearance()
@@ -298,7 +298,7 @@ CancelButton.appearance().titleColor = .lightGray
 DestructiveButton.appearance().titleColor = .red
 ```
 
-Moreover, you can create a custom button by subclassing `PopupDialogButton`. The following example creates a solid blue button, featuring a bold white title font. Separators are invisble.
+Moreover, you can create a custom button by subclassing `PopupDialogButton`. The following example creates a solid blue button, featuring a bold white title font. Separators are invisible.
 
 ```swift
 public final class SolidBlueButton: PopupDialogButton {
@@ -376,7 +376,7 @@ Rotation and all screen sizes are supported. However, the dialog will never exce
 
 # Working with text fields
 
-If you are using text fields in your custom view controller, popup dialog makes sure that the dialog is positioned above the keybord whenever it appears. You can opt out of this behaviour by setting `keyboardShiftsView` to false on a PopupDialog.
+If you are using text fields in your custom view controller, popup dialog makes sure that the dialog is positioned above the keyboard whenever it appears. You can opt out of this behaviour by setting `keyboardShiftsView` to false on a PopupDialog.
 
 # Testing
 
@@ -441,11 +441,17 @@ If you happen to use PopupDialog to validate text input, for example, you can ca
 
 # Requirements
 
-Minimum requirement is iOS 9.0. This dialog was written with Swift 4, for support of older versions please head over to releases.
+Minimum requirement is iOS 10.0. This dialog was written with Swift 5, for support of older versions please head over to releases.
 
 <p>&nbsp;</p>
 
 # Changelog
+* **1.1.1** Updates dependencies to Swift 5
+* **1.1.0** Swift 5 support
+* **1.0.0** Pinned Swift version to 4.2<br>Dropped iOS 9 support as of moving to ios-snapshot-test-case
+* **0.9.2** Fixes crash when presenting dialog while app is inactive
+* **0.9.1** Fixes Carthage support
+* **0.9.0** Swift 4.2 support
 * **0.8.1** Added shadow appearance properties
 * **0.8.0** Separated tap and pan gesture dismissal
 * **0.7.1** Fixes Objective-C compatability<br>Improved Carthage handling
