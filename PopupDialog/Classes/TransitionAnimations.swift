@@ -57,6 +57,7 @@ final internal class BounceUpTransition: TransitionAnimator {
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
                 guard let self = self else { return }
                 self.to.view.bounds = self.from.view.bounds
+                self.to.view.alpha = 1.0
             }, completion: { _ in
                 transitionContext.completeTransition(true)
             })
@@ -89,6 +90,7 @@ final internal class BounceDownTransition: TransitionAnimator {
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
                 guard let self = self else { return }
                 self.to.view.bounds = self.from.view.bounds
+                self.to.view.alpha = 1.0
             }, completion: { _ in
                 transitionContext.completeTransition(true)
             })
@@ -120,6 +122,7 @@ final internal class ZoomTransition: TransitionAnimator {
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [.curveEaseOut], animations: { [weak self] in
                 guard let self = self else { return }
                 self.to.view.transform = CGAffineTransform(scaleX: 1, y: 1)
+                self.to.view.alpha = 1.0
             }, completion: { _ in
                 transitionContext.completeTransition(true)
             })
