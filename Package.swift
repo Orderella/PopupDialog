@@ -9,10 +9,10 @@ let package = Package(
     products: [
         .library(
             name: "PopupDialog",
-            targets: ["PopupDialog"]),
+            targets: ["PopupDialog"])
     ],
     dependencies: [
-        .package(url: "https://github.com/KyoheiG3/DynamicBlurView.git", from: "5.0.0"),
+        .package(url: "https://github.com/KyoheiG3/DynamicBlurView.git", from: "5.0.0")
     ],
     targets: [
         .target(
