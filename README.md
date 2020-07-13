@@ -60,6 +60,10 @@ To install, simply add the following lines to your Cartfile:
 github "Orderella/PopupDialog" ~> 1.1
 ```
 
+## Swift Package manager
+
+Open Xcode and Select from menu to `File > Swift Packages > Add Package Depende`
+
 ## Manually
 
 If you prefer not to use either of the above mentioned dependency managers, you can integrate PopupDialog into your project manually by adding the files contained in the [Classes](https://github.com/trungp/PopupDialog/tree/master/PopupDialog/Classes)
