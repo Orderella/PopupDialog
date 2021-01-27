@@ -22,9 +22,9 @@ let package = Package(
             from: "5.0.0"),
         .package(
             name: "Nimble",
-            url: "https://github.com/Quick/Nimble.git",
-            from: "9.0.0"),
+            path: "Example/Nimble"),
         .package(
+            name: "FBSnapshotTestCase",
             path: "Example/iOSSnapshotTestCase")
     ],
     targets: [
@@ -32,11 +32,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "PopupDialog",
-            dependencies: ["DynamicBlurView", "Nimble"],
+            dependencies: ["DynamicBlurView"],
             path: "PopupDialog/Classes"),
         .testTarget(
             name: "PopupDialogTests",
-            dependencies: ["PopupDialog", "FBSnapshotTestCase"],
+            dependencies: ["PopupDialog", "Nimble", "FBSnapshotTestCase"],
             path: "Tests")
     ]
 )
