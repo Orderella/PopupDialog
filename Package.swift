@@ -19,7 +19,7 @@ let package = Package(
         .package(
             name: "DynamicBlurView",
             url: "https://github.com/KyoheiG3/DynamicBlurView",
-            from: "3.0.1")
+            from: "5.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -27,7 +27,8 @@ let package = Package(
         .target(
             name: "PopupDialog",
             dependencies: ["DynamicBlurView"],
-            path: "PopupDialog/Classes"),
+            path: "PopupDialog/Classes",
+            exclude: ["Example"]),
         .testTarget(
             name: "PopupDialogTests",
             dependencies: ["PopupDialog"],
