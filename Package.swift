@@ -19,19 +19,24 @@ let package = Package(
         .package(
             name: "DynamicBlurView",
             url: "https://github.com/KyoheiG3/DynamicBlurView",
-            from: "5.0.0")
+            from: "5.0.0"),
+        .package(
+            name: "Nimble",
+            url: "https://github.com/Quick/Nimble.git",
+            from: "9.0.0"),
+        .package(
+            path: "Example/iOSSnapshotTestCase")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "PopupDialog",
-            dependencies: ["DynamicBlurView"],
-            path: "PopupDialog/Classes",
-            exclude: ["Example"]),
+            dependencies: ["DynamicBlurView", "Nimble"],
+            path: "PopupDialog/Classes"),
         .testTarget(
             name: "PopupDialogTests",
-            dependencies: ["PopupDialog"],
+            dependencies: ["PopupDialog", "FBSnapshotTestCase"],
             path: "Tests")
     ]
 )
