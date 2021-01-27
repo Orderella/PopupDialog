@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import UIKit
 import DynamicBlurView
 
 /// The (blurred) overlay view below the popup dialog
