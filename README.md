@@ -422,7 +422,7 @@ DefaultButton *ok = [[DefaultButton alloc] initWithTitle: @"OK"
                                             dismissOnTap: YES
                                                   action: nil];
 
-[dialog addButtons:@[delete, cancel, ok]];
+[popup addButtons:@[delete, cancel, ok]];
 
 [self presentViewController:popup animated:YES completion:nil];
 ```
