@@ -12,7 +12,7 @@ class Tests: XCTestCase {
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown() 
+        super.tearDown()
     }
 
     func testStandardDialogInstantiation() {
@@ -20,13 +20,13 @@ class Tests: XCTestCase {
         // Instantiate dialog
         let popup = PopupDialog(title: "Test Title", message: "Test Message")
         expect(popup).toNot(beNil())
-        
+
         // Get popup dialog view
         guard let vc = popup.viewController as? PopupDialogDefaultViewController else {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
-        
+
         expect(vc.titleText)   == "Test Title"
         expect(vc.messageText) == "Test Message"
         expect(vc.image).to(beNil())
@@ -48,7 +48,7 @@ class Tests: XCTestCase {
             XCTFail("Could not instantiate Popup Dialog view")
             return
         }
-        
+
         expect(vc.image).toNot(beNil())
     }
 
@@ -97,7 +97,7 @@ class Tests: XCTestCase {
         vc.titleText   = "New Test Title"
         vc.messageText = "New Test Message"
         vc.image       = image
-        
+
         expect(vc.titleText)   == "New Test Title"
         expect(vc.messageText) == "New Test Message"
         expect(vc.image).toNot(beNil())
@@ -151,7 +151,7 @@ class Tests: XCTestCase {
 
         // Tap button with 0 index
         popup.tapButtonWithIndex(0)
-        
+
         expect(buttonActionTriggered).toEventually(beTrue())
     }
 

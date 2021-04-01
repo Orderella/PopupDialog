@@ -47,7 +47,7 @@ final public class PopupDialogContainerView: UIView {
             container.layer.cornerRadius = radius
         }
     }
-    
+
     // MARK: Shadow related
 
     /// Enable / disable shadow rendering of the container
@@ -66,31 +66,31 @@ final public class PopupDialogContainerView: UIView {
         }
         set { shadowContainer.layer.shadowColor = newValue?.cgColor }
     }
-    
+
     /// Radius of the container shadow
     @objc public dynamic var shadowRadius: CGFloat {
         get { return shadowContainer.layer.shadowRadius }
         set { shadowContainer.layer.shadowRadius = newValue }
     }
-    
+
     /// Opacity of the the container shadow
     @objc public dynamic var shadowOpacity: Float {
         get { return shadowContainer.layer.shadowOpacity }
         set { shadowContainer.layer.shadowOpacity = newValue }
     }
-    
+
     /// Offset of the the container shadow
     @objc public dynamic var shadowOffset: CGSize {
         get { return shadowContainer.layer.shadowOffset }
         set { shadowContainer.layer.shadowOffset = newValue }
     }
-    
+
     /// Path of the the container shadow
     @objc public dynamic var shadowPath: CGPath? {
         get { return shadowContainer.layer.shadowPath}
         set { shadowContainer.layer.shadowPath = newValue }
     }
-    
+
     // MARK: - Views
 
     /// The shadow container is the basic view of the PopupDialog
@@ -135,7 +135,7 @@ final public class PopupDialogContainerView: UIView {
         stackView.spacing = 0
         return stackView
     }()
-    
+
     // The preferred width for iPads
     fileprivate let preferredWidth: CGFloat
 
@@ -145,7 +145,7 @@ final public class PopupDialogContainerView: UIView {
     internal var centerYConstraint: NSLayoutConstraint?
 
     // MARK: - Initializers
-    
+
     internal init(frame: CGRect, preferredWidth: CGFloat) {
         self.preferredWidth = preferredWidth
         super.init(frame: frame)
@@ -178,11 +178,11 @@ final public class PopupDialogContainerView: UIView {
         }
         constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)]
         centerYConstraint = NSLayoutConstraint(item: shadowContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        
+
         if let centerYConstraint = centerYConstraint {
             constraints.append(centerYConstraint)
         }
-        
+
         // Container constraints
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[container]|", options: [], metrics: nil, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[container]|", options: [], metrics: nil, views: views)

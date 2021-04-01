@@ -65,9 +65,9 @@ import Foundation
 		var behaviors = execTypesCountTuple<exception_behavior_t>()
 		var flavors = execTypesCountTuple<thread_state_flavor_t>()
 		var currentExceptionPort: mach_port_t = 0
-		var handlerThread: pthread_t? = nil
+		var handlerThread: pthread_t?
 		
-		static func internalMutablePointers<R>(_ m: UnsafeMutablePointer<execTypesCountTuple<exception_mask_t>>, _ c: UnsafeMutablePointer<mach_msg_type_number_t>, _ p: UnsafeMutablePointer<execTypesCountTuple<mach_port_t>>, _ b: UnsafeMutablePointer<execTypesCountTuple<exception_behavior_t>>, _ f: UnsafeMutablePointer<execTypesCountTuple<thread_state_flavor_t>>, _ block: (UnsafeMutablePointer<exception_mask_t>, UnsafeMutablePointer<mach_msg_type_number_t>,  UnsafeMutablePointer<mach_port_t>, UnsafeMutablePointer<exception_behavior_t>, UnsafeMutablePointer<thread_state_flavor_t>) -> R) -> R {
+		static func internalMutablePointers<R>(_ m: UnsafeMutablePointer<execTypesCountTuple<exception_mask_t>>, _ c: UnsafeMutablePointer<mach_msg_type_number_t>, _ p: UnsafeMutablePointer<execTypesCountTuple<mach_port_t>>, _ b: UnsafeMutablePointer<execTypesCountTuple<exception_behavior_t>>, _ f: UnsafeMutablePointer<execTypesCountTuple<thread_state_flavor_t>>, _ block: (UnsafeMutablePointer<exception_mask_t>, UnsafeMutablePointer<mach_msg_type_number_t>, UnsafeMutablePointer<mach_port_t>, UnsafeMutablePointer<exception_behavior_t>, UnsafeMutablePointer<thread_state_flavor_t>) -> R) -> R {
 			return m.withMemoryRebound(to: exception_mask_t.self, capacity: 1) { masksPtr in
 				return c.withMemoryRebound(to: mach_msg_type_number_t.self, capacity: 1) { countPtr in
 					return p.withMemoryRebound(to: mach_port_t.self, capacity: 1) { portsPtr in
@@ -142,9 +142,9 @@ import Foundation
 	/// - returns: if an EXC_BAD_INSTRUCTION is raised during the execution of `block` then a BadInstructionException will be returned, otherwise `nil`.
 	public func catchBadInstruction(in block: () -> Void) -> BadInstructionException? {
 		var context = MachContext()
-		var result: BadInstructionException? = nil
+		var result: BadInstructionException?
 		do {
-			var handlerThread: pthread_t? = nil
+			var handlerThread: pthread_t?
 			defer {
 				// 8. Wait for the thread to terminate *if* we actually made it to the creation point
 				// The mach port should be destroyed *before* calling pthread_join to avoid a deadlock.

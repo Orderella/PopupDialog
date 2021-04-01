@@ -51,7 +51,7 @@ internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioni
         case .in:
             guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
                 let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
-            
+
             self.to = to
             self.from = from
 
@@ -60,7 +60,7 @@ internal class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioni
         case .out:
             guard let to = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to),
                 let from = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) else { return }
-            
+
             self.to = to
             self.from = from
         }

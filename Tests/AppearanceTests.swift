@@ -52,19 +52,19 @@ class AppearanceTests: XCTestCase {
         expect(defaultButton.titleColor!)    == UIColor(red: 0.25, green: 0.53, blue: 0.91, alpha: 1)
         expect(defaultButton.buttonColor)    == UIColor.clear
         expect(defaultButton.separatorColor) == UIColor(white: 0.9, alpha: 1)
-        
+
         let cancelButton = CancelButton(title: "", action: nil)
         expect(cancelButton.titleFont)      == .systemFont(ofSize: 14)
         expect(cancelButton.titleColor!)    == UIColor.lightGray
         expect(cancelButton.buttonColor)    == UIColor.clear
         expect(cancelButton.separatorColor) == UIColor(white: 0.9, alpha: 1)
-        
+
         let destructiveButton = DestructiveButton(title: "", action: nil)
         expect(destructiveButton.titleFont)      == .systemFont(ofSize: 14)
         expect(destructiveButton.titleColor!)    == UIColor.red
         expect(destructiveButton.buttonColor)    == UIColor.clear
         expect(destructiveButton.separatorColor) == UIColor(white: 0.9, alpha: 1)
-        
+
         // Overlay view
         let overlay = PopupDialogOverlayView(frame: .zero)
         expect(overlay.color)      == UIColor.black
@@ -136,7 +136,7 @@ class AppearanceTests: XCTestCase {
         expect(db.buttonColor)    == UIColor.darkGray
         expect(db.separatorColor) == UIColor.orange
     }
-    
+
     func resetAppearance() {
         // Customize view appearance
         let pv = PopupDialogDefaultView.appearance()
@@ -147,7 +147,7 @@ class AppearanceTests: XCTestCase {
         pv.messageFont          = UIFont.systemFont(ofSize: 14)
         pv.messageColor         = UIColor(white: 0.6, alpha: 1)
         pv.messageTextAlignment = .center
-        
+
         let pcv = PopupDialogContainerView.appearance()
         pcv.backgroundColor     = UIColor.white
         pcv.cornerRadius        = 4
@@ -156,7 +156,7 @@ class AppearanceTests: XCTestCase {
         pcv.shadowOpacity       = 0.4
         pcv.shadowRadius        = 5
         pcv.shadowOffset        = CGSize(width: 0, height: 0)
-        
+
         // Customize overlay appearance
         let ov = PopupDialogOverlayView.appearance()
         ov.color           = UIColor.black
@@ -164,7 +164,7 @@ class AppearanceTests: XCTestCase {
         ov.blurEnabled     = true
         ov.liveBlurEnabled = false
         ov.opacity         = 0.7
-        
+
         // Customize default button appearance
         let db = DefaultButton.appearance()
         db.titleFont      = UIFont.systemFont(ofSize: 14)

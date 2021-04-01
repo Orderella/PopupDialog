@@ -125,7 +125,7 @@ public extension PopupDialogDefaultViewController {
             standardView.pv_layoutIfNeededAnimated()
         }
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         standardView.imageHeightConstraint?.constant = standardView.imageView.pv_heightForImageView()

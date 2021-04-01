@@ -57,23 +57,23 @@ internal extension UIView {
             self.layoutIfNeeded()
         }, completion: nil)
     }
-    
+
     // As found at https://gist.github.com/mourad-brahim/cf0bfe9bec5f33a6ea66#file-uiview-animations-swift-L9
     // Slightly modified
     func pv_shake() {
         layer.removeAnimation(forKey: shakeKey)
         let vals: [Double] = [-2, 2, -2, 2, 0]
-        
+
         let translation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         translation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         translation.values = vals
-        
+
         let rotation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
         rotation.values = vals.map { (degrees: Double) in
             let radians: Double = (Double.pi * degrees) / 180.0
             return radians
         }
-        
+
         let shakeGroup: CAAnimationGroup = CAAnimationGroup()
         shakeGroup.animations = [translation, rotation]
         shakeGroup.duration = 0.3
