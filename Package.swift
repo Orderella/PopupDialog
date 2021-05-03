@@ -10,7 +10,6 @@ import PackageDescription
 
 let package = Package(
 	name: "PopupDialog",
-    //name: "PopupDialog",
 	// Which platforms and minimum deployment targets are supported
 	// See: https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html#supportedplatform
     platforms: [
@@ -32,13 +31,11 @@ let package = Package(
 		// .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/KyoheiG3/DynamicBlurView.git", from: "5.0.0"),
     ],
-	// The basic building blocks.
+	// Targets are the basic building blocks of a package. A target can define a module or a test suite.
+	// Targets can depend on other targets in this package, and on products in packages which this package depends on.
 	// See: https://docs.swift.org/package-manager/PackageDescription/PackageDescription.html#target
     targets: [
-		// Targets are the basic building blocks of a package. A target can define a module or a test suite.
-		// Targets can depend on other targets in this package, and on products in packages which this package depends on.
-		// Our package contains two targets, one for our library
-		// code, and one for our tests:
+
         .target(
             name: "PopupDialog",
 			dependencies: ["DynamicBlurView"],
