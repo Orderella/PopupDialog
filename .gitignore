@@ -34,3 +34,5 @@ DerivedData
 # Pods/
 .idea
 /Tests/FailureDiffs
+xcshareddata
+.build
