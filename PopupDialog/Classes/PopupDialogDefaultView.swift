@@ -26,6 +26,14 @@
 import Foundation
 import UIKit
 
+/// Image layout of the popup dialog.
+@objc public enum PopupDialogImageLayout: Int {
+    /// Image fills the width of the dialog.
+    case fill
+    /// Image with intrinsic size and centered horizontally in the dialog.
+    case center
+}
+
 /// The main view of the popup dialog
 final public class PopupDialogDefaultView: UIView {
 
@@ -103,6 +111,8 @@ final public class PopupDialogDefaultView: UIView {
     /// The height constraint of the image view, 0 by default
     internal var imageHeightConstraint: NSLayoutConstraint?
 
+    internal var imageLayout: PopupDialogImageLayout = .fill
+
     private var layoutConstraints = [NSLayoutConstraint]()
 
     // MARK: - Initializers
@@ -140,10 +150,24 @@ final public class PopupDialogDefaultView: UIView {
 
         let views = ["imageView": imageView, "titleLabel": titleLabel, "messageLabel": messageLabel] as [String: Any]
 
-        layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
+        switch imageLayout {
+            case .fill:
+                layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
+                layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]", options: [], metrics: nil, views: views)
+            case .center:
+                layoutConstraints.append(contentsOf: [
+                    imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 30),
+                    imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                    imageView.leadingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: self.leadingAnchor, multiplier: 1.0),
+                    self.trailingAnchor.constraint(greaterThanOrEqualToSystemSpacingAfter: imageView.trailingAnchor, multiplier: 1.0),
+                ])
+            @unknown default:
+                layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView]|", options: [], metrics: nil, views: views)
+                layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]", options: [], metrics: nil, views: views)
+        }
+        
         layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==20@900)-[titleLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
         layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==20@900)-[messageLabel]-(==20@900)-|", options: [], metrics: nil, views: views)
-        layoutConstraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]", options: [], metrics: nil, views: views)
 
         // Setup top constraints depending on whether we have a title or not
         if let titleText = titleLabel.text, !titleText.isEmpty {

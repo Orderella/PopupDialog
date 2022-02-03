@@ -105,6 +105,7 @@ final public class PopupDialog: UIViewController {
      - parameter title:            The dialog title
      - parameter message:          The dialog message
      - parameter image:            The dialog image
+     - parameter imageLayout:      The dialog image layout
      - parameter buttonAlignment:  The dialog button alignment
      - parameter transitionStyle:  The dialog transition style
      - parameter preferredStyle:   The dialog presentation style
@@ -120,6 +121,7 @@ final public class PopupDialog: UIViewController {
                 title: String?,
                 message: String?,
                 image: UIImage? = nil,
+                imageLayout: PopupDialogImageLayout = .fill,
                 buttonAlignment: NSLayoutConstraint.Axis = .vertical,
                 transitionStyle: PopupDialogTransitionStyle = .bounceUp,
                 preferredStyle: PopupDialogPresentationStyle = .alert,
@@ -134,6 +136,7 @@ final public class PopupDialog: UIViewController {
         viewController.titleText   = title
         viewController.messageText = message
         viewController.image       = image
+        (viewController.view as? PopupDialogDefaultView)?.imageLayout = imageLayout
 
         // Call designated initializer
         self.init(viewController: viewController,
