@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DynamicBlurView",
+        "repositoryURL": "https://github.com/KyoheiG3/DynamicBlurView.git",
+        "state": {
+          "branch": null,
+          "revision": "fbf91352ff3defee8e1fc7525696404bc3740a86",
+          "version": "5.0.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
