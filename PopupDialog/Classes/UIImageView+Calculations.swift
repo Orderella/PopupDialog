@@ -34,11 +34,28 @@ internal extension UIImageView {
      - returns: Height to set on the imageView
      */
     func pv_heightForImageView() -> CGFloat {
+                
         guard let image = image, image.size.height > 0 else {
             return 0.0
         }
-        let width = bounds.size.width
-        let ratio = image.size.height / image.size.width
+        var width = bounds.size.width
+                
+        let imageHeight = image.size.height
+        
+        let screenHeight = UIScreen.main.bounds.height
+        let screenPercentage = CGFloat(0.35)
+
+        let minRatio = CGFloat(1.25)
+        let maxRatio = CGFloat(1.75)
+
+        var ratio = imageHeight / image.size.width
+        if ratio > minRatio {
+            if ratio > maxRatio {
+                ratio = maxRatio
+            }
+            width = screenHeight * screenPercentage
+        }
+
         return width * ratio
     }
 }
