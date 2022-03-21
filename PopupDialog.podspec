@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files = 'PopupDialog/Classes/**/*'
   s.swift_version = '5.0'
 
-  s.dependency 'DynamicBlurView', '~> 4.0'
+  s.dependency 'DynamicBlurView', '~> 5.0.0'
 end
