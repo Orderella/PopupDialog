@@ -53,7 +53,7 @@ final public class PopupDialogContainerView: UIView {
      In order to help them out, we can have functions doing the same functionality.
      */
     /// Set the corner radius of the popup view
-    @objc public dynamic func setCornerRadius(_ radius: Float) {
+    @objc public dynamic func setupCornerRadius(_ radius: Float) {
         let radius = CGFloat(radius)
         shadowContainer.layer.cornerRadius = radius
         container.layer.cornerRadius = radius
