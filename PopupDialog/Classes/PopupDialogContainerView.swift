@@ -48,6 +48,22 @@ final public class PopupDialogContainerView: UIView {
         }
     }
     
+    /*
+     Having `cornerRadius` variable will create ambiguity with developers having it as a UIView extension.
+     In order to help them out, we can have functions doing the same functionality.
+     */
+    /// Set the corner radius of the popup view
+    @objc public dynamic func setCornerRadius(_ radius: Float) {
+        let radius = CGFloat(radius)
+        shadowContainer.layer.cornerRadius = radius
+        container.layer.cornerRadius = radius
+    }
+    
+    /// Get the corner radius of the popup view
+    @objc public dynamic func getCornerRadius() -> Float {
+        return Float(shadowContainer.layer.cornerRadius)
+    }
+    
     // MARK: Shadow related
 
     /// Enable / disable shadow rendering of the container
