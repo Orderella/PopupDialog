@@ -340,3 +340,17 @@ extension PopupDialog {
         popupContainerView.pv_shake()
     }
 }
+
+extension PopupDialog {
+    public override var shouldAutorotate: Bool {
+        return children.last?.shouldAutorotate ?? true
+    }
+    
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return children.last?.supportedInterfaceOrientations ?? super.supportedInterfaceOrientations
+    }
+    
+    public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return children.last?.preferredInterfaceOrientationForPresentation ?? super.preferredInterfaceOrientationForPresentation
+    }
+}
