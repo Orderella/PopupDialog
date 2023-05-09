@@ -103,7 +103,7 @@ final public class PopupDialogContainerView: UIView {
         shadowContainer.layer.shadowRadius = 5
         shadowContainer.layer.shadowOpacity = 0.4
         shadowContainer.layer.shadowOffset = CGSize(width: 0, height: 0)
-        shadowContainer.layer.cornerRadius = 4
+        shadowContainer.layer.cornerRadius = 10
         return shadowContainer
     }()
 
@@ -114,7 +114,7 @@ final public class PopupDialogContainerView: UIView {
         container.translatesAutoresizingMaskIntoConstraints = false
         container.backgroundColor = UIColor.white
         container.clipsToBounds = true
-        container.layer.cornerRadius = 4
+        container.layer.cornerRadius = 10
         return container
     }()
 
