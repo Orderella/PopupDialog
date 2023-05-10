@@ -174,7 +174,13 @@ final public class PopupDialogContainerView: UIView {
             let metrics = ["preferredWidth": preferredWidth]
             constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=40)-[shadowContainer(==preferredWidth@900)]-(>=40)-|", options: [], metrics: metrics, views: views)
         } else {
-            constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==20@900)-[shadowContainer(<=340,>=300)]-(>=10,==20@900)-|", options: [], metrics: nil, views: views)
+//            constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==20@900)-[shadowContainer(<=340,>=300)]-(>=10,==20@900)-|", options: [], metrics: nil, views: views)
+            if preferredWidth == 0 {
+                constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=20)-[shadowContainer]-(>=20)-|", options: [], metrics: nil, views: views)
+            } else {
+                let metrics = ["preferredWidth": preferredWidth]
+                constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=20)-[shadowContainer(==preferredWidth@900)]-(>=20)-|", options: [], metrics: metrics, views: views)
+            }
         }
         constraints += [NSLayoutConstraint(item: shadowContainer, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)]
         centerYConstraint = NSLayoutConstraint(item: shadowContainer, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
