@@ -73,7 +73,7 @@ final public class PopupDialogOverlayView: UIView {
 
     internal lazy var blurView: DynamicBlurView = {
         let blurView = DynamicBlurView(frame: .zero)
-        blurView.blurRadius = 1
+        blurView.blurRadius = 2
         blurView.trackingMode = .none
         blurView.isDeepRendering = true
         blurView.tintColor = .clear
