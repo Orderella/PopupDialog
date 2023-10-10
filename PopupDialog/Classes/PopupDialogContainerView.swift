@@ -171,8 +171,12 @@ final public class PopupDialogContainerView: UIView {
 
         // Shadow container constraints
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-            let metrics = ["preferredWidth": preferredWidth]
-            constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=40)-[shadowContainer(==preferredWidth@900)]-(>=40)-|", options: [], metrics: metrics, views: views)
+            if preferredWidth == 0 {
+                constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=40)-[shadowContainer]-(>=40)-|", options: [], metrics: nil, views: views)
+            } else {
+                let metrics = ["preferredWidth": preferredWidth]
+                constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=40)-[shadowContainer(==preferredWidth@900)]-(>=40)-|", options: [], metrics: metrics, views: views)
+            }
         } else {
 //            constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(>=10,==20@900)-[shadowContainer(<=340,>=300)]-(>=10,==20@900)-|", options: [], metrics: nil, views: views)
             if preferredWidth == 0 {
