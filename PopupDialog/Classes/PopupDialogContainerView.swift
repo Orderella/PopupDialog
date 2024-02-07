@@ -58,6 +58,14 @@ final public class PopupDialogContainerView: UIView {
         }
     }
     
+    /// The spacing between buttons
+    @objc public dynamic var buttonsSpacing: CGFloat {
+        get { return buttonStackView.spacing }
+        set {
+            buttonStackView.spacing = newValue
+        }
+    }
+    
     // MARK: Shadow related
 
     /// Enable / disable shadow rendering of the container
