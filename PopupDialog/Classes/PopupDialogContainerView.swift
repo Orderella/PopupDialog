@@ -48,6 +48,40 @@ final public class PopupDialogContainerView: UIView {
         }
     }
     
+    /// The corner curve of the popup view
+    @available(iOS 13.0, *)
+    @objc public dynamic var cornerCurve: CALayerCornerCurve {
+        get { return shadowContainer.layer.cornerCurve }
+        set {
+            shadowContainer.layer.cornerCurve = newValue
+            container.layer.cornerCurve = newValue
+        }
+    }
+    
+    /// The spacing between buttons
+    @objc public dynamic var buttonsInterSpacing: CGFloat {
+        get { return buttonStackView.spacing }
+        set {
+            buttonStackView.spacing = newValue
+        }
+    }
+    
+    /// The spacing between buttons and the container view
+    @objc public dynamic var buttonsContainerSpacing: CGFloat {
+        get { return buttonStackContainerView.constraints.filter { $0.firstAttribute == .leading }.first?.constant ?? 0 }
+        set {
+            buttonStackContainerView.constraints.filter { $0.firstAttribute == .leading }.first?.constant = newValue
+        }
+    }
+    
+    /// The separator color between buttons and popup content view
+    @objc public dynamic var separatorColor: UIColor? {
+        get { return separator.backgroundColor }
+        set {
+            separator.backgroundColor = newValue
+        }
+    }
+    
     // MARK: Shadow related
 
     /// Enable / disable shadow rendering of the container
@@ -126,10 +160,34 @@ final public class PopupDialogContainerView: UIView {
         buttonStackView.spacing = 0
         return buttonStackView
     }()
+    
+    // The container view for the buttons stack view
+    internal lazy var buttonStackContainerView: UIView = {
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(buttonStackView)
+        NSLayoutConstraint.activate([
+            buttonStackView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            buttonStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            buttonStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
+            buttonStackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ])
+        return containerView
+    }()
+    
+    // The separator between the popup content and the buttonsStackContainerView
+    internal lazy var separator: UIView = {
+        let line = UIView(frame: .zero)
+        line.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            line.heightAnchor.constraint(equalToConstant: 1)
+        ])
+        return line
+    }()
 
     // The main stack view, containing all relevant views
     internal lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.buttonStackView])
+        let stackView = UIStackView(arrangedSubviews: [self.separator, self.buttonStackContainerView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 0

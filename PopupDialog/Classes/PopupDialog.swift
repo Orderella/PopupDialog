@@ -254,6 +254,7 @@ final public class PopupDialog: UIViewController {
         let buttonStackView = popupContainerView.buttonStackView
         if buttons.isEmpty {
             stackView.removeArrangedSubview(popupContainerView.buttonStackView)
+            stackView.removeArrangedSubview(popupContainerView.separator)
         }
         
         for (index, button) in buttons.enumerated() {
