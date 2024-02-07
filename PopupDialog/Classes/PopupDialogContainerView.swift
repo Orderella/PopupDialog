@@ -74,6 +74,14 @@ final public class PopupDialogContainerView: UIView {
         }
     }
     
+    /// The separator color between buttons and popup content view
+    @objc public dynamic var separatorColor: UIColor? {
+        get { return separator.backgroundColor }
+        set {
+            separator.backgroundColor = newValue
+        }
+    }
+    
     // MARK: Shadow related
 
     /// Enable / disable shadow rendering of the container
@@ -153,6 +161,7 @@ final public class PopupDialogContainerView: UIView {
         return buttonStackView
     }()
     
+    // The container view for the buttons stack view
     internal lazy var buttonStackContainerView: UIView = {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -165,10 +174,20 @@ final public class PopupDialogContainerView: UIView {
         ])
         return containerView
     }()
+    
+    // The separator between the popup content and the buttonsStackContainerView
+    internal lazy var separator: UIView = {
+        let line = UIView(frame: .zero)
+        line.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            line.heightAnchor.constraint(equalToConstant: 1)
+        ])
+        return line
+    }()
 
     // The main stack view, containing all relevant views
     internal lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.buttonStackContainerView])
+        let stackView = UIStackView(arrangedSubviews: [self.separator, self.buttonStackContainerView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 0
