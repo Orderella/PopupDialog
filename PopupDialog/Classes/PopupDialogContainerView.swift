@@ -144,10 +144,23 @@ final public class PopupDialogContainerView: UIView {
         buttonStackView.spacing = 0
         return buttonStackView
     }()
+    
+    internal lazy var buttonStackContainerView: UIView = {
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(buttonStackView)
+        NSLayoutConstraint.activate([
+            buttonStackView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            buttonStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            buttonStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 5),
+            buttonStackView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)
+        ])
+        return containerView
+    }()
 
     // The main stack view, containing all relevant views
     internal lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [self.buttonStackView])
+        let stackView = UIStackView(arrangedSubviews: [self.buttonStackContainerView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = 0
