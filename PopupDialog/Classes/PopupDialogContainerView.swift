@@ -59,10 +59,18 @@ final public class PopupDialogContainerView: UIView {
     }
     
     /// The spacing between buttons
-    @objc public dynamic var buttonsSpacing: CGFloat {
+    @objc public dynamic var buttonsInterSpacing: CGFloat {
         get { return buttonStackView.spacing }
         set {
             buttonStackView.spacing = newValue
+        }
+    }
+    
+    /// The spacing between buttons and the container view
+    @objc public dynamic var buttonsContainerSpacing: CGFloat {
+        get { return buttonStackContainerView.constraints.filter { $0.firstAttribute == .leading }.first?.constant ?? 0 }
+        set {
+            buttonStackContainerView.constraints.filter { $0.firstAttribute == .leading }.first?.constant = newValue
         }
     }
     
