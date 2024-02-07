@@ -48,6 +48,16 @@ final public class PopupDialogContainerView: UIView {
         }
     }
     
+    /// The corner curve of the popup view
+    @available(iOS 13.0, *)
+    @objc public dynamic var cornerCurve: CALayerCornerCurve {
+        get { return shadowContainer.layer.cornerCurve }
+        set {
+            shadowContainer.layer.cornerCurve = newValue
+            container.layer.cornerCurve = newValue
+        }
+    }
+    
     // MARK: Shadow related
 
     /// Enable / disable shadow rendering of the container
